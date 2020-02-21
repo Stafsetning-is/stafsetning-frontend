@@ -1,6 +1,6 @@
 import React from "react";
 import pages from "../components/pages";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 /**
  * Router functional component that

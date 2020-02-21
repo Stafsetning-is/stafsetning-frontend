@@ -1,3 +1,6 @@
 import React from "react";
+import { LayoutWrapper } from "../../../../layout";
 
-export default () => <div>front page</div>;
+export default () => {
+	return <LayoutWrapper>{4}</LayoutWrapper>;
+};
