@@ -104,10 +104,8 @@ describe("Event listeners", () => {
 		e.type("a");
 		e.type("a");
 		e.type("a");
-
 		e.type("r");
 		e.type("a");
-
 		e.type("l");
 		e.type(" ");
 		e.type("w");
