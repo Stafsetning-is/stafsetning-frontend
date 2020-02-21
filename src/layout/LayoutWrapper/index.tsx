@@ -1,13 +1,14 @@
 import React from "react";
 import { IProps } from "./interface";
-import Header from "../header";
-import BackDrop from "../backdrop";
+import Header from "../Header";
+import BackDrop from "../BackDrop";
+import CenterBlock from "../CenterBlock";
 
 export const LayoutWrapper = ({ children }: IProps) => {
 	return (
 		<BackDrop>
 			<Header />
-			{children}
+			<CenterBlock>{children}</CenterBlock>
 		</BackDrop>
 	);
 };
