@@ -1,12 +1,15 @@
-type SpellingTypeEvents =
-	| "onError"
-	| "onErrorCountChange"
-	| "onSuccess"
-	| "onComplete";
+type SpellingTypeEvents = "error" | "errorCountChange" | "success" | "complete";
 
 export class Exercise {
 	private exerciseParts: string[];
 	private typingAt: number;
+	private errorFlag: boolean;
+	private errorCount: number;
+	private text: string;
+	private errorCountChange!: (i: number) => void;
+	private success!: () => void;
+	private error!: () => void;
+	private complete!: () => void;
 
 	/**
 	 * Private constructor that
@@ -17,6 +20,9 @@ export class Exercise {
 		this.exerciseParts = exerciseParts;
 		this.cleanParts();
 		this.typingAt = 0;
+		this.errorFlag = false;
+		this.errorCount = 0;
+		this.text = "";
 	}
 
 	/**
@@ -25,7 +31,7 @@ export class Exercise {
 	 * @param type predefined type of event
 	 * @param cb call back to execute on event, will overwrite older calllbacks
 	 */
-	public on(type: SpellingTypeEvents, cb: () => void) {
+	public on(type: SpellingTypeEvents, cb: (param?: any) => void) {
 		this[type] = cb;
 	}
 
@@ -35,8 +41,13 @@ export class Exercise {
 	 */
 	private advance() {
 		this.typingAt += 1;
-		this.doCallBack("onSuccess");
-		// this.validateCompleted();
+		this.doCallBack("success");
+		this.errorFlag = false;
+		this.validateCompleted();
+	}
+
+	private validateCompleted() {
+		if (this.typingAt === this.getText().length) this.doCallBack("complete");
 	}
 
 	/**
@@ -46,7 +57,27 @@ export class Exercise {
 	 */
 	public type(input: string) {
 		if (input === this.getNextChar()) this.advance();
-		else this.doCallBack("onError");
+		else this.handleError();
+	}
+
+	/**
+	 * Handles functionality
+	 * when an error in type()
+	 * is made
+	 */
+	private handleError() {
+		this.doCallBack("error");
+		if (this.errorFlag === false) this.incrementErrorCount();
+		this.errorFlag = true;
+	}
+
+	/**
+	 * Increments the error count and does a callback to
+	 * errorCountChange
+	 */
+	private incrementErrorCount() {
+		this.errorCount++;
+		this.doCallBack("errorCountChange", this.errorCount);
 	}
 
 	/**
@@ -55,8 +86,21 @@ export class Exercise {
 	 * if user has not supplied callback
 	 * @param cb
 	 */
-	private doCallBack(cb: SpellingTypeEvents) {
-		if (this[cb]) this[cb]();
+	private doCallBack(cb: SpellingTypeEvents, param?: any) {
+		switch (cb) {
+			case "complete":
+				if (this[cb]) this[cb]();
+				break;
+			case "error":
+				if (this[cb]) this[cb]();
+				break;
+			case "errorCountChange":
+				if (this[cb]) this.errorCountChange(param);
+				break;
+			case "success":
+				if (this[cb]) this[cb]();
+				break;
+		}
 	}
 
 	/**
@@ -72,7 +116,8 @@ export class Exercise {
 	 * erxercise string
 	 */
 	private getText() {
-		return this.exerciseParts.join(" ");
+		if (!this.text) this.text = this.exerciseParts.join(" ");
+		return this.text;
 	}
 
 	/**
@@ -92,22 +137,6 @@ export class Exercise {
 	 */
 	public static startExercise(exerciseParts: string[]) {
 		return new Exercise(exerciseParts);
-	}
-
-	private onError() {
-		// can be overriden
-	}
-
-	private onErrorCountChange() {
-		// can be overriden
-	}
-
-	private onSuccess() {
-		// can be overriden
-	}
-
-	private onComplete() {
-		// can be overriden
 	}
 
 	public getCurrentIndex() {

@@ -37,6 +37,7 @@ describe("Initialize exercise and input", () => {
 		e.type(".");
 		expect(e.getCurrentIndex()).toBe(2);
 	});
+
 	it("Should fix wrong spacing", () => {
 		const copy = [...sentenceParts];
 		copy.unshift("   first.   ");
@@ -61,6 +62,55 @@ describe("Initialize exercise and input", () => {
 	});
 });
 
-describe("Should be able to add event listeners", () => {});
+describe("Event listeners", () => {
+	it("Should be able to add onSuccess listener", (done) => {
+		const e = Exercise.startExercise(sentenceParts);
+		e.on("success", () => {
+			expect(true).toBe(true);
+			done();
+		});
+		e.type("C");
+	});
 
-export {};
+	it("Should be able to add onError listener", (done) => {
+		const e = Exercise.startExercise(sentenceParts);
+
+		e.on("success", () => {
+			expect(false).toBe(true);
+			done();
+		});
+
+		e.on("error", () => {
+			expect(true).toBe(true);
+			done();
+		});
+		e.type("w");
+	});
+
+	it("Should be able to add onErrorCountChange listener", (done) => {
+		const e = Exercise.startExercise(sentenceParts);
+		let count = 1;
+		e.on("errorCountChange", (callBackValue: number) => {
+			expect(callBackValue).toEqual(count++);
+			if (count === 4) {
+				expect(true).toBe(true);
+				done();
+			}
+		});
+
+		e.type("C");
+		e.type("a");
+		e.type("a");
+		e.type("a");
+		e.type("a");
+		e.type("a");
+
+		e.type("r");
+		e.type("a");
+
+		e.type("l");
+		e.type(" ");
+		e.type("w");
+		e.type("C");
+	});
+});
