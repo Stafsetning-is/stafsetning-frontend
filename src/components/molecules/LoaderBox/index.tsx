@@ -10,14 +10,16 @@ import { IProps } from "./interface";
  * fills into its width 100%
  *
  */
-export const LoaderBox = ({ loading, height }: IProps) => {
-	return (
-		<Container
-			theme={{
-				height: height
-			}}
-		>
-			<Loader loading={loading} />
-		</Container>
-	);
+export const LoaderBox = ({ loading, height, children }: IProps) => {
+	if (loading)
+		return (
+			<Container
+				theme={{
+					height: height
+				}}
+			>
+				<Loader loading={true} />
+			</Container>
+		);
+	return children;
 };

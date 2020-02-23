@@ -23,7 +23,7 @@ export const getExerciseById = (id: string) => {
  * that will resolve in 1250ms
  * @param data Data to return after delay
  */
-const delay = (data: any) => {
+const delay = <T>(data: T): Promise<T> => {
 	return new Promise((resolve) => {
 		setTimeout(() => resolve(data), 1250);
 	});

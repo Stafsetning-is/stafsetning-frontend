@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { IProps } from "./interface";
+import ErrorCounter from "./ErrorCounter";
 
 export const SpellingPractice = ({ exercise }: IProps) => {
-	return <div>Kalli for ut i bud</div>;
+	return <ErrorCounter count={4} />;
 };

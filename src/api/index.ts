@@ -1,1 +1,1 @@
-export { default as MockApi } from "./MockApi";
+export * from "./MockApi";
