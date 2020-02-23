@@ -3,6 +3,13 @@ import { Loader } from "../../";
 import { Container } from "./styles";
 import { IProps } from "./interface";
 
+/**
+ * Loader box that can be toogled on and off
+ * with boolean loading variable
+ * height can be adjusted
+ * fills into its width 100%
+ *
+ */
 export const LoaderBox = ({ loading, height }: IProps) => {
 	return (
 		<Container
