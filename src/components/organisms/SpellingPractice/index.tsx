@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { IProps } from "./interface";
 import { Exercise } from "./utils";
 import ErrorCounter from "./ErrorCounter";
+import TypedText, { refObject } from "./TypedText";
 
 /**
  * This component holds all the look and logic
@@ -12,7 +13,7 @@ import ErrorCounter from "./ErrorCounter";
  */
 export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 	const [errorCount, setErrorCount] = useState(0);
-
+	const typeTextRef = useRef(refObject);
 	/**
 	 * Sets up event listeners
 	 * for the four events that
@@ -23,8 +24,8 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 			.on("error", () => {
 				// handle error
 			})
-			.on("success", () => {
-				// handle success
+			.on("success", (char) => {
+				typeTextRef.current.addCharacter(char);
 			})
 			.on("errorCountChange", (newCount) => {
 				setErrorCount(newCount);
@@ -34,5 +35,10 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 			});
 	}, []);
 
-	return <ErrorCounter count={errorCount} />;
+	return (
+		<React.Fragment>
+			<ErrorCounter count={errorCount} />
+			<TypedText ref={typeTextRef} />
+		</React.Fragment>
+	);
 };

@@ -9,7 +9,7 @@ export class Exercise {
 	private errorCount: number;
 	private text: string;
 	private errorCountChange!: (i: number) => void;
-	private success!: () => void;
+	private success!: (c: string) => void;
 	private error!: () => void;
 	private complete!: () => void;
 
@@ -43,8 +43,8 @@ export class Exercise {
 	 * when a user should advance +1
 	 */
 	private advance() {
+		this.doCallBack("success", this.getNextChar());
 		this.typingAt += 1;
-		this.doCallBack("success");
 		this.errorFlag = false;
 		this.validateCompleted();
 	}
@@ -106,7 +106,7 @@ export class Exercise {
 				if (this[cb]) this.errorCountChange(param);
 				break;
 			case "success":
-				if (this[cb]) this[cb]();
+				if (this[cb]) this.success(param);
 				break;
 		}
 	}
