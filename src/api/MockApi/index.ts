@@ -1,1 +1,1 @@
-export {};
+export const getExerciseById = (id: string) => {};
