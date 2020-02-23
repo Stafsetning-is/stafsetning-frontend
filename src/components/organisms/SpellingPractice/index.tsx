@@ -2,7 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { IProps } from "./interface";
 import { Exercise } from "./utils";
 import ErrorCounter from "./ErrorCounter";
+import PreviewButton from "./PreviewButton";
 import TypedText, { refObject } from "./TypedText";
+
+type cb = () => void;
 
 /**
  * This component holds all the look and logic
@@ -13,14 +16,19 @@ import TypedText, { refObject } from "./TypedText";
  */
 export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 	const [errorCount, setErrorCount] = useState(0);
+	const [previewCallback, setPreviewCallback] = useState<cb>(() => () => {
+		console.log("Call back has not been set");
+	});
+	let created = false;
 	const typeTextRef = useRef(refObject);
+
 	/**
 	 * Sets up event listeners
 	 * for the four events that
 	 * might occur on user input
 	 */
 	useEffect(() => {
-		Exercise.startExercise(sentenceParts)
+		const instance = Exercise.startExercise(sentenceParts)
 			.on("error", () => {
 				typeTextRef.current.giveErrorFeedback();
 			})
@@ -32,12 +40,23 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 			})
 			.on("complete", () => {
 				// handle complete
+			})
+			.on("preview", (previewText) => {
+				typeTextRef.current.previewTemporarily(previewText);
 			});
+		created = true;
+		setPreviewCallback(() => () => instance.showPreview());
+		previewCallback();
 	}, []);
+
+	useEffect(() => {
+		if (created) previewCallback();
+	}, [previewCallback]);
 
 	return (
 		<React.Fragment>
 			<ErrorCounter count={errorCount} />
+			<PreviewButton onClick={previewCallback} />
 			<TypedText ref={typeTextRef} />
 		</React.Fragment>
 	);

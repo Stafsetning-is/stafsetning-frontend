@@ -1,6 +1,12 @@
 import keycode from "keycode";
 
-type SpellingTypeEvents = "error" | "errorCountChange" | "success" | "complete";
+type SpellingTypeEvents =
+	| "error"
+	| "errorCountChange"
+	| "success"
+	| "complete"
+	| "preview"
+	| "create";
 
 export class Exercise {
 	private exerciseParts: string[];
@@ -8,10 +14,15 @@ export class Exercise {
 	private errorFlag: boolean;
 	private errorCount: number;
 	private text: string;
+	private partCount: number;
+	private partIndexes!: number[];
+	private currentPartNumber: number;
 	private errorCountChange!: (i: number) => void;
 	private success!: (c: string) => void;
 	private error!: () => void;
 	private complete!: () => void;
+	private create!: () => void;
+	private preview!: (t: string) => void;
 
 	/**
 	 * Private constructor that
@@ -25,6 +36,45 @@ export class Exercise {
 		this.errorFlag = false;
 		this.errorCount = 0;
 		this.text = "";
+		this.partCount = exerciseParts.length;
+		this.currentPartNumber = 0;
+		this.createPartIndexArray();
+		setTimeout(() => this.doCallBack("preview"), 150);
+	}
+
+	/**
+	 * Counts the index of the starting position
+	 * of each sentence part
+	 */
+	private createPartIndexArray() {
+		const partLengths = this.exerciseParts.map((part) => part.length + 1);
+		for (let i = 1; i < this.partCount; i++) {
+			partLengths[i] += partLengths[i - 1];
+		}
+		this.partIndexes = partLengths;
+		this.partIndexes.unshift(0);
+		this.partIndexes.push(this.getText().length);
+	}
+
+	/**
+	 * Returns the current sentence part
+	 */
+	public currentPart() {
+		return this.currentPartNumber;
+	}
+
+	/**
+	 * If we have completed the current sentence
+	 * part then we go to the next one
+	 */
+	private traverseToNextSentencePart() {
+		const switchToNextPositionAt = this.partIndexes[1];
+		if (switchToNextPositionAt === undefined) return;
+		if (this.typingAt === switchToNextPositionAt) {
+			this.partIndexes.shift();
+			this.currentPartNumber++;
+			this.doCallBack("preview");
+		}
 	}
 
 	/**
@@ -46,6 +96,7 @@ export class Exercise {
 		this.doCallBack("success", this.getNextChar());
 		this.typingAt += 1;
 		this.errorFlag = false;
+		this.traverseToNextSentencePart();
 		this.validateCompleted();
 	}
 
@@ -59,13 +110,8 @@ export class Exercise {
 	 * @param input single character from user
 	 */
 	public type(input: string) {
-		console.log(this.getText());
-		console.log(`Typing at ${this.typingAt}`);
-		console.log(`Input to exercise: ${input}`);
 		if (input === this.getNextChar()) this.advance();
 		else this.handleError();
-		console.log(`completed: ${this.getText().slice(0, this.typingAt)}`);
-		console.log(`Next char is ${this.getNextChar()}`);
 	}
 
 	/**
@@ -108,7 +154,17 @@ export class Exercise {
 			case "success":
 				if (this[cb]) this.success(param);
 				break;
+			case "preview":
+				if (this[cb]) this.preview(this.getPreviewText());
+				break;
 		}
+	}
+
+	private getPreviewText() {
+		const startOfNext = this.partIndexes[1];
+		return this.getText()
+			.slice(this.typingAt, startOfNext)
+			.trim();
 	}
 
 	/**
@@ -134,6 +190,14 @@ export class Exercise {
 	 */
 	private cleanParts() {
 		this.exerciseParts = this.exerciseParts.map((text) => text.trim());
+	}
+
+	/**
+	 * public function that fires
+	 * the preview event
+	 */
+	public showPreview() {
+		this.doCallBack("preview");
 	}
 
 	/**

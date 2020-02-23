@@ -4,7 +4,8 @@
  */
 export const getExerciseById = (id: string) => {
 	return delay([
-		"Fiskar hafa synt um heimsins höf",
+		"Fiskar hafa",
+		"synt um heimsins höf",
 		"og vötn í meira en",
 		"500 milljónir ára.",
 		"Fyrstu dýrin, sem hægt var að kalla",
@@ -25,6 +26,6 @@ export const getExerciseById = (id: string) => {
  */
 const delay = <T>(data: T): Promise<T> => {
 	return new Promise((resolve) => {
-		setTimeout(() => resolve(data), 1250);
+		setTimeout(() => resolve(data), 3000);
 	});
 };

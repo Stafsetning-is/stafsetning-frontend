@@ -36,7 +36,7 @@ export default forwardRef((props, ref) => {
 	 */
 	const previewTemporarily = (preview: string) => {
 		const tmp = text;
-		setText((t) => `${t} ${preview}`);
+		setText((t) => `${t}${preview}`);
 		setTimeout(() => setText(tmp), PREVIEW_DURATION);
 	};
 

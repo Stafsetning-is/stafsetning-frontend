@@ -156,7 +156,7 @@ describe("Traversing sentence parts and getting preview", () => {
 		e.on("preview", (text) => {
 			expect(text).toEqual("Carl");
 		});
-		e.preview();
+		e.showPreview();
 	});
 	it("Should be able to call for part of preview text", () => {
 		const e = Exercise.startExercise(shortSentenceParts);
@@ -165,6 +165,6 @@ describe("Traversing sentence parts and getting preview", () => {
 		});
 		e.type("C");
 		e.type("a");
-		e.preview();
+		e.showPreview();
 	});
 });
