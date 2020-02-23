@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { IProps } from "./interface";
 
 export const SpellingPractice = ({ exercise }: IProps) => {
