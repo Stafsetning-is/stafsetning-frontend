@@ -22,7 +22,7 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 	useEffect(() => {
 		Exercise.startExercise(sentenceParts)
 			.on("error", () => {
-				// handle error
+				typeTextRef.current.giveErrorFeedback();
 			})
 			.on("success", (char) => {
 				typeTextRef.current.addCharacter(char);
