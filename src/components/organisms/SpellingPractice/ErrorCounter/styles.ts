@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const Outer = styled.div`
 	position: absolute;
-	width: 208px;
+	width: 120px;
 	height: 59px;
-	left: 1232px;
-	top: 262px;
+	right: 0;
+	top: 200px;
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;

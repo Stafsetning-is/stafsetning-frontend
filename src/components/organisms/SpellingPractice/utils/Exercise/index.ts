@@ -33,6 +33,7 @@ export class Exercise {
 	 */
 	public on(type: SpellingTypeEvents, cb: (param?: any) => void) {
 		this[type] = cb;
+		return this;
 	}
 
 	/**
