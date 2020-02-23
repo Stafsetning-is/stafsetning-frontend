@@ -12,7 +12,7 @@ import { fetchExerciseText } from "./utils";
  */
 export default () => {
 	const [loading, setLoading] = useState(true);
-	let exerciseText: string[] = [];
+	const [exerciseParts, setExerciseParts] = useState<string[]>([]);
 
 	/**
 	 * Use effect fires only on first render
@@ -21,7 +21,7 @@ export default () => {
 	 */
 	useEffect(() => {
 		fetchExerciseText((textParts) => {
-			exerciseText = textParts;
+			setExerciseParts(textParts);
 			setLoading(false);
 		});
 	}, []);
@@ -29,7 +29,7 @@ export default () => {
 	return (
 		<LayoutWrapper>
 			<LoaderBox loading={loading}>
-				<SpellingPractice exercise="22343as3" sentenceParts={exerciseText} />
+				<SpellingPractice exercise="22343as3" sentenceParts={exerciseParts} />
 			</LoaderBox>
 		</LayoutWrapper>
 	);

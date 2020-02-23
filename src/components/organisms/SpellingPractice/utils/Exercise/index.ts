@@ -1,3 +1,5 @@
+import keycode from "keycode";
+
 type SpellingTypeEvents = "error" | "errorCountChange" | "success" | "complete";
 
 export class Exercise {
@@ -57,8 +59,13 @@ export class Exercise {
 	 * @param input single character from user
 	 */
 	public type(input: string) {
+		console.log(this.getText());
+		console.log(`Typing at ${this.typingAt}`);
+		console.log(`Input to exercise: ${input}`);
 		if (input === this.getNextChar()) this.advance();
 		else this.handleError();
+		console.log(`completed: ${this.getText().slice(0, this.typingAt)}`);
+		console.log(`Next char is ${this.getNextChar()}`);
 	}
 
 	/**
@@ -134,10 +141,24 @@ export class Exercise {
 	 * exercise by supplying array of strings.
 	 * The function then returns an SpellingExercise
 	 * instance
+	 * The function also starts an event listener
+	 * for the keyboard
 	 * @param exerciseParts array of exercise parts
 	 */
 	public static startExercise(exerciseParts: string[]) {
-		return new Exercise(exerciseParts);
+		const instance = new Exercise(exerciseParts);
+		document.body.addEventListener("keydown", function(e) {
+			const allowedCodes = [16];
+			let key = keycode(e);
+			if (key === "space") key = " ";
+			if (allowedCodes.includes(e.keyCode)) return;
+			if (e.shiftKey) {
+				instance.type(key.toUpperCase());
+			} else {
+				instance.type(key);
+			}
+		});
+		return instance;
 	}
 
 	public getCurrentIndex() {
