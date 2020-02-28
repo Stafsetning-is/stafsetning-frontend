@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { LayoutWrapper } from "../../../../layout";
-import { FormGenerator } from "../../../";
+import { FormGenerator, Modal } from "../../../";
 import { InputElementRecipe } from "../../../../services";
 
 export default () => {
 	return (
 		<LayoutWrapper>
-			<FormGenerator fields={formElements} />
+			<Modal>
+				<FormGenerator fields={formElements} />
+			</Modal>
 		</LayoutWrapper>
 	);
 };
