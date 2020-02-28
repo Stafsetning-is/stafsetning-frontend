@@ -1,5 +1,5 @@
 import keycode from "keycode";
-
+import KeyboardListener from "../KeyboardListener";
 type SpellingTypeEvents =
 	| "error"
 	| "errorCountChange"
@@ -220,16 +220,8 @@ export class Exercise {
 	 */
 	public static startExercise(exerciseParts: string[]) {
 		const instance = new Exercise(exerciseParts);
-		document.body.addEventListener("keydown", function(e) {
-			const allowedCodes = [16];
-			let key = keycode(e);
-			if (key === "space") key = " ";
-			if (allowedCodes.includes(e.keyCode)) return;
-			if (e.shiftKey) {
-				instance.type(key.toUpperCase());
-			} else {
-				instance.type(key);
-			}
+		KeyboardListener.listen((key) => {
+			instance.type(key);
 		});
 		return instance;
 	}
