@@ -119,6 +119,7 @@ export class Exercise {
 			this.handleSpaceAtBeginningOfWord(input);
 			if (input === this.getNextChar()) this.advance();
 			else this.handleError();
+			if ([",", "."].includes(input)) this.type(" ");
 		} catch (e) {
 			console.log(e.message);
 		}

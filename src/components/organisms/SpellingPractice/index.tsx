@@ -17,7 +17,7 @@ type cb = () => void;
 export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 	const [errorCount, setErrorCount] = useState(0);
 	const [previewCallback, setPreviewCallback] = useState<cb>(() => () => {
-		console.log("Call back has not been set");
+		// console.log("Call back has not been set");
 	});
 	const typeTextRef = useRef(refObject);
 

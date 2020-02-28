@@ -5,10 +5,11 @@ import React, {
 	useEffect,
 	useMemo
 } from "react";
-import { SHAKE_DURATION } from "./utils";
+import { SHAKE_DURATION, DEFAULT_FONT, FONTS } from "./utils";
 import { Shaky } from "../../../";
-import { TextSpan, PreviewSpan } from "./styles";
+import { TextSpan, PreviewSpan, Block } from "./styles";
 import Cursor from "../Cursor";
+import FontButton from "../FontButton";
 
 /**
  * Functional component that
@@ -26,6 +27,7 @@ export default forwardRef((_, ref) => {
 	const [text, setText] = useState("");
 	const [previewText, setPreviewText] = useState("");
 	const [showErrorFeedback, setShowErrorFeedback] = useState(false);
+	const [font, setFont] = useState(DEFAULT_FONT);
 
 	/**
 	 * Handles the "toggling off"
@@ -54,23 +56,44 @@ export default forwardRef((_, ref) => {
 		setPreviewText
 	}));
 
+	const theme = { fontFamily: font };
+
 	/**
 	 * Memos previewstring
 	 * or cursor
 	 *
-	 * only changes memo when previewText updates
+	 * only changes memo when previewText or font updates
 	 */
 	const TypedTextFollowUp = useMemo(() => {
-		console.log(previewText);
-		if (previewText) return <PreviewSpan>{previewText}</PreviewSpan>;
+		if (previewText && ![" ", ""].includes(previewText))
+			return <PreviewSpan theme={theme}>{previewText}</PreviewSpan>;
 		else return <Cursor />;
-	}, [previewText]);
+	}, [previewText, font]);
+
+	/**
+	 * Maps fonts to fonot buttons
+	 * uses memo to only rerender when fon changes
+	 */
+	const fontButtons = useMemo(
+		() =>
+			FONTS.map((buttonText) => (
+				<FontButton
+					fontName={buttonText}
+					onClick={() => setFont(buttonText)}
+					selected={font === buttonText}
+				/>
+			)),
+		[font]
+	);
 
 	return (
-		<Shaky shake={showErrorFeedback}>
-			<TextSpan>{text}</TextSpan>
-			{TypedTextFollowUp}
-		</Shaky>
+		<React.Fragment>
+			<Block>{fontButtons}</Block>
+			<Shaky shake={showErrorFeedback}>
+				<TextSpan theme={theme}>{text}</TextSpan>
+				{TypedTextFollowUp}
+			</Shaky>
+		</React.Fragment>
 	);
 });
 
