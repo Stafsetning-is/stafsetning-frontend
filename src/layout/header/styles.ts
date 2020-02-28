@@ -8,4 +8,5 @@ export const Container = styled.div`
 	span {
 		color: white;
 	}
+	margin-bottom: 100px;
 `;

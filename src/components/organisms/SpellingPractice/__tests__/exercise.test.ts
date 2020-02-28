@@ -140,29 +140,33 @@ describe("Traversing sentence parts and getting preview", () => {
 		e.type("o");
 		expect(e.currentPart()).toEqual(2);
 	});
-	it("Should call on preview event listener when a sentence part is finished", () => {
+});
+
+describe("text update event shows typed text and preview appropriately", () => {
+	it("should be able to add textUpdate event listener", (done) => {
 		const e = Exercise.startExercise(shortSentenceParts);
-		e.on("preview", (text) => {
-			expect(text).toEqual("to");
-		});
-		e.type("C");
-		e.type("a");
-		e.type("r");
-		e.type("l");
-		e.type(" ");
-	});
-	it("Should be able to call for preview again after event has fired", () => {
-		const e = Exercise.startExercise(shortSentenceParts);
-		e.on("preview", (text) => {
-			expect(text).toEqual("Carl");
+		let count = 0;
+		e.on("textUpdate", (text, preview) => {
+			if (count === 0) {
+				expect(text).toEqual("");
+				expect(preview).toEqual("Carl");
+				done();
+			} else if (count === 1) {
+				expect(text).toEqual("C");
+				expect(preview).toEqual("");
+				done();
+			} else if (count === 2) {
+				expect(text).toEqual("Ca");
+				expect(preview).toEqual("");
+				done();
+			} else if (count === 3) {
+				expect(text).toEqual("Ca");
+				expect(preview).toEqual("rl");
+				done();
+			}
+			count++;
 		});
 		e.showPreview();
-	});
-	it("Should be able to call for part of preview text", () => {
-		const e = Exercise.startExercise(shortSentenceParts);
-		e.on("preview", (text) => {
-			expect(text).toEqual("rl");
-		});
 		e.type("C");
 		e.type("a");
 		e.showPreview();

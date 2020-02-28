@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Outer = styled.div`
 	position: absolute;
-	width: 120px;
+	width: 150px;
 	height: 59px;
 	right: 0;
 	top: 200px;

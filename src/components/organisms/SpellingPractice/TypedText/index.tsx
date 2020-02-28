@@ -2,15 +2,29 @@ import React, {
 	forwardRef,
 	useImperativeHandle,
 	useState,
-	useEffect
+	useEffect,
+	useMemo
 } from "react";
 import { Shaky } from "../../../";
-
-const PREVIEW_DURATION = 2500;
+import { TextSpan, PreviewSpan } from "./styles";
+import Cursor from "../Cursor";
 const SHAKE_DURATION = 500;
 
-export default forwardRef((props, ref) => {
+/**
+ * Functional component that
+ * can be controlled by parent through ref handlers
+ * displays text during exercise
+ * that user has typed along with
+ *     - preview text
+ *     - typing cursor
+ */
+export default forwardRef((_, ref) => {
+	/**
+	 * Stateful variables for the
+	 * TypedText component
+	 */
 	const [text, setText] = useState("");
+	const [previewText, setPreviewText] = useState("");
 	const [showErrorFeedback, setShowErrorFeedback] = useState(false);
 
 	/**
@@ -24,23 +38,6 @@ export default forwardRef((props, ref) => {
 	}, [showErrorFeedback]);
 
 	/**
-	 * Adds character to visibled text
-	 * @param char
-	 */
-	const addCharacter = (char: string) => {
-		setText((t) => t + char);
-	};
-
-	/**
-	 * Previews a preview text temporarily
-	 */
-	const previewTemporarily = (preview: string) => {
-		const tmp = text;
-		setText((t) => `${t}${preview}`);
-		setTimeout(() => setText(tmp), PREVIEW_DURATION);
-	};
-
-	/**
 	 * shakes the text
 	 */
 	const giveErrorFeedback = () => {
@@ -52,20 +49,32 @@ export default forwardRef((props, ref) => {
 	 * outside
 	 */
 	useImperativeHandle(ref, () => ({
-		addCharacter,
-		previewTemporarily,
-		giveErrorFeedback
+		giveErrorFeedback,
+		setText,
+		setPreviewText
 	}));
+
+	/**
+	 * Memos previewstring
+	 * or cursor
+	 *
+	 * only changes memo when previewText updates
+	 */
+	const TypedTextFollowUp = useMemo(() => {
+		if (previewText) return <PreviewSpan>{previewText}</PreviewSpan>;
+		else return <Cursor />;
+	}, [previewText]);
 
 	return (
 		<Shaky shake={showErrorFeedback}>
-			<span>{text}</span>
+			<TextSpan>{text}</TextSpan>
+			{TypedTextFollowUp}
 		</Shaky>
 	);
 });
 
 export const refObject = {
-	addCharacter: (c: string) => {},
-	previewTemporarily: (p: string) => {},
-	giveErrorFeedback: () => {}
+	giveErrorFeedback: () => {},
+	setPreviewText: (c: string) => {},
+	setText: (c: string) => {}
 };

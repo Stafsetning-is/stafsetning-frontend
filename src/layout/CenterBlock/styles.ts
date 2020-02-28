@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
 export const Centered = styled.div`
-	width: 1000px;
+	width: 800px;
 	margin: auto;
 `;

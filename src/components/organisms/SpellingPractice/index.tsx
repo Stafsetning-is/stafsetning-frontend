@@ -19,7 +19,6 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 	const [previewCallback, setPreviewCallback] = useState<cb>(() => () => {
 		console.log("Call back has not been set");
 	});
-	let created = false;
 	const typeTextRef = useRef(refObject);
 
 	/**
@@ -32,8 +31,8 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 			.on("error", () => {
 				typeTextRef.current.giveErrorFeedback();
 			})
-			.on("success", (char) => {
-				typeTextRef.current.addCharacter(char);
+			.on("success", () => {
+				// handle success
 			})
 			.on("errorCountChange", (newCount) => {
 				setErrorCount(newCount);
@@ -41,16 +40,16 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 			.on("complete", () => {
 				// handle complete
 			})
-			.on("preview", (previewText) => {
-				typeTextRef.current.previewTemporarily(previewText);
+			.on("textUpdate", (text: string, preview: string) => {
+				typeTextRef.current.setPreviewText(preview);
+				typeTextRef.current.setText(text);
 			});
-		created = true;
 		setPreviewCallback(() => () => instance.showPreview());
 		previewCallback();
 	}, []);
 
 	useEffect(() => {
-		if (created) previewCallback();
+		previewCallback();
 	}, [previewCallback]);
 
 	return (

@@ -5,8 +5,9 @@ type SpellingTypeEvents =
 	| "errorCountChange"
 	| "success"
 	| "complete"
-	| "preview"
-	| "create";
+	| "textUpdate";
+
+const PREVIEW_DURATION = 2500;
 
 export class Exercise {
 	private exerciseParts: string[];
@@ -18,11 +19,10 @@ export class Exercise {
 	private partIndexes!: number[];
 	private currentPartNumber: number;
 	private errorCountChange!: (i: number) => void;
-	private success!: (c: string) => void;
+	private success!: () => void;
 	private error!: () => void;
 	private complete!: () => void;
-	private create!: () => void;
-	private preview!: (t: string) => void;
+	private textUpdate!: (typed: string, preview: string) => void;
 
 	/**
 	 * Private constructor that
@@ -39,7 +39,6 @@ export class Exercise {
 		this.partCount = exerciseParts.length;
 		this.currentPartNumber = 0;
 		this.createPartIndexArray();
-		setTimeout(() => this.doCallBack("preview"), 150);
 	}
 
 	/**
@@ -73,7 +72,7 @@ export class Exercise {
 		if (this.typingAt === switchToNextPositionAt) {
 			this.partIndexes.shift();
 			this.currentPartNumber++;
-			this.doCallBack("preview");
+			this.showPreview();
 		}
 	}
 
@@ -83,7 +82,10 @@ export class Exercise {
 	 * @param type predefined type of event
 	 * @param cb call back to execute on event, will overwrite older calllbacks
 	 */
-	public on(type: SpellingTypeEvents, cb: (param?: any) => void) {
+	public on(
+		type: SpellingTypeEvents,
+		cb: (param1?: any, param2?: any) => void
+	) {
 		this[type] = cb;
 		return this;
 	}
@@ -93,11 +95,12 @@ export class Exercise {
 	 * when a user should advance +1
 	 */
 	private advance() {
-		this.doCallBack("success", this.getNextChar());
 		this.typingAt += 1;
 		this.errorFlag = false;
 		this.traverseToNextSentencePart();
 		this.validateCompleted();
+		this.emitText(false);
+		this.doCallBack("success");
 	}
 
 	private validateCompleted() {
@@ -152,10 +155,7 @@ export class Exercise {
 				if (this[cb]) this.errorCountChange(param);
 				break;
 			case "success":
-				if (this[cb]) this.success(param);
-				break;
-			case "preview":
-				if (this[cb]) this.preview(this.getPreviewText());
+				if (this[cb]) this.success();
 				break;
 		}
 	}
@@ -197,7 +197,16 @@ export class Exercise {
 	 * the preview event
 	 */
 	public showPreview() {
-		this.doCallBack("preview");
+		this.emitText(true);
+		setTimeout(() => this.emitText(false), PREVIEW_DURATION);
+	}
+
+	private emitText(preview?: boolean) {
+		if (!this.textUpdate) return;
+		this.textUpdate(
+			this.getText().slice(0, this.typingAt),
+			preview ? this.getPreviewText() : ""
+		);
 	}
 
 	/**
