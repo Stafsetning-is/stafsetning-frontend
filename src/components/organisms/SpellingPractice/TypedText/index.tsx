@@ -5,10 +5,10 @@ import React, {
 	useEffect,
 	useMemo
 } from "react";
+import { SHAKE_DURATION } from "./utils";
 import { Shaky } from "../../../";
 import { TextSpan, PreviewSpan } from "./styles";
 import Cursor from "../Cursor";
-const SHAKE_DURATION = 500;
 
 /**
  * Functional component that
@@ -30,7 +30,7 @@ export default forwardRef((_, ref) => {
 	/**
 	 * Handles the "toggling off"
 	 * when setShowErrorFeedback is toggled
-	 * to true4
+	 * to true
 	 */
 	useEffect(() => {
 		if (setShowErrorFeedback)
@@ -61,6 +61,7 @@ export default forwardRef((_, ref) => {
 	 * only changes memo when previewText updates
 	 */
 	const TypedTextFollowUp = useMemo(() => {
+		console.log(previewText);
 		if (previewText) return <PreviewSpan>{previewText}</PreviewSpan>;
 		else return <Cursor />;
 	}, [previewText]);

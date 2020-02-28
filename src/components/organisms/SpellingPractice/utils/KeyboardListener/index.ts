@@ -61,8 +61,8 @@ export default class KeyboardListener {
 		let skipCallBack = false;
 		if (this.shouldIgnore(e)) skipCallBack = true;
 		char = this.mapKeyCodeToChar(e);
-		char = this.capitalizeCharIfShould(char, e);
 		char = this.accentCharIfShould(char, e);
+		char = this.capitalizeCharIfShould(char, e);
 		char = this.replaceSpecialCharIfShould(char, e);
 		if (!skipCallBack) this.cb(char);
 		this.handleSpecialEvents(e);
@@ -171,6 +171,7 @@ export default class KeyboardListener {
 	 */
 	private adjustAccentFlag(e: KeyboardEvent) {
 		if (e.keyCode === SPECIAL_CHARS.accent) this.accented = true;
+		else if (IGNORE_CODES_ARRAY.includes(e.keyCode) && this.accented) return;
 		else this.accented = false;
 	}
 

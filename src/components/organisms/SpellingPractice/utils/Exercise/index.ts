@@ -1,5 +1,6 @@
 import keycode from "keycode";
 import KeyboardListener from "../KeyboardListener";
+import { SPACE } from "./utils";
 type SpellingTypeEvents =
 	| "error"
 	| "errorCountChange"
@@ -23,6 +24,7 @@ export class Exercise {
 	private error!: () => void;
 	private complete!: () => void;
 	private textUpdate!: (typed: string, preview: string) => void;
+	private clearTextTimeout!: number;
 
 	/**
 	 * Private constructor that
@@ -97,9 +99,9 @@ export class Exercise {
 	private advance() {
 		this.typingAt += 1;
 		this.errorFlag = false;
-		this.traverseToNextSentencePart();
 		this.validateCompleted();
 		this.emitText(false);
+		this.traverseToNextSentencePart();
 		this.doCallBack("success");
 	}
 
@@ -113,8 +115,22 @@ export class Exercise {
 	 * @param input single character from user
 	 */
 	public type(input: string) {
-		if (input === this.getNextChar()) this.advance();
-		else this.handleError();
+		try {
+			this.handleSpaceAtBeginningOfWord(input);
+			if (input === this.getNextChar()) this.advance();
+			else this.handleError();
+		} catch (e) {
+			console.log(e.message);
+		}
+	}
+
+	private handleSpaceAtBeginningOfWord(char: string) {
+		if (
+			char === SPACE &&
+			this.getNextChar() !== SPACE &&
+			this.getLastChar() === SPACE
+		)
+			throw Error("Keystroke should be ignored");
 	}
 
 	/**
@@ -175,12 +191,17 @@ export class Exercise {
 		return this.getText().charAt(this.typingAt);
 	}
 
+	private getLastChar(): string {
+		if (this.typingAt > 0) return this.getText().charAt(this.typingAt - 1);
+		else return this.getNextChar();
+	}
+
 	/**
 	 * Joins exercise parts to a single
 	 * erxercise string
 	 */
 	private getText() {
-		if (!this.text) this.text = this.exerciseParts.join(" ");
+		if (!this.text) this.text = this.exerciseParts.join(SPACE);
 		return this.text;
 	}
 
@@ -191,15 +212,25 @@ export class Exercise {
 	private cleanParts() {
 		this.exerciseParts = this.exerciseParts.map((text) => text.trim());
 	}
-
 	/**
 	 * public function that fires
 	 * the preview event
 	 */
 	public showPreview() {
+		this.handleSpaceBeforePreview();
 		this.emitText(true);
-		setTimeout(() => this.emitText(false), PREVIEW_DURATION);
+		this.timeAtPreview = new Date().getTime();
+		if (this.clearTextTimeout) clearTimeout(this.clearTextTimeout);
+		this.clearTextTimeout = setTimeout(this.clearPreview, PREVIEW_DURATION);
 	}
+
+	private handleSpaceBeforePreview() {
+		if (this.getNextChar() === SPACE) this.type(SPACE);
+	}
+
+	private clearPreview = () => {
+		this.emitText(false);
+	};
 
 	private emitText(preview?: boolean) {
 		if (!this.textUpdate) return;
@@ -229,4 +260,6 @@ export class Exercise {
 	public getCurrentIndex() {
 		return this.typingAt;
 	}
+
+	public timeAtPreview = 0;
 }
