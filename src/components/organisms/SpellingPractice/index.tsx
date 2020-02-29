@@ -46,8 +46,7 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 			});
 		setPreviewCallback(() => () => instance.showPreview());
 		setErrorCount(instance.getErrorCount());
-		previewCallback();
-	}, []);
+	}, [exercise, sentenceParts]);
 
 	useEffect(() => {
 		previewCallback();

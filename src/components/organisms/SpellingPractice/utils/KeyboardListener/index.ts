@@ -44,10 +44,16 @@ export default class KeyboardListener {
 	 * @param cb the callback given from user
 	 */
 	private constructor(cb: any) {
-		document.body.addEventListener("keydown", this.onPress);
+		this.listen();
 		this.cb = cb;
 	}
 
+	/**
+	 * Starts listening for input
+	 */
+	private listen() {
+		document.body.addEventListener("keydown", this.onPress);
+	}
 	/**
 	 * NOTE: Arrow function needed for this binding
 	 *
@@ -59,14 +65,11 @@ export default class KeyboardListener {
 	private onPress = (e: KeyboardEvent) => {
 		e.preventDefault();
 		let char = "";
-		let skipCallBack = false;
-		if (this.shouldIgnore(e)) skipCallBack = true;
 		char = this.mapKeyCodeToChar(e);
 		char = this.accentCharIfShould(char, e);
 		char = this.capitalizeCharIfShould(char, e);
 		char = this.replaceSpecialCharIfShould(char, e);
-		if (e.metaKey) skipCallBack = true;
-		if (!skipCallBack) this.cb(char);
+		if (!this.shouldIgnore(e)) this.cb(char);
 		this.handleSpecialEvents(e);
 	};
 
@@ -74,10 +77,12 @@ export default class KeyboardListener {
 	 * Returns a boolean by checking
 	 * if the keyCode is an array
 	 * of keycodes to ignore
+	 * OR
+	 * if the cmd key is being held down
 	 * @param e Keyboard event
 	 */
 	private shouldIgnore(e: KeyboardEvent) {
-		return IGNORE_CODES_ARRAY.includes(e.keyCode);
+		return IGNORE_CODES_ARRAY.includes(e.keyCode) || e.metaKey;
 	}
 
 	/**

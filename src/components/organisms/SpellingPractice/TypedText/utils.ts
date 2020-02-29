@@ -5,8 +5,7 @@ export const SHAKE_DURATION = 500;
 export const FONT_CACHE_KEY = "def-s";
 export const SIZE_CACHE_KEY = "def-size";
 export const BG_COLOR_CACHE_KEY = "def-dsx";
-
-export const FONTS = ["Roboto Mono", "Fira Code"];
+export const FONTS = ["Lora", "Roboto Mono", "Fira Code"];
 export const FONT_SIZES: FontSize[] = [
 	"16px",
 	"18px",
@@ -17,7 +16,6 @@ export const FONT_SIZES: FontSize[] = [
 	"28px",
 	"30px"
 ];
-
 const DEFAULT_FONT = "Roboto Mono";
 const DEFAULT_SIZE = "16px";
 const DEFAULT_BG_SETTING = false;
@@ -98,5 +96,5 @@ export const getFontSizeSelection = (currentFont: FontSize): FontSelection => {
 
 export const getFontSizeByIndex = (index: number) => {
 	const size = FONT_SIZES[index];
-	return size ? size : null;
+	return size ?? null;
 };

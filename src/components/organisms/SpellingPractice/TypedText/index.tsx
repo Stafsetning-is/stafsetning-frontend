@@ -17,8 +17,6 @@ import {
 	cacheBackgroundSetting,
 	getBackgroundSettingOnLoad
 } from "./utils";
-import { FontSize } from "./interface";
-import { Shaky } from "../../../";
 import {
 	TextSpan,
 	PreviewSpan,
@@ -26,17 +24,22 @@ import {
 	TypedTextContainer,
 	ToggleSeperator
 } from "./styles";
+import { FontSize } from "./interface";
+import { Shaky } from "../../../";
 import Cursor from "../Cursor";
 import ToggleButton from "../ToggleButton";
 import FontSizeButton from "../FontSizeToggles";
 
 /**
- * Functional component that
+ * Functional component that displays the text
  * can be controlled by parent through ref handlers
  * displays text during exercise
  * that user has typed along with
  *     - preview text
  *     - typing cursor
+ *     - change font buttons
+ *     - change font size buttons
+ *     - change BG color
  */
 export default forwardRef((_, ref) => {
 	/**
@@ -82,7 +85,10 @@ export default forwardRef((_, ref) => {
 		setPreviewText
 	}));
 
-	const theme = { fontFamily: font, fontSize: fontSize };
+	const theme = useMemo(() => ({ fontFamily: font, fontSize: fontSize }), [
+		font,
+		fontSize
+	]);
 
 	/**
 	 * Handles changing the font by
@@ -126,7 +132,7 @@ export default forwardRef((_, ref) => {
 		if (previewText && ![" ", ""].includes(previewText))
 			return <PreviewSpan theme={theme}>{previewText}</PreviewSpan>;
 		else return <Cursor />;
-	}, [previewText, font, fontSize]);
+	}, [previewText, theme]);
 
 	/**
 	 * Maps fonts to fonot buttons
@@ -165,6 +171,7 @@ export default forwardRef((_, ref) => {
 				/>
 			</React.Fragment>
 		);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [fontSize]);
 
 	/**
@@ -178,6 +185,7 @@ export default forwardRef((_, ref) => {
 				selected={dislexic}
 			/>
 		),
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[dislexic]
 	);
 

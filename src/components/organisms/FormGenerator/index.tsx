@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { IProps } from "./interface";
-import { InputComponent } from "../../../services";
 import { InputFactory } from "../../";
 
 export const FormGenerator = ({ fields }: IProps) => {
-	const [formObject, setFormObject] = useState(fields);
+	const [formObject] = useState(fields);
 
 	const inputElementArray = [];
 	for (const key in formObject) {

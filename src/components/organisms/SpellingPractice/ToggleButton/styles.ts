@@ -9,4 +9,5 @@ export const Button = styled.button`
 	margin-right: 15px;
 	border-radius: 3px;
 	color: ${(props) => (props.theme.selected ? "#f8f8f8" : "#6600cc")};
+	transition: 0.3s;
 `;

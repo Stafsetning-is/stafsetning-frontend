@@ -1,4 +1,3 @@
-import keycode from "keycode";
 import KeyboardListener from "../KeyboardListener";
 import { SPACE, SpellingTypeEvents, PREVIEW_DURATION } from "./utils";
 import { SessionStorageService } from "../../../../../services";

@@ -10,4 +10,5 @@ export const Button = styled.button`
 	border-radius: 3px;
 	color: ${(props) => (props.theme.selected ? "#f8f8f8" : "#6600cc")};
 	opacity: ${(props) => (props.theme.fade ? "0.4" : "1")};
+	transition: 0.5s;
 `;

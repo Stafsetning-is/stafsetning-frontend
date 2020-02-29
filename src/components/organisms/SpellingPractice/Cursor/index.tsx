@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import { Cursor } from "./styles";
 
 type opacity = 1 | 0;
@@ -15,15 +15,12 @@ export default () => {
 	 * on mount it starts an interval
 	 * which is cleared on unmount
 	 */
-	useEffect(() => {
-		const interval = setInterval(() => {
+	useMemo(() => {
+		setTimeout(() => {
 			if (opacity === 1) setOpacity(0);
 			else setOpacity(1);
 		}, 1000);
-		return () => {
-			clearInterval(interval);
-		};
-	}, []);
+	}, [opacity]);
 
 	return <Cursor theme={{ opacity }}></Cursor>;
 };
