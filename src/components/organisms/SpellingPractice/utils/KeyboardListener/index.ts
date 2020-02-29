@@ -57,6 +57,7 @@ export default class KeyboardListener {
 	 * character based on user wishes
 	 */
 	private onPress = (e: KeyboardEvent) => {
+		e.preventDefault();
 		let char = "";
 		let skipCallBack = false;
 		if (this.shouldIgnore(e)) skipCallBack = true;

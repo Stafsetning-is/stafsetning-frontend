@@ -13,13 +13,21 @@ import {
 	cacheFont,
 	getFontSizeOnLoad,
 	getFontSizeSelection as getAdjacentFonts,
-	cacheFontSize
+	cacheFontSize,
+	cacheBackgroundSetting,
+	getBackgroundSettingOnLoad
 } from "./utils";
 import { FontSize } from "./interface";
 import { Shaky } from "../../../";
-import { TextSpan, PreviewSpan, Block } from "./styles";
+import {
+	TextSpan,
+	PreviewSpan,
+	Block,
+	TypedTextContainer,
+	ToggleSeperator
+} from "./styles";
 import Cursor from "../Cursor";
-import FontButton from "../FontButton";
+import ToggleButton from "../ToggleButton";
 import FontSizeButton from "../FontSizeToggles";
 
 /**
@@ -40,6 +48,7 @@ export default forwardRef((_, ref) => {
 	const [showErrorFeedback, setShowErrorFeedback] = useState(false);
 	const [font, setFont] = useState(getFontOnLoad());
 	const [fontSize, setFontSize] = useState(getFontSizeOnLoad());
+	const [dislexic, setDislexic] = useState(getBackgroundSettingOnLoad());
 
 	/**
 	 * Handles the "toggling off"
@@ -86,10 +95,25 @@ export default forwardRef((_, ref) => {
 		setFont(font);
 	};
 
+	/**
+	 * handles the change of font size
+	 * and caching new default value
+	 * @param size new font size value
+	 */
 	const handleFontSizeChange = (size: FontSize | null) => {
 		if (size === null) return;
 		cacheFontSize(size);
 		setFontSize(size);
+	};
+
+	/**
+	 * Handles caching new value
+	 * and changing dislexic state
+	 */
+	const handleDislexicChange = () => {
+		const newVal = !dislexic;
+		cacheBackgroundSetting(newVal);
+		setDislexic(newVal);
 	};
 
 	/**
@@ -111,8 +135,8 @@ export default forwardRef((_, ref) => {
 	const fontButtons = useMemo(
 		() =>
 			FONTS.map((fontName, index) => (
-				<FontButton
-					fontName={getFontButtonText(index)}
+				<ToggleButton
+					buttonText={getFontButtonText(index)}
 					onClick={() => handleFontChange(fontName)}
 					selected={font === fontName}
 					key={fontName}
@@ -143,16 +167,35 @@ export default forwardRef((_, ref) => {
 		);
 	}, [fontSize]);
 
+	/**
+	 * Memos the dyslexic toggle button
+	 */
+	const disilexicButton = useMemo(
+		() => (
+			<ToggleButton
+				buttonText="Breyta bakgrunnslit"
+				onClick={handleDislexicChange}
+				selected={dislexic}
+			/>
+		),
+		[dislexic]
+	);
+
 	return (
 		<React.Fragment>
 			<Block>
 				{fontButtons}
+				<ToggleSeperator />
 				{fontSizeButtons}
+				<ToggleSeperator />
+				{disilexicButton}
 			</Block>
-			<Shaky shake={showErrorFeedback}>
-				<TextSpan theme={theme}>{text}</TextSpan>
-				{TypedTextFollowUp}
-			</Shaky>
+			<TypedTextContainer theme={{ dislexic }}>
+				<Shaky shake={showErrorFeedback}>
+					<TextSpan theme={theme}>{text}</TextSpan>
+					{TypedTextFollowUp}
+				</Shaky>
+			</TypedTextContainer>
 		</React.Fragment>
 	);
 });

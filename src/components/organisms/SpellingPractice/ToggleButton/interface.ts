@@ -1,5 +1,5 @@
 export interface IProps {
-	fontName: string;
+	buttonText: string;
 	onClick: () => void;
 	selected: boolean;
 }

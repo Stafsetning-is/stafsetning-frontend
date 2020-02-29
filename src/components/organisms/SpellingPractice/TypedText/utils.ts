@@ -4,6 +4,8 @@ import { FontSelection, FontSize } from "./interface";
 export const SHAKE_DURATION = 500;
 export const FONT_CACHE_KEY = "def-s";
 export const SIZE_CACHE_KEY = "def-size";
+export const BG_COLOR_CACHE_KEY = "def-dsx";
+
 export const FONTS = ["Roboto Mono", "Fira Code"];
 export const FONT_SIZES: FontSize[] = [
 	"16px",
@@ -13,8 +15,10 @@ export const FONT_SIZES: FontSize[] = [
 	"24px",
 	"26px"
 ];
+
 const DEFAULT_FONT = "Roboto Mono";
 const DEFAULT_SIZE = "16px";
+const DEFAULT_BG_SETTING = false;
 
 /**
  * Maps 0 based index of fonts to button
@@ -56,6 +60,25 @@ export const cacheFontSize = (size: FontSize) => {
 export const getFontSizeOnLoad = (): FontSize => {
 	const preferredSize = LocalStorageService.get<FontSize>(SIZE_CACHE_KEY);
 	return preferredSize ?? DEFAULT_SIZE;
+};
+
+/**
+ * handles the cachinig of font dislexic setting value
+ * @param size bool to put in cache
+ */
+export const cacheBackgroundSetting = (dislexic: boolean) => {
+	LocalStorageService.put(BG_COLOR_CACHE_KEY, dislexic);
+};
+
+/**
+ * Retrieves he default value for the dislexic setting
+ * either the cached value or system default value
+ */
+export const getBackgroundSettingOnLoad = (): boolean => {
+	const preferredBgSetting = LocalStorageService.get<boolean>(
+		BG_COLOR_CACHE_KEY
+	);
+	return preferredBgSetting ?? DEFAULT_BG_SETTING;
 };
 
 /**
