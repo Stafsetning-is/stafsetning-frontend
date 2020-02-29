@@ -27,7 +27,7 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 	 * might occur on user input
 	 */
 	useEffect(() => {
-		const instance = Exercise.startExercise(sentenceParts)
+		const instance = Exercise.startExercise(sentenceParts, exercise)
 			.on("error", () => {
 				typeTextRef.current.giveErrorFeedback();
 			})
@@ -45,6 +45,7 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 				typeTextRef.current.setText(text);
 			});
 		setPreviewCallback(() => () => instance.showPreview());
+		setErrorCount(instance.getErrorCount());
 		previewCallback();
 	}, []);
 

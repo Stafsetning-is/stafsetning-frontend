@@ -1,14 +1,8 @@
 import keycode from "keycode";
 import KeyboardListener from "../KeyboardListener";
-import { SPACE } from "./utils";
-type SpellingTypeEvents =
-	| "error"
-	| "errorCountChange"
-	| "success"
-	| "complete"
-	| "textUpdate";
-
-const PREVIEW_DURATION = 2500;
+import { SPACE, SpellingTypeEvents, PREVIEW_DURATION } from "./utils";
+import { SessionStorageService } from "../../../../../services";
+import { CachedExercise } from "./interface";
 
 export class Exercise {
 	private exerciseParts: string[];
@@ -25,13 +19,14 @@ export class Exercise {
 	private complete!: () => void;
 	private textUpdate!: (typed: string, preview: string) => void;
 	private clearTextTimeout!: number;
+	private id: string;
 
 	/**
 	 * Private constructor that
 	 * starts the exercise and inits variables
 	 * @param exerciseParts the parts of the exercise
 	 */
-	private constructor(exerciseParts: string[]) {
+	private constructor(exerciseParts: string[], id: string) {
 		this.exerciseParts = exerciseParts;
 		this.cleanParts();
 		this.typingAt = 0;
@@ -41,6 +36,38 @@ export class Exercise {
 		this.partCount = exerciseParts.length;
 		this.currentPartNumber = 0;
 		this.createPartIndexArray();
+		this.id = id;
+		this.restoreFromSession();
+	}
+
+	/**
+	 * Gets the cache key for
+	 * this exercise
+	 */
+	private exerciseCacheKey() {
+		return this.id;
+	}
+
+	/**
+	 * Returns the current errorCount
+	 */
+	public getErrorCount() {
+		return this.errorCount;
+	}
+
+	/**
+	 * restores exercise from cache if
+	 * it is cached in session storage
+	 */
+	private restoreFromSession() {
+		const stored = SessionStorageService.get<CachedExercise>(
+			this.exerciseCacheKey()
+		);
+		if (stored === null) return;
+		for (let i = 0; i < stored.typed.length; i++) {
+			this.type(stored.typed.charAt(i));
+		}
+		this.errorFlag = stored.errorFlag;
 	}
 
 	/**
@@ -123,8 +150,34 @@ export class Exercise {
 		} catch (e) {
 			console.log(e.message);
 		}
+		this.addToSessionStorage(input);
 	}
 
+	/**
+	 * Adds last typed char to session storage
+	 * @param char
+	 */
+	private addToSessionStorage(char: string) {
+		const prevVal = SessionStorageService.get<CachedExercise>(
+			this.exerciseCacheKey()
+		);
+		if (prevVal === null)
+			SessionStorageService.put<CachedExercise>(this.exerciseCacheKey(), {
+				typed: char,
+				errorFlag: this.errorFlag
+			});
+		else
+			SessionStorageService.put<CachedExercise>(this.exerciseCacheKey(), {
+				typed: prevVal.typed + char,
+				errorFlag: this.errorFlag
+			});
+	}
+
+	/**
+	 * Boolean logic to decide if input
+	 * should be ignored or not
+	 * @param char last typed char
+	 */
 	private handleSpaceAtBeginningOfWord(char: string) {
 		if (
 			char === SPACE &&
@@ -177,6 +230,11 @@ export class Exercise {
 		}
 	}
 
+	/**
+	 * Returns the preview text
+	 * which is untyped text until
+	 * next sentence part
+	 */
 	private getPreviewText() {
 		const startOfNext = this.partIndexes[1];
 		return this.getText()
@@ -229,10 +287,18 @@ export class Exercise {
 		if (this.getNextChar() === SPACE) this.type(SPACE);
 	}
 
+	/**
+	 * Removes just the preview from
+	 * text change callback event
+	 */
 	private clearPreview = () => {
 		this.emitText(false);
 	};
 
+	/**
+	 * emits text change callback
+	 * @param preview should preview be included
+	 */
 	private emitText(preview?: boolean) {
 		if (!this.textUpdate) return;
 		this.textUpdate(
@@ -250,14 +316,17 @@ export class Exercise {
 	 * for the keyboard
 	 * @param exerciseParts array of exercise parts
 	 */
-	public static startExercise(exerciseParts: string[]) {
-		const instance = new Exercise(exerciseParts);
+	public static startExercise(exerciseParts: string[], id: string) {
+		const instance = new Exercise(exerciseParts, id);
 		KeyboardListener.listen((key) => {
 			instance.type(key);
 		});
 		return instance;
 	}
 
+	/**
+	 * Returns current typing index
+	 */
 	public getCurrentIndex() {
 		return this.typingAt;
 	}

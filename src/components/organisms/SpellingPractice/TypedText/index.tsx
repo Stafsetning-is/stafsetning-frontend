@@ -7,9 +7,10 @@ import React, {
 } from "react";
 import {
 	SHAKE_DURATION,
-	DEFAULT_FONT,
+	getFontOnLoad,
 	FONTS,
-	getFontButtonText
+	getFontButtonText,
+	cacheFont
 } from "./utils";
 import { Shaky } from "../../../";
 import { TextSpan, PreviewSpan, Block } from "./styles";
@@ -32,7 +33,7 @@ export default forwardRef((_, ref) => {
 	const [text, setText] = useState("");
 	const [previewText, setPreviewText] = useState("");
 	const [showErrorFeedback, setShowErrorFeedback] = useState(false);
-	const [font, setFont] = useState(DEFAULT_FONT);
+	const [font, setFont] = useState(getFontOnLoad());
 
 	/**
 	 * Handles the "toggling off"
@@ -75,7 +76,16 @@ export default forwardRef((_, ref) => {
 		else return <Cursor />;
 	}, [previewText, font]);
 
-	const handleFontChange = (font: string) => {};
+	/**
+	 * Handles changing the font by
+	 * caching the previoiusly chosen value
+	 * and also changing in state
+	 * @param font chosen font
+	 */
+	const handleFontChange = (font: string) => {
+		cacheFont(font);
+		setFont(font);
+	};
 
 	/**
 	 * Maps fonts to fonot buttons
@@ -83,11 +93,11 @@ export default forwardRef((_, ref) => {
 	 */
 	const fontButtons = useMemo(
 		() =>
-			FONTS.map((buttonText, index) => (
+			FONTS.map((fontName, index) => (
 				<FontButton
 					fontName={getFontButtonText(index)}
-					onClick={() => setFont(buttonText)}
-					selected={font === buttonText}
+					onClick={() => handleFontChange(fontName)}
+					selected={font === fontName}
 				/>
 			)),
 		[font]
