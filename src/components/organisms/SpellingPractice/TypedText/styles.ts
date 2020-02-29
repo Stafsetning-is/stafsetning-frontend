@@ -1,19 +1,21 @@
 import styled from "styled-components";
 
-export const TextSpan = styled.span`
+const DisplayTextBase = `
 	font-weight: 200;
 	color: #333;
-	font-family: "${(props) => props.theme.fontFamily}";
-	font-size: 18px;
 	line-height: 1.5;
+`;
+export const TextSpan = styled.span`
+	${DisplayTextBase}
+	font-family: "${(props) => props.theme.fontFamily}";
+	font-size: ${(props) => props.theme.fontSize};
 `;
 
 export const PreviewSpan = styled.span`
-	font-weight: 550;
-	color: #999;
+	${DisplayTextBase}	
 	font-family: "${(props) => props.theme.fontFamily}";
-	font-size: 18px;
-	line-height: 1.5;
+	font-size: ${(props) => props.theme.fontSize};
+	opacity: 0.4;
 `;
 
 export const Block = styled.div`

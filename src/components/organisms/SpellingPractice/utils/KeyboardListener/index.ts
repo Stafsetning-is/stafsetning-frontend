@@ -64,6 +64,7 @@ export default class KeyboardListener {
 		char = this.accentCharIfShould(char, e);
 		char = this.capitalizeCharIfShould(char, e);
 		char = this.replaceSpecialCharIfShould(char, e);
+		if (e.metaKey) skipCallBack = true;
 		if (!skipCallBack) this.cb(char);
 		this.handleSpecialEvents(e);
 	};

@@ -5,6 +5,10 @@ import { SessionStorageService } from "../../../../../services";
 import { CachedExercise } from "./interface";
 
 export class Exercise {
+	/**
+	 * Decleration of all class variables
+	 * that will be used
+	 */
 	private exerciseParts: string[];
 	private typingAt: number;
 	private errorFlag: boolean;
@@ -14,12 +18,12 @@ export class Exercise {
 	private partIndexes!: number[];
 	private currentPartNumber: number;
 	private errorCountChange!: (i: number) => void;
+	private clearTextTimeout!: number;
+	private id: string;
 	private success!: () => void;
 	private error!: () => void;
 	private complete!: () => void;
 	private textUpdate!: (typed: string, preview: string) => void;
-	private clearTextTimeout!: number;
-	private id: string;
 
 	/**
 	 * Private constructor that
@@ -30,7 +34,7 @@ export class Exercise {
 		this.exerciseParts = exerciseParts;
 		this.cleanParts();
 		this.typingAt = 0;
-		this.errorFlag = false;
+		this.errorFlag = true;
 		this.errorCount = 0;
 		this.text = "";
 		this.partCount = exerciseParts.length;
@@ -60,6 +64,7 @@ export class Exercise {
 	 * it is cached in session storage
 	 */
 	private restoreFromSession() {
+		if (process.env.NODE_ENV === "test") return;
 		const stored = SessionStorageService.get<CachedExercise>(
 			this.exerciseCacheKey()
 		);
@@ -158,6 +163,7 @@ export class Exercise {
 	 * @param char
 	 */
 	private addToSessionStorage(char: string) {
+		if (process.env.NODE_ENV === "test") return;
 		const prevVal = SessionStorageService.get<CachedExercise>(
 			this.exerciseCacheKey()
 		);

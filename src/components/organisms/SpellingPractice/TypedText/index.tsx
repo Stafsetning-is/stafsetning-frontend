@@ -10,12 +10,17 @@ import {
 	getFontOnLoad,
 	FONTS,
 	getFontButtonText,
-	cacheFont
+	cacheFont,
+	getFontSizeOnLoad,
+	getFontSizeSelection as getAdjacentFonts,
+	cacheFontSize
 } from "./utils";
+import { FontSize } from "./interface";
 import { Shaky } from "../../../";
 import { TextSpan, PreviewSpan, Block } from "./styles";
 import Cursor from "../Cursor";
 import FontButton from "../FontButton";
+import FontSizeButton from "../FontSizeToggles";
 
 /**
  * Functional component that
@@ -34,6 +39,7 @@ export default forwardRef((_, ref) => {
 	const [previewText, setPreviewText] = useState("");
 	const [showErrorFeedback, setShowErrorFeedback] = useState(false);
 	const [font, setFont] = useState(getFontOnLoad());
+	const [fontSize, setFontSize] = useState(getFontSizeOnLoad());
 
 	/**
 	 * Handles the "toggling off"
@@ -53,6 +59,11 @@ export default forwardRef((_, ref) => {
 	};
 
 	/**
+	 * Gets the selection of fonts relative to currentfont
+	 */
+	const getFontSizeSelection = () => getAdjacentFonts(fontSize);
+
+	/**
 	 * Opens these handlers to the
 	 * outside
 	 */
@@ -62,19 +73,7 @@ export default forwardRef((_, ref) => {
 		setPreviewText
 	}));
 
-	const theme = { fontFamily: font };
-
-	/**
-	 * Memos previewstring
-	 * or cursor
-	 *
-	 * only changes memo when previewText or font updates
-	 */
-	const TypedTextFollowUp = useMemo(() => {
-		if (previewText && ![" ", ""].includes(previewText))
-			return <PreviewSpan theme={theme}>{previewText}</PreviewSpan>;
-		else return <Cursor />;
-	}, [previewText, font]);
+	const theme = { fontFamily: font, fontSize: fontSize };
 
 	/**
 	 * Handles changing the font by
@@ -87,6 +86,24 @@ export default forwardRef((_, ref) => {
 		setFont(font);
 	};
 
+	const handleFontSizeChange = (size: FontSize | null) => {
+		if (size === null) return;
+		cacheFontSize(size);
+		setFontSize(size);
+	};
+
+	/**
+	 * Memos previewstring
+	 * or cursor
+	 *
+	 * only changes memo when previewText or font updates
+	 */
+	const TypedTextFollowUp = useMemo(() => {
+		if (previewText && ![" ", ""].includes(previewText))
+			return <PreviewSpan theme={theme}>{previewText}</PreviewSpan>;
+		else return <Cursor />;
+	}, [previewText, font, fontSize]);
+
 	/**
 	 * Maps fonts to fonot buttons
 	 * uses memo to only rerender when fon changes
@@ -98,14 +115,40 @@ export default forwardRef((_, ref) => {
 					fontName={getFontButtonText(index)}
 					onClick={() => handleFontChange(fontName)}
 					selected={font === fontName}
+					key={fontName}
 				/>
 			)),
 		[font]
 	);
 
+	/**
+	 * Returns the font size buttons
+	 * whenever the font size state changes
+	 */
+	const fontSizeButtons = useMemo(() => {
+		const { smaller, larger } = getFontSizeSelection();
+		return (
+			<React.Fragment>
+				<FontSizeButton
+					type="dec"
+					value={smaller}
+					onClick={() => handleFontSizeChange(smaller)}
+				/>
+				<FontSizeButton
+					type="inc"
+					value={larger}
+					onClick={() => handleFontSizeChange(larger)}
+				/>
+			</React.Fragment>
+		);
+	}, [fontSize]);
+
 	return (
 		<React.Fragment>
-			<Block>{fontButtons}</Block>
+			<Block>
+				{fontButtons}
+				{fontSizeButtons}
+			</Block>
 			<Shaky shake={showErrorFeedback}>
 				<TextSpan theme={theme}>{text}</TextSpan>
 				{TypedTextFollowUp}
