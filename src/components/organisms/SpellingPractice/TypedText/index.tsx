@@ -5,7 +5,12 @@ import React, {
 	useEffect,
 	useMemo
 } from "react";
-import { SHAKE_DURATION, DEFAULT_FONT, FONTS } from "./utils";
+import {
+	SHAKE_DURATION,
+	DEFAULT_FONT,
+	FONTS,
+	getFontButtonText
+} from "./utils";
 import { Shaky } from "../../../";
 import { TextSpan, PreviewSpan, Block } from "./styles";
 import Cursor from "../Cursor";
@@ -70,15 +75,17 @@ export default forwardRef((_, ref) => {
 		else return <Cursor />;
 	}, [previewText, font]);
 
+	const handleFontChange = (font: string) => {};
+
 	/**
 	 * Maps fonts to fonot buttons
 	 * uses memo to only rerender when fon changes
 	 */
 	const fontButtons = useMemo(
 		() =>
-			FONTS.map((buttonText) => (
+			FONTS.map((buttonText, index) => (
 				<FontButton
-					fontName={buttonText}
+					fontName={getFontButtonText(index)}
 					onClick={() => setFont(buttonText)}
 					selected={font === buttonText}
 				/>

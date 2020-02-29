@@ -5,6 +5,7 @@ export const TextSpan = styled.span`
 	color: #333;
 	font-family: "${(props) => props.theme.fontFamily}";
 	font-size: 18px;
+	line-height: 1.5;
 `;
 
 export const PreviewSpan = styled.span`
@@ -12,6 +13,7 @@ export const PreviewSpan = styled.span`
 	color: #999;
 	font-family: "${(props) => props.theme.fontFamily}";
 	font-size: 18px;
+	line-height: 1.5;
 `;
 
 export const Block = styled.div`
