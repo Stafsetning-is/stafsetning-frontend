@@ -13,7 +13,9 @@ export const FONT_SIZES: FontSize[] = [
 	"20px",
 	"22px",
 	"24px",
-	"26px"
+	"26px",
+	"28px",
+	"30px"
 ];
 
 const DEFAULT_FONT = "Roboto Mono";
