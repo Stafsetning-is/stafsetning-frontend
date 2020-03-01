@@ -1,6 +1,6 @@
 import * as React from "react";
 import { InputComponent } from "../../../services";
-
+import { FormLabel } from "../FormLabel/index";
 /**
  * Text input that takes in value and onChange function
  * This is for the form functionality
@@ -32,4 +32,5 @@ export const TextInput = ({
 			/>
 		</React.Fragment>
 	);
+            <FormLabel text={label} />
 };

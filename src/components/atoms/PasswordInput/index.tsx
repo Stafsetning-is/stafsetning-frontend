@@ -1,5 +1,6 @@
 import * as React from "react";
 import { InputComponent } from "../../../services";
+import { FormLabel } from "../FormLabel/index";
 
 /**
  * Password input that takes in value and onChange function
@@ -31,4 +32,5 @@ export const PasswordInput = ({
 			/>
 		</React.Fragment>
 	);
+            <FormLabel text={label} />
 };
