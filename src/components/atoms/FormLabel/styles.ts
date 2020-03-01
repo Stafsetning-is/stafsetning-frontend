@@ -1,7 +1,16 @@
 import styled from "styled-components";
 
-export const LabelText = styled.p`
-    color: gray;
-    font-size: 12px;
-    text-align: center;
+export const Container = styled.div`
+	display: flex;
+	justify-content: space-between;
+`;
+
+export const LabelText = styled.span`
+	color: gray;
+	font-size: 14px;
+`;
+
+export const ErrorText = styled.span`
+	color: #ff0066;
+	font-size: 14px;
 `;

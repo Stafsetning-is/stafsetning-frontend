@@ -1,9 +1,9 @@
 import { InputObject, InputElementRecipe } from "../../services";
 
 const mobile: InputElementRecipe = {
-	label: "Your mobile number",
+	label: "Farsímanúmer",
 	type: "text-input",
-	placeholder: "Mobile number",
+	placeholder: "GSM númer",
 	validation: {
 		pattern: {
 			regex: new RegExp(/[6,8]\d{2}[-\s]?\d{4}$/, "g"),
@@ -13,9 +13,9 @@ const mobile: InputElementRecipe = {
 };
 
 const password: InputElementRecipe = {
-	label: "Future password",
+	label: "Lykilorð",
 	type: "password-input",
-	placeholder: "your password",
+	placeholder: "Lykilorð",
 	validation: {
 		minLength: 5,
 		trim: true,
@@ -24,9 +24,9 @@ const password: InputElementRecipe = {
 };
 
 const userName: InputElementRecipe = {
-	label: "Your username",
+	label: "Notendanafn",
 	type: "text-input",
-	placeholder: "whhaa",
+	placeholder: "Notendanafn",
 	validation: {
 		minLength: 5,
 		trim: true,
@@ -35,9 +35,9 @@ const userName: InputElementRecipe = {
 };
 
 const password2: InputElementRecipe = {
-	label: "Future password (again)",
+	label: "Lykilorð (aftur)",
 	type: "password-input",
-	placeholder: "your password (again)"
+	placeholder: "Lykilorð (aftur)"
 };
 
 export const loginForm: InputObject = {
