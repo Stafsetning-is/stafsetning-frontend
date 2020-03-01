@@ -15,6 +15,7 @@ export default ({ open }: IProps) => {
 			<FormGenerator
 				fields={showSignup ? signupForm : loginForm}
 				key={formKey(showSignup)}
+				label={submitButtonText(showSignup)}
 			/>
 			<BasicButton
 				text={extraButtonText(showSignup)}

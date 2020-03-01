@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IProps } from "./interface";
-import { InputFactory } from "../../";
+import { InputFactory, BasicButton } from "../../";
 import { getInputElementsArray } from "./utils";
 /**
  * Generates a form object based on a recipe provided
@@ -17,7 +17,7 @@ import { getInputElementsArray } from "./utils";
  *    [ ] add feedback to user about correctness of input
  */
 
-export const FormGenerator = ({ fields }: IProps) => {
+export const FormGenerator = ({ fields, label }: IProps) => {
 	const [formObject, setFormObject] = useState(fields);
 	const inputElements = getInputElementsArray(formObject);
 
@@ -42,7 +42,7 @@ export const FormGenerator = ({ fields }: IProps) => {
 					onChange={(val) => handleChange(element.key, val)}
 				/>
 			))}
-			<button>Submit</button>
+			<BasicButton text={label} type="default" />
 		</form>
 	);
 };
