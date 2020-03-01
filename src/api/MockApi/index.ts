@@ -26,6 +26,6 @@ export const getExerciseById = (id: string) => {
  */
 const delay = <T>(data: T): Promise<T> => {
 	return new Promise((resolve) => {
-		setTimeout(() => resolve(data), 3000);
+		setTimeout(() => resolve(data), 1000);
 	});
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { LayoutWrapper } from "../../../../layout";
 import { FormGenerator, Modal } from "../../../";
-import { InputElementRecipe } from "../../../../services";
+import { InputObject } from "../../../../services";
 
 export default () => {
 	return (
@@ -13,20 +13,30 @@ export default () => {
 	);
 };
 
-const formElements: { [key: string]: InputElementRecipe } = {
+const formElements: InputObject = {
 	userName: {
 		label: "Your username",
 		type: "text-input",
-		value: "asdf",
+		value: "",
 		placeholder: "whhaa",
-		key: ""
+		key: "",
+		validation: {
+			minLength: 5,
+			trim: true,
+			forbiddenCharacterTypes: ["symbols", "white-space", "upper-case"]
+		}
 	},
 	password1: {
 		label: "Future password",
 		type: "password-input",
 		value: "",
 		placeholder: "your password",
-		key: ""
+		key: "",
+		validation: {
+			minLength: 5,
+			trim: true,
+			requiredCharacterTypes: ["upper-case", "numbers", "symbols"]
+		}
 	},
 	password2: {
 		label: "Future password (again)",
@@ -34,5 +44,18 @@ const formElements: { [key: string]: InputElementRecipe } = {
 		value: "",
 		placeholder: "your password (again)",
 		key: ""
+	},
+	mobile: {
+		label: "Your mobile number",
+		type: "text-input",
+		value: "",
+		placeholder: "Mobile number",
+		key: "",
+		validation: {
+			pattern: {
+				regex: new RegExp(/[6,8]\d{2}[-\s]?\d{4}$/, "g"),
+				message: "Símanúmer ekki rétt"
+			}
+		}
 	}
 };

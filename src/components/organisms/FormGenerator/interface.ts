@@ -1,5 +1,5 @@
-import { InputElementRecipe } from "../../../services";
+import { InputObject } from "../../../services";
 
 export interface IProps {
-	fields: { [keys: string]: InputElementRecipe };
+	fields: InputObject;
 }
