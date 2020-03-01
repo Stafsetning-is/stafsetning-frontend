@@ -6,5 +6,7 @@ export const Container = styled.div`
 	left: 50%;
 	margin-left: -250px;
 	top: 130px;
-	box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+	box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.25);
+	z-index: 10;
+	background-color: #eeeeee;
 `;

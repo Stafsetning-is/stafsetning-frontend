@@ -35,7 +35,11 @@ export default class KeyboardListener {
 	 * @param cb callback that is fired when key is pressed and delivers the character
 	 */
 	public static listen(cb: (char: string) => void) {
-		new KeyboardListener(cb);
+		return new KeyboardListener(cb);
+	}
+
+	public stop() {
+		document.body.removeEventListener("keydown", this.onPress);
 	}
 
 	/**

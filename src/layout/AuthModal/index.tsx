@@ -5,15 +5,16 @@ import { formKey, extraButtonText, submitButtonText } from "./utils";
 import { IProps } from "./interface";
 import { connect } from "react-redux";
 import { StoreState } from "../../reducers";
+import { closeAuthModal } from "../../actions";
 /**
  * Authentication modal
  */
-const AuthModal = ({ open }: IProps) => {
+const AuthModal = ({ open, closeAuthModal }: IProps) => {
 	const [showSignup, setShowSignup] = useState(false);
 	if (!open) return null;
 
 	return (
-		<Modal>
+		<Modal onBackgroundClick={closeAuthModal}>
 			<FormGenerator
 				fields={showSignup ? signupForm : loginForm}
 				key={formKey(showSignup)}
@@ -32,4 +33,4 @@ const mapStateToProps = (state: StoreState) => ({
 	open: state.auth.showAuthModal
 });
 
-export default connect(mapStateToProps, {})(AuthModal);
+export default connect(mapStateToProps, { closeAuthModal })(AuthModal);

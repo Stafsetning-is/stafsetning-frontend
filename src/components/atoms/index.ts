@@ -5,3 +5,4 @@ export * from "./TextInput";
 export * from "./PasswordInput";
 export * from "./BoxWrap";
 export * from "./FormLabel";
+export * from "./Backdrop";

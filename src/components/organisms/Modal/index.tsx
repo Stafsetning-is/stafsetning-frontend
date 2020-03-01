@@ -1,12 +1,15 @@
 import * as React from "react";
 import { IProps } from "./interface";
 import { Container } from "./styles";
-import { BoxWrap } from "../../";
+import { BoxWrap, Backdrop } from "../../";
 
-export const Modal = ({ children }: IProps) => {
+export const Modal = ({ children, onBackgroundClick }: IProps) => {
 	return (
-		<Container>
-			<BoxWrap>{children}</BoxWrap>
-		</Container>
+		<React.Fragment>
+			<Backdrop onClick={onBackgroundClick} />
+			<Container>
+				<BoxWrap>{children}</BoxWrap>
+			</Container>
+		</React.Fragment>
 	);
 };

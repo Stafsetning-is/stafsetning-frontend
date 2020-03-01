@@ -26,6 +26,7 @@ import {
 } from "./styles";
 import { FontSize } from "./interface";
 import { Shaky } from "../../../";
+import { IProps } from "./interface";
 import Cursor from "../Cursor";
 import ToggleButton from "../ToggleButton";
 import FontSizeButton from "../FontSizeToggles";
@@ -41,13 +42,11 @@ import FontSizeButton from "../FontSizeToggles";
  *     - change font size buttons
  *     - change BG color
  */
-export default forwardRef((_, ref) => {
+export default forwardRef(({ typed, preview }: IProps, ref) => {
 	/**
 	 * Stateful variables for the
 	 * TypedText component
 	 */
-	const [text, setText] = useState("");
-	const [previewText, setPreviewText] = useState("");
 	const [showErrorFeedback, setShowErrorFeedback] = useState(false);
 	const [font, setFont] = useState(getFontOnLoad());
 	const [fontSize, setFontSize] = useState(getFontSizeOnLoad());
@@ -80,9 +79,7 @@ export default forwardRef((_, ref) => {
 	 * outside
 	 */
 	useImperativeHandle(ref, () => ({
-		giveErrorFeedback,
-		setText,
-		setPreviewText
+		giveErrorFeedback
 	}));
 
 	const theme = useMemo(() => ({ fontFamily: font, fontSize: fontSize }), [
@@ -129,10 +126,10 @@ export default forwardRef((_, ref) => {
 	 * only changes memo when previewText or font updates
 	 */
 	const TypedTextFollowUp = useMemo(() => {
-		if (previewText && ![" ", ""].includes(previewText))
-			return <PreviewSpan theme={theme}>{previewText}</PreviewSpan>;
+		if (preview && ![" ", ""].includes(preview))
+			return <PreviewSpan theme={theme}>{preview}</PreviewSpan>;
 		else return <Cursor />;
-	}, [previewText, theme]);
+	}, [preview, theme]);
 
 	/**
 	 * Maps fonts to fonot buttons
@@ -200,7 +197,7 @@ export default forwardRef((_, ref) => {
 			</Block>
 			<TypedTextContainer theme={{ dislexic }}>
 				<Shaky shake={showErrorFeedback}>
-					<TextSpan theme={theme}>{text}</TextSpan>
+					<TextSpan theme={theme}>{typed}</TextSpan>
 					{TypedTextFollowUp}
 				</Shaky>
 			</TypedTextContainer>
@@ -209,7 +206,5 @@ export default forwardRef((_, ref) => {
 });
 
 export const refObject = {
-	giveErrorFeedback: () => {},
-	setPreviewText: (c: string) => {},
-	setText: (c: string) => {}
+	giveErrorFeedback: () => {}
 };

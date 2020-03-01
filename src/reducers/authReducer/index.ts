@@ -9,7 +9,6 @@ export default (
 	state: AuthState = initialState,
 	action: Actions
 ): AuthState => {
-	console.log("state", state);
 	switch (action.type) {
 		case ActionTypes.closeAuthModal:
 			return { ...state, showAuthModal: false };

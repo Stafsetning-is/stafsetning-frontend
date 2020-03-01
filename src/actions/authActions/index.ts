@@ -1,20 +1,23 @@
-import { OpenAuthModalAction, CloseAuthModalAction } from "./interface";
 import { ActionTypes } from "../types";
-import { Dispatch } from "redux";
 
+/**
+ * Opens sign in modals
+ */
 export function openAuthModal() {
-	console.log("hi");
 	return {
 		type: ActionTypes.openAuthModal,
 		payload: null
 	};
 }
 
-export function closeAuthModal(dispatch: Dispatch) {
-	dispatch<CloseAuthModalAction>({
+/**
+ * Closes sign in modals
+ */
+export function closeAuthModal() {
+	return {
 		type: ActionTypes.closeAuthModal,
 		payload: null
-	});
+	};
 }
 
 export * from "./interface";

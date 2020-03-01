@@ -16,6 +16,8 @@ type cb = () => void;
  */
 export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 	const [errorCount, setErrorCount] = useState(0);
+	const [typed, setTyped] = useState("");
+	const [preview, setPreview] = useState("");
 	const [previewCallback, setPreviewCallback] = useState<cb>(() => () => {
 		// console.log("Call back has not been set");
 	});
@@ -27,9 +29,9 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 	 * might occur on user input
 	 */
 	useEffect(() => {
-		const instance = Exercise.startExercise(sentenceParts, exercise)
+		const session = Exercise.startExercise(sentenceParts, exercise)
 			.on("error", () => {
-				typeTextRef.current.giveErrorFeedback();
+				if (typeTextRef.current) typeTextRef.current.giveErrorFeedback();
 			})
 			.on("success", () => {
 				// handle success
@@ -41,11 +43,12 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 				// handle complete
 			})
 			.on("textUpdate", (text: string, preview: string) => {
-				typeTextRef.current.setPreviewText(preview);
-				typeTextRef.current.setText(text);
+				setTyped(text);
+				setPreview(preview);
 			});
-		setPreviewCallback(() => () => instance.showPreview());
-		setErrorCount(instance.getErrorCount());
+		setPreviewCallback(() => () => session.showPreview());
+		setErrorCount(session.getErrorCount());
+		return () => session.stopListening();
 	}, [exercise, sentenceParts]);
 
 	useEffect(() => {
@@ -56,7 +59,7 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 		<React.Fragment>
 			<ErrorCounter count={errorCount} />
 			<PreviewButton onClick={previewCallback} />
-			<TypedText ref={typeTextRef} />
+			<TypedText ref={typeTextRef} typed={typed} preview={preview} />
 		</React.Fragment>
 	);
 };

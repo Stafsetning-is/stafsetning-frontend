@@ -15,3 +15,8 @@ export interface FontSelection {
 	larger: FontSizeOrNull;
 	current: FontSizeOrNull;
 }
+
+export interface IProps {
+	typed: string;
+	preview: string;
+}

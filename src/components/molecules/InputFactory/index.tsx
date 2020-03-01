@@ -7,15 +7,19 @@ import { TextInput, PasswordInput } from "../../";
  * returns the specified component needed.
  */
 export const InputFactory = (props: IInputfactory) => {
-	const { type, onChange, key } = props;
+	const { type, onChange, label } = props;
 	switch (type) {
 		case "text-input":
 			return (
-				<TextInput {...props} onChange={(val) => onChange(val)} key={key} />
+				<TextInput {...props} onChange={(val) => onChange(val)} key={label} />
 			);
 		case "password-input":
 			return (
-				<PasswordInput {...props} onChange={(val) => onChange(val)} key={key} />
+				<PasswordInput
+					{...props}
+					onChange={(val) => onChange(val)}
+					key={label}
+				/>
 			);
 		default:
 			return null;
