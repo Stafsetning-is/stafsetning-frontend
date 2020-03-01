@@ -1,3 +1,11 @@
 import React from "react";
+import { LayoutWrapper } from "../../../../layout";
+import { UserProfile } from "../../../";
 
-export default () => <div>user profile</div>;
+export default () => {
+    return (
+        <LayoutWrapper>
+            <UserProfile />
+        </LayoutWrapper>
+    );
+};

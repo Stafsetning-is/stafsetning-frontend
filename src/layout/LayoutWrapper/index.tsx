@@ -5,10 +5,10 @@ import BackDrop from "../Backdrop";
 import CenterBlock from "../CenterBlock";
 
 export const LayoutWrapper = ({ children }: IProps) => {
-	return (
-		<BackDrop>
-			<Header />
-			<CenterBlock>{children}</CenterBlock>
-		</BackDrop>
-	);
+    return (
+        <BackDrop>
+            <Header />
+            <CenterBlock>{children}</CenterBlock>
+        </BackDrop>
+    );
 };
