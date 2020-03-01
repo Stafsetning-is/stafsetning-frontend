@@ -14,11 +14,11 @@ export type CharacterTypes =
 	| "upper-case";
 
 interface InputBase {
-	value: any;
+	value?: any;
 	type: FormElements;
 	label: string;
 	placeholder: string;
-	key: string;
+	key?: string;
 	valid?: boolean;
 	validationMessage?: string;
 }
@@ -46,5 +46,5 @@ export interface InputComponent extends InputBase {
 }
 
 export interface InputFactory extends InputBase {
-	onChange: (key: string, newValue: any) => void;
+	onChange: (newValue: any) => void;
 }

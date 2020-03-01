@@ -39,7 +39,7 @@ export const FormGenerator = ({ fields }: IProps) => {
 			{inputElements.map((element) => (
 				<InputFactory
 					{...element}
-					onChange={(key, val) => handleChange(element.key, val)}
+					onChange={(val) => handleChange(element.key, val)}
 				/>
 			))}
 			<button>Submit</button>

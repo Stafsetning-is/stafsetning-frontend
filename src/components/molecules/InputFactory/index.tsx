@@ -11,19 +11,11 @@ export const InputFactory = (props: IInputfactory) => {
 	switch (type) {
 		case "text-input":
 			return (
-				<TextInput
-					{...props}
-					onChange={(val) => onChange(key, val)}
-					key={key}
-				/>
+				<TextInput {...props} onChange={(val) => onChange(val)} key={key} />
 			);
 		case "password-input":
 			return (
-				<PasswordInput
-					{...props}
-					onChange={(val) => onChange(key, val)}
-					key={key}
-				/>
+				<PasswordInput {...props} onChange={(val) => onChange(val)} key={key} />
 			);
 		default:
 			return null;

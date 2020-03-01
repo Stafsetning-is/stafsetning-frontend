@@ -25,7 +25,7 @@ export const Block = styled.div`
 `;
 
 export const TypedTextContainer = styled.div`
-	background: ${(props) => (props.theme.dislexic ? "yellow" : "#fff")};
+	background: ${(props) => (props.theme.dislexic ? "#EDD1B0" : "#fff")};
 	padding: 20px 20px 125px 20px;
 	border: 1px solid #c3c3c3;
 	border-radius: 3px;
