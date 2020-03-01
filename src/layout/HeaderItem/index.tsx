@@ -6,5 +6,5 @@ import { IProps } from "./interface";
  * Single header item
  */
 export default ({ onClick, text }: IProps) => {
-	return <Outer>{text}</Outer>;
+	return <Outer onClick={onClick}>{text}</Outer>;
 };

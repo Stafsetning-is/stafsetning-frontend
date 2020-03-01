@@ -1,12 +1,14 @@
-import React, { useState, useMemo } from "react";
-import { IProps } from "./interface";
+import React, { useState } from "react";
 import { FormGenerator, BasicButton, Modal } from "../../components";
 import { loginForm, signupForm } from "./formRecipe";
 import { formKey, extraButtonText, submitButtonText } from "./utils";
+import { IProps } from "./interface";
+import { connect } from "react-redux";
+import { StoreState } from "../../reducers";
 /**
  * Authentication modal
  */
-export default ({ open }: IProps) => {
+const AuthModal = ({ open }: IProps) => {
 	const [showSignup, setShowSignup] = useState(false);
 	if (!open) return null;
 
@@ -25,3 +27,9 @@ export default ({ open }: IProps) => {
 		</Modal>
 	);
 };
+
+const mapStateToProps = (state: StoreState) => ({
+	open: state.auth.showAuthModal
+});
+
+export default connect(mapStateToProps, {})(AuthModal);

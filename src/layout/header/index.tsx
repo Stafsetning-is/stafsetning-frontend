@@ -4,11 +4,13 @@ import { NavLink } from "react-router-dom";
 import Logo from "../../static/images/logo.png";
 import CenterBlock from "../CenterBlock";
 import HeaderItem from "../HeaderItem";
+import { openAuthModal } from "../../actions";
+import { connect } from "react-redux";
 
 /**
  * Header component for layout
  */
-export default () => {
+const Header = ({ openAuthModal }: any) => {
 	return (
 		<Container>
 			<CenterBlock>
@@ -17,10 +19,12 @@ export default () => {
 						<Image src={Logo} />
 					</NavLink>
 					<div>
-						<HeaderItem text="Skrá inn" onClick={() => {}} />
+						<HeaderItem text="Skrá inn" onClick={openAuthModal} />
 					</div>
 				</FlexHeader>
 			</CenterBlock>
 		</Container>
 	);
 };
+
+export default connect(null, { openAuthModal })(Header);

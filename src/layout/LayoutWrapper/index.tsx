@@ -10,7 +10,7 @@ export const LayoutWrapper = ({ children }: IProps) => {
 		<BackDrop>
 			<Header />
 			<CenterBlock>{children}</CenterBlock>
-			<AuthModal open={true} />
+			<AuthModal />
 		</BackDrop>
 	);
 };
