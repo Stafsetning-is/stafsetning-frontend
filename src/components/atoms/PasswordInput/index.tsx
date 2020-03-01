@@ -5,7 +5,12 @@ import { InputComponent } from "../../../services";
  * Password input that takes in value and onChange function
  * This is for the form functionality
  */
-export const PasswordInput = ({ value, onChange, label }: InputComponent) => {
+export const PasswordInput = ({
+	value,
+	onChange,
+	label,
+	placeholder
+}: InputComponent) => {
 	return (
 		<React.Fragment>
 			<p>{label}</p>
@@ -13,6 +18,7 @@ export const PasswordInput = ({ value, onChange, label }: InputComponent) => {
 				type="password"
 				value={value}
 				onChange={(e) => onChange(e.target.value)}
+				placeholder={placeholder}
 			/>
 		</React.Fragment>
 	);

@@ -17,7 +17,7 @@ const formElements: { [key: string]: InputElementRecipe } = {
 	userName: {
 		label: "Your username",
 		type: "text-input",
-		value: "",
+		value: "asdf",
 		placeholder: "whhaa",
 		key: ""
 	},
@@ -32,7 +32,7 @@ const formElements: { [key: string]: InputElementRecipe } = {
 		label: "Future password (again)",
 		type: "password-input",
 		value: "",
-		placeholder: "your password",
+		placeholder: "your password (again)",
 		key: ""
 	}
 };

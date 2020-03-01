@@ -5,7 +5,12 @@ import { InputComponent } from "../../../services";
  * Text input that takes in value and onChange function
  * This is for the form functionality
  */
-export const TextInput = ({ value, onChange, label }: InputComponent) => {
+export const TextInput = ({
+	value,
+	onChange,
+	label,
+	placeholder
+}: InputComponent) => {
 	return (
 		<React.Fragment>
 			<p>{label}</p>
@@ -13,6 +18,7 @@ export const TextInput = ({ value, onChange, label }: InputComponent) => {
 				type="text"
 				value={value}
 				onChange={(e) => onChange(e.target.value)}
+				placeholder={placeholder}
 			/>
 		</React.Fragment>
 	);
