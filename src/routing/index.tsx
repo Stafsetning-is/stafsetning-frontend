@@ -1,5 +1,5 @@
 import React from "react";
-import pages from "../components/pages";
+import pages, { Modals } from "../components/pages";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 /**
@@ -13,11 +13,16 @@ export default () => {
 		<Router>
 			<Switch>
 				{pages.map((Page) => (
-					<Route path={Page.route} exact={Page.exact} key={Page.route}>
+					<Route path={Page.route} exact={false} key={Page.route}>
 						<Page.component />
 					</Route>
 				))}
 			</Switch>
+			{Modals.map((Modal) => (
+				<Route path={Modal.route} exact={false} key={Modal.route}>
+					<Modal.component />
+				</Route>
+			))}
 		</Router>
 	);
 };

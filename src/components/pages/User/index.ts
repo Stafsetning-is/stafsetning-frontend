@@ -1,6 +1,5 @@
 import Profile from "./Profile";
 import Settings from "./Settings";
-import LoginPage from "./Signup";
 
 export default [
 	{
@@ -12,9 +11,5 @@ export default [
 		route: "/user/settings",
 		component: Settings,
 		exact: true
-	},
-	{
-		route: "*/log-in",
-		component: LoginPage
 	}
 ];

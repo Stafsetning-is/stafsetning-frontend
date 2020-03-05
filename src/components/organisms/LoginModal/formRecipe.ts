@@ -1,15 +1,4 @@
-import * as React from "react";
-import { InputObject, InputElementRecipe } from "../../../../services";
-import { FormGenerator, BasicButton, Modal } from "../../../";
-
-export default () => {
-	return (
-		<Modal onBackgroundClick={() => {}}>
-			<FormGenerator fields={loginForm} label={"Log in"} />
-			<BasicButton text={"Signup"} onClick={() => {}} type="secondary" />
-		</Modal>
-	);
-};
+import { InputElementRecipe, InputObject } from "../../../services";
 
 const mobile: InputElementRecipe = {
 	label: "Farsímanúmer",
@@ -62,24 +51,3 @@ export const signupForm: InputObject = {
 	password,
 	password2
 };
-
-/**
- * get key for form
- * @param signupForm is signup form displaid or not
- */
-export const formKey = (signupForm: boolean) =>
-	signupForm ? "signup" : "login";
-
-/**
- * get button text beneath form
- * @param signupForm  is signup form displaid or not
- */
-export const extraButtonText = (signupForm: boolean) =>
-	signupForm ? "Til baka" : "Búa til aðgang";
-
-/**
- * get button text for submit button
- * @param signupForm  is signup form displaid or not
- */
-export const submitButtonText = (signupForm: boolean) =>
-	signupForm ? "Búa til" : "Skrá inn";
