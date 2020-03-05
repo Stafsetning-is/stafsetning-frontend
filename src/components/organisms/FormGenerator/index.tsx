@@ -12,9 +12,9 @@ import { getInputElementsArray } from "./utils";
  * Along with a submit button which submits the data
  *
  * TODO:
- *    [ ] add form validation functionality
+ *    [x] add form validation functionality
  *    [ ] add form onPost callback
- *    [ ] add feedback to user about correctness of input
+ *    [x] add feedback to user about correctness of input
  */
 
 export const FormGenerator = ({ fields, label }: IProps) => {
@@ -35,7 +35,7 @@ export const FormGenerator = ({ fields, label }: IProps) => {
 	};
 
 	return (
-		<form>
+		<form onSubmit={(e) => e.preventDefault()}>
 			{inputElements.map((element) => (
 				<InputFactory
 					{...element}

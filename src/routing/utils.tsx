@@ -1,12 +1,12 @@
 import React from "react";
-import { IPage } from "./interface";
+import { IPage, IProps } from "./interface";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 /**
- *
- * @param pages Maps out elements to routes
- * @param prefix
+ * Maps out items to routes
+ * @param pages items implementing IPage initerface
+ * @param prefix prefix for routes e.g. wildcard
  */
-export const mapElementsToRoutes = (pages: IPage[], prefix = "") => (
+const mapItemsToSwitchedRoutes = (pages: IPage[], prefix = "") => (
 	<Switch>
 		{pages.map((Page) => (
 			<Route path={`${prefix}${Page.route}`} exact={false} key={Page.route}>
@@ -14,4 +14,15 @@ export const mapElementsToRoutes = (pages: IPage[], prefix = "") => (
 			</Route>
 		))}
 	</Switch>
+);
+
+/**
+ * Route factory which take sin pages and modals
+ * and creates switched routes
+ */
+export const RouteFactory = ({ pages, modals }: IProps) => (
+	<Router>
+		{mapItemsToSwitchedRoutes(pages)}
+		{mapItemsToSwitchedRoutes(modals, "*")}
+	</Router>
 );

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { InputFactory as IInputfactory } from "../../../services";
-import { TextInput, PasswordInput } from "../../";
+import { TextInput, PasswordInput as PwInput } from "../../";
 
 /**
  * This functional component takes in input component props and
@@ -15,11 +15,7 @@ export const InputFactory = (props: IInputfactory) => {
 			);
 		case "password-input":
 			return (
-				<PasswordInput
-					{...props}
-					onChange={(val) => onChange(val)}
-					key={label}
-				/>
+				<PwInput {...props} onChange={(val) => onChange(val)} key={label} />
 			);
 		default:
 			return null;
