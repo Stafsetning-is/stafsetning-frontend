@@ -1,6 +1,6 @@
 import * as React from "react";
-import { LoginModal } from "../../../";
+import { SignupModal } from "../../../";
 
 export default () => {
-	return <LoginModal />;
+	return <SignupModal />;
 };

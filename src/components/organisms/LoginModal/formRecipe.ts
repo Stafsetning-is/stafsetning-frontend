@@ -1,14 +1,13 @@
 import { InputElementRecipe, InputObject } from "../../../services";
 
-const mobile: InputElementRecipe = {
-	label: "Farsímanúmer",
+const userName: InputElementRecipe = {
+	label: "Notendanafn",
 	type: "text-input",
-	placeholder: "GSM númer",
+	placeholder: "Notendanafn",
 	validation: {
-		pattern: {
-			regex: new RegExp(/[6,8]\d{2}[-\s]?\d{4}$/, "g"),
-			message: "Símanúmer ekki rétt"
-		}
+		minLength: 5,
+		trim: true,
+		forbiddenCharacterTypes: ["symbols", "white-space", "upper-case"]
 	}
 };
 
@@ -23,31 +22,7 @@ const password: InputElementRecipe = {
 	}
 };
 
-const userName: InputElementRecipe = {
-	label: "Notendanafn",
-	type: "text-input",
-	placeholder: "Notendanafn",
-	validation: {
-		minLength: 5,
-		trim: true,
-		forbiddenCharacterTypes: ["symbols", "white-space", "upper-case"]
-	}
-};
-
-const password2: InputElementRecipe = {
-	label: "Lykilorð (aftur)",
-	type: "password-input",
-	placeholder: "Lykilorð (aftur)"
-};
-
 export const loginForm: InputObject = {
-	mobile,
-	password
-};
-
-export const signupForm: InputObject = {
 	userName,
-	mobile,
-	password,
-	password2
+	password
 };
