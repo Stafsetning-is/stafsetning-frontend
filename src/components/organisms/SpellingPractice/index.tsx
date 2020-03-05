@@ -18,17 +18,15 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 	const [errorCount, setErrorCount] = useState(0);
 	const [typed, setTyped] = useState("");
 	const [preview, setPreview] = useState("");
-	const [previewCallback, setPreviewCallback] = useState<cb>(() => () => {
-		// console.log("Call back has not been set");
-	});
+	const [previewCallback, setPreviewCallback] = useState<cb>(() => () => {});
 	const typeTextRef = useRef(refObject);
 
-	/**
-	 * Sets up event listeners
-	 * for the four events that
-	 * might occur on user input
-	 */
 	useEffect(() => {
+		/**
+		 * Sets up event listeners
+		 * for the four events that
+		 * might occur on user input
+		 */
 		const session = Exercise.startExercise(sentenceParts, exercise)
 			.on("error", () => {
 				if (typeTextRef.current) typeTextRef.current.giveErrorFeedback();
