@@ -2,8 +2,7 @@ import PracticeSession from "./PracticeSession";
 
 export default [
 	{
-		route: "/practice/:id",
-		component: PracticeSession,
-		exact: true
+		route: "/practice/:id/",
+		component: PracticeSession
 	}
 ];

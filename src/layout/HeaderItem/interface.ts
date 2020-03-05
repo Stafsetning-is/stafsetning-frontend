@@ -1,4 +1,4 @@
 export interface IProps {
 	text: string;
-	onClick: () => void;
+	onClick?: () => void;
 }

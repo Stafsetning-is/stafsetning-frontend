@@ -1,3 +1,1 @@
-export interface AuthState {
-	showAuthModal: boolean;
-}
+export interface AuthState {}

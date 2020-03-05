@@ -1,7 +1,6 @@
-import { CloseAuthModalAction, OpenAuthModalAction } from "../authActions";
+import {} from "../authActions";
 export enum ActionTypes {
-	openAuthModal,
-	closeAuthModal
+	openAuthModal
 }
 
-export type Actions = CloseAuthModalAction | OpenAuthModalAction;
+export type Actions = "put types here from import statement";
