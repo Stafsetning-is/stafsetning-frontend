@@ -3,12 +3,12 @@ import SignupPage from "./Signup";
 
 export default [
 	{
-		route: "*/log-in",
+		route: "/log-in",
 		component: LoginPage
 	},
 
 	{
-		route: "*/sign-up",
+		route: "/sign-up",
 		component: SignupPage
 	}
 ];
