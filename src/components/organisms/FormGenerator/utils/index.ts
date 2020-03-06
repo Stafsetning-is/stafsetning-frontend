@@ -1,5 +1,8 @@
 import Validator from "./Validator";
 import { InputObject } from "../../../../services";
+import Axios from "axios";
+
+export const SHAKE_DURATION = 500;
 
 /**
  * Turns the formObject to an mappable array
@@ -18,4 +21,59 @@ export const getInputElementsArray = (fields: InputObject) => {
 		inputElementArray.push(item);
 	}
 	return inputElementArray;
+};
+
+/**
+ * Reduces the input object to a simple
+ * key value pair with values
+ * as the user typed them in
+ * @param fields the inputObject
+ */
+export const getUserData = (fields: InputObject) => {
+	let retObject: { [key: string]: any } = {};
+	for (const key in fields) {
+		retObject[key] = fields[key].value;
+	}
+	return retObject;
+};
+
+/**
+ * Checks the fields and throw an error
+ * if there is error in user input
+ * @param fields fields to validate for errors
+ */
+export const validateErrors = (fields: InputObject) => {
+	const elementArray = getInputElementsArray(fields);
+	const invalid = elementArray.some((el) => el.validationMessage || !el.value);
+	if (invalid) throw new Error("Ekki rétt útfyllt");
+};
+
+/**
+ * Handles communication with backend and
+ * throw an error with a message
+ * that can be displayable to the user
+ * @param fields the InputObject to send
+ * @param url POST url
+ */
+export const handlePost = async <T>(
+	fields: InputObject,
+	url: string
+): Promise<T> => {
+	try {
+		const { data } = await Axios.post<T>(url, getUserData(fields));
+		return await delay(data);
+	} catch (error) {
+		throw new Error("Villa í samskiptum við vefþjón");
+	}
+};
+
+/**
+ * Returns a promise of data
+ * that will resolve in 1250ms
+ * @param data Data to return after delay
+ */
+const delay = <T>(data: T): Promise<T> => {
+	return new Promise((resolve) => {
+		setTimeout(() => resolve(data), 2000);
+	});
 };

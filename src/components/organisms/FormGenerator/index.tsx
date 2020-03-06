@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IProps } from "./interface";
-import { InputFactory, BasicButton } from "../../";
-import { getInputElementsArray } from "./utils";
+import { InputFactory, BasicButton, LoaderBox, Shaky } from "../../";
+import {
+	getInputElementsArray,
+	validateErrors,
+	handlePost,
+	SHAKE_DURATION
+} from "./utils";
 /**
  * Generates a form object based on a recipe provided
+ *
+ * Takes in generic type of post request response
+ * when successful
  *
  * Takes in an object where the value implements
  * the InputElementRecipe interface. The generator
@@ -17,8 +25,17 @@ import { getInputElementsArray } from "./utils";
  *    [x] add feedback to user about correctness of input
  */
 
-export const FormGenerator = ({ fields, label }: IProps) => {
+export const FormGenerator = <T extends {}>({
+	fields,
+	label,
+	postTo,
+	onSuccess,
+	children
+}: IProps<T>) => {
 	const [formObject, setFormObject] = useState(fields);
+	const [errorMessage, setErrorMessage] = useState("");
+	const [loading, setLoading] = useState(false);
+	const [shake, setShake] = useState(false);
 	const inputElements = getInputElementsArray(formObject);
 
 	/**
@@ -34,15 +51,50 @@ export const FormGenerator = ({ fields, label }: IProps) => {
 		setFormObject({ ...formObjectCopy });
 	};
 
+	/**
+	 * handles the submit including
+	 *     overall validation
+	 *     talking to api
+	 *     setLoading state
+	 *     and displaying errorMessages
+	 */
+	const handleSubmit = async () => {
+		if (loading) return;
+		try {
+			validateErrors(fields);
+			setLoading(true);
+			const data = await handlePost<T>(fields, postTo);
+			onSuccess(data);
+		} catch (error) {
+			setErrorMessage(error.message);
+			setShake(true);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	/**
+	 * Resets shake after
+	 * 500ms
+	 */
+	useEffect(() => {
+		setTimeout(() => setShake(false), SHAKE_DURATION);
+	}, [shake]);
+
 	return (
-		<form onSubmit={(e) => e.preventDefault()}>
-			{inputElements.map((element) => (
-				<InputFactory
-					{...element}
-					onChange={(val) => handleChange(element.key, val)}
-				/>
-			))}
-			<BasicButton text={label} type="default" />
-		</form>
+		<Shaky shake={shake}>
+			<LoaderBox loading={loading}>
+				<form onSubmit={(e) => e.preventDefault()}>
+					{inputElements.map((element) => (
+						<InputFactory
+							{...element}
+							onChange={(val) => handleChange(element.key, val)}
+						/>
+					))}
+					<BasicButton text={label} type="default" onClick={handleSubmit} />
+					{children}
+				</form>
+			</LoaderBox>
+		</Shaky>
 	);
 };

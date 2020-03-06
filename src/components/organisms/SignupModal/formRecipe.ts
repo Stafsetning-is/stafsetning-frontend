@@ -9,7 +9,8 @@ const mobile: InputElementRecipe = {
 			regex: new RegExp(/[6,8]\d{2}[-\s]?\d{4}$/, "g"),
 			message: "Símanúmer ekki rétt"
 		}
-	}
+	},
+	value: ""
 };
 
 const password: InputElementRecipe = {
@@ -20,7 +21,8 @@ const password: InputElementRecipe = {
 		minLength: 5,
 		trim: true,
 		requiredCharacterTypes: ["upper-case", "numbers", "symbols"]
-	}
+	},
+	value: ""
 };
 
 const userName: InputElementRecipe = {
@@ -31,13 +33,15 @@ const userName: InputElementRecipe = {
 		minLength: 5,
 		trim: true,
 		forbiddenCharacterTypes: ["symbols", "white-space", "upper-case"]
-	}
+	},
+	value: ""
 };
 
 const password2: InputElementRecipe = {
 	label: "Lykilorð (aftur)",
 	type: "password-input",
-	placeholder: "Lykilorð (aftur)"
+	placeholder: "Lykilorð (aftur)",
+	value: ""
 };
 
 export const signupForm: InputObject = {
