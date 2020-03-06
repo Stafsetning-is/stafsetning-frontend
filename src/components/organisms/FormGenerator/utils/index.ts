@@ -44,8 +44,8 @@ export const getUserData = (fields: InputObject) => {
  */
 export const validateErrors = (fields: InputObject) => {
 	const elementArray = getInputElementsArray(fields);
-	const invalid = elementArray.some((el) => el.validationMessage || !el.value);
-	if (invalid) throw new Error("Ekki rétt útfyllt");
+	const invalid = elementArray.some((el) => !(el.value && el.valid));
+	if (invalid) throw new Error("");
 };
 
 /**
@@ -63,6 +63,7 @@ export const handlePost = async <T>(
 		const { data } = await Axios.post<T>(url, getUserData(fields));
 		return await delay(data);
 	} catch (error) {
+		await delay(null);
 		throw new Error("Villa í samskiptum við vefþjón");
 	}
 };

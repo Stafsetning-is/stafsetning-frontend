@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { IProps } from "./interface";
 import { InputFactory, BasicButton, LoaderBox, Shaky } from "../../";
+import { TopErrorLabel } from "./styles";
 import {
 	getInputElementsArray,
 	validateErrors,
@@ -61,7 +62,7 @@ export const FormGenerator = <T extends {}>({
 	const handleSubmit = async () => {
 		if (loading) return;
 		try {
-			validateErrors(fields);
+			validateErrors(formObject);
 			setLoading(true);
 			const data = await handlePost<T>(fields, postTo);
 			onSuccess(data);
@@ -83,6 +84,7 @@ export const FormGenerator = <T extends {}>({
 
 	return (
 		<Shaky shake={shake}>
+			<TopErrorLabel>{errorMessage}</TopErrorLabel>
 			<LoaderBox loading={loading}>
 				<form onSubmit={(e) => e.preventDefault()}>
 					{inputElements.map((element) => (
