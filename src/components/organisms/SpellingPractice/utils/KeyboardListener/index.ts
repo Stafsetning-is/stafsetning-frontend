@@ -185,10 +185,4 @@ export default class KeyboardListener {
 		else if (IGNORE_CODES_ARRAY.includes(e.keyCode) && this.accented) return;
 		else this.accented = false;
 	}
-
-	/**
-	 * Array of special events
-	 */
-
-	private specialEvents: SpecialEvent[] = [this.adjustAccentFlag];
 }

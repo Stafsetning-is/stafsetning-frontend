@@ -21,7 +21,7 @@ export const SignupModal = () => {
 				fields={signupForm}
 				label="Skrá inn"
 				onSuccess={() => {}}
-				postTo=""
+				postTo="https://api.stafsetning.is/some-url/"
 			>
 				<BasicButton
 					text={"Til baka"}
