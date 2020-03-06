@@ -18,7 +18,7 @@ export const fetchExerciseText = async (cb: (data: string[]) => void) => {
  */
 const extractIdFromUrl = () => {
 	try {
-		return URlService.matchFromUrl(new RegExp(/(?<=\/)\w+$/g));
+		return URlService.matchFromUrl(new RegExp(/(?<=\/)\w+\/?$/g));
 	} catch (error) {
 		throw Error("Failed to extract  exercise id from url");
 	}

@@ -1,5 +1,11 @@
 import React from "react";
 import { LayoutWrapper } from "../../../../layout";
+import { ExerciseBoxesContainer } from "../../../";
+
 export default () => {
-	return <LayoutWrapper></LayoutWrapper>;
+	return (
+		<LayoutWrapper>
+			<ExerciseBoxesContainer />
+		</LayoutWrapper>
+	);
 };
