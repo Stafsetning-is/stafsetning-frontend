@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, FlexHeader, Image } from "./styles";
+import { Container, FlexHeader, Image, RightSide } from "./styles";
 import { NavLink } from "react-router-dom";
 import Logo from "../../static/images/logo.png";
 import CenterBlock from "../CenterBlock";
@@ -16,9 +16,14 @@ export default () => {
 					<NavLink to="/">
 						<Image src={Logo} />
 					</NavLink>
-					<NavLink to={`${urlWithoutPath()}log-in`}>
-						<HeaderItem text="Skrá inn" />
-					</NavLink>
+					<RightSide>
+						<NavLink to={`${urlWithoutPath()}sign-up`}>
+							<HeaderItem text="Búa til aðgang" />
+						</NavLink>
+						<NavLink to={`${urlWithoutPath()}log-in`}>
+							<HeaderItem text="Skrá inn" />
+						</NavLink>
+					</RightSide>
 				</FlexHeader>
 			</CenterBlock>
 		</Container>

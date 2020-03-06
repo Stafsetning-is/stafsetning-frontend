@@ -27,3 +27,7 @@ export const Image = styled.img`
 	height: 20px;
 	cursor: hover;
 `;
+
+export const RightSide = styled.div`
+	display: flex;
+`;

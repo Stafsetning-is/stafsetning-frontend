@@ -202,7 +202,6 @@ export class Exercise {
 			this.getLastChar() === SPACE
 		)
 			throw Error("Keystroke should be ignored");
-		console.log("char", char);
 	}
 
 	/**
