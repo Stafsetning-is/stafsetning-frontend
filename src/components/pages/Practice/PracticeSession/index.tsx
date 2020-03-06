@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { SpellingPractice, LoaderBox } from "../../../";
 import { LayoutWrapper } from "../../../../layout";
 import { fetchExerciseText } from "./utils";
+import { RouteComponentProps } from "react-router-dom";
+import { IProps } from "./interface";
 
 /**
  * Component contains the entire page for an practice exercise
@@ -10,7 +12,7 @@ import { fetchExerciseText } from "./utils";
  * to practice mode by toggling its state
  *
  */
-export default () => {
+export default ({ match }: RouteComponentProps<IProps>) => {
 	const [loading, setLoading] = useState(true);
 	const [exerciseParts, setExerciseParts] = useState<string[]>([]);
 
@@ -20,10 +22,11 @@ export default () => {
 	 * state accordingly
 	 */
 	useEffect(() => {
-		fetchExerciseText((textParts) => {
+		fetchExerciseText(match.params.id, (textParts) => {
 			setExerciseParts(textParts);
 			setLoading(false);
 		});
+		console.log("match.params.id", match.params.id);
 	}, []);
 
 	return (

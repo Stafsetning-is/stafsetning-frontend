@@ -19,6 +19,8 @@ export const getExerciseById = (id: string) => {
 	]);
 };
 
+export const getPracticeResultsById = () => {};
+
 /**
  * Returns a promise of data
  * that will resolve in 1250ms
