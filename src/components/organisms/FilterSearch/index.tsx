@@ -48,7 +48,7 @@ const FilterComponent = ({
 					toggle={setHideCompleted}
 				/>
 				<FilterButton
-					text="Sýna vistaðar æfingar"
+					text="Sýna vistaðar æfingars"
 					value={hideCompleted}
 					toggle={setHideCompleted}
 				/>
