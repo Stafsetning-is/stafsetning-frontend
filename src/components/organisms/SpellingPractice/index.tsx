@@ -4,6 +4,7 @@ import { Exercise } from "./utils";
 import ErrorCounter from "./ErrorCounter";
 import PreviewButton from "./PreviewButton";
 import TypedText, { refObject } from "./TypedText";
+import { Redirect } from "react-router-dom";
 
 type cb = () => void;
 
@@ -20,6 +21,7 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 	const [preview, setPreview] = useState("");
 	const [previewCallback, setPreviewCallback] = useState<cb>(() => () => {});
 	const typeTextRef = useRef(refObject);
+	const [comletedPracticeId, setCompletedPracticeId] = useState<string>();
 
 	useEffect(() => {
 		/**
@@ -38,7 +40,7 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 				setErrorCount(newCount);
 			})
 			.on("complete", () => {
-				// handle complete
+				setCompletedPracticeId("1234");
 			})
 			.on("textUpdate", (text: string, preview: string) => {
 				setTyped(text);
@@ -53,6 +55,8 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 		previewCallback();
 	}, [previewCallback]);
 
+	if (comletedPracticeId)
+		return <Redirect to={`/completed/${comletedPracticeId}`} />;
 	return (
 		<React.Fragment>
 			<ErrorCounter count={errorCount} />

@@ -4,16 +4,16 @@
  */
 export const getExerciseById = (id: string) =>
 	delay([
-		"Fiskar hafa",
-		"synt um heimsins höf",
-		"og vötn í meira en",
-		"500 milljónir ára.",
-		"Fyrstu dýrin, sem hægt var að kalla",
-		"þessu nafni, voru þó hvorki með",
-		"hreistur, ugga né kjálka",
-		"og því mjög frábrugðin",
-		"þeim sem við þekkjum til í dag",
-		"undir sama heiti.",
+		// "Fiskar hafa",
+		// "synt um heimsins höf",
+		// "og vötn í meira en",
+		// "500 milljónir ára.",
+		// "Fyrstu dýrin, sem hægt var að kalla",
+		// "þessu nafni, voru þó hvorki með",
+		// "hreistur, ugga né kjálka",
+		// "og því mjög frábrugðin",
+		// "þeim sem við þekkjum til í dag",
+		// "undir sama heiti.",
 		"Áður fyrr hafði þetta hugtak",
 		"lika mun víðtækari merkingu."
 	]);
@@ -36,6 +36,6 @@ export const getPracticeById = (id: string) =>
  */
 const delay = <T>(data: T): Promise<T> => {
 	return new Promise((resolve, reject) => {
-		setTimeout(() => reject(data), 1500);
+		setTimeout(() => resolve(data), 1500);
 	});
 };
