@@ -9,3 +9,7 @@ export const getPractice = async (id: string) => {
 		throw Error("Ekki tókst að fletta upp þessari prófraun");
 	}
 };
+
+export const placeHolderPractice = {
+	errors: []
+};

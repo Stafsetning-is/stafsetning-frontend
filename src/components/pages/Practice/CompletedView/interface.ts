@@ -1,12 +1,7 @@
+import { Practice as IP } from "../../../../models";
+
 export interface IProps {
 	id: string;
 }
 
-export interface Practice {
-	errors: ErrorObject[];
-}
-
-export interface ErrorObject {
-	charAt: number;
-	error: string;
-}
+export interface Practice extends IP {}
