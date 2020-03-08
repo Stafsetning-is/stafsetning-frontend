@@ -18,11 +18,14 @@ export default ({ match }: RouteComponentProps<IProps>) => {
 				setErrorMessage(e.message);
 			});
 	});
-	if (errorMessage) return <p>Error message</p>;
 
 	return (
 		<LayoutWrapper>
-			<LoaderBox loading={loading}>4</LoaderBox>
+			{errorMessage ? (
+				<p>{errorMessage}</p>
+			) : (
+				<LoaderBox loading={loading}>4</LoaderBox>
+			)}
 		</LayoutWrapper>
 	);
 };

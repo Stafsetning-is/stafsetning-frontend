@@ -35,7 +35,7 @@ export const getPracticeById = (id: string) =>
  * @param data Data to return after delay
  */
 const delay = <T>(data: T): Promise<T> => {
-	return new Promise((resolve) => {
-		setTimeout(() => resolve(data), 1500);
+	return new Promise((resolve, reject) => {
+		setTimeout(() => reject(data), 1500);
 	});
 };
