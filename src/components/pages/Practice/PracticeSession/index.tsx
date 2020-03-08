@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { SpellingPractice, LoaderBox } from "../../../";
+import { SpellingPractice, LoaderBox, ErrorModal } from "../../../";
 import { LayoutWrapper } from "../../../../layout";
 import { fetchExerciseText } from "./utils";
 import { RouteComponentProps } from "react-router-dom";
@@ -14,6 +14,7 @@ import { IProps } from "./interface";
  */
 export default ({ match }: RouteComponentProps<IProps>) => {
 	const [loading, setLoading] = useState(true);
+	const [errorMessage, setErrorMessage] = useState("");
 	const [exerciseParts, setExerciseParts] = useState<string[]>([]);
 
 	/**
@@ -22,17 +23,23 @@ export default ({ match }: RouteComponentProps<IProps>) => {
 	 * state accordingly
 	 */
 	useEffect(() => {
-		fetchExerciseText(match.params.id, (textParts) => {
-			setExerciseParts(textParts);
-			setLoading(false);
-		});
+		fetchExerciseText(match.params.id)
+			.then(({ sentenceParts }) => {
+				setLoading(false);
+				setExerciseParts(sentenceParts);
+			})
+			.catch((e) => {
+				setErrorMessage(e.message);
+			});
 	}, []);
 
 	return (
 		<LayoutWrapper>
-			<LoaderBox loading={loading}>
-				<SpellingPractice exercise="22343as3" sentenceParts={exerciseParts} />
-			</LoaderBox>
+			<ErrorModal errorMessage={errorMessage}>
+				<LoaderBox loading={loading}>
+					<SpellingPractice exercise="22343as3" sentenceParts={exerciseParts} />
+				</LoaderBox>
+			</ErrorModal>
 		</LayoutWrapper>
 	);
 };

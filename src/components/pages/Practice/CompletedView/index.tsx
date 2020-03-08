@@ -28,13 +28,11 @@ export default ({ match }: RouteComponentProps<IProps>) => {
 
 	return (
 		<LayoutWrapper>
-			{errorMessage ? (
-				<ErrorModal errorMessage={errorMessage} />
-			) : (
+			<ErrorModal errorMessage={errorMessage}>
 				<LoaderBox loading={loading}>
 					<PracticeFinished {...practice} />
 				</LoaderBox>
-			)}
+			</ErrorModal>
 		</LayoutWrapper>
 	);
 };

@@ -6,3 +6,7 @@ export interface ErrorObject {
 	charAt: number;
 	error: string;
 }
+
+export interface Exercise {
+	sentenceParts: string[];
+}

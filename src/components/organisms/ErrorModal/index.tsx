@@ -2,18 +2,19 @@ import React from "react";
 import { Modal, BasicButton } from "../..";
 import { IProps } from "./interface";
 import { NavLink } from "react-router-dom";
+import { Paragraph } from "./styles";
 /**
  * Modal that pops open when an error message is
- * given. Else it returns null
+ * given. Else it returns children
  *
  * Handles the ability to refreshs or steer user to
  * front page
  */
-export const ErrorModal = ({ errorMessage }: IProps) => {
-	if (!errorMessage) return null;
+export const ErrorModal = ({ errorMessage, children }: IProps) => {
+	if (!errorMessage) return children;
 	return (
 		<Modal>
-			<p>{errorMessage}</p>
+			<Paragraph>{errorMessage}</Paragraph>
 			<NavLink to="/">
 				<BasicButton
 					text="Fara aftur á forsíðu"
