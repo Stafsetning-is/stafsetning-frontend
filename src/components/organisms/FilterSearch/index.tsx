@@ -1,5 +1,5 @@
 import React from "react";
-
+import { BasicButton } from "../../";
 export const FilterSearch = () => {
-	return <div>HAllo</div>;
+	return <BasicButton type="default" text="hide completed" />;
 };

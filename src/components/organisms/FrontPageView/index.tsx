@@ -2,11 +2,15 @@ import React from "react";
 import { ExerciseBoxesContainer, FilterSearch } from "../../";
 import { filterExercises } from "./utils";
 import { connect } from "react-redux";
-export const FrontPageView = () => {
-	const exercises = filterExercises(tmpArr, {
-		minWordCount: 0,
-		hideCompleted: true
-	});
+import { StoreState } from "../../../reducers";
+import { IProps } from "./interface";
+
+/**
+ * View that renders all components
+ * that should display on front page
+ */
+const View = ({ filterSettings }: IProps) => {
+	const exercises = filterExercises(tmpArr, filterSettings);
 
 	return (
 		<React.Fragment>
@@ -15,6 +19,12 @@ export const FrontPageView = () => {
 		</React.Fragment>
 	);
 };
+
+const mapStateToProps = (store: StoreState) => ({
+	filterSettings: store.filter
+});
+
+export const FrontPageView = connect(mapStateToProps)(View);
 
 const tmpArr = [
 	{
