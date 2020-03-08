@@ -6,3 +6,4 @@ export * from "./PasswordInput";
 export * from "./BoxWrap";
 export * from "./FormLabel";
 export * from "./Backdrop";
+export * from "./DoubleSlider";
