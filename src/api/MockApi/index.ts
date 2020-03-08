@@ -2,8 +2,8 @@
  * retuns an array of sentence parts
  * @param id redundant id
  */
-export const getExerciseById = (id: string) => {
-	return delay([
+export const getExerciseById = (id: string) =>
+	delay([
 		"Fiskar hafa",
 		"synt um heimsins höf",
 		"og vötn í meira en",
@@ -17,9 +17,17 @@ export const getExerciseById = (id: string) => {
 		"Áður fyrr hafði þetta hugtak",
 		"lika mun víðtækari merkingu."
 	]);
-};
 
-export const getPracticeResultsById = () => {};
+/**
+ * Returns an practice object
+ */
+export const getPracticeById = (id: string) =>
+	delay({
+		errors: [
+			{ charAt: 15, error: "a" },
+			{ charAt: 20, error: "b" }
+		]
+	});
 
 /**
  * Returns a promise of data

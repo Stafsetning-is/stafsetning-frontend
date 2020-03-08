@@ -26,7 +26,6 @@ export default ({ match }: RouteComponentProps<IProps>) => {
 			setExerciseParts(textParts);
 			setLoading(false);
 		});
-		console.log("match.params.id", match.params.id);
 	}, []);
 
 	return (
