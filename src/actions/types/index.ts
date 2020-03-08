@@ -1,6 +1,6 @@
-import {} from "../authActions";
+import * as FilterActions from "../filterActions";
 export enum ActionTypes {
-	openAuthModal
+    setMinWordCount
 }
 
-export type Actions = "put types here from import statement";
+export type Actions = FilterActions.SetMinWordCountAction;
