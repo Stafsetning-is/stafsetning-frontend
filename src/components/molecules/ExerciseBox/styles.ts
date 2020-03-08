@@ -3,7 +3,7 @@ import styled from "styled-components";
 const subTitleBase = `
 	margin: 0 0 5px 0;
 	display: block;
-	font-weight: light;
+	font-weight: 200;
 `;
 
 export const Button = styled.div`
