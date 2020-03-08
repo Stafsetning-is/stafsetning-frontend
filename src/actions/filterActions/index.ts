@@ -1,4 +1,8 @@
-import { SetMinWordCountAction, SetHideCompletedAction } from "./interface";
+import {
+	SetMinWordCountAction,
+	SetHideCompletedAction,
+	SetMaxWordCountAction
+} from "./interface";
 import { ActionTypes } from "../types";
 
 export function setMinWordCount(newMin: number): SetMinWordCountAction {
@@ -15,9 +19,9 @@ export function setHideCompleted(hide: boolean): SetHideCompletedAction {
 	};
 }
 
-export function setMaxWordCount(newMax: boolean): SetHideCompletedAction {
+export function setMaxWordCount(newMax: number): SetMaxWordCountAction {
 	return {
-		type: ActionTypes.setHideCompleted,
+		type: ActionTypes.setMaxWordCount,
 		payload: newMax
 	};
 }

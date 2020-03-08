@@ -1,30 +1,42 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
-import { InputComponent } from "../../../services";
+import { createMuiTheme } from "@material-ui/core/styles";
 import { DoubleSliderValue } from "./interface";
+import { IProps } from "./interface";
+import { Outer } from "./styles";
+import { ThemeProvider } from "@material-ui/styles";
+import { FormLabel } from "../../";
 
-const useStyles = makeStyles({
-	root: {
-		width: "100%"
+const muiTheme = createMuiTheme({
+	overrides: {
+		MuiSlider: {
+			thumb: {
+				color: "#6600ff"
+			},
+			track: {
+				color: "#6600ff"
+			},
+			rail: {
+				color: "black"
+			}
+		}
 	}
 });
 
-function valuetext(value: number) {
-	return `${value}`;
-}
-
+/**
+ * Double slider
+ */
 export const DoubleSlider = ({
-	value,
+	value: { min, max },
+	defaultValues,
 	onChange,
-	label,
-	placeholder,
-	validationMessage
-}: InputComponent) => {
-	const classes = useStyles();
-	const [val, setValue] = React.useState<number[]>([20, 37]);
-
+	label
+}: IProps) => {
+	/**
+	 * Recieves event from material-uui slider
+	 * and calls the onChange callback
+	 */
 	const handleChange = (event: any, newValue: number | number[]) => {
 		if (typeof newValue === "object") {
 			const newVal: DoubleSliderValue = {
@@ -33,21 +45,26 @@ export const DoubleSlider = ({
 			};
 			onChange(newVal);
 		}
-		setValue(newValue as number[]);
 	};
 
+	const valuetext = (value: number) => `${value}`;
+
+	const getVal = () => [min, max];
+
 	return (
-		<div className={classes.root}>
-			<Typography id="range-slider" gutterBottom>
-				{label}
-			</Typography>
-			<Slider
-				value={val}
-				onChange={handleChange}
-				valueLabelDisplay="auto"
-				aria-labelledby="range-slider"
-				getAriaValueText={valuetext}
-			/>
-		</div>
+		<Outer>
+			<FormLabel text={label} />
+			<ThemeProvider theme={muiTheme}>
+				<Slider
+					max={defaultValues.max}
+					min={defaultValues.min}
+					value={getVal()}
+					onChange={handleChange}
+					valueLabelDisplay="auto"
+					aria-labelledby="range-slider"
+					getAriaValueText={valuetext}
+				/>
+			</ThemeProvider>
+		</Outer>
 	);
 };

@@ -15,7 +15,8 @@ export const fetchExerciseText = async (
 			title: "Kalli for i bud",
 			completed: true,
 			bestAttempt: 0.17,
-			exerciseId: "21234"
+			exerciseId: "21234",
+			textLength: 100
 		};
 	} catch (error) {
 		throw Error("Ekki tókst að sækja æfingu");

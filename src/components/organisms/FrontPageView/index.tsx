@@ -32,62 +32,71 @@ const tmpArr = [
 		completed: true,
 		bestAttempt: 0.17,
 		exerciseId: "21234",
-		sentenceParts: []
+		sentenceParts: [],
+		textLength: 60
 	},
 	{
-		title: "Kalli for i bud",
+		title: "Kalli for i apotekid",
 		completed: false,
 		bestAttempt: 0.17,
 		exerciseId: "21234",
-		sentenceParts: []
+		sentenceParts: [],
+		textLength: 75
 	},
 	{
-		title: "Kalli for i bud",
+		title: "sjonni for i sund",
 		completed: false,
 		bestAttempt: 0.17,
 		exerciseId: "21234",
-		sentenceParts: []
+		sentenceParts: [],
+		textLength: 112
 	},
 	{
-		title: "Kalli for i bud",
+		title: "stina for i kirkju",
 		completed: false,
 		bestAttempt: 0.17,
 		exerciseId: "21234",
-		sentenceParts: []
+		sentenceParts: [],
+		textLength: 143
 	},
 	{
-		title: "Kalli for i bud",
+		title: "palli for i disko",
 		completed: true,
 		bestAttempt: 0.17,
 		exerciseId: "21234",
-		sentenceParts: []
+		sentenceParts: [],
+		textLength: 88
 	},
 	{
-		title: "Kalli for i bud",
+		title: "kjartan for a bulluna",
 		completed: false,
 		bestAttempt: 0.17,
 		exerciseId: "21234",
-		sentenceParts: []
+		sentenceParts: [],
+		textLength: 102
 	},
 	{
-		title: "Kalli for i bud",
+		title: "doddi for a sjo",
 		completed: true,
 		bestAttempt: 0.17,
 		exerciseId: "21234",
-		sentenceParts: []
+		sentenceParts: [],
+		textLength: 85
 	},
 	{
-		title: "Kalli for i bud",
+		title: "alex drap kottinn",
 		completed: false,
 		bestAttempt: 0.17,
 		exerciseId: "21234",
-		sentenceParts: []
+		sentenceParts: [],
+		textLength: 23
 	},
 	{
-		title: "Kalli for i bud",
+		title: "Mamma klaeddi strakinn",
 		completed: false,
 		bestAttempt: 0.17,
 		exerciseId: "21234",
-		sentenceParts: []
+		sentenceParts: [],
+		textLength: 100
 	}
 ];

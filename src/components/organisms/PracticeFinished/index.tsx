@@ -40,20 +40,23 @@ const tmpArr = [
 		completed: true,
 		bestAttempt: 0.17,
 		exerciseId: "21234",
-		sentenceParts: []
+		sentenceParts: [],
+		textLength: 100
 	},
 	{
 		title: "Kalli for i bud",
 		completed: false,
 		bestAttempt: 0.17,
 		exerciseId: "21234",
-		sentenceParts: []
+		sentenceParts: [],
+		textLength: 100
 	},
 	{
 		title: "Kalli for i bud",
 		completed: false,
 		bestAttempt: 0.17,
 		exerciseId: "21234",
-		sentenceParts: []
+		sentenceParts: [],
+		textLength: 100
 	}
 ];

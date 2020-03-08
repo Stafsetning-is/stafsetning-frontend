@@ -13,4 +13,5 @@ export interface Exercise {
 	title?: string;
 	exerciseId: string;
 	bestAttempt?: number;
+	textLength: number;
 }

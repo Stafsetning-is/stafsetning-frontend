@@ -7,33 +7,60 @@ import {
 } from "../../../actions";
 import { connect } from "react-redux";
 import { IProps } from "./interface";
+import { StoreState } from "../../../reducers";
+import { FilterOuter } from "./styles";
+import Compartment from "./Compartment";
+import FilterButton from "./FilterButton";
 
-const FilterComponent = ({ hideCompleted, setMax, setMin }: IProps) => {
+const FilterComponent = ({
+	hideCompleted,
+	setMaxWordCount,
+	setMinWordCount,
+	maxWordCount,
+	minWordCount,
+	setHideCompleted
+}: IProps) => {
 	return (
-		<React.Fragment>
-			<BasicButton
-				type="default"
-				text="hide completed"
-				onClick={() => hideCompleted(true)}
-			/>
-			<DoubleSlider
-				value={{
-					min,
-					max
-				}}
-				onChange={({ min, max }) => {
-					setMax(max);
-					setMin(min);
-				}}
-				label="Lengt a aaefingu"
-				type="text-input"
-			/>
-		</React.Fragment>
+		<FilterOuter>
+			<Compartment> </Compartment>
+			<Compartment>
+				<DoubleSlider
+					value={{
+						min: minWordCount,
+						max: maxWordCount
+					}}
+					defaultValues={{
+						min: 0,
+						max: 200
+					}}
+					onChange={({ min, max }) => {
+						setMaxWordCount(max);
+						setMinWordCount(min);
+					}}
+					label="Lengd á æfingu"
+					type="text-input"
+				/>
+			</Compartment>
+			<Compartment>
+				<FilterButton
+					text="Fela þær sem ég er búinn með"
+					value={hideCompleted}
+					toggle={setHideCompleted}
+				/>
+				<FilterButton
+					text="Sýna vistaðar æfingar"
+					value={hideCompleted}
+					toggle={setHideCompleted}
+				/>
+			</Compartment>
+		</FilterOuter>
 	);
 };
 
-export const FilterSearch = connect(() => ({}), {
-	hideCompleted: setHideCompleted,
-	setMin: setMinWordCount,
-	setMax: setMaxWordCount
+const mapStateToPropss = (store: StoreState) => store.filter;
+
+export const FilterSearch = connect(mapStateToPropss, {
+	setHideCompleted,
+	setMinWordCount,
+	setMaxWordCount
 })(FilterComponent);
