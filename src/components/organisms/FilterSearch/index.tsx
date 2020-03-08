@@ -1,10 +1,11 @@
 import React from "react";
-import { BasicButton, DoubleSlider } from "../../";
-import { setHideCompleted } from "../../../actions";
-import { connect } from "react-redux";
-import { IProps } from "./interface";
+import { BasicButton } from "../../";
+// import { setHideCompleted } from "../../../actions";
+// import { connect } from "react-redux";
+// import { IProps } from "./interface";
 
 const FilterComponent = ({ hideCompleted }: IProps) => {
+	return null;
 	return (
 		<React.Component>
 			<BasicButton
