@@ -1,2 +1,2 @@
-import { ExerciseSummary } from "../../../models";
-export type IProps = ExerciseSummary;
+import { Exercise } from "../../../models";
+export type IProps = Exercise;

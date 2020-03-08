@@ -6,3 +6,5 @@ export * from "./SignupModal";
 export * from "./ExerciseBoxesContainer";
 export * from "./ErrorModal";
 export * from "./PracticeFinished";
+export * from "./FilterSearch";
+export * from "./FrontPageView";

@@ -9,11 +9,8 @@ export interface ErrorObject {
 
 export interface Exercise {
 	sentenceParts: string[];
-}
-
-export interface ExerciseSummary {
-	title: string;
+	completed: boolean;
+	title?: string;
 	exerciseId: string;
 	bestAttempt?: number;
-	finished?: boolean;
 }

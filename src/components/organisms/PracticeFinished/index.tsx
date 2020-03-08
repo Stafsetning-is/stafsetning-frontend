@@ -37,20 +37,23 @@ export const PracticeFinished = ({}: IProps) => {
 const tmpArr = [
 	{
 		title: "Kalli for i bud",
-		finished: true,
+		completed: true,
 		bestAttempt: 0.17,
-		exerciseId: "21234"
+		exerciseId: "21234",
+		sentenceParts: []
 	},
 	{
 		title: "Kalli for i bud",
-		finished: true,
+		completed: false,
 		bestAttempt: 0.17,
-		exerciseId: "21234"
+		exerciseId: "21234",
+		sentenceParts: []
 	},
 	{
 		title: "Kalli for i bud",
-		finished: true,
+		completed: false,
 		bestAttempt: 0.17,
-		exerciseId: "21234"
+		exerciseId: "21234",
+		sentenceParts: []
 	}
 ];

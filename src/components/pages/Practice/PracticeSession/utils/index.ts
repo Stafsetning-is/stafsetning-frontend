@@ -11,7 +11,11 @@ export const fetchExerciseText = async (
 	try {
 		const parts = await getExerciseById(exerciseId);
 		return {
-			sentenceParts: parts
+			sentenceParts: parts,
+			title: "Kalli for i bud",
+			completed: true,
+			bestAttempt: 0.17,
+			exerciseId: "21234"
 		};
 	} catch (error) {
 		throw Error("Ekki tókst að sækja æfingu");

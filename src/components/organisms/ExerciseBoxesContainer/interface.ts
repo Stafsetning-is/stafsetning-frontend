@@ -1,4 +1,4 @@
-import { ExerciseSummary } from "../../../models";
+import { Exercise } from "../../../models";
 export interface IProps {
-	exercises: ExerciseSummary[];
+	exercises: Exercise[];
 }
