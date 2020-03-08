@@ -36,6 +36,6 @@ export const getPracticeById = (id: string) =>
  */
 const delay = <T>(data: T): Promise<T> => {
 	return new Promise((resolve, reject) => {
-		setTimeout(() => reject(data), 1500);
+		setTimeout(() => resolve(data), 1500);
 	});
 };

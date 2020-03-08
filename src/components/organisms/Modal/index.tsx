@@ -3,10 +3,15 @@ import { IProps } from "./interface";
 import { Container } from "./styles";
 import { BoxWrap, Backdrop } from "../../";
 
+/**
+ *
+ * Modal component that has a backdrop
+ */
 export const Modal = ({ children, onBackgroundClick }: IProps) => {
+	const onClickMethod = onBackgroundClick ?? (() => {});
 	return (
 		<React.Fragment>
-			<Backdrop onClick={onBackgroundClick} />
+			<Backdrop onClick={onClickMethod} />
 			<Container>
 				<BoxWrap>{children}</BoxWrap>
 			</Container>

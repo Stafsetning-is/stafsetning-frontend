@@ -6,4 +6,5 @@ export const Screen = styled.div`
 	background: rgba(0, 0, 0, 0.3);
 	position: fixed;
 	top: 0;
+	left: 0;
 `;

@@ -7,7 +7,7 @@ export default [
 		component: PracticeSession
 	},
 	{
-		route: "/completed/:id/",
+		route: "/completed/:id",
 		component: CompletedView
 	}
 ];
