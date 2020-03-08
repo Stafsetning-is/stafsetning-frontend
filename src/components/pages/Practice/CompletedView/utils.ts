@@ -1,5 +1,6 @@
 import { getPracticeById } from "../../../../api";
 import { Practice } from "./interface";
+
 export const getPractice = async (id: string) => {
 	try {
 		const data: Practice = await getPracticeById(id);
