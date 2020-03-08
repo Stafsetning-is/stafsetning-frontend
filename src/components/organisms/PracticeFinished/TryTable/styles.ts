@@ -15,4 +15,5 @@ export const Score = styled.p`
 	padding: 5px 0 15px;
 	color: #666;
 	font-size: 18px;
+	font-weight: 200;
 `;

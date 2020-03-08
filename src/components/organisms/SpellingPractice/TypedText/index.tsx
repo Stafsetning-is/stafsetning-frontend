@@ -195,7 +195,7 @@ export default forwardRef(({ typed, preview }: IProps, ref) => {
 				<ToggleSeperator />
 				{disilexicButton}
 			</Block>
-			<TypedTextContainer theme={{ dislexic }}>
+			<TypedTextContainer theme={{ dislexic, error: showErrorFeedback }}>
 				<Shaky shake={showErrorFeedback}>
 					<TextSpan theme={theme}>{typed}</TextSpan>
 					{TypedTextFollowUp}
