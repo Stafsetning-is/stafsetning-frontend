@@ -11,7 +11,7 @@ export const TopBar = styled.div`
 		margin: 0 20px;
 		color: #333;
 	}
-	margin-top: 20px;
+	margin: 20px 0 40px 0;
 `;
 
 export const TitleText = styled.div`
@@ -33,3 +33,12 @@ export const SecondaryTitle = styled.div`
 `;
 
 export const TitleElement = styled.span``;
+
+export const OverviewContainer = styled.div`
+	display: flex;
+	margin-bottom: 50px;
+`;
+
+export const SuggestionTitle = styled.div`
+	margin: 20px 0;
+`;

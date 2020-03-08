@@ -10,3 +10,10 @@ export interface ErrorObject {
 export interface Exercise {
 	sentenceParts: string[];
 }
+
+export interface ExerciseSummary {
+	title: string;
+	exerciseId: string;
+	bestAttempt?: number;
+	finished?: boolean;
+}

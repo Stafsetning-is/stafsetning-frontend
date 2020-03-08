@@ -1,6 +1,2 @@
-export interface IProps {
-	finished: boolean;
-	title: string;
-	bestAttempt: number;
-	exerciseId: string;
-}
+import { ExerciseSummary } from "../../../models";
+export type IProps = ExerciseSummary;
