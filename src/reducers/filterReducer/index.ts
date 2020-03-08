@@ -3,7 +3,8 @@ import { ActionTypes, Actions } from "../../actions/types";
 
 export const initialState: FilterState = {
 	minWordCount: 0,
-	hideCompleted: false
+	hideCompleted: false,
+	maxWordCount: 1000
 };
 
 export default (
@@ -20,6 +21,11 @@ export default (
 			return {
 				...state,
 				hideCompleted: action.payload
+			};
+		case ActionTypes.setMaxWordCount:
+			return {
+				...state,
+				maxWordCount: action.payload
 			};
 		default:
 			return state;

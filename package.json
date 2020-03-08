@@ -17,7 +17,6 @@
 		"axios": "^0.19.2",
 		"csshake": "^1.5.3",
 		"keycode": "^2.2.0",
-		"react": "^16.12.0",
 		"react-dom": "^16.12.0",
 		"react-redux": "^7.2.0",
 		"react-router-dom": "^5.1.2",
@@ -56,8 +55,5 @@
 	"peerDependencies": {
 		"react": "^16.12.0",
 		"react-dom": "^16.12.0"
-	},
-	"resolutions": {
-		"@babel/runtime": "7.0.0-beta.46"
 	}
 }

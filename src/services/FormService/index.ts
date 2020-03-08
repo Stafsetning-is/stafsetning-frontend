@@ -16,7 +16,7 @@ export type CharacterTypes =
 interface InputBase {
 	type: FormElements;
 	label: string;
-	placeholder: string;
+	placeholder?: string;
 	key?: string;
 	valid?: boolean;
 	validationMessage?: string;

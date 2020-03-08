@@ -1,4 +1,5 @@
 export interface FilterObject {
-    minWordCount: number;
-    hideCompleted: boolean;
+	minWordCount: number;
+	maxWordCount: number;
+	hideCompleted: boolean;
 }

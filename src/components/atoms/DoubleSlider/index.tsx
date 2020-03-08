@@ -1,47 +1,53 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
-import VolumeDown from "@material-ui/icons/VolumeDown";
-import VolumeUp from "@material-ui/icons/VolumeUp";
+import { InputComponent } from "../../../services";
+import { DoubleSliderValue } from "./interface";
 
-// const useStyles = makeStyles({
-// 	root: {
-// 		width: 200
-// 	}
-// });
+const useStyles = makeStyles({
+	root: {
+		width: "100%"
+	}
+});
 
-export const DoubleSlider = () => {
-	// const classes = useStyles();
-	// const [value, setValue] = React.useState<number>(30);
+function valuetext(value: number) {
+	return `${value}`;
+}
 
-	// const handleChange = (event: any, newValue: number | number[]) => {
-	// 	setValue(newValue as number);
-	// };
+export const DoubleSlider = ({
+	value,
+	onChange,
+	label,
+	placeholder,
+	validationMessage
+}: InputComponent) => {
+	const classes = useStyles();
+	const [val, setValue] = React.useState<number[]>([20, 37]);
 
-	// return (
-	// 	<div>
-	// 		<Typography id="continuous-slider" gutterBottom>
-	// 			Volume
-	// 		</Typography>
-	// 		<Grid container spacing={2}>
-	// 			<Grid item>
-	// 				<VolumeDown />
-	// 			</Grid>
-	// 			<Grid item xs>
-	// 				<Slider
-	// 					value={value}
-	// 					onChange={handleChange}
-	// 					aria-labelledby="continuous-slider"
-	// 				/>
-	// 			</Grid>
-	// 			<Grid item>
-	// 				<VolumeUp />
-	// 			</Grid>
-	// 		</Grid>
-	// 		<Slider disabled defaultValue={30} aria-labelledby="continuous-slider" />
-	// 	</div>
-	// );
-	return null;
+	const handleChange = (event: any, newValue: number | number[]) => {
+		if (typeof newValue === "object") {
+			const newVal: DoubleSliderValue = {
+				max: newValue[1],
+				min: newValue[0]
+			};
+			onChange(newVal);
+		}
+		setValue(newValue as number[]);
+	};
+
+	return (
+		<div className={classes.root}>
+			<Typography id="range-slider" gutterBottom>
+				{label}
+			</Typography>
+			<Slider
+				value={val}
+				onChange={handleChange}
+				valueLabelDisplay="auto"
+				aria-labelledby="range-slider"
+				getAriaValueText={valuetext}
+			/>
+		</div>
+	);
 };
