@@ -5,10 +5,14 @@ import Logo from "../../static/images/logo.png";
 import CenterBlock from "../CenterBlock";
 import HeaderItem from "../HeaderItem";
 import { urlWithoutPath } from "./utils";
+import { AuthHider } from "../../hoc/";
+import { connect } from "react-redux";
+import { IProps } from "./interface";
+import { StoreState } from "../../reducers";
 /**
  * Header component for layout
  */
-export default () => {
+const Header = ({ user }: IProps) => {
 	return (
 		<Container>
 			<CenterBlock>
@@ -17,15 +21,35 @@ export default () => {
 						<Image src={Logo} />
 					</NavLink>
 					<RightSide>
-						<NavLink to={`${urlWithoutPath()}sign-up`}>
-							<HeaderItem text="Búa til aðgang" />
-						</NavLink>
-						<NavLink to={`${urlWithoutPath()}log-in`}>
-							<HeaderItem text="Skrá inn" />
-						</NavLink>
+						<AuthHider setAuthLevel="guest">
+							<NavLink to={`${urlWithoutPath()}sign-up`}>
+								<HeaderItem text="Búa til aðgang" />
+							</NavLink>
+						</AuthHider>
+						<AuthHider setAuthLevel="guest">
+							<NavLink to={`${urlWithoutPath()}log-in`}>
+								<HeaderItem text="Skrá inn" />
+							</NavLink>
+						</AuthHider>
+						<AuthHider setAuthLevel="admin">
+							<NavLink to={`${urlWithoutPath()}log-in`}>
+								<HeaderItem text="Búa til æfingu" />
+							</NavLink>
+						</AuthHider>
+						<AuthHider setAuthLevel="user">
+							<NavLink to={`${urlWithoutPath()}log-in`}>
+								<HeaderItem text={user.name} />
+							</NavLink>
+						</AuthHider>
 					</RightSide>
 				</FlexHeader>
 			</CenterBlock>
 		</Container>
 	);
 };
+
+const mapStateToProps = ({ auth: { user } }: StoreState) => ({
+	user
+});
+
+export default connect(mapStateToProps)(Header);

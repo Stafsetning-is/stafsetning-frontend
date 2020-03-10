@@ -1,3 +1,5 @@
+import { AuthLevels } from "../services";
+
 export interface Practice {
 	errors: ErrorObject[];
 }
@@ -14,4 +16,8 @@ export interface Exercise {
 	exerciseId: string;
 	bestAttempt?: number;
 	textLength: number;
+}
+
+export interface User {
+	name: string;
 }

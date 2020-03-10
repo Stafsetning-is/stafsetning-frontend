@@ -49,7 +49,10 @@ export const DoubleSlider = ({
 
 	const valuetext = (value: number) => `${value}`;
 
-	const getVal = () => [min, max];
+	const getVal = () => [
+		min < defaultValues.min ? defaultValues.min : min,
+		max > defaultValues.max ? defaultValues.max : max
+	];
 
 	return (
 		<Outer>

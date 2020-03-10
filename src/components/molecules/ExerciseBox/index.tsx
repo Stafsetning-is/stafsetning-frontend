@@ -11,8 +11,7 @@ import {
 	BestPracticeTitle
 } from "./styles";
 import { bestPractice, getPracticeLink } from "./utils";
-import { NavLink } from "react-router-dom";
-
+import { ProtectedNavLink } from "../../../hoc";
 export const ExerciseBox = ({ title, bestAttempt, exerciseId }: IProps) => {
 	return (
 		<BoxWrap padding="0px">
@@ -25,9 +24,9 @@ export const ExerciseBox = ({ title, bestAttempt, exerciseId }: IProps) => {
 						<BestPracticeTitle>{bestPractice(bestAttempt)}</BestPracticeTitle>
 					</InfoBox>
 				</InfoContainer>
-				<NavLink to={getPracticeLink(exerciseId)}>
+				<ProtectedNavLink to={getPracticeLink(exerciseId)} service="log-in">
 					<Button>Opna</Button>
-				</NavLink>
+				</ProtectedNavLink>
 			</Container>
 		</BoxWrap>
 	);
