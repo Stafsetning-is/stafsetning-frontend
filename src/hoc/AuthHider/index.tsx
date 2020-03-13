@@ -1,5 +1,3 @@
-import React, { FC } from "react";
-import { AuthLevels } from "../../services";
 import { connect } from "react-redux";
 import { StoreState } from "../../reducers";
 import { IProps } from "./interface";

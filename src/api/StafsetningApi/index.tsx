@@ -10,7 +10,7 @@ const axios = Axios.create({
 	baseURL:
 		process.env.NODE_ENV === "development"
 			? "http://localhost:5000"
-			: "https://api.stafsetning.is/"
+			: "https://api.stafsetning.is"
 });
 
 /**

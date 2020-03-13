@@ -1,5 +1,5 @@
 import React from "react";
-import { BasicButton, DoubleSlider } from "../../";
+import { DoubleSlider } from "../../";
 import {
 	setHideCompleted,
 	setMaxWordCount,
