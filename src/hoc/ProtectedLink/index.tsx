@@ -11,7 +11,7 @@ import { NavLink } from "react-router-dom";
 const Component = ({ children, isAuth, service, to }: IProps) => {
 	const link = isAuth
 		? to
-		: `${document.location.pathname}/${service}`.replace("//", "/");
+		: `/${document.location.pathname}/${service}`.replace(/\/+/g, "/");
 	return <NavLink to={link}>{children}</NavLink>;
 };
 

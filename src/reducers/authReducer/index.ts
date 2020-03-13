@@ -3,7 +3,7 @@ import { ActionTypes, Actions } from "../../actions/types";
 
 export const initialState: AuthState = {
 	user: { name: "Nanna Sighvatsdottir" },
-	type: "admin"
+	type: "user"
 };
 
 export default (
