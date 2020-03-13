@@ -4,6 +4,7 @@ import { LayoutWrapper } from "../../../../layout";
 import { fetchExerciseText } from "./utils";
 import { RouteComponentProps } from "react-router-dom";
 import { IProps } from "./interface";
+import { ProtectPageWrapper } from "../../../../hoc";
 
 /**
  * Component contains the entire page for an practice exercise
@@ -35,11 +36,16 @@ export default ({ match }: RouteComponentProps<IProps>) => {
 
 	return (
 		<LayoutWrapper>
-			<ErrorModal errorMessage={errorMessage}>
-				<LoaderBox loading={loading}>
-					<SpellingPractice exercise="22343as3" sentenceParts={exerciseParts} />
-				</LoaderBox>
-			</ErrorModal>
+			<ProtectPageWrapper>
+				<ErrorModal errorMessage={errorMessage}>
+					<LoaderBox loading={loading}>
+						<SpellingPractice
+							exercise="22343as3"
+							sentenceParts={exerciseParts}
+						/>
+					</LoaderBox>
+				</ErrorModal>
+			</ProtectPageWrapper>
 		</LayoutWrapper>
 	);
 };

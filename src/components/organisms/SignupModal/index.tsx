@@ -3,25 +3,26 @@ import { FormGenerator, BasicButton, Modal } from "../..";
 import { signupForm } from "./formRecipe";
 import { getLoginUrl, clearLoginUrl } from "./utils";
 import { Redirect } from "react-router";
+import { SignupRes, IProps } from "./interface";
+import { setAuthCookie } from "../../../services";
+import { connect } from "react-redux";
+import { logInUser } from "../../../actions";
 
-/**
- * The modal that displays login form
- *
- * TODO:
- *     [ ] add onsuccess method
- *     [ ] add postTo route
- */
-export const SignupModal = () => {
+const Component = ({ logInUser }: IProps) => {
 	const [redirectURL, setRedirectURL] = useState<string>();
 
 	if (redirectURL) return <Redirect to={redirectURL} />;
 	return (
 		<Modal onBackgroundClick={() => setRedirectURL(clearLoginUrl())}>
-			<FormGenerator
+			<FormGenerator<SignupRes>
 				fields={signupForm}
 				label="Skrá inn"
-				onSuccess={() => {}}
-				postTo="https://api.stafsetning.is/some-url/"
+				onSuccess={({ token, user }) => {
+					setAuthCookie(token);
+					logInUser(user);
+					setRedirectURL("/");
+				}}
+				postTo="/api/auth/sign_up"
 			>
 				<BasicButton
 					text={"Til baka"}
@@ -32,3 +33,5 @@ export const SignupModal = () => {
 		</Modal>
 	);
 };
+
+export const SignupModal = connect(null, { logInUser })(Component);

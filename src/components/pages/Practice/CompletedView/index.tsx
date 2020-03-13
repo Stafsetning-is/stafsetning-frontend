@@ -4,6 +4,7 @@ import { LoaderBox, ErrorModal, PracticeFinished } from "../../../";
 import { IProps, Practice } from "./interface";
 import { getPractice, placeHolderPractice } from "./utils";
 import { RouteComponentProps } from "react-router-dom";
+import { ProtectPageWrapper } from "../../../../hoc";
 
 export default ({ match }: RouteComponentProps<IProps>) => {
 	const [errorMessage, setErrorMessage] = useState("");
@@ -28,11 +29,13 @@ export default ({ match }: RouteComponentProps<IProps>) => {
 
 	return (
 		<LayoutWrapper>
-			<ErrorModal errorMessage={errorMessage}>
-				<LoaderBox loading={loading}>
-					<PracticeFinished {...practice} />
-				</LoaderBox>
-			</ErrorModal>
+			<ProtectPageWrapper>
+				<ErrorModal errorMessage={errorMessage}>
+					<LoaderBox loading={loading}>
+						<PracticeFinished {...practice} />
+					</LoaderBox>
+				</ErrorModal>
+			</ProtectPageWrapper>
 		</LayoutWrapper>
 	);
 };

@@ -3,5 +3,5 @@ export const getSignupUrl = () => {
 };
 
 export const clearLoginUrl = () => {
-	return document.location.pathname.replace("log-in", "");
+	return document.location.pathname.replace(/log-in\/?/g, "");
 };

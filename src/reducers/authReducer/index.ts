@@ -10,6 +10,14 @@ export default (
     state: AuthState = initialState,
     action: Actions
 ): AuthState => {
+    switch (action.type) {
+        case ActionTypes.logInUser:
+            return {
+                ...state,
+                type: "user",
+                user: action.payload
+            };
+    }
     return state;
 };
 

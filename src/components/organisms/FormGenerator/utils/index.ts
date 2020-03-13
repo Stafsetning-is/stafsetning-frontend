@@ -1,6 +1,6 @@
 import Validator from "./Validator";
 import { InputObject } from "../../../../services";
-import Axios from "axios";
+import { Api } from "../../../../api";
 
 export const SHAKE_DURATION = 500;
 
@@ -44,7 +44,10 @@ export const getUserData = (fields: InputObject) => {
  */
 export const validateErrors = (fields: InputObject) => {
 	const elementArray = getInputElementsArray(fields);
-	const invalid = elementArray.some((el) => !(el.value && el.valid));
+	console.log("elementArray", elementArray);
+	const invalid = elementArray.some(
+		(el) => !(el.value && !el.validationMessage)
+	);
 	if (invalid) throw new Error("");
 };
 
@@ -60,7 +63,7 @@ export const handlePost = async <T>(
 	url: string
 ): Promise<T> => {
 	try {
-		const { data } = await Axios.post<T>(url, getUserData(fields));
+		const { data } = await Api.post<T>(url, getUserData(fields));
 		return await delay(data);
 	} catch (error) {
 		await delay(null);
