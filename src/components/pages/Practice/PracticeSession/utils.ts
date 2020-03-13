@@ -1,4 +1,3 @@
-import { URlService } from "../../../../services";
 import { Api } from "../../../../api";
 import { IResponse } from "./interface";
 /**

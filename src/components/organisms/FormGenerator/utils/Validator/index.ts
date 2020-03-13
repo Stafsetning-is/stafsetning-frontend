@@ -1,8 +1,4 @@
-import {
-	InputElementRecipe,
-	InputElementValidation,
-	CharacterTypes
-} from "../../../../../services";
+import { InputElementRecipe, CharacterTypes } from "../../../../../services";
 
 type ValidationMethod = (field: InputElementRecipe) => void;
 

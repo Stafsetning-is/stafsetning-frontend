@@ -1,5 +1,3 @@
-import { AuthLevels } from "../services";
-
 export interface Practice {
 	errors: ErrorObject[];
 }

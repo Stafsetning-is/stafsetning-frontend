@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { IProps } from "./interface";
 import { Button } from "./styles";
 
