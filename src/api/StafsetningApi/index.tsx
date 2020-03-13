@@ -18,7 +18,7 @@ const axios = Axios.create({
  * each request call
  */
 axios.interceptors.request.use((config: AxiosRequestConfig) => {
-	config.headers["Authorization"] = getAuthToken();
+	if (getAuthToken()) config.headers["Authorization"] = getAuthToken();
 	return config;
 });
 
