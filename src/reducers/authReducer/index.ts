@@ -3,11 +3,12 @@ import { ActionTypes, Actions } from "../../actions/types";
 import { EMPTY_USER } from "./utils";
 export const initialState: AuthState = {
 	user: EMPTY_USER,
+	type: "guest"
 };
 
 export default (
-    state: AuthState = initialState,
-    action: Actions
+	state: AuthState = initialState,
+	action: Actions
 ): AuthState => {
 	switch (action.type) {
 		case ActionTypes.logInUser:
