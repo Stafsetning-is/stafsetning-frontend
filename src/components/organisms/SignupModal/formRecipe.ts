@@ -13,6 +13,16 @@ const mobile: InputElementRecipe = {
 	value: ""
 };
 
+const name: InputElementRecipe = {
+	label: "Fullt nafn",
+	type: "text-input",
+	placeholder: "Fullt nafn",
+	validation: {
+		minLength: 5
+	},
+	value: ""
+};
+
 const password: InputElementRecipe = {
 	label: "Lykilorð",
 	type: "password-input",
@@ -45,6 +55,7 @@ const password2: InputElementRecipe = {
 };
 
 export const signupForm: InputObject = {
+	name,
 	userName,
 	mobile,
 	password,

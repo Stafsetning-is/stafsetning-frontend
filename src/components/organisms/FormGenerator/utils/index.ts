@@ -44,7 +44,10 @@ export const getUserData = (fields: InputObject) => {
  */
 export const validateErrors = (fields: InputObject) => {
 	const elementArray = getInputElementsArray(fields);
-	const invalid = elementArray.some((el) => !(el.value && el.valid));
+	console.log("elementArray", elementArray);
+	const invalid = elementArray.some(
+		(el) => !(el.value && !el.validationMessage)
+	);
 	if (invalid) throw new Error("");
 };
 

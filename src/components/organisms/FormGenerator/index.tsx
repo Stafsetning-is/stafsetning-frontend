@@ -67,6 +67,7 @@ export const FormGenerator = <T extends {}>({
 			const data = await handlePost<T>(fields, postTo);
 			onSuccess(data);
 		} catch (error) {
+			console.log("error", error);
 			setErrorMessage(error.message);
 			setShake(true);
 		} finally {
