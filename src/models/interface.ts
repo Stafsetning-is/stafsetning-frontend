@@ -8,12 +8,17 @@ export interface ErrorObject {
 }
 
 export interface Exercise {
-	sentenceParts: string[];
+	parts: string[];
 	completed: boolean;
 	title?: string;
-	exerciseId: string;
+	_id: string;
 	bestAttempt?: number;
-	textLength: number;
+	length: number;
+	difficultRange: {
+		min: number;
+		max: number;
+	};
+	wordCount: number;
 }
 
 export interface User {

@@ -12,19 +12,32 @@ import {
 } from "./styles";
 import { bestPractice, getPracticeLink } from "./utils";
 import { ProtectedNavLink } from "../../../hoc";
-export const ExerciseBox = ({ title, bestAttempt, exerciseId }: IProps) => {
+
+/**
+ * Displays exercise in a box that
+ * can be used in a grid of exercises
+ */
+export const ExerciseBox = ({
+	title,
+	bestAttempt,
+	_id,
+	difficultRange: { min, max },
+	wordCount
+}: IProps) => {
 	return (
 		<BoxWrap padding="0px">
 			<Container>
 				<InfoContainer>
 					<InfoBox>
 						<TitleText>{title}</TitleText>
-						<SecondaryTitle>156 orð • 4-6 bekkur</SecondaryTitle>
+						<SecondaryTitle>
+							{wordCount} orð • {min}-{max} bekkur
+						</SecondaryTitle>
 						<SecondaryTitle>ng nk • hv kv</SecondaryTitle>
 						<BestPracticeTitle>{bestPractice(bestAttempt)}</BestPracticeTitle>
 					</InfoBox>
 				</InfoContainer>
-				<ProtectedNavLink to={getPracticeLink(exerciseId)} service="log-in">
+				<ProtectedNavLink to={getPracticeLink(_id)} service="log-in">
 					<Button>Opna</Button>
 				</ProtectedNavLink>
 			</Container>

@@ -18,9 +18,9 @@ function handleHideCompleted(exercise: Exercise, shouldHideCompleted: boolean) {
 }
 
 function handleHideLongText(exercise: Exercise, maxLength: number) {
-	return exercise.textLength <= maxLength;
+	return exercise.wordCount <= maxLength;
 }
 
 function handleHideShortText(exercise: Exercise, minLength: number) {
-	return exercise.textLength > minLength;
+	return exercise.wordCount > minLength;
 }

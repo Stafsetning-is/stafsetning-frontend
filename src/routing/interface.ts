@@ -12,4 +12,7 @@ export interface IProps {
 
 export interface RoutingProps {
 	fetchUserFromToken: () => void;
+
+	fetchExercisesSample: () => void;
+	userType: any;
 }

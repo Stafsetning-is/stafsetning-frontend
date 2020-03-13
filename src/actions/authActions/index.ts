@@ -3,6 +3,7 @@ import { User } from "../../models";
 import { Dispatch } from "redux";
 import { LogInUserAction, LogOutUserAction } from "./interface";
 import { Api } from "../../api";
+import { fetchExercisesSample } from "../exercisesActions";
 
 export function logInUser(user: User) {
 	return {

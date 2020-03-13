@@ -11,8 +11,10 @@ import {
 import { ExerciseBoxesContainer } from "../../";
 import TryTable from "./TryTable";
 import Stats from "./StatsAggregate";
+import { connect } from "react-redux";
+import { StoreState } from "../../../reducers";
 
-export const PracticeFinished = ({}: IProps) => {
+const Component = ({ nextUp }: IProps) => {
 	return (
 		<React.Fragment>
 			<TitleText>
@@ -29,34 +31,13 @@ export const PracticeFinished = ({}: IProps) => {
 				<Stats />
 			</OverviewContainer>
 			<SuggestionTitle>Haltu áfram að æfa þig!</SuggestionTitle>
-			<ExerciseBoxesContainer exercises={tmpArr} />
+			<ExerciseBoxesContainer exercises={nextUp} />
 		</React.Fragment>
 	);
 };
 
-const tmpArr = [
-	{
-		title: "Kalli for i bud",
-		completed: true,
-		bestAttempt: 0.17,
-		exerciseId: "21234",
-		sentenceParts: [],
-		textLength: 100
-	},
-	{
-		title: "Kalli for i bud",
-		completed: false,
-		bestAttempt: 0.17,
-		exerciseId: "21234",
-		sentenceParts: [],
-		textLength: 100
-	},
-	{
-		title: "Kalli for i bud",
-		completed: false,
-		bestAttempt: 0.17,
-		exerciseId: "21234",
-		sentenceParts: [],
-		textLength: 100
-	}
-];
+const mapStateToProps = (state: StoreState) => ({
+	nextUp: state.exercises.selection
+});
+
+export const PracticeFinished = connect(mapStateToProps)(Component);

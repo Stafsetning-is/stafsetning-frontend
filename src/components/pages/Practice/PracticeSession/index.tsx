@@ -25,9 +25,9 @@ export default ({ match }: RouteComponentProps<IProps>) => {
 	 */
 	useEffect(() => {
 		fetchExerciseText(match.params.id)
-			.then(({ sentenceParts }) => {
+			.then(({ parts }) => {
 				setLoading(false);
-				setExerciseParts(sentenceParts);
+				setExerciseParts(parts);
 			})
 			.catch((e) => {
 				setErrorMessage(e.message);
