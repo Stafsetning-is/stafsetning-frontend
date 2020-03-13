@@ -5,11 +5,13 @@ export enum ActionTypes {
 	setMinWordCount,
 	setHideCompleted,
 	setMaxWordCount,
-	logInUser
+	logInUser,
+	logOutUser
 }
 
 export type Actions =
 	| FilterActions.SetMinWordCountAction
 	| FilterActions.SetHideCompletedAction
 	| FilterActions.SetMaxWordCountAction
-	| AuthActions.LogInUserAction;
+	| AuthActions.LogInUserAction
+	| AuthActions.LogOutUserAction;

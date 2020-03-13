@@ -9,3 +9,7 @@ export interface IProps {
 	pages: IPage[];
 	modals: IPage[];
 }
+
+export interface RoutingProps {
+	fetchUserFromToken: () => void;
+}

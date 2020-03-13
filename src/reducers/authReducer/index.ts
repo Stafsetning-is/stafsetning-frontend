@@ -1,8 +1,8 @@
 import { AuthState } from "./interface";
 import { ActionTypes, Actions } from "../../actions/types";
-
+import { EMPTY_USER } from "./utils";
 export const initialState: AuthState = {
-	user: { name: "" },
+	user: EMPTY_USER,
 	type: "guest"
 };
 
@@ -17,6 +17,8 @@ export default (
 				type: "user",
 				user: action.payload
 			};
+		case ActionTypes.logOutUser:
+			return initialState;
 	}
 	return state;
 };
