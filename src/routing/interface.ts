@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { AuthLevels } from "../services";
 
 export interface IPage {
 	route: string;
@@ -12,7 +12,7 @@ export interface IProps {
 
 export interface RoutingProps {
 	fetchUserFromToken: () => void;
-
 	fetchExercisesSample: () => void;
-	userType: any;
+	fetchExercisesForUser: () => void;
+	userType: AuthLevels;
 }

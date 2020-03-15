@@ -15,6 +15,11 @@ export default (
 				...state,
 				selection: action.payload
 			};
+		case ActionTypes.getExercisesByUser:
+			return {
+				...state,
+				selection: action.payload
+			};
 		default:
 			return state;
 	}

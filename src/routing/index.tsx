@@ -2,7 +2,11 @@ import React, { useEffect } from "react";
 import Pages, { Modals } from "../components/pages";
 import { RouteFactory } from "./utils";
 import { connect } from "react-redux";
-import { fetchUserFromToken, fetchExercisesSample } from "../actions";
+import {
+	fetchUserFromToken,
+	fetchExercisesSample,
+	fetchExercisesForUser
+} from "../actions";
 import { RoutingProps } from "./interface";
 import { StoreState } from "../reducers";
 /**
@@ -13,14 +17,24 @@ import { StoreState } from "../reducers";
 const Routing = ({
 	fetchUserFromToken,
 	fetchExercisesSample,
+	fetchExercisesForUser,
 	userType
 }: RoutingProps) => {
+	/**
+	 * Fetches info about logged in
+	 * user on start
+	 */
 	useEffect(() => {
 		fetchUserFromToken();
 	}, []);
 
+	/**
+	 * Fetches exercises for front page
+	 * when ever the user type changes
+	 */
 	useEffect(() => {
-		fetchExercisesSample();
+		if (userType === "guest") fetchExercisesSample();
+		else fetchExercisesForUser();
 	}, [userType]);
 
 	return <RouteFactory pages={Pages} modals={Modals} />;
@@ -31,5 +45,6 @@ const mapStateToProps = (state: StoreState) => ({
 });
 export default connect(mapStateToProps, {
 	fetchUserFromToken,
-	fetchExercisesSample
+	fetchExercisesSample,
+	fetchExercisesForUser
 })(Routing);

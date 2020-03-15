@@ -19,4 +19,20 @@ export function fetchExercisesSample() {
 	};
 }
 
+export function fetchExercisesForUser() {
+	return async function(dispatch: Dispatch) {
+		try {
+			const { data } = await Api.get<Exercise[]>(
+				"/api/v1/exercises/by_difficulty"
+			);
+			dispatch<GetExercisesByUserAction>({
+				type: ActionTypes.getExercisesByUser,
+				payload: data
+			});
+		} catch (error) {
+			console.log("Error getting exercises");
+		}
+	};
+}
+
 export * from "./interface";
