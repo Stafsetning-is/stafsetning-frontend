@@ -1,7 +1,7 @@
 import KeyboardListener from "../KeyboardListener";
 import { SPACE, SpellingTypeEvents, PREVIEW_DURATION } from "./utils";
 import { SessionStorageService } from "../../../../../services";
-import { CachedExercise } from "./interface";
+import { CachedExercise, Error } from "./interface";
 
 export class Exercise {
 	/**
@@ -25,6 +25,7 @@ export class Exercise {
 	private textUpdate!: (typed: string, preview: string) => void;
 	private listener: KeyboardListener;
 	private silentMode = true;
+	private errors: Error[];
 
 	/**
 	 * Private constructor that
@@ -161,7 +162,7 @@ export class Exercise {
 		try {
 			this.handleSpaceAtBeginningOfWord(input);
 			if (input === this.getNextChar()) this.advance();
-			else this.handleError();
+			else this.handleError(input);
 			if ([",", "."].includes(input)) this.type(" ");
 		} catch (e) {
 			console.log(e.message);
@@ -209,9 +210,11 @@ export class Exercise {
 	 * when an error in type()
 	 * is made
 	 */
-	private handleError() {
+	private handleError(char: string) {
 		this.doCallBack("error");
-		if (this.errorFlag === false) this.incrementErrorCount();
+		if (this.errorFlag === false) {
+			this.incrementErrorCount();
+		}
 		this.errorFlag = true;
 	}
 
