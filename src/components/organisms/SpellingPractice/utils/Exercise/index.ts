@@ -247,7 +247,7 @@ export class Exercise {
 		if (this.silentMode) return;
 		switch (cb) {
 			case "complete":
-				if (this[cb]) this[cb]();
+				if (this[cb]) this.complete(this.getReport());
 				break;
 			case "error":
 				if (this[cb]) this[cb]();
@@ -259,6 +259,15 @@ export class Exercise {
 				if (this[cb]) this.success();
 				break;
 		}
+	}
+
+	private getReport(): Report {
+		return {
+			errors: this.errors,
+			exerciseString: this.getText(),
+			duration: 69,
+			exercise: this.id
+		};
 	}
 
 	/**

@@ -10,6 +10,6 @@ export interface Error extends ErrorObject {}
 export interface Report {
 	errors: Error[];
 	exerciseString: string;
-	duration: string;
+	duration: number;
 	exercise: string;
 }
