@@ -3,7 +3,7 @@ import { ActionTypes, Actions } from "../../actions/types";
 import { EMPTY_USER } from "./utils";
 export const initialState: AuthState = {
 	user: EMPTY_USER,
-	type: "guest"
+	type: "unknown"
 };
 
 export default (
