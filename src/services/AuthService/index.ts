@@ -28,3 +28,8 @@ export const getAuthToken = () => {
 	}
 	return null;
 };
+
+/**
+ * Removes jwt cookie from browser
+ */
+export const removeToken = () => setAuthCookie("");

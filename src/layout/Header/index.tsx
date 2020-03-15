@@ -9,10 +9,11 @@ import { AuthHider } from "../../hoc/";
 import { connect } from "react-redux";
 import { IProps } from "./interface";
 import { StoreState } from "../../reducers";
+import { signOut } from "../../actions";
 /**
  * Header component for layout
  */
-const Header = ({ user }: IProps) => {
+const Header = ({ user, signOut }: IProps) => {
 	return (
 		<Container>
 			<CenterBlock>
@@ -41,6 +42,11 @@ const Header = ({ user }: IProps) => {
 								<HeaderItem text={user.name} />
 							</NavLink>
 						</AuthHider>
+						<AuthHider setAuthLevel="user">
+							<NavLink to={"/"}>
+								<HeaderItem text="Skrá út" onClick={signOut} />
+							</NavLink>
+						</AuthHider>
 					</RightSide>
 				</FlexHeader>
 			</CenterBlock>
@@ -52,4 +58,4 @@ const mapStateToProps = ({ auth: { user } }: StoreState) => ({
 	user
 });
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, { signOut })(Header);
