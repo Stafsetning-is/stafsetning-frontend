@@ -14,5 +14,6 @@ export const placeHolderPractice: Practice = {
 	errors: [],
 	exercise: "a",
 	duration: 0,
-	exerciseString: ""
+	exerciseString: "",
+	_id: ""
 };

@@ -3,6 +3,7 @@ export interface Practice {
 	exerciseString: string;
 	duration: number;
 	exercise: string;
+	_id: string;
 }
 
 export interface ErrorObject {

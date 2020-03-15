@@ -5,7 +5,9 @@ import ErrorCounter from "./ErrorCounter";
 import PreviewButton from "./PreviewButton";
 import TypedText, { refObject } from "./TypedText";
 import { Redirect } from "react-router-dom";
-
+import { Report } from "./utils/Exercise/interface";
+import { Practice } from "../../../models";
+import { Api } from "../../../api";
 type cb = () => void;
 
 /**
@@ -39,8 +41,14 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 			.on("errorCountChange", (newCount) => {
 				setErrorCount(newCount);
 			})
-			.on("complete", () => {
-				setCompletedPracticeId("1234");
+			.on("complete", (report: Report) => {
+				Api.post<Practice>("/api/v1/exercises/complete", report)
+					.then(({ data }) => {
+						setCompletedPracticeId(data._id);
+					})
+					.catch((error) => {
+						// handle error
+					});
 			})
 			.on("textUpdate", (text: string, preview: string) => {
 				setTyped(text);
