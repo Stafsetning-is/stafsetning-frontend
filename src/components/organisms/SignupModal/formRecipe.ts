@@ -23,7 +23,17 @@ const name: InputElementRecipe = {
 	value: ""
 };
 
-const password1: InputElementRecipe = {
+const username: InputElementRecipe = {
+	label: "Notendanafn",
+	type: "text-input",
+	placeholder: "Notendanafn",
+	validation: {
+		minLength: 6
+	},
+	value: ""
+};
+
+const password: InputElementRecipe = {
 	label: "Lykilorð",
 	type: "password-input",
 	placeholder: "Lykilorð",
@@ -34,16 +44,9 @@ const password1: InputElementRecipe = {
 	value: ""
 };
 
-const password2: InputElementRecipe = {
-	label: "Lykilorð (aftur)",
-	type: "password-input",
-	placeholder: "Lykilorð (aftur)",
-	value: ""
-};
-
 export const signupForm: InputObject = {
 	name,
+	username,
 	mobile,
-	password1,
-	password2
+	password
 };
