@@ -6,19 +6,21 @@ import {
 	TitleElement,
 	SecondaryTitle,
 	OverviewContainer,
-	SuggestionTitle
+	SuggestionTitle,
+	Outer,
+	ErrorCount,
+	TimeText
 } from "./styles";
 import { ExerciseBoxesContainer } from "../../";
 import TryTable from "./TryTable";
-import Stats from "./StatsAggregate";
 import { connect } from "react-redux";
 import { StoreState } from "../../../reducers";
 
-const Component = ({ nextUp }: IProps) => {
+const Component = ({ nextUp, exercise: { title }, errorItems }: IProps) => {
 	return (
 		<React.Fragment>
 			<TitleText>
-				<TitleElement>Kalli for ut i bud. Ng og nk</TitleElement>
+				<TitleElement>{title}</TitleElement>
 			</TitleText>
 			<SecondaryTitle>
 				<TitleElement>29 februar 2020</TitleElement>
@@ -28,7 +30,10 @@ const Component = ({ nextUp }: IProps) => {
 			</TopBar>
 			<OverviewContainer>
 				<TryTable />
-				<Stats />
+				<Outer>
+					<ErrorCount>Þú gerðir {errorItems.length} Villur</ErrorCount>
+					<TimeText>Tíminn þinn var 1:29</TimeText>
+				</Outer>
 			</OverviewContainer>
 			<SuggestionTitle>Haltu áfram að æfa þig!</SuggestionTitle>
 			<ExerciseBoxesContainer exercises={nextUp} />

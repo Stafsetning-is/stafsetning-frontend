@@ -18,7 +18,7 @@ export default (
 				user: action.payload
 			};
 		case ActionTypes.logOutUser:
-			return initialState;
+			return { ...initialState, type: "guest" };
 	}
 	return state;
 };

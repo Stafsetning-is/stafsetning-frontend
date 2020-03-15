@@ -1,8 +1,16 @@
 export interface Practice {
-	errors: ErrorObject[];
+	errorItems: ErrorObject[];
 	exerciseString: string;
 	duration: number;
 	exercise: string;
+	_id: string;
+}
+
+export interface PracticePopulated {
+	errorItems: ErrorObject[];
+	exerciseString: string;
+	duration: number;
+	exercise: Exercise;
 	_id: string;
 }
 
