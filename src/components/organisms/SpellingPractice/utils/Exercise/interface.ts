@@ -8,7 +8,7 @@ export interface CachedExercise {
 export interface Error extends ErrorObject {}
 
 export interface Report {
-	errors: Error[];
+	errorItems: Error[];
 	exerciseString: string;
 	duration: number;
 	exercise: string;

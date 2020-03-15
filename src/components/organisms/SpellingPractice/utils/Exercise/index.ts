@@ -263,7 +263,7 @@ export class Exercise {
 
 	private getReport(): Report {
 		return {
-			errors: this.errors,
+			errorItems: this.errors,
 			exerciseString: this.getText(),
 			duration: 69,
 			exercise: this.id
