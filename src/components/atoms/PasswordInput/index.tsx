@@ -1,6 +1,7 @@
 import * as React from "react";
 import { InputComponent } from "../../../services";
-
+import { FormLabel } from "../../";
+import { Input } from "./styles";
 /**
  * Password input that takes in value and onChange function
  * This is for the form functionality
@@ -21,9 +22,8 @@ export const PasswordInput = ({
 	};
 	return (
 		<React.Fragment>
-			<p>{label}</p>
-			<p>{getValidationMessage()}</p>
-			<input
+			<FormLabel text={label} errorMessage={getValidationMessage()} />
+			<Input
 				type="password"
 				value={value}
 				onChange={(e) => onChange(e.target.value)}

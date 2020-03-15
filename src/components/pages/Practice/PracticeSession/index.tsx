@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { SpellingPractice, LoaderBox } from "../../../";
+import { SpellingPractice, LoaderBox, ErrorModal } from "../../../";
 import { LayoutWrapper } from "../../../../layout";
 import { fetchExerciseText } from "./utils";
+import { RouteComponentProps } from "react-router-dom";
+import { IProps } from "./interface";
+import { ProtectPageWrapper } from "../../../../hoc";
 
 /**
  * Component contains the entire page for an practice exercise
@@ -10,8 +13,9 @@ import { fetchExerciseText } from "./utils";
  * to practice mode by toggling its state
  *
  */
-export default () => {
+export default ({ match }: RouteComponentProps<IProps>) => {
 	const [loading, setLoading] = useState(true);
+	const [errorMessage, setErrorMessage] = useState("");
 	const [exerciseParts, setExerciseParts] = useState<string[]>([]);
 
 	/**
@@ -20,17 +24,28 @@ export default () => {
 	 * state accordingly
 	 */
 	useEffect(() => {
-		fetchExerciseText((textParts) => {
-			setExerciseParts(textParts);
-			setLoading(false);
-		});
+		fetchExerciseText(match.params.id)
+			.then(({ parts }) => {
+				setLoading(false);
+				setExerciseParts(parts);
+			})
+			.catch((e) => {
+				setErrorMessage(e.message);
+			});
 	}, []);
 
 	return (
 		<LayoutWrapper>
-			<LoaderBox loading={loading}>
-				<SpellingPractice exercise="22343as3" sentenceParts={exerciseParts} />
-			</LoaderBox>
+			<ProtectPageWrapper>
+				<ErrorModal errorMessage={errorMessage}>
+					<LoaderBox loading={loading}>
+						<SpellingPractice
+							exercise="22343as3"
+							sentenceParts={exerciseParts}
+						/>
+					</LoaderBox>
+				</ErrorModal>
+			</ProtectPageWrapper>
 		</LayoutWrapper>
 	);
 };

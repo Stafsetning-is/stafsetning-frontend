@@ -1,6 +1,7 @@
 import * as React from "react";
 import { InputComponent } from "../../../services";
-
+import { FormLabel } from "../../";
+import { Input } from "./styles";
 /**
  * Text input that takes in value and onChange function
  * This is for the form functionality
@@ -22,9 +23,8 @@ export const TextInput = ({
 
 	return (
 		<React.Fragment>
-			<p>{label}</p>
-			<p>{getValidationMessage()}</p>
-			<input
+			<FormLabel text={label} errorMessage={getValidationMessage()} />
+			<Input
 				type="text"
 				value={value}
 				onChange={(e) => onChange(e.target.value)}

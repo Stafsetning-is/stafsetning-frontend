@@ -23,6 +23,8 @@ export class Exercise {
 	private error!: () => void;
 	private complete!: () => void;
 	private textUpdate!: (typed: string, preview: string) => void;
+	private listener: KeyboardListener;
+	private silentMode = true;
 
 	/**
 	 * Private constructor that
@@ -41,6 +43,15 @@ export class Exercise {
 		this.createPartIndexArray();
 		this.id = id;
 		this.restoreFromSession();
+		this.silentMode = false;
+		this.listener = KeyboardListener.listen((key) => {
+			this.type(key);
+		});
+	}
+
+	public stopListening() {
+		this.success = this.error = this.complete = this.textUpdate = () => {};
+		this.listener.stop();
 	}
 
 	/**
@@ -68,6 +79,7 @@ export class Exercise {
 			this.exerciseCacheKey()
 		);
 		if (stored === null) return;
+		SessionStorageService.put(this.exerciseCacheKey(), null);
 		for (let i = 0; i < stored.typed.length; i++) {
 			this.type(stored.typed.charAt(i));
 		}
@@ -219,6 +231,7 @@ export class Exercise {
 	 * @param cb
 	 */
 	private doCallBack(cb: SpellingTypeEvents, param?: any) {
+		if (this.silentMode) return;
 		switch (cb) {
 			case "complete":
 				if (this[cb]) this[cb]();
@@ -305,7 +318,7 @@ export class Exercise {
 	 * @param preview should preview be included
 	 */
 	private emitText(preview?: boolean) {
-		if (!this.textUpdate) return;
+		if (!this.textUpdate || this.silentMode) return;
 		this.textUpdate(
 			this.getText().slice(0, this.typingAt),
 			preview ? this.getPreviewText() : ""
@@ -323,9 +336,6 @@ export class Exercise {
 	 */
 	public static startExercise(exerciseParts: string[], id: string) {
 		const instance = new Exercise(exerciseParts, id);
-		KeyboardListener.listen((key) => {
-			instance.type(key);
-		});
 		return instance;
 	}
 

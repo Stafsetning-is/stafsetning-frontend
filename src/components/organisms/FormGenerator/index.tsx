@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IProps } from "./interface";
-import { InputFactory } from "../../";
-import { getInputElementsArray } from "./utils";
+import { InputFactory, BasicButton, LoaderBox, Shaky } from "../../";
+import { TopErrorLabel } from "./styles";
+import {
+	getInputElementsArray,
+	validateErrors,
+	handlePost,
+	SHAKE_DURATION
+} from "./utils";
 /**
  * Generates a form object based on a recipe provided
+ *
+ * Takes in generic type of post request response
+ * when successful
  *
  * Takes in an object where the value implements
  * the InputElementRecipe interface. The generator
@@ -12,13 +21,22 @@ import { getInputElementsArray } from "./utils";
  * Along with a submit button which submits the data
  *
  * TODO:
- *    [ ] add form validation functionality
+ *    [x] add form validation functionality
  *    [ ] add form onPost callback
- *    [ ] add feedback to user about correctness of input
+ *    [x] add feedback to user about correctness of input
  */
 
-export const FormGenerator = ({ fields }: IProps) => {
+export const FormGenerator = <T extends {}>({
+	fields,
+	label,
+	postTo,
+	onSuccess,
+	children
+}: IProps<T>) => {
 	const [formObject, setFormObject] = useState(fields);
+	const [errorMessage, setErrorMessage] = useState("");
+	const [loading, setLoading] = useState(false);
+	const [shake, setShake] = useState(false);
 	const inputElements = getInputElementsArray(formObject);
 
 	/**
@@ -34,15 +52,52 @@ export const FormGenerator = ({ fields }: IProps) => {
 		setFormObject({ ...formObjectCopy });
 	};
 
+	/**
+	 * handles the submit including
+	 *     overall validation
+	 *     talking to api
+	 *     setLoading state
+	 *     and displaying errorMessages
+	 */
+	const handleSubmit = async () => {
+		if (loading) return;
+		try {
+			validateErrors(formObject);
+			setLoading(true);
+			const data = await handlePost<T>(fields, postTo);
+			onSuccess(data);
+		} catch (error) {
+			console.log("error", error);
+			setErrorMessage(error.message);
+			setShake(true);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	/**
+	 * Resets shake after
+	 * 500ms
+	 */
+	useEffect(() => {
+		setTimeout(() => setShake(false), SHAKE_DURATION);
+	}, [shake]);
+
 	return (
-		<form>
-			{inputElements.map((element) => (
-				<InputFactory
-					{...element}
-					onChange={(key, val) => handleChange(element.key, val)}
-				/>
-			))}
-			<button>Submit</button>
-		</form>
+		<Shaky shake={shake}>
+			<TopErrorLabel>{errorMessage}</TopErrorLabel>
+			<LoaderBox loading={loading}>
+				<form onSubmit={(e) => e.preventDefault()}>
+					{inputElements.map((element) => (
+						<InputFactory
+							{...element}
+							onChange={(val) => handleChange(element.key, val)}
+						/>
+					))}
+					<BasicButton text={label} type="default" onClick={handleSubmit} />
+					{children}
+				</form>
+			</LoaderBox>
+		</Shaky>
 	);
 };

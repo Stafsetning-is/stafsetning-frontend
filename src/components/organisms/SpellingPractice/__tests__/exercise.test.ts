@@ -113,6 +113,25 @@ describe("Event listeners", () => {
 		e.type("w");
 		e.type("C");
 	});
+
+	it("Should call on finish when finished", (done) => {
+		const e = Exercise.startExercise(shortSentenceParts, "5");
+		e.on("complete", () => {
+			expect(true).toBe(true);
+			done();
+		});
+		e.type("C");
+		e.type("a");
+		e.type("r");
+		e.type("l");
+		e.type(" ");
+		e.type("t");
+		e.type("o");
+		e.type(" ");
+		e.type("f");
+		e.type("o");
+		e.type("r");
+	});
 });
 
 describe("Traversing sentence parts and getting preview", () => {
