@@ -160,6 +160,7 @@ export class Exercise {
 	 * @param input single character from user
 	 */
 	public type(input: string) {
+		if (this.typingAt === this.text.length) return;
 		try {
 			this.handleSpaceAtBeginningOfWord(input);
 			if (input === this.getNextChar()) this.advance();
