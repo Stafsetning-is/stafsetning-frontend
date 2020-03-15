@@ -1,7 +1,7 @@
 import KeyboardListener from "../KeyboardListener";
 import { SPACE, SpellingTypeEvents, PREVIEW_DURATION } from "./utils";
 import { SessionStorageService } from "../../../../../services";
-import { CachedExercise, Error } from "./interface";
+import { CachedExercise, Error, Report } from "./interface";
 
 export class Exercise {
 	/**
@@ -21,7 +21,7 @@ export class Exercise {
 	private id: string;
 	private success!: () => void;
 	private error!: () => void;
-	private complete!: () => void;
+	private complete!: (report: Report) => void;
 	private textUpdate!: (typed: string, preview: string) => void;
 	private listener: KeyboardListener;
 	private silentMode = true;
@@ -45,6 +45,7 @@ export class Exercise {
 		this.id = id;
 		this.restoreFromSession();
 		this.silentMode = false;
+		this.errors = [];
 		this.listener = KeyboardListener.listen((key) => {
 			this.type(key);
 		});
@@ -214,8 +215,17 @@ export class Exercise {
 		this.doCallBack("error");
 		if (this.errorFlag === false) {
 			this.incrementErrorCount();
+			this.logError(char);
 		}
 		this.errorFlag = true;
+	}
+
+	/**
+	 * Logs the error
+	 * @param char character just typed
+	 */
+	private logError(char: string) {
+		this.errors.push({ error: char, charAt: this.typingAt });
 	}
 
 	/**

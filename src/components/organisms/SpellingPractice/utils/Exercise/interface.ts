@@ -1,9 +1,15 @@
+import { ErrorObject } from "../../../../../models";
+
 export interface CachedExercise {
 	errorFlag: boolean;
 	typed: string;
 }
 
-export interface Error {
-	typed: string;
-	charAt: number;
+export interface Error extends ErrorObject {}
+
+export interface Report {
+	errors: Error[];
+	exerciseString: string;
+	duration: string;
+	exercise: string;
 }

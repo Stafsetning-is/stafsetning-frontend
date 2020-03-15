@@ -31,7 +31,6 @@ export const getInputElementsArray = (fields: InputObject) => {
  */
 export const getUserData = (fields: InputObject) => {
 	let retObject: { [key: string]: any } = {};
-	console.log("fields", fields);
 	for (const key in fields) {
 		retObject[key] = fields[key].value;
 	}

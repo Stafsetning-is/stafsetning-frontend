@@ -1,5 +1,8 @@
 export interface Practice {
 	errors: ErrorObject[];
+	exerciseString: string;
+	duration: string;
+	exercise: string;
 }
 
 export interface ErrorObject {
