@@ -151,7 +151,8 @@ export class Exercise {
 	}
 
 	private validateCompleted() {
-		if (this.typingAt === this.getText().length) this.doCallBack("complete");
+		if (this.typingAt !== this.getText().length) return;
+		this.doCallBack("complete");
 	}
 
 	/**
