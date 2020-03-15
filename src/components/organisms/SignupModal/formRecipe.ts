@@ -18,31 +18,18 @@ const name: InputElementRecipe = {
 	type: "text-input",
 	placeholder: "Fullt nafn",
 	validation: {
-		minLength: 5
+		minLength: 6
 	},
 	value: ""
 };
 
-const password: InputElementRecipe = {
+const password1: InputElementRecipe = {
 	label: "Lykilorð",
 	type: "password-input",
 	placeholder: "Lykilorð",
 	validation: {
-		minLength: 5,
-		trim: true,
-		requiredCharacterTypes: ["upper-case", "numbers", "symbols"]
-	},
-	value: ""
-};
-
-const userName: InputElementRecipe = {
-	label: "Notendanafn",
-	type: "text-input",
-	placeholder: "Notendanafn",
-	validation: {
-		minLength: 5,
-		trim: true,
-		forbiddenCharacterTypes: ["symbols", "white-space", "upper-case"]
+		minLength: 6,
+		trim: true
 	},
 	value: ""
 };
@@ -56,8 +43,7 @@ const password2: InputElementRecipe = {
 
 export const signupForm: InputObject = {
 	name,
-	userName,
 	mobile,
-	password,
+	password1,
 	password2
 };

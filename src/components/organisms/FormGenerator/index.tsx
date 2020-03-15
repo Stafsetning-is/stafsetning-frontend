@@ -64,7 +64,7 @@ export const FormGenerator = <T extends {}>({
 		try {
 			validateErrors(formObject);
 			setLoading(true);
-			const data = await handlePost<T>(fields, postTo);
+			const data = await handlePost<T>(formObject, postTo);
 			onSuccess(data);
 		} catch (error) {
 			console.log("error", error);
