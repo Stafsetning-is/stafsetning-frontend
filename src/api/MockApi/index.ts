@@ -1,3 +1,4 @@
+import { Practice } from "../../models";
 /**
  * retuns an array of sentence parts
  * @param id redundant id
@@ -21,13 +22,17 @@ export const getExerciseById = (id: string) =>
 /**
  * Returns an practice object
  */
-export const getPracticeById = (id: string) =>
-	delay({
+export const getPracticeById = (id: string): Promise<Practice> => {
+	return delay({
 		errors: [
 			{ charAt: 15, error: "a" },
 			{ charAt: 20, error: "b" }
-		]
+		],
+		exerciseString: ".",
+		duration: 1,
+		exercise: "a"
 	});
+};
 
 /**
  * Returns a promise of data

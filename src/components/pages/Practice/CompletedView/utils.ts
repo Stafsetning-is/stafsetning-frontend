@@ -10,6 +10,9 @@ export const getPractice = async (id: string) => {
 	}
 };
 
-export const placeHolderPractice = {
-	errors: []
+export const placeHolderPractice: Practice = {
+	errors: [],
+	exercise: "a",
+	duration: 0,
+	exerciseString: ""
 };
