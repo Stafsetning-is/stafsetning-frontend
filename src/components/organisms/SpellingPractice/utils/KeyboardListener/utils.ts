@@ -1,4 +1,5 @@
 export const IGNORE_CODES_ARRAY = [
+	8,
 	16,
 	17,
 	18,

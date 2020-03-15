@@ -4,12 +4,10 @@ import Settings from "./Settings";
 export default [
 	{
 		route: "/user/:id/profile",
-		component: Profile,
-		exact: false
+		component: Profile
 	},
 	{
 		route: "/user/settings",
-		component: Settings,
-		exact: true
+		component: Settings
 	}
 ];

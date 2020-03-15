@@ -4,7 +4,7 @@ import { Outer, Text } from "./styles";
 
 export default ({ count }: IProps) => {
 	return (
-		<Outer>
+		<Outer theme={{ count }}>
 			<Text>{count}</Text>
 		</Outer>
 	);

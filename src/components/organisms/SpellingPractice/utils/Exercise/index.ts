@@ -1,16 +1,13 @@
-import keycode from "keycode";
 import KeyboardListener from "../KeyboardListener";
-import { SPACE } from "./utils";
-type SpellingTypeEvents =
-	| "error"
-	| "errorCountChange"
-	| "success"
-	| "complete"
-	| "textUpdate";
-
-const PREVIEW_DURATION = 2500;
+import { SPACE, SpellingTypeEvents, PREVIEW_DURATION } from "./utils";
+import { SessionStorageService } from "../../../../../services";
+import { CachedExercise } from "./interface";
 
 export class Exercise {
+	/**
+	 * Decleration of all class variables
+	 * that will be used
+	 */
 	private exerciseParts: string[];
 	private typingAt: number;
 	private errorFlag: boolean;
@@ -20,27 +17,73 @@ export class Exercise {
 	private partIndexes!: number[];
 	private currentPartNumber: number;
 	private errorCountChange!: (i: number) => void;
+	private clearTextTimeout!: number;
+	private id: string;
 	private success!: () => void;
 	private error!: () => void;
 	private complete!: () => void;
 	private textUpdate!: (typed: string, preview: string) => void;
-	private clearTextTimeout!: number;
+	private listener: KeyboardListener;
+	private silentMode = true;
 
 	/**
 	 * Private constructor that
 	 * starts the exercise and inits variables
 	 * @param exerciseParts the parts of the exercise
 	 */
-	private constructor(exerciseParts: string[]) {
+	private constructor(exerciseParts: string[], id: string) {
 		this.exerciseParts = exerciseParts;
 		this.cleanParts();
 		this.typingAt = 0;
-		this.errorFlag = false;
+		this.errorFlag = true;
 		this.errorCount = 0;
 		this.text = "";
 		this.partCount = exerciseParts.length;
 		this.currentPartNumber = 0;
 		this.createPartIndexArray();
+		this.id = id;
+		this.restoreFromSession();
+		this.silentMode = false;
+		this.listener = KeyboardListener.listen((key) => {
+			this.type(key);
+		});
+	}
+
+	public stopListening() {
+		this.success = this.error = this.complete = this.textUpdate = () => {};
+		this.listener.stop();
+	}
+
+	/**
+	 * Gets the cache key for
+	 * this exercise
+	 */
+	private exerciseCacheKey() {
+		return this.id;
+	}
+
+	/**
+	 * Returns the current errorCount
+	 */
+	public getErrorCount() {
+		return this.errorCount;
+	}
+
+	/**
+	 * restores exercise from cache if
+	 * it is cached in session storage
+	 */
+	private restoreFromSession() {
+		if (process.env.NODE_ENV === "test") return;
+		const stored = SessionStorageService.get<CachedExercise>(
+			this.exerciseCacheKey()
+		);
+		if (stored === null) return;
+		SessionStorageService.put(this.exerciseCacheKey(), null);
+		for (let i = 0; i < stored.typed.length; i++) {
+			this.type(stored.typed.charAt(i));
+		}
+		this.errorFlag = stored.errorFlag;
 	}
 
 	/**
@@ -119,11 +162,39 @@ export class Exercise {
 			this.handleSpaceAtBeginningOfWord(input);
 			if (input === this.getNextChar()) this.advance();
 			else this.handleError();
+			if ([",", "."].includes(input)) this.type(" ");
 		} catch (e) {
 			console.log(e.message);
 		}
+		this.addToSessionStorage(input);
 	}
 
+	/**
+	 * Adds last typed char to session storage
+	 * @param char
+	 */
+	private addToSessionStorage(char: string) {
+		if (process.env.NODE_ENV === "test") return;
+		const prevVal = SessionStorageService.get<CachedExercise>(
+			this.exerciseCacheKey()
+		);
+		if (prevVal === null)
+			SessionStorageService.put<CachedExercise>(this.exerciseCacheKey(), {
+				typed: char,
+				errorFlag: this.errorFlag
+			});
+		else
+			SessionStorageService.put<CachedExercise>(this.exerciseCacheKey(), {
+				typed: prevVal.typed + char,
+				errorFlag: this.errorFlag
+			});
+	}
+
+	/**
+	 * Boolean logic to decide if input
+	 * should be ignored or not
+	 * @param char last typed char
+	 */
 	private handleSpaceAtBeginningOfWord(char: string) {
 		if (
 			char === SPACE &&
@@ -160,6 +231,7 @@ export class Exercise {
 	 * @param cb
 	 */
 	private doCallBack(cb: SpellingTypeEvents, param?: any) {
+		if (this.silentMode) return;
 		switch (cb) {
 			case "complete":
 				if (this[cb]) this[cb]();
@@ -176,6 +248,11 @@ export class Exercise {
 		}
 	}
 
+	/**
+	 * Returns the preview text
+	 * which is untyped text until
+	 * next sentence part
+	 */
 	private getPreviewText() {
 		const startOfNext = this.partIndexes[1];
 		return this.getText()
@@ -228,12 +305,20 @@ export class Exercise {
 		if (this.getNextChar() === SPACE) this.type(SPACE);
 	}
 
+	/**
+	 * Removes just the preview from
+	 * text change callback event
+	 */
 	private clearPreview = () => {
 		this.emitText(false);
 	};
 
+	/**
+	 * emits text change callback
+	 * @param preview should preview be included
+	 */
 	private emitText(preview?: boolean) {
-		if (!this.textUpdate) return;
+		if (!this.textUpdate || this.silentMode) return;
 		this.textUpdate(
 			this.getText().slice(0, this.typingAt),
 			preview ? this.getPreviewText() : ""
@@ -249,14 +334,14 @@ export class Exercise {
 	 * for the keyboard
 	 * @param exerciseParts array of exercise parts
 	 */
-	public static startExercise(exerciseParts: string[]) {
-		const instance = new Exercise(exerciseParts);
-		KeyboardListener.listen((key) => {
-			instance.type(key);
-		});
+	public static startExercise(exerciseParts: string[], id: string) {
+		const instance = new Exercise(exerciseParts, id);
 		return instance;
 	}
 
+	/**
+	 * Returns current typing index
+	 */
 	public getCurrentIndex() {
 		return this.typingAt;
 	}

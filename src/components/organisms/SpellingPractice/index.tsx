@@ -4,6 +4,7 @@ import { Exercise } from "./utils";
 import ErrorCounter from "./ErrorCounter";
 import PreviewButton from "./PreviewButton";
 import TypedText, { refObject } from "./TypedText";
+import { Redirect } from "react-router-dom";
 
 type cb = () => void;
 
@@ -16,20 +17,21 @@ type cb = () => void;
  */
 export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 	const [errorCount, setErrorCount] = useState(0);
-	const [previewCallback, setPreviewCallback] = useState<cb>(() => () => {
-		console.log("Call back has not been set");
-	});
+	const [typed, setTyped] = useState("");
+	const [preview, setPreview] = useState("");
+	const [previewCallback, setPreviewCallback] = useState<cb>(() => () => {});
 	const typeTextRef = useRef(refObject);
+	const [comletedPracticeId, setCompletedPracticeId] = useState<string>();
 
-	/**
-	 * Sets up event listeners
-	 * for the four events that
-	 * might occur on user input
-	 */
 	useEffect(() => {
-		const instance = Exercise.startExercise(sentenceParts)
+		/**
+		 * Sets up event listeners
+		 * for the four events that
+		 * might occur on user input
+		 */
+		const session = Exercise.startExercise(sentenceParts, exercise)
 			.on("error", () => {
-				typeTextRef.current.giveErrorFeedback();
+				if (typeTextRef.current) typeTextRef.current.giveErrorFeedback();
 			})
 			.on("success", () => {
 				// handle success
@@ -38,25 +40,28 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 				setErrorCount(newCount);
 			})
 			.on("complete", () => {
-				// handle complete
+				setCompletedPracticeId("1234");
 			})
 			.on("textUpdate", (text: string, preview: string) => {
-				typeTextRef.current.setPreviewText(preview);
-				typeTextRef.current.setText(text);
+				setTyped(text);
+				setPreview(preview);
 			});
-		setPreviewCallback(() => () => instance.showPreview());
-		previewCallback();
-	}, []);
+		setPreviewCallback(() => () => session.showPreview());
+		setErrorCount(session.getErrorCount());
+		return () => session.stopListening();
+	}, [exercise, sentenceParts]);
 
 	useEffect(() => {
 		previewCallback();
 	}, [previewCallback]);
 
+	if (comletedPracticeId)
+		return <Redirect to={`/completed/${comletedPracticeId}`} />;
 	return (
 		<React.Fragment>
 			<ErrorCounter count={errorCount} />
 			<PreviewButton onClick={previewCallback} />
-			<TypedText ref={typeTextRef} />
+			<TypedText ref={typeTextRef} typed={typed} preview={preview} />
 		</React.Fragment>
 	);
 };
