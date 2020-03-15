@@ -12,6 +12,7 @@ export interface PracticePopulated {
 	duration: number;
 	exercise: Exercise;
 	_id: string;
+	createdAt: string;
 }
 
 export interface ErrorObject {

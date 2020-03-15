@@ -29,5 +29,6 @@ export const placeHolderPractice: PracticePopulated = {
 	},
 	duration: 0,
 	exerciseString: "",
-	_id: ""
+	_id: "",
+	createdAt: ""
 };
