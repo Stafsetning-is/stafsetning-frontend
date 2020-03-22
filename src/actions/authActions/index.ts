@@ -3,6 +3,7 @@ import { User } from "../../models";
 import { Dispatch } from "redux";
 import { LogInUserAction, LogOutUserAction } from "./interface";
 import { Api } from "../../api";
+import { removeToken } from "../../services";
 import { fetchExercisesSample } from "../exercisesActions";
 
 export function logInUser(user: User) {
@@ -31,6 +32,14 @@ export function fetchUserFromToken() {
 				payload: null
 			});
 		}
+	};
+}
+
+export function signOut(): LogOutUserAction {
+	removeToken();
+	return {
+		type: ActionTypes.logOutUser,
+		payload: null
 	};
 }
 

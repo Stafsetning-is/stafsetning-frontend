@@ -16,6 +16,7 @@ import { ProtectPageWrapper } from "../../../../hoc";
 export default ({ match }: RouteComponentProps<IProps>) => {
 	const [loading, setLoading] = useState(true);
 	const [errorMessage, setErrorMessage] = useState("");
+	const [exerciseId, setExerciseId] = useState("");
 	const [exerciseParts, setExerciseParts] = useState<string[]>([]);
 
 	/**
@@ -25,8 +26,9 @@ export default ({ match }: RouteComponentProps<IProps>) => {
 	 */
 	useEffect(() => {
 		fetchExerciseText(match.params.id)
-			.then(({ parts }) => {
+			.then(({ parts, _id }) => {
 				setLoading(false);
+				setExerciseId(_id);
 				setExerciseParts(parts);
 			})
 			.catch((e) => {
@@ -40,7 +42,7 @@ export default ({ match }: RouteComponentProps<IProps>) => {
 				<ErrorModal errorMessage={errorMessage}>
 					<LoaderBox loading={loading}>
 						<SpellingPractice
-							exercise="22343as3"
+							exercise={exerciseId}
 							sentenceParts={exerciseParts}
 						/>
 					</LoaderBox>

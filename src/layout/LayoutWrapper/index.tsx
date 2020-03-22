@@ -1,14 +1,56 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IProps } from "./interface";
 import Header from "../Header";
 import BackDrop from "../Backdrop";
 import CenterBlock from "../CenterBlock";
+import {
+	fetchUserFromToken,
+	fetchExercisesSample,
+	fetchExercisesForUser
+} from "../../actions";
+import { StoreState } from "../../reducers";
+import { LoaderBox } from "../../components";
+import { connect } from "react-redux";
 
-export const LayoutWrapper = ({ children }: IProps) => {
+const Component = ({
+	children,
+	userType,
+	fetchExercisesForUser,
+	fetchExercisesSample,
+	fetchUserFromToken
+}: IProps) => {
+	/**
+	 * Fetches info about logged in
+	 * user on start
+	 */
+	useEffect(() => {
+		fetchUserFromToken();
+	}, []);
+
+	/**
+	 * Fetches exercises for front page
+	 * when ever the user type changes
+	 */
+	useEffect(() => {
+		if (userType === "guest") fetchExercisesSample();
+		else if (["admin", "user"].includes(userType)) fetchExercisesForUser();
+	}, [userType]);
 	return (
 		<BackDrop>
 			<Header />
-			<CenterBlock>{children}</CenterBlock>
+			<CenterBlock>
+				<LoaderBox loading={userType === "unknown"}>{children}</LoaderBox>
+			</CenterBlock>
 		</BackDrop>
 	);
 };
+
+const mapStateToProps = (state: StoreState) => ({
+	userType: state.auth.type
+});
+
+export const LayoutWrapper = connect(mapStateToProps, {
+	fetchUserFromToken,
+	fetchExercisesSample,
+	fetchExercisesForUser
+})(Component);

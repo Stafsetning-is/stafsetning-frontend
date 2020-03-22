@@ -1,12 +1,12 @@
 import { Api } from "../../../../api";
-import { IResponse } from "./interface";
+import { Exercise } from "../.././../../models";
 /**
- * fetches textparts and returns them in a callback
- * @param cb callback that takes exercise text as argument
+ * fetches exercise from backend
+ * @param id the id of the exercise
  */
-export const fetchExerciseText = async (exerciseId: string) => {
+export const fetchExerciseText = async (id: string) => {
 	try {
-		const { data } = await Api.get<IResponse>("/api/v1/featured_exercises/");
+		const { data } = await Api.get<Exercise>(`/api/v1/exercises/${id}`);
 		return data;
 	} catch (error) {
 		throw Error("Ekki tókst að sækja æfingu");
