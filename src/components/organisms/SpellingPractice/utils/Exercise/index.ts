@@ -1,7 +1,7 @@
 import KeyboardListener from "../KeyboardListener";
 import { SPACE, SpellingTypeEvents, PREVIEW_DURATION } from "./utils";
 import { SessionStorageService } from "../../../../../services";
-import { CachedExercise } from "./interface";
+import { CachedExercise, Error, Report } from "./interface";
 
 export class Exercise {
 	/**
@@ -21,10 +21,11 @@ export class Exercise {
 	private id: string;
 	private success!: () => void;
 	private error!: () => void;
-	private complete!: () => void;
+	private complete!: (report: Report) => void;
 	private textUpdate!: (typed: string, preview: string) => void;
 	private listener: KeyboardListener;
 	private silentMode = true;
+	private errors: Error[];
 
 	/**
 	 * Private constructor that
@@ -44,6 +45,7 @@ export class Exercise {
 		this.id = id;
 		this.restoreFromSession();
 		this.silentMode = false;
+		this.errors = [];
 		this.listener = KeyboardListener.listen((key) => {
 			this.type(key);
 		});
@@ -149,7 +151,8 @@ export class Exercise {
 	}
 
 	private validateCompleted() {
-		if (this.typingAt === this.getText().length) this.doCallBack("complete");
+		if (this.typingAt !== this.getText().length) return;
+		this.doCallBack("complete");
 	}
 
 	/**
@@ -158,10 +161,11 @@ export class Exercise {
 	 * @param input single character from user
 	 */
 	public type(input: string) {
+		if (this.typingAt === this.text.length) return;
 		try {
 			this.handleSpaceAtBeginningOfWord(input);
 			if (input === this.getNextChar()) this.advance();
-			else this.handleError();
+			else this.handleError(input);
 			if ([",", "."].includes(input)) this.type(" ");
 		} catch (e) {
 			console.log(e.message);
@@ -209,10 +213,21 @@ export class Exercise {
 	 * when an error in type()
 	 * is made
 	 */
-	private handleError() {
+	private handleError(char: string) {
 		this.doCallBack("error");
-		if (this.errorFlag === false) this.incrementErrorCount();
+		if (this.errorFlag === false) {
+			this.incrementErrorCount();
+			this.logError(char);
+		}
 		this.errorFlag = true;
+	}
+
+	/**
+	 * Logs the error
+	 * @param char character just typed
+	 */
+	private logError(char: string) {
+		this.errors.push({ error: char, charAt: this.typingAt });
 	}
 
 	/**
@@ -234,7 +249,7 @@ export class Exercise {
 		if (this.silentMode) return;
 		switch (cb) {
 			case "complete":
-				if (this[cb]) this[cb]();
+				if (this[cb]) this.complete(this.getReport());
 				break;
 			case "error":
 				if (this[cb]) this[cb]();
@@ -246,6 +261,15 @@ export class Exercise {
 				if (this[cb]) this.success();
 				break;
 		}
+	}
+
+	private getReport(): Report {
+		return {
+			errorItems: this.errors,
+			exerciseString: this.getText(),
+			duration: 69,
+			exercise: this.id
+		};
 	}
 
 	/**

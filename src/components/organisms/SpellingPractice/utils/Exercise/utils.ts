@@ -7,4 +7,4 @@ export type SpellingTypeEvents =
 	| "complete"
 	| "textUpdate";
 
-export const PREVIEW_DURATION = 2500;
+export const PREVIEW_DURATION = 7500;

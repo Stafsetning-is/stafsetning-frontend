@@ -1,6 +1,6 @@
 import { InputElementRecipe, InputObject } from "../../../services";
 
-const userName: InputElementRecipe = {
+const username: InputElementRecipe = {
 	label: "Notendanafn",
 	type: "text-input",
 	placeholder: "Notendanafn",
@@ -19,12 +19,12 @@ const password: InputElementRecipe = {
 	validation: {
 		minLength: 5,
 		trim: true,
-		requiredCharacterTypes: ["upper-case", "numbers", "symbols"]
+		requiredCharacterTypes: []
 	},
 	value: ""
 };
 
 export const loginForm: InputObject = {
-	userName,
+	username,
 	password
 };

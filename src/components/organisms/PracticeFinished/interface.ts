@@ -1,5 +1,5 @@
-import { Practice, Exercise } from "../../../models";
+import { PracticePopulated, Exercise } from "../../../models";
 
-export interface IProps extends Practice {
+export interface IProps extends PracticePopulated {
 	nextUp: Exercise[];
 }

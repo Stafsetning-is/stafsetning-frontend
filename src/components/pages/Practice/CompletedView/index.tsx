@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { LayoutWrapper } from "../../../../layout";
 import { LoaderBox, ErrorModal, PracticeFinished } from "../../../";
-import { IProps, Practice } from "./interface";
+import { IProps } from "./interface";
+import { PracticePopulated } from "../../../../models";
 import { getPractice, placeHolderPractice } from "./utils";
 import { RouteComponentProps } from "react-router-dom";
 import { ProtectPageWrapper } from "../../../../hoc";
@@ -9,7 +10,9 @@ import { ProtectPageWrapper } from "../../../../hoc";
 export default ({ match }: RouteComponentProps<IProps>) => {
 	const [errorMessage, setErrorMessage] = useState("");
 	const [loading, setLoading] = useState(true);
-	const [practice, setPractice] = useState<Practice>(placeHolderPractice);
+	const [practice, setPractice] = useState<PracticePopulated>(
+		placeHolderPractice
+	);
 	/**
 	 * useEffect to get the practice
 	 * data. If there is an promise
@@ -25,7 +28,7 @@ export default ({ match }: RouteComponentProps<IProps>) => {
 				setLoading(false);
 				setErrorMessage(e.message);
 			});
-	});
+	}, []);
 
 	return (
 		<LayoutWrapper>

@@ -6,29 +6,46 @@ import {
 	TitleElement,
 	SecondaryTitle,
 	OverviewContainer,
-	SuggestionTitle
+	SuggestionTitle,
+	Outer,
+	ErrorCount,
+	TimeText
 } from "./styles";
 import { ExerciseBoxesContainer } from "../../";
 import TryTable from "./TryTable";
-import Stats from "./StatsAggregate";
 import { connect } from "react-redux";
 import { StoreState } from "../../../reducers";
-
-const Component = ({ nextUp }: IProps) => {
+import { durationToTime } from "./utils";
+import Moment from "moment";
+import "moment/locale/is";
+const Component = ({
+	nextUp,
+	exercise: { title },
+	errorItems,
+	duration,
+	createdAt
+}: IProps) => {
+	const [mm, ss] = durationToTime(duration);
+	Moment.locale("is");
+	const test = Moment(createdAt).fromNow();
 	return (
 		<React.Fragment>
 			<TitleText>
-				<TitleElement>Kalli for ut i bud. Ng og nk</TitleElement>
+				<TitleElement>{title}</TitleElement>
 			</TitleText>
 			<SecondaryTitle>
-				<TitleElement>29 februar 2020</TitleElement>
+				<TitleElement>{test}</TitleElement>
 			</SecondaryTitle>
 			<TopBar>
 				<p>Vel gert! Æfingin skapar meistarann</p>
 			</TopBar>
 			<OverviewContainer>
-				<TryTable />
-				<Stats />
+				<Outer>
+					<ErrorCount>Þú gerðir {errorItems.length} Villur</ErrorCount>
+					<TimeText>
+						Tíminn þinn var {mm}:{ss}
+					</TimeText>
+				</Outer>
 			</OverviewContainer>
 			<SuggestionTitle>Haltu áfram að æfa þig!</SuggestionTitle>
 			<ExerciseBoxesContainer exercises={nextUp} />

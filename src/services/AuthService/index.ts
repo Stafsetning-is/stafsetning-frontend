@@ -1,7 +1,7 @@
 const TOKEN_KEY = "xt6q5Vluvxd0gTCX/gIyCw";
 const HOURS_TO_EXPIRE = 2;
 
-export type AuthLevels = "user" | "guest" | "admin";
+export type AuthLevels = "user" | "guest" | "admin" | "unknown";
 
 /**
  * set Auth Bearer as cookie
@@ -28,3 +28,8 @@ export const getAuthToken = () => {
 	}
 	return null;
 };
+
+/**
+ * Removes jwt cookie from browser
+ */
+export const removeToken = () => setAuthCookie("");

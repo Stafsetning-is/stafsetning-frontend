@@ -17,6 +17,8 @@
         "axios": "^0.19.2",
         "csshake": "^1.5.3",
         "keycode": "^2.2.0",
+        "moment": "^2.24.0",
+        "react": "^16.12.0",
         "react-dom": "^16.12.0",
         "react-redux": "^7.2.0",
         "react-router-dom": "^5.1.2",
@@ -25,8 +27,7 @@
         "redux-thunk": "^2.3.0",
         "reshake": "^1.2.1",
         "styled-components": "^5.0.1",
-        "typescript": "~3.7.2",
-        "react": "^16.12.0"
+        "typescript": "~3.7.2"
     },
     "scripts": {
         "start": "react-scripts start",
