@@ -11,7 +11,7 @@ export const PasswordInput = ({
 	onChange,
 	label,
 	placeholder,
-	validationMessage
+	validationMessage,
 }: InputComponent) => {
 	/**
 	 * Returns validation message

@@ -5,3 +5,7 @@ export const TopErrorLabel = styled.p`
 	font-size: 14px;
 	padding: 10px 0;
 `;
+
+export const Form = styled.form`
+	position: relative;
+`;

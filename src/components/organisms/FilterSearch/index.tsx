@@ -3,7 +3,7 @@ import { DoubleSlider } from "../../";
 import {
 	setHideCompleted,
 	setMaxWordCount,
-	setMinWordCount
+	setMinWordCount,
 } from "../../../actions";
 import { connect } from "react-redux";
 import { IProps } from "./interface";
@@ -18,7 +18,7 @@ const FilterComponent = ({
 	setMinWordCount,
 	maxWordCount,
 	minWordCount,
-	setHideCompleted
+	setHideCompleted,
 }: IProps) => {
 	return (
 		<FilterOuter>
@@ -27,16 +27,17 @@ const FilterComponent = ({
 				<DoubleSlider
 					value={{
 						min: minWordCount,
-						max: maxWordCount
+						max: maxWordCount,
 					}}
 					defaultValues={{
 						min: 0,
-						max: 200
+						max: 200,
 					}}
 					onChange={({ min, max }) => {
 						setMaxWordCount(max);
 						setMinWordCount(min);
 					}}
+					passProps={{}}
 					label="Lengd á æfingu"
 					type="text-input"
 				/>
@@ -57,5 +58,5 @@ const mapStateToPropss = (store: StoreState) => store.filter;
 export const FilterSearch = connect(mapStateToPropss, {
 	setHideCompleted,
 	setMinWordCount,
-	setMaxWordCount
+	setMaxWordCount,
 })(FilterComponent);

@@ -1,9 +1,12 @@
+import { InputAdornmentClassKey } from "@material-ui/core";
+
 export type FormElements =
 	| "check-box"
 	| "text-input"
 	| "password-input"
 	| "number-input"
-	| "radio-button";
+	| "radio-button"
+	| "drop-down";
 
 export type CharacterTypes =
 	| "letters"
@@ -21,6 +24,7 @@ interface InputBase {
 	valid?: boolean;
 	validationMessage?: string;
 	value: any;
+	passProps: any;
 }
 
 export interface InputElementValidation {
@@ -47,6 +51,15 @@ export interface InputComponent extends InputBase {
 	onChange: (newValue: any) => void;
 }
 
-export interface InputFactory extends InputBase {
-	onChange: (newValue: any) => void;
+interface DropDownSelection {
+	text: string;
+	value: any;
+}
+
+export interface DropDownComponent extends InputComponent {
+	selections: DropDownSelection[];
+}
+
+export interface DropDownFactoryElement extends InputComponent {
+	selections: DropDownSelection[];
 }

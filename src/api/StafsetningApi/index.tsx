@@ -9,8 +9,8 @@ import { getAuthToken } from "../../services";
 const axios = Axios.create({
 	baseURL:
 		process.env.NODE_ENV === "development"
-			? "http://localhost:5000"
-			: "https://stafs-api.herokuapp.com/",
+			? "https://stafs-api.herokuapp.com"
+			: "https://stafs-api.herokuapp.com",
 });
 
 /**
