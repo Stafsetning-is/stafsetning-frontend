@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { IProps } from "./interface";
 import { InputFactory, BasicButton, LoaderBox, Shaky } from "../../";
-import { TopErrorLabel } from "./styles";
+import { TopErrorLabel, Form } from "./styles";
 import {
 	getInputElementsArray,
 	validateErrors,
 	handlePost,
-	SHAKE_DURATION
+	SHAKE_DURATION,
 } from "./utils";
 /**
  * Generates a form object based on a recipe provided
@@ -31,7 +31,7 @@ export const FormGenerator = <T extends {}>({
 	label,
 	postTo,
 	onSuccess,
-	children
+	children,
 }: IProps<T>) => {
 	const [formObject, setFormObject] = useState(fields);
 	const [errorMessage, setErrorMessage] = useState("");
@@ -87,7 +87,7 @@ export const FormGenerator = <T extends {}>({
 		<Shaky shake={shake}>
 			<TopErrorLabel>{errorMessage}</TopErrorLabel>
 			<LoaderBox loading={loading}>
-				<form onSubmit={(e) => e.preventDefault()}>
+				<Form onSubmit={(e) => e.preventDefault()}>
 					{inputElements.map((element) => (
 						<InputFactory
 							{...element}
@@ -96,7 +96,7 @@ export const FormGenerator = <T extends {}>({
 					))}
 					<BasicButton text={label} type="default" onClick={handleSubmit} />
 					{children}
-				</form>
+				</Form>
 			</LoaderBox>
 		</Shaky>
 	);
