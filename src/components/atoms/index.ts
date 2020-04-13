@@ -7,3 +7,4 @@ export * from "./BoxWrap";
 export * from "./FormLabel";
 export * from "./Backdrop";
 export * from "./DoubleSlider";
+export * from "./DropDownInput";

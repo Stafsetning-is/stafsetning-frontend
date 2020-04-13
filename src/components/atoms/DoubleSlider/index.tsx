@@ -11,16 +11,16 @@ const muiTheme = createMuiTheme({
 	overrides: {
 		MuiSlider: {
 			thumb: {
-				color: "#6600ff"
+				color: "#6600ff",
 			},
 			track: {
-				color: "#6600ff"
+				color: "#6600ff",
 			},
 			rail: {
-				color: "black"
-			}
-		}
-	}
+				color: "black",
+			},
+		},
+	},
 });
 
 /**
@@ -30,7 +30,7 @@ export const DoubleSlider = ({
 	value: { min, max },
 	defaultValues,
 	onChange,
-	label
+	label,
 }: IProps) => {
 	/**
 	 * Recieves event from material-uui slider
@@ -40,7 +40,7 @@ export const DoubleSlider = ({
 		if (typeof newValue === "object") {
 			const newVal: DoubleSliderValue = {
 				max: newValue[1],
-				min: newValue[0]
+				min: newValue[0],
 			};
 			onChange(newVal);
 		}
@@ -50,7 +50,7 @@ export const DoubleSlider = ({
 
 	const getVal = () => [
 		min < defaultValues.min ? defaultValues.min : min,
-		max > defaultValues.max ? defaultValues.max : max
+		max > defaultValues.max ? defaultValues.max : max,
 	];
 
 	return (

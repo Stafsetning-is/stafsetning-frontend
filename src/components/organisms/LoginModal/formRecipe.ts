@@ -7,9 +7,10 @@ const username: InputElementRecipe = {
 	validation: {
 		minLength: 5,
 		trim: true,
-		forbiddenCharacterTypes: ["symbols", "white-space", "upper-case"]
+		forbiddenCharacterTypes: ["symbols", "white-space", "upper-case"],
 	},
-	value: ""
+	value: "",
+	passProps: {},
 };
 
 const password: InputElementRecipe = {
@@ -19,12 +20,13 @@ const password: InputElementRecipe = {
 	validation: {
 		minLength: 5,
 		trim: true,
-		requiredCharacterTypes: []
+		requiredCharacterTypes: [],
 	},
-	value: ""
+	value: "",
+	passProps: {},
 };
 
 export const loginForm: InputObject = {
 	username,
-	password
+	password,
 };
