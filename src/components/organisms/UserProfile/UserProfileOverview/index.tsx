@@ -1,11 +1,15 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { ExerciseBoxesContainer } from "../../../organisms/ExerciseBoxesContainer";
 import { StoreState } from "../../../../reducers";
 import { connect } from "react-redux";
 import { IProps } from "./interface";
 
 const Component = ({ exercises }: IProps) => {
-    return <ExerciseBoxesContainer exercises={exercises} />;
+    return (
+        <Fragment>
+            <ExerciseBoxesContainer exercises={exercises} />
+        </Fragment>
+    );
 };
 
 const mapStateToProps = (store: StoreState) => ({

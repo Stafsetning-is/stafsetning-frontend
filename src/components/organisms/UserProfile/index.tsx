@@ -5,8 +5,6 @@ import { UserProfileOverview } from "./UserProfileOverview";
 
 /* 2 components 1 for the picture and name
 the other for excercises that the user has finished 
-<UserProfileDetails>
-<UserProfileOverview> 
 */
 
 export const UserProfile = () => {
