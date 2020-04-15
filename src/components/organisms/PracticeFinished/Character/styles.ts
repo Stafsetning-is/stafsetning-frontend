@@ -5,6 +5,10 @@ export const CharacterSpan = styled.span`
 	color: #666666;
 	padding-right: 1px;
 	position: relative;
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */	
+	user-select: none; /* Standard */s
 `;
 
 export const ErrorSpan = styled.span`
@@ -14,6 +18,10 @@ export const ErrorSpan = styled.span`
 	font-weight: 500;
 	cursor: pointer;
 	position: relative;
+	-webkit-user-select: none; /* Safari */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
 `;
 
 export const TypedError = styled.div`
