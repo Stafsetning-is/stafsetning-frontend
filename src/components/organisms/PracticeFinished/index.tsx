@@ -25,6 +25,7 @@ const Component = ({
     errorItems,
     duration,
     createdAt,
+    exerciseString,
 }: IProps) => {
     const [mm, ss] = durationToTime(duration);
     Moment.locale("is");
@@ -47,6 +48,7 @@ const Component = ({
                     </ErrorCount>
                 </Outer>
             </OverviewContainer>
+            <PracticeText exerciseString={exerciseString} errors={errorItems} />
             <SuggestionTitle>Haltu áfram að æfa þig!</SuggestionTitle>
             <ExerciseBoxesContainer exercises={nextUp} />
         </React.Fragment>

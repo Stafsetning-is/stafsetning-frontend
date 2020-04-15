@@ -1,6 +1,8 @@
-import { Practice, Exercise, ErrorObject } from "../../../../models";
-
 export interface IProps {
     exerciseString: string;
-    errors: ErrorObject[];
+    errors: ErrorItem[];
+}
+interface ErrorItem {
+    charAt: number;
+    error: string;
 }
