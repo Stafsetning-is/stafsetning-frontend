@@ -23,7 +23,7 @@ const Component = ({
     nextUp,
     exercise: { title },
     errorItems,
-    duration,
+    duration, //should remove this!
     createdAt,
     exerciseString,
 }: IProps) => {

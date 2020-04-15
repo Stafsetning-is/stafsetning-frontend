@@ -1,6 +1,7 @@
 import React from "react";
 import { IProps } from "./interface";
 import Char from "../Character";
+import { Outer } from "./styles";
 
 /**
  * Component that receives text and displays its errors accordingly
@@ -14,9 +15,8 @@ export default ({ errors, exerciseString }: IProps) => {
      * It returns error if its an error and returns "" (empty string) if it is not and error
      */
 
-    const getErrorAtIndex = (index: number) => {
+    const getIndexOfError = (index: number) => {
         const errorItem = errors.find((error) => error.charAt === index);
-
         if (errorItem === undefined) return "";
         return errorItem.error;
     };
@@ -25,11 +25,11 @@ export default ({ errors, exerciseString }: IProps) => {
      * characterJSX essentially calls getErrorAtIndex and sets itself as that return value
      */
     const characterJSX = charArray.map((char, index) => {
-        const errorChar = getErrorAtIndex(index);
+        const errorChar = getIndexOfError(index);
         return <Char char={char} error={errorChar} />;
     });
     /**
-     * Here we return the error
+     * Here we return the characterJSX
      */
-    return <div> {characterJSX}</div>;
+    return <Outer>{characterJSX} </Outer>;
 };
