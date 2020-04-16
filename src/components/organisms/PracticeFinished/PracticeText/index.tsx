@@ -23,7 +23,7 @@ export default ({ errors, exerciseString }: IProps) => {
     };
 
     /**
-     * characterJSX essentially calls getErrorAtIndex and sets itself as that return value
+     * characterJSX essentially calls getErrorAtIndex and sets itself as that return value along with the index
      */
     const characterJSX = charArray.map((char, index) => {
         const errorChar = getIndexOfError(index);

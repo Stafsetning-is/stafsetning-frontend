@@ -60,3 +60,7 @@ export const TimeText = styled.p`
     font-size: 30px;
     text-shadow: 0px 0px 10px rgba(153, 153, 153, 0.15);
 `;
+
+export const feedBack = styled.div`
+    margin: 0 20px 20px 0l;
+`;

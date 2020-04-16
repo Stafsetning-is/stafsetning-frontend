@@ -10,6 +10,7 @@ import {
     Outer,
     ErrorCount,
     TimeText,
+    feedBack,
 } from "./styles";
 import { ExerciseBoxesContainer } from "../../";
 import TryTable from "./TryTable";
@@ -19,6 +20,8 @@ import { durationToTime } from "./utils";
 import Moment from "moment";
 import "moment/locale/is";
 import PracticeText from "./PracticeText";
+import FeedBack from "./FeedBack";
+import { getFeedback } from "./FeedBack/utils";
 const Component = ({
     nextUp,
     exercise: { title },
@@ -30,6 +33,7 @@ const Component = ({
     const [mm, ss] = durationToTime(duration);
     Moment.locale("is");
     const test = Moment(createdAt).fromNow();
+
     return (
         <React.Fragment>
             <TitleText>
@@ -44,7 +48,8 @@ const Component = ({
             <OverviewContainer>
                 <Outer>
                     <ErrorCount>
-                        Þú gerðir {errorItems.length} Villur
+                        {errorItems.length} villur
+                        {getFeedback(errorItems.length)}
                     </ErrorCount>
                 </Outer>
             </OverviewContainer>
