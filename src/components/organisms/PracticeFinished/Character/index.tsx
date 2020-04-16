@@ -15,6 +15,9 @@ export default ({ char, error }: IProps) => {
     if (error === " ") error = "óþarfa bil";
     if (error === ".") error = "óþarfa punktur";
     if (error === ",") error = "óþarfa komma";
+    /**
+     * here we could use regex for greater coverage of error messages
+     */
     // var regexpAlphabetChar = new RegExp(/^[a-zA-Z]/);
     // if (error) {
     //     var errorChar = error.charAt(0);
