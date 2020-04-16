@@ -48,7 +48,7 @@ const Component = ({
             <OverviewContainer>
                 <Outer>
                     <ErrorCount>
-                        {errorItems.length} villur
+                        {errorItems.length}
                         {getFeedback(errorItems.length)}
                     </ErrorCount>
                 </Outer>
