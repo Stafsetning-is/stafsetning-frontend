@@ -8,14 +8,15 @@ export default ({ char, error }: IProps) => {
 	if (error === " ") error = "óþarfa bil";
 	if (error === ".") error = "óþarfa punktur";
 	if (error === ",") error = "óþarfa komma";
+	if (error && char === " ") char = "_";
 
 	const typedError = showError ? <TypedError>{error}</TypedError> : null;
 
 	if (error)
 		return (
 			<ErrorSpan
-				onMouseEnter={() => setShowError(true)}
 				onMouseLeave={() => setShowError(false)}
+				onMouseEnter={() => setShowError(true)}
 			>
 				{char}
 				{typedError}
