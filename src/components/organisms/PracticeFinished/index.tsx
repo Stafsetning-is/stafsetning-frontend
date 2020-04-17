@@ -13,10 +13,8 @@ import {
     feedBack,
 } from "./styles";
 import { ExerciseBoxesContainer } from "../../";
-import TryTable from "./TryTable";
 import { connect } from "react-redux";
 import { StoreState } from "../../../reducers";
-import { durationToTime } from "./utils";
 import Moment from "moment";
 import "moment/locale/is";
 import PracticeText from "./PracticeText";
@@ -30,7 +28,7 @@ const Component = ({
     createdAt,
     exerciseString,
 }: IProps) => {
-    const [mm, ss] = durationToTime(duration);
+    // const [mm, ss] = durationToTime(duration);
     Moment.locale("is");
     const test = Moment(createdAt).fromNow();
 
