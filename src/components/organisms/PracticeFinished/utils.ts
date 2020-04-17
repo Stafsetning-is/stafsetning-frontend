@@ -14,7 +14,7 @@ export const durationToTime = (dur: number): [string, string] => {
  * This function uses two other functions, getFeedbackString and errorWord to generate feedback according to the error amount provided.
  */
 export const getFeedback = (errorItems: number) => {
-	return `${errorItems}${errorWord(errorItems)}!  ${getFeedbackString(
+	return `${errorItems} ${errorWord(errorItems)}! ${getFeedbackString(
 		errorItems
 	)}`;
 };
@@ -31,9 +31,8 @@ const errorWord = (errorItems: number) => {
  * This can be expanded into greater depths analyzing things like what words are being written poorly etc...
  */
 const getFeedbackString = (errorItems: number) => {
-	if (errorItems === 0)
-		return " Æðislegt! engar villur. Þú ert alveg með þetta";
-	else if (errorItems < 2) return " Næstum því fullkomið. Vel Gert!";
-	else if (errorItems < 5) return " Vel Gert! ";
-	else return " Þetta hefði mátt fara betur. Prufaðu aftur...";
+	if (errorItems === 0) return "Æðislegt! engar villur. Þú ert alveg með þetta";
+	else if (errorItems < 2) return "Næstum því fullkomið. Vel Gert!";
+	else if (errorItems < 5) return "Vel Gert!";
+	else return "Þetta hefði mátt fara betur. Prufaðu aftur...";
 };
