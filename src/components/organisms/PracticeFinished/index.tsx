@@ -47,10 +47,7 @@ const Component = ({
             </TopBar>
             <OverviewContainer>
                 <Outer>
-                    <ErrorCount>
-                        {errorItems.length}
-                        {getFeedback(errorItems.length)}
-                    </ErrorCount>
+                    <ErrorCount>{getFeedback(errorItems.length)}</ErrorCount>
                 </Outer>
             </OverviewContainer>
             <PracticeText exerciseString={exerciseString} errors={errorItems} />
