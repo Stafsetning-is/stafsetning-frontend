@@ -27,7 +27,7 @@ export default ({ char, error }: IProps) => {
     // }
 
     /**
-     * here if the error is null or essentially not a erro it will receive a null value
+     * here if the error is null or essentially not a error it will receive a null value
      */
     const typedError = showError ? <TypedError>{error}</TypedError> : null;
 
