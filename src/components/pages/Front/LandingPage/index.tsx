@@ -1,6 +1,11 @@
 import React from "react";
 import { LayoutWrapper } from "../../../../layout";
+import { FrontPageView } from "../../../";
 
 export default () => {
-	return <LayoutWrapper>{4}</LayoutWrapper>;
+	return (
+		<LayoutWrapper>
+			<FrontPageView />
+		</LayoutWrapper>
+	);
 };

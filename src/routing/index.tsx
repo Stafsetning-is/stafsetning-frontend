@@ -1,23 +1,11 @@
 import React from "react";
-import pages from "../components/pages";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
+import Pages, { Modals } from "../components/pages";
+import { RouteFactory } from "./utils";
 /**
- * Router functional component that
- * imports pages from components/pages
- * and renders specified routers
- *
+ * Exports Page Factory which encapsulates
+ * creating switched routes from array of objects with
+ * IPage interface. Creates both modals and pages
  */
 export default () => {
-	return (
-		<Router>
-			<Switch>
-				{pages.map((Page) => (
-					<Route path={Page.route} exact={Page.exact} key={Page.route}>
-						<Page.component />
-					</Route>
-				))}
-			</Switch>
-		</Router>
-	);
+	return <RouteFactory pages={Pages} modals={Modals} />;
 };
