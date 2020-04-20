@@ -47,13 +47,14 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 						setCompletedPracticeId(data._id);
 					})
 					.catch((error) => {
-						// handle error
+						console.log("error", error);
 					});
 			})
 			.on("textUpdate", (text: string, preview: string) => {
 				setTyped(text);
 				setPreview(preview);
 			});
+
 		setPreviewCallback(() => () => session.showPreview());
 		setErrorCount(session.getErrorCount());
 		return () => session.stopListening();

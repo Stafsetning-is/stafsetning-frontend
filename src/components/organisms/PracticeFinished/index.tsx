@@ -9,25 +9,26 @@ import {
 	SuggestionTitle,
 	Outer,
 	ErrorCount,
-	TimeText
 } from "./styles";
 import { ExerciseBoxesContainer } from "../../";
-import TryTable from "./TryTable";
 import { connect } from "react-redux";
 import { StoreState } from "../../../reducers";
-import { durationToTime } from "./utils";
 import Moment from "moment";
 import "moment/locale/is";
+import PracticeText from "./PracticeText";
+import { getFeedback } from "./utils";
+
 const Component = ({
 	nextUp,
 	exercise: { title },
 	errorItems,
-	duration,
-	createdAt
+	createdAt,
+	exerciseString,
 }: IProps) => {
-	const [mm, ss] = durationToTime(duration);
+	// const [mm, ss] = durationToTime(duration);
 	Moment.locale("is");
 	const test = Moment(createdAt).fromNow();
+
 	return (
 		<React.Fragment>
 			<TitleText>
@@ -41,12 +42,10 @@ const Component = ({
 			</TopBar>
 			<OverviewContainer>
 				<Outer>
-					<ErrorCount>Þú gerðir {errorItems.length} Villur</ErrorCount>
-					<TimeText>
-						Tíminn þinn var {mm}:{ss}
-					</TimeText>
+					<ErrorCount>{getFeedback(errorItems.length)}</ErrorCount>
 				</Outer>
 			</OverviewContainer>
+			<PracticeText exerciseString={exerciseString} errors={errorItems} />
 			<SuggestionTitle>Haltu áfram að æfa þig!</SuggestionTitle>
 			<ExerciseBoxesContainer exercises={nextUp} />
 		</React.Fragment>
@@ -54,7 +53,7 @@ const Component = ({
 };
 
 const mapStateToProps = (state: StoreState) => ({
-	nextUp: state.exercises.selection
+	nextUp: state.exercises.selection,
 });
 
 export const PracticeFinished = connect(mapStateToProps)(Component);
