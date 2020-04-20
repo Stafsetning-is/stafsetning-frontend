@@ -4,7 +4,12 @@ import { StoreState } from "../../../../reducers";
 import { connect } from "react-redux";
 import { IProps } from "./interface";
 import { fetchFinishedExercises } from "../../../../actions";
-// fetchFinishedExercises skoða betur
+/**
+ * UserProfileOverview component takes in props for the array of
+ * exercises as well as all the finished exercises fetched from
+ * the redux store userProfile
+ *
+ */
 const Component = ({ exercises, fetchFinishedExercises }: IProps) => {
     useEffect(() => {
         fetchFinishedExercises();
