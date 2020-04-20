@@ -3,7 +3,7 @@ import { Exercise } from "../utils";
 const sentenceParts = [
 	"Carl went out to the shop",
 	"to buy some groceries",
-	"for his mom"
+	"for his mom",
 ];
 
 const shortSentenceParts = ["Carl", "to", "for"];
