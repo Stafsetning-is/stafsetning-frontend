@@ -38,7 +38,7 @@ const Header = ({ user, signOut }: IProps) => {
                             </NavLink>
                         </AuthHider>
                         <AuthHider setAuthLevel="user">
-                            <NavLink to={`${urlWithoutPath()}User/1/profile`}>
+                            <NavLink to={`/user/profile`}>
                                 <HeaderItem text={user.name} />
                             </NavLink>
                         </AuthHider>

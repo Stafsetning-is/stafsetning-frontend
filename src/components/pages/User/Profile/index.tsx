@@ -1,11 +1,14 @@
 import React from "react";
 import { LayoutWrapper } from "../../../../layout";
 import { UserProfile } from "../../../";
+import { ProtectPageWrapper } from "../../../../hoc";
 
 export default () => {
     return (
-        <LayoutWrapper>
-            <UserProfile />
-        </LayoutWrapper>
+        <ProtectPageWrapper>
+            <LayoutWrapper>
+                <UserProfile />
+            </LayoutWrapper>
+        </ProtectPageWrapper>
     );
 };
