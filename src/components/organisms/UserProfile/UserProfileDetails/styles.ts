@@ -10,11 +10,14 @@ export const UserPictureContainer = styled.div`
     margin-left: auto;
     margin-right: auto;
     width: 25%;
+    border-radius: 50%;
+    overflow: hidden;
 `;
 
 export const UserPicture = styled.img`
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    display: block;
 `;
 
 export const UserName = styled.div`
