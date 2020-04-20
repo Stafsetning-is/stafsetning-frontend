@@ -1,5 +1,5 @@
-import { Practice } from "../../models";
+import { Exercise } from "../../models";
 
 export interface PracticesState {
-    selection: Practice[];
+    finishedExercises: Exercise[];
 }

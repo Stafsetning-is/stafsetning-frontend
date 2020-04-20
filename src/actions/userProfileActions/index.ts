@@ -1,5 +1,5 @@
 import { Api } from "../../api";
-import { Practice } from "../../models";
+import { Exercise } from "../../models";
 import { Dispatch } from "redux";
 import { ActionTypes } from "../types";
 import { GetFinishedExercisesAction } from "./interface";
@@ -7,7 +7,7 @@ import { GetFinishedExercisesAction } from "./interface";
 export function fetchFinishedExercises() {
     return async function (dispatch: Dispatch) {
         try {
-            const { data } = await Api.get<Practice[]>("/api/v1/practices/");
+            const { data } = await Api.get<Exercise[]>("/api/v1/practices/");
 
             dispatch<GetFinishedExercisesAction>({
                 type: ActionTypes.getFinishedExercises,

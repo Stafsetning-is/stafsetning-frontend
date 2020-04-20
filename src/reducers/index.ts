@@ -9,7 +9,7 @@ export default combineReducers<StoreState>({
     auth: authReducer,
     filter: filterReducer,
     exercises: exercisesReducer,
-    practices: userProfileReducer,
+    userProfile: userProfileReducer,
 });
 
 export * from "./authReducer";

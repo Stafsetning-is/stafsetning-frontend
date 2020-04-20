@@ -1,10 +1,14 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { ExerciseBoxesContainer } from "../../../organisms/ExerciseBoxesContainer";
 import { StoreState } from "../../../../reducers";
 import { connect } from "react-redux";
 import { IProps } from "./interface";
-
-const Component = ({ exercises }: IProps) => {
+import { fetchFinishedExercises } from "../../../../actions";
+// fetchFinishedExercises skoða betur
+const Component = ({ exercises, fetchFinishedExercises }: IProps) => {
+    useEffect(() => {
+        fetchFinishedExercises();
+    }, []);
     return (
         <Fragment>
             <ExerciseBoxesContainer exercises={exercises} />
@@ -13,7 +17,9 @@ const Component = ({ exercises }: IProps) => {
 };
 
 const mapStateToProps = (store: StoreState) => ({
-    exercises: store.exercises.selection,
+    exercises: store.userProfile.finishedExercises,
 });
 
-export const UserProfileOverview = connect(mapStateToProps)(Component);
+export const UserProfileOverview = connect(mapStateToProps, {
+    fetchFinishedExercises,
+})(Component);

@@ -1,7 +1,7 @@
 import { ActionTypes } from "../types";
-import { Practice } from "../../models";
+import { Exercise } from "../../models";
 
 export interface GetFinishedExercisesAction {
     type: ActionTypes.getFinishedExercises;
-    payload: Practice[];
+    payload: Exercise[];
 }

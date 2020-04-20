@@ -38,7 +38,7 @@ const Header = ({ user, signOut }: IProps) => {
                             </NavLink>
                         </AuthHider>
                         <AuthHider setAuthLevel="user">
-                            <NavLink to={`${urlWithoutPath()}log-in`}>
+                            <NavLink to={`${urlWithoutPath()}User/1/profile`}>
                                 <HeaderItem text={user.name} />
                             </NavLink>
                         </AuthHider>
@@ -55,7 +55,7 @@ const Header = ({ user, signOut }: IProps) => {
 };
 
 const mapStateToProps = ({ auth: { user } }: StoreState) => ({
-    user
+    user,
 });
 
 export default connect(mapStateToProps, { signOut })(Header);
