@@ -6,7 +6,7 @@ import CenterBlock from "../CenterBlock";
 import {
     fetchUserFromToken,
     fetchExercisesSample,
-    fetchExercisesForUser
+    fetchExercisesForUser,
 } from "../../actions";
 import { StoreState } from "../../reducers";
 import { LoaderBox } from "../../components";
@@ -17,7 +17,7 @@ const Component = ({
     userType,
     fetchExercisesForUser,
     fetchExercisesSample,
-    fetchUserFromToken
+    fetchUserFromToken,
 }: IProps) => {
     /**
      * Fetches info about logged in
@@ -48,11 +48,11 @@ const Component = ({
 };
 
 const mapStateToProps = (state: StoreState) => ({
-    userType: state.auth.type
+    userType: state.auth.type,
 });
 
 export const LayoutWrapper = connect(mapStateToProps, {
     fetchUserFromToken,
     fetchExercisesSample,
-    fetchExercisesForUser
+    fetchExercisesForUser,
 })(Component);

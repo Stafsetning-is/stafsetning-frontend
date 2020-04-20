@@ -8,9 +8,9 @@ import {
 	SecondaryTitle,
 	Container,
 	InfoContainer,
-	BestPracticeTitle
+	BestPracticeTitle,
 } from "./styles";
-import { bestPractice, getPracticeLink } from "./utils";
+import { bestPractice } from "./utils";
 import { ProtectedNavLink } from "../../../hoc";
 
 /**
@@ -22,8 +22,22 @@ export const ExerciseBox = ({
 	bestAttempt,
 	_id,
 	difficultRange: { min, max },
-	wordCount
+	wordCount,
+	practice,
+	completed,
 }: IProps) => {
+	/**
+	 * Props for ExerciseBox Component represents
+	 * the exercise model object interface. If a practice
+	 * Id is included in props then we want the OPEN button
+	 * to redirect the user to the /completed/:practiceId url.
+	 * How ever if the practice Id is not supplied in props
+	 * then we know that the OPEN button should open
+	 * the exercise for the user via the
+	 * /exercise/:exerciseId url
+	 */
+	const link = practice ? `/completed/${practice}` : `/exercise/${_id}`;
+
 	return (
 		<BoxWrap padding="0px">
 			<Container>
@@ -37,7 +51,7 @@ export const ExerciseBox = ({
 						<BestPracticeTitle>{bestPractice(bestAttempt)}</BestPracticeTitle>
 					</InfoBox>
 				</InfoContainer>
-				<ProtectedNavLink to={getPracticeLink(_id)} service="log-in">
+				<ProtectedNavLink to={link} service="log-in">
 					<Button>Opna</Button>
 				</ProtectedNavLink>
 			</Container>

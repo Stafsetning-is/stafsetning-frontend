@@ -32,6 +32,7 @@ export interface Exercise {
 		max: number;
 	};
 	wordCount: number;
+	practice?: string;
 }
 
 export interface User {
