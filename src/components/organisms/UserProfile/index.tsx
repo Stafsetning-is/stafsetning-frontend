@@ -1,19 +1,23 @@
 import React, { Fragment } from "react";
-//import { IProps } from "./interface";
 import UserProfileDetails from "./UserProfileDetails";
 import { UserProfileOverview } from "./UserProfileOverview";
 import Drawer from "./Drawer";
+import { IProps } from "./interface";
+import { connect } from "react-redux";
+import { StoreState } from "../../../reducers";
 
-/* 2 components 1 for the picture and name
-the other for excercises that the user has finished 
-*/
-
-export const UserProfile = () => {
+const Component = ({ user }: IProps) => {
     return (
         <Fragment>
-            <UserProfileDetails userName="nanna" userImage="" />
+            <UserProfileDetails {...user} />
             <Drawer />
             <UserProfileOverview />
         </Fragment>
     );
 };
+
+const mapStateToProps = (store: StoreState) => ({
+    user: store.auth.user,
+});
+
+export const UserProfile = connect(mapStateToProps)(Component);

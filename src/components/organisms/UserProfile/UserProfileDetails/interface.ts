@@ -1,4 +1,4 @@
 export interface IProps {
-    userImage: string;
-    userName: string;
+    avatar: string;
+    name: string;
 }
