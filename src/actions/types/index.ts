@@ -4,22 +4,24 @@ import * as ExercisesActions from "../exercisesActions";
 import * as UserProfileActions from "../userProfileActions";
 
 export enum ActionTypes {
-    setMinWordCount,
-    setHideCompleted,
-    setMaxWordCount,
-    logInUser,
-    logOutUser,
-    getExerciseSample,
-    getExercisesByUser,
-    getFinishedExercises,
+	setMinWordCount,
+	setHideCompleted,
+	setMaxWordCount,
+	logInUser,
+	logOutUser,
+	getExerciseSample,
+	getExercisesByUser,
+	getFinishedExercises,
+	addGrammarRuleToFilter,
 }
 
 export type Actions =
-    | FilterActions.SetMinWordCountAction
-    | FilterActions.SetHideCompletedAction
-    | FilterActions.SetMaxWordCountAction
-    | AuthActions.LogInUserAction
-    | AuthActions.LogOutUserAction
-    | ExercisesActions.GetExerciseSampleAction
-    | ExercisesActions.GetExercisesByUserAction
-    | UserProfileActions.GetFinishedExercisesAction;
+	| FilterActions.SetMinWordCountAction
+	| FilterActions.SetHideCompletedAction
+	| FilterActions.SetMaxWordCountAction
+	| AuthActions.LogInUserAction
+	| AuthActions.LogOutUserAction
+	| ExercisesActions.GetExerciseSampleAction
+	| ExercisesActions.GetExercisesByUserAction
+	| UserProfileActions.GetFinishedExercisesAction
+	| FilterActions.AddRuleToGrammarFilter;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Outer = styled.div`
 	display: flex;
-	border: 1px solid #cecece;
+	border: 1px solid ${(props) => (props.theme.selected ? "#ff00cc" : "#cecece")};
 	border-radius: 3px;
 	padding: 5px;
 	display: flex;
@@ -10,6 +10,7 @@ export const Outer = styled.div`
 	float: left;
 	margin-bottom: 5px;
 	align-items: center;
+	cursor: pointer;
 `;
 
 export const CheckBox = styled.div`

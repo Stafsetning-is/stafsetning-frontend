@@ -9,7 +9,13 @@ export interface SetHideCompletedAction {
 	type: ActionTypes.setHideCompleted;
 	payload: boolean;
 }
+
 export interface SetMaxWordCountAction {
 	type: ActionTypes.setMaxWordCount;
 	payload: number;
+}
+
+export interface AddRuleToGrammarFilter {
+	type: ActionTypes.addGrammarRuleToFilter;
+	payload: string;
 }

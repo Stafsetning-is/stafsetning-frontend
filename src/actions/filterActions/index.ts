@@ -1,28 +1,36 @@
 import {
 	SetMinWordCountAction,
 	SetHideCompletedAction,
-	SetMaxWordCountAction
+	SetMaxWordCountAction,
+	AddRuleToGrammarFilter,
 } from "./interface";
 import { ActionTypes } from "../types";
 
 export function setMinWordCount(newMin: number): SetMinWordCountAction {
 	return {
 		type: ActionTypes.setMinWordCount,
-		payload: newMin
+		payload: newMin,
 	};
 }
 
 export function setHideCompleted(hide: boolean): SetHideCompletedAction {
 	return {
 		type: ActionTypes.setHideCompleted,
-		payload: hide
+		payload: hide,
 	};
 }
 
 export function setMaxWordCount(newMax: number): SetMaxWordCountAction {
 	return {
 		type: ActionTypes.setMaxWordCount,
-		payload: newMax
+		payload: newMax,
+	};
+}
+
+export function addRuleToFilter(newRule: string): AddRuleToGrammarFilter {
+	return {
+		payload: newRule,
+		type: ActionTypes.addGrammarRuleToFilter,
 	};
 }
 

@@ -3,14 +3,19 @@ import { connect } from "react-redux";
 import { IProps } from "./interface";
 import { StoreState } from "../../../../reducers";
 import { countRules } from "./utils";
+import { addRuleToFilter } from "../../../../actions";
 import RuleBox from "./RuleBox";
 
-const Component = ({ exercises }: IProps) => {
+const Component = ({ exercises, selectedRules, addRuleToFilter }: IProps) => {
 	const rules = useMemo(() => countRules(exercises), [exercises]);
 	return (
 		<div>
 			{rules.map((rule) => (
-				<RuleBox {...rule} onClick={(id) => {}} />
+				<RuleBox
+					{...rule}
+					onClick={(id) => addRuleToFilter(id)}
+					selected={selectedRules.includes(rule.id)}
+				/>
 			))}
 		</div>
 	);
@@ -18,6 +23,7 @@ const Component = ({ exercises }: IProps) => {
 
 const mapStateToProps = (state: StoreState) => ({
 	exercises: state.exercises.selection,
+	selectedRules: state.filter.filterGrammarRule,
 });
 
-export default connect(mapStateToProps)(Component);
+export default connect(mapStateToProps, { addRuleToFilter })(Component);

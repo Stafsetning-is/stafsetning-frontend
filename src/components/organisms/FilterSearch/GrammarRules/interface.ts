@@ -2,6 +2,8 @@ import { Exercise, Report as _Report } from "../../../../models";
 
 export interface IProps {
 	exercises: Exercise[];
+	selectedRules: string[];
+	addRuleToFilter: (id: string) => void;
 }
 
 export interface GrammarRule {
