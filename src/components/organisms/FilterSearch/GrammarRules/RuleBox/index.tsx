@@ -1,10 +1,11 @@
 import React from "react";
 import { IProps } from "./interface";
-
+import { Outer, CheckBox } from "./styles";
 export default ({ name, onClick }: IProps) => {
 	return (
-		<div>
+		<Outer>
+			<CheckBox />
 			<span>{name}</span>
-		</div>
+		</Outer>
 	);
 };
