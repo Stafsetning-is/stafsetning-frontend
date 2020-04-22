@@ -20,15 +20,16 @@ export const placeHolderPractice: PracticePopulated = {
 		parts: [],
 		difficultRange: {
 			min: 0,
-			max: 0
+			max: 0,
 		},
 		length: 0,
 		completed: false,
 		_id: "",
-		wordCount: 0
+		report: {},
+		wordCount: 0,
 	},
 	duration: 0,
 	exerciseString: "",
 	_id: "",
-	createdAt: ""
+	createdAt: "",
 };
