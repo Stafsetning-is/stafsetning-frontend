@@ -19,3 +19,8 @@ export interface AddRuleToGrammarFilter {
 	type: ActionTypes.addGrammarRuleToFilter;
 	payload: string;
 }
+
+export interface RemoveGrammarRuleFromFilter {
+	type: ActionTypes.removeGrammarRuleFromFilter;
+	payload: string;
+}

@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const Outer = styled.div`
-	display: flex;
-	border: 1px solid ${(props) => (props.theme.selected ? "#ff00cc" : "#cecece")};
+	border: 1px solid ${(props) => (props.theme.selected ? "#6600ff" : "#cecece")};
 	border-radius: 3px;
-	padding: 5px;
+	display: flex;
+	padding: 0;
 	display: flex;
 	position: relative;
 	float: left;
@@ -14,9 +14,14 @@ export const Outer = styled.div`
 `;
 
 export const CheckBox = styled.div`
-	height: 10px;
-	width: 10px;
-	border: 1px solid #cecece;
-	border-radius: 3px;
+	height: 28px;
+	width: 28px;
+	border: 1px solid ${(props) => (props.theme.selected ? "#6600ff" : "#cecece")};
+	background-color: ${(props) =>
+		props.theme.selected ? "#6600ff" : "#cecece"};
 	margin-right: 5px;
+`;
+
+export const Text = styled.span`
+	padding: 5px;
 `;

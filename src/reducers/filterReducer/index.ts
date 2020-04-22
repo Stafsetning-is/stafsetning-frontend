@@ -29,10 +29,17 @@ export default (
 				maxWordCount: action.payload,
 			};
 		case ActionTypes.addGrammarRuleToFilter:
-			console.log("action", action);
 			return {
 				...state,
 				filterGrammarRule: [...state.filterGrammarRule, action.payload],
+			};
+		case ActionTypes.removeGrammarRuleFromFilter:
+			const rules = state.filterGrammarRule.filter(
+				(rule) => rule !== action.payload
+			);
+			return {
+				...state,
+				filterGrammarRule: rules,
 			};
 		default:
 			return state;

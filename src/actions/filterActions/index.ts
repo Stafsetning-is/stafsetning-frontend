@@ -3,6 +3,7 @@ import {
 	SetHideCompletedAction,
 	SetMaxWordCountAction,
 	AddRuleToGrammarFilter,
+	RemoveGrammarRuleFromFilter,
 } from "./interface";
 import { ActionTypes } from "../types";
 
@@ -31,6 +32,14 @@ export function addRuleToFilter(newRule: string): AddRuleToGrammarFilter {
 	return {
 		payload: newRule,
 		type: ActionTypes.addGrammarRuleToFilter,
+	};
+}
+export function removeRuleFromFilter(
+	rule: string
+): RemoveGrammarRuleFromFilter {
+	return {
+		payload: rule,
+		type: ActionTypes.removeGrammarRuleFromFilter,
 	};
 }
 

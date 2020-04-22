@@ -3,20 +3,31 @@ import { connect } from "react-redux";
 import { IProps } from "./interface";
 import { StoreState } from "../../../../reducers";
 import { countRules } from "./utils";
-import { addRuleToFilter } from "../../../../actions";
+import { addRuleToFilter, removeRuleFromFilter } from "../../../../actions";
 import RuleBox from "./RuleBox";
 
-const Component = ({ exercises, selectedRules, addRuleToFilter }: IProps) => {
+const Component = ({
+	exercises,
+	selectedRules,
+	addRuleToFilter,
+	removeRuleFromFilter,
+}: IProps) => {
 	const rules = useMemo(() => countRules(exercises), [exercises]);
 	return (
 		<div>
-			{rules.map((rule) => (
-				<RuleBox
-					{...rule}
-					onClick={(id) => addRuleToFilter(id)}
-					selected={selectedRules.includes(rule.id)}
-				/>
-			))}
+			{rules.map((rule) => {
+				const isSelected = selectedRules.includes(rule.id);
+				return (
+					<RuleBox
+						{...rule}
+						onClick={(id) => {
+							if (isSelected) removeRuleFromFilter(id);
+							else addRuleToFilter(id);
+						}}
+						selected={isSelected}
+					/>
+				);
+			})}
 		</div>
 	);
 };
@@ -26,4 +37,7 @@ const mapStateToProps = (state: StoreState) => ({
 	selectedRules: state.filter.filterGrammarRule,
 });
 
-export default connect(mapStateToProps, { addRuleToFilter })(Component);
+export default connect(mapStateToProps, {
+	addRuleToFilter,
+	removeRuleFromFilter,
+})(Component);

@@ -4,6 +4,7 @@ export interface IProps {
 	exercises: Exercise[];
 	selectedRules: string[];
 	addRuleToFilter: (id: string) => void;
+	removeRuleFromFilter: (id: string) => void;
 }
 
 export interface GrammarRule {
