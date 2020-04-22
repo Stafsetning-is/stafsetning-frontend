@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { InputFactory } from "../../..";
 import { LayoutWrapper } from "../../../../layout";
 import { TopErrorLabel, Form } from "../styles";
-import { InputElementContainer } from "./styles";
+import { InputElementContainer, Feedback } from "./styles";
 import { getLiveInputElementsArray } from "../utils";
 import { IProps } from "./interface";
 import { ProtectPageWrapper } from "../../../../hoc";
@@ -43,7 +43,9 @@ export const LiveForm = <T extends {}>({
                 <Form onSubmit={(e) => e.preventDefault()}>
                     {inputElements.map((element) => (
                         <InputElementContainer>
-                            <span>{element.modified ? "🤔" : "✅"}</span>
+                            <Feedback>
+                                {element.modified ? "🤔" : "✅"}
+                            </Feedback>
                             <InputFactory
                                 {...element}
                                 onChange={(val) =>
