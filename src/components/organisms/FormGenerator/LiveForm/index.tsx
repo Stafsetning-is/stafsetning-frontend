@@ -5,7 +5,6 @@ import { TopErrorLabel, Form } from "../styles";
 import { InputElementContainer, Feedback } from "./styles";
 import { getLiveInputElementsArray } from "../utils";
 import { IProps } from "./interface";
-import { ProtectPageWrapper } from "../../../../hoc";
 
 export const LiveForm = <T extends {}>({
     fields,
@@ -37,25 +36,19 @@ export const LiveForm = <T extends {}>({
     };
 
     return (
-        <ProtectPageWrapper>
-            <LayoutWrapper>
-                <TopErrorLabel>{errorMessage}</TopErrorLabel>
-                <Form onSubmit={(e) => e.preventDefault()}>
-                    {inputElements.map((element) => (
-                        <InputElementContainer>
-                            <Feedback>
-                                {element.modified ? "🤔" : "✅"}
-                            </Feedback>
-                            <InputFactory
-                                {...element}
-                                onChange={(val) =>
-                                    handleChange(element.key, val)
-                                }
-                            />
-                        </InputElementContainer>
-                    ))}
-                </Form>
-            </LayoutWrapper>
-        </ProtectPageWrapper>
+        <LayoutWrapper>
+            <TopErrorLabel>{errorMessage}</TopErrorLabel>
+            <Form onSubmit={(e) => e.preventDefault()}>
+                {inputElements.map((element) => (
+                    <InputElementContainer>
+                        <Feedback>{element.modified ? "🤔" : "✅"}</Feedback>
+                        <InputFactory
+                            {...element}
+                            onChange={(val) => handleChange(element.key, val)}
+                        />
+                    </InputElementContainer>
+                ))}
+            </Form>
+        </LayoutWrapper>
     );
 };

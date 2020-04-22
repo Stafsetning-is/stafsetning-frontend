@@ -1,9 +1,10 @@
 import React from "react";
 import { LiveForm } from "../../../";
 import { formRecipe } from "./formRecipe";
+import { ProtectPageWrapper } from "../../../../hoc";
 
 export default () => (
-	<div>
-		<LiveForm fields={formRecipe} postTo="" onSuccess={() => {}} />
-	</div>
+    <ProtectPageWrapper>
+        <LiveForm fields={formRecipe} postTo="" onSuccess={() => {}} />
+    </ProtectPageWrapper>
 );
