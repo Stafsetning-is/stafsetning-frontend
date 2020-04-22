@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { IProps } from "./interface";
-import { InputFactory, BasicButton, LoaderBox, Shaky } from "../../";
+import { InputFactory, BasicButton, LoaderBox, Shaky } from "../../..";
 import { TopErrorLabel, Form } from "./styles";
 import {
 	getInputElementsArray,
