@@ -4,13 +4,13 @@ import { Container } from "./styles";
 import { IProps } from "./interface";
 
 export const ExerciseBoxesContainer = ({ exercises }: IProps) => {
-    return (
-        <Container>
-            <LoaderBox loading={exercises.length === 0}>
-                {exercises.map((itm) => (
-                    <ExerciseBox {...itm} />
-                ))}
-            </LoaderBox>
-        </Container>
-    );
+	return (
+		<LoaderBox loading={exercises.length === 0}>
+			<Container>
+				{exercises.map((itm) => (
+					<ExerciseBox {...itm} />
+				))}
+			</Container>
+		</LoaderBox>
+	);
 };
