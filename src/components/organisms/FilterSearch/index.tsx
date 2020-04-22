@@ -14,6 +14,9 @@ import GrammarRules from "./GrammarRules";
 import Compartment from "./Compartment";
 import FilterButton from "./FilterButton";
 
+/**
+ * Filter menu for search on front page
+ */
 const FilterComponent = ({
 	hideCompleted,
 	setMaxWordCount,
