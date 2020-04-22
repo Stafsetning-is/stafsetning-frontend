@@ -1,6 +1,6 @@
-import { InputElementRecipe } from "../../../../../services";
+import { LiveInputElementRecipe } from "../../../../../services";
 
-const difficulty: InputElementRecipe = {
+const difficulty: LiveInputElementRecipe = {
 	label: "Námsstig",
 	type: "drop-down",
 	placeholder: "Veldu námstig",
@@ -8,6 +8,7 @@ const difficulty: InputElementRecipe = {
 		minLength: 6,
 		trim: true,
 	},
+	modified: false,
 	value: "",
 	passProps: {
 		selections: [

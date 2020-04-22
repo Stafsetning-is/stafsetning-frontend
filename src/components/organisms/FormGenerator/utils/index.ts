@@ -23,7 +23,7 @@ export const getInputElementsArray = (fields: InputObject) => {
  * its necessary
  */
 export const getLiveInputElementsArray = (fields: LiveInputObject) => {
-	return mapFieldsToArray<InputObject>(fields);
+	return mapFieldsToArray<LiveInputObject>(fields);
 };
 
 /**
