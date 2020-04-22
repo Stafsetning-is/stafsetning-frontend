@@ -23,17 +23,19 @@ export default class Validator {
 	 * to the user specified validation
 	 * @param field the field to validate
 	 */
-	public static check(field: InputElementRecipe) {
-		if (!field.validation) return;
-		/**
-		 * Possibility of type errors on runtime
-		 * try catch will thus catch the errors
-		 * and ignore them
-		 */
-		Validator.clearError(field);
-		try {
-			Validator.validationMethods.forEach((method) => method(field));
-		} catch (error) {}
+	public static check(fields: InputElementRecipe[]) {
+		for (const field of fields) {
+			if (!field.validation) return;
+			/**
+			 * Possibility of type errors on runtime
+			 * try catch will thus catch the errors
+			 * and ignore them
+			 */
+			Validator.clearError(field);
+			try {
+				Validator.validationMethods.forEach((method) => method(field));
+			} catch (error) {}
+		}
 	}
 
 	/**
@@ -130,7 +132,7 @@ export default class Validator {
 			symbols: new RegExp(/[^\w\s]/, "g"),
 			"white-space": new RegExp(/\s/, "g"),
 			"lower-case": new RegExp(/[a-z]/, "g"),
-			"upper-case": new RegExp(/[A-Z]/, "g")
+			"upper-case": new RegExp(/[A-Z]/, "g"),
 		}[type];
 	}
 
@@ -147,7 +149,7 @@ export default class Validator {
 			symbols: "tákn",
 			"white-space": "bil",
 			"lower-case": "lítinn staf",
-			"upper-case": "stóran staf"
+			"upper-case": "stóran staf",
 		}[type];
 	}
 
@@ -215,6 +217,6 @@ export default class Validator {
 		Validator.valRegexPattern,
 		Validator.trim,
 		Validator.valForbiddenChars,
-		Validator.valRequiredCharacters
+		Validator.valRequiredCharacters,
 	];
 }

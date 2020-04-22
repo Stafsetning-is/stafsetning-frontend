@@ -1,7 +1,7 @@
-import { InputObject } from "../../../../services";
+import { LiveInputObject } from "../../../../services";
 
 export interface IProps<T> {
-	fields: InputObject;
+	fields: LiveInputObject;
 	postTo: string;
 	onSuccess: (data: T) => void;
 }

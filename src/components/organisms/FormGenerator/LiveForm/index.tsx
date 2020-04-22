@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { InputFactory } from "../../..";
+import { LayoutWrapper } from "../../../../layout";
 import { TopErrorLabel, Form } from "../styles";
+import { InputElementContainer } from "./styles";
 import { getInputElementsArray } from "../utils";
 import { IProps } from "./interface";
 
@@ -22,19 +24,18 @@ export const LiveForm = <T extends {}>({
 	};
 
 	return (
-		<React.Fragment>
+		<LayoutWrapper>
 			<TopErrorLabel>{errorMessage}</TopErrorLabel>
 			<Form onSubmit={(e) => e.preventDefault()}>
 				{inputElements.map((element) => (
-					<div>
-						<span>✅</span>
+					<InputElementContainer>
 						<InputFactory
 							{...element}
 							onChange={(val) => handleChange(element.key, val)}
 						/>
-					</div>
+					</InputElementContainer>
 				))}
 			</Form>
-		</React.Fragment>
+		</LayoutWrapper>
 	);
 };

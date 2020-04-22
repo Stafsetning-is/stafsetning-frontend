@@ -1,5 +1,5 @@
 import Validator from "./Validator";
-import { InputObject } from "../../../../services";
+import { InputObject, LiveInputObject } from "../../../../services";
 import { Api } from "../../../../api";
 
 export const SHAKE_DURATION = 500;
@@ -11,13 +11,32 @@ export const SHAKE_DURATION = 500;
  * its necessary
  */
 export const getInputElementsArray = (fields: InputObject) => {
+	const elements = mapFieldsToArray<InputObject>(fields);
+	Validator.check(elements);
+	return elements;
+};
+
+/**
+ * Turns the LiveformObject to an mappable array
+ * that can be easily turned to JSX
+ * also adds validation messages if validator thinks
+ * its necessary
+ */
+export const getLiveInputElementsArray = (fields: LiveInputObject) => {
+	return mapFieldsToArray<InputObject>(fields);
+};
+
+/**
+ * helper function that maps object of
+ * fields to array of fields
+ */
+const mapFieldsToArray = <T>(fields: T) => {
 	const inputElementArray = [];
 	for (const key in fields) {
 		const item = {
 			...fields[key],
-			key
+			key,
 		};
-		Validator.check(item);
 		inputElementArray.push(item);
 	}
 	return inputElementArray;
