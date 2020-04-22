@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import { IProps } from "./interface";
 import { StoreState } from "../../../reducers";
 import { FilterOuter } from "./styles";
+import GrammarRules from "./GrammarRuleField";
 import Compartment from "./Compartment";
 import FilterButton from "./FilterButton";
 
@@ -24,7 +25,9 @@ const FilterComponent = ({
 	return (
 		<AuthHider setAuthLevel="user">
 			<FilterOuter>
-				<Compartment> </Compartment>
+				<Compartment>
+					<GrammarRules />
+				</Compartment>
 				<Compartment>
 					<DoubleSlider
 						value={{
