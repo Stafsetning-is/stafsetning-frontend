@@ -13,7 +13,7 @@ import { FilterOuter } from "./styles";
 import GrammarRules from "./GrammarRules";
 import Compartment from "./Compartment";
 import FilterButton from "./FilterButton";
-
+import { sliderProps } from "./utils";
 /**
  * Filter menu for search on front page
  */
@@ -33,20 +33,15 @@ const FilterComponent = ({
 				</Compartment>
 				<Compartment>
 					<DoubleSlider
+						{...sliderProps}
 						value={{
 							min: minWordCount,
 							max: maxWordCount,
-						}}
-						defaultValues={{
-							min: 0,
-							max: 200,
 						}}
 						onChange={({ min, max }) => {
 							setMaxWordCount(max);
 							setMinWordCount(min);
 						}}
-						passProps={{}}
-						label="Lengd á æfingu"
 						type="text-input"
 					/>
 				</Compartment>
