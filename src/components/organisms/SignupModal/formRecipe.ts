@@ -106,6 +106,7 @@ const difficulty: InputElementRecipe = {
 		],
 	},
 };
+
 export const signupForm: InputObject = {
 	name,
 	username,

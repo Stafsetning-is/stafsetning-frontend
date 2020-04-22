@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { IProps } from "../interface";
-import { InputFactory, BasicButton, LoaderBox, Shaky } from "../../..";
+import React, { useState } from "react";
+import { InputFactory } from "../../..";
 import { TopErrorLabel, Form } from "../styles";
-import {
-	getInputElementsArray,
-	validateErrors,
-	handlePost,
-	SHAKE_DURATION,
-} from "../utils";
+import { getInputElementsArray } from "../utils";
+import { IProps } from "./interface";
 
-export const FormGenerator = <T extends {}>({
+export const LiveForm = <T extends {}>({
 	fields,
-	label,
 	postTo,
 	onSuccess,
-	children,
 }: IProps<T>) => {
 	const [formObject, setFormObject] = useState(fields);
 	const [errorMessage, setErrorMessage] = useState("");
