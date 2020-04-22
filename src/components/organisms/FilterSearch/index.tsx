@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import { IProps } from "./interface";
 import { StoreState } from "../../../reducers";
 import { FilterOuter } from "./styles";
-import GrammarRules from "./GrammarRuleField";
+import GrammarRules from "./GrammarRules";
 import Compartment from "./Compartment";
 import FilterButton from "./FilterButton";
 
