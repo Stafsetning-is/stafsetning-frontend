@@ -20,6 +20,11 @@ export const Button = styled.div`
 
 export const InfoBox = styled.div``;
 
+export const TopLine = styled.div`
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+`;
 export const TitleText = styled.span`
 	color: #333;
 	margin: 5px 0 5px 0;
