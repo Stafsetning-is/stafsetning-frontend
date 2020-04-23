@@ -17,6 +17,6 @@ export interface ReloadSelectionAction {
 }
 
 export interface StarExerciseInSelectionAction {
-	type: Ac;
+	type: ActionTypes.starExerciseInSelection;
 	payload: { saved: boolean; exercise: string };
 }
