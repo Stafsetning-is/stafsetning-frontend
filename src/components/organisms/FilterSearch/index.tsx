@@ -29,7 +29,7 @@ const FilterComponent = ({
 	return (
 		<AuthHider setAuthLevel="user">
 			<FilterOuter>
-				<Header></Header>
+				<Header>Leita</Header>
 				<Compartment label="Málfræði reglur">
 					<GrammarRules />
 				</Compartment>
