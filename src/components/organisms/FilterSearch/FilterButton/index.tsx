@@ -5,9 +5,10 @@ import { Button } from "./styles";
 /**
  * Toogle button for filter menu
  */
-export default ({ toggle, value, text }: IProps) => {
+export default ({ onClick, selected, text, quickFilter }: IProps) => {
+	const selectOnToggle = selected ? "none" : quickFilter;
 	return (
-		<Button theme={{ value }} onClick={() => toggle(!value)}>
+		<Button theme={{ selected }} onClick={() => onClick(selectOnToggle)}>
 			{text}
 		</Button>
 	);

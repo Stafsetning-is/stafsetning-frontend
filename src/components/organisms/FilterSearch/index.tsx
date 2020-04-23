@@ -4,6 +4,7 @@ import {
 	setHideCompleted,
 	setMaxWordCount,
 	setMinWordCount,
+	setQuickFilter,
 } from "../../../actions";
 import { AuthHider } from "../../../hoc";
 import { connect } from "react-redux";
@@ -18,12 +19,12 @@ import { sliderProps } from "./utils";
  * Filter menu for search on front page
  */
 const FilterComponent = ({
-	hideCompleted,
 	setMaxWordCount,
 	setMinWordCount,
 	maxWordCount,
 	minWordCount,
-	setHideCompleted,
+	setQuickFilter,
+	quickFilter,
 }: IProps) => {
 	return (
 		<AuthHider setAuthLevel="user">
@@ -48,8 +49,9 @@ const FilterComponent = ({
 				<Compartment>
 					<FilterButton
 						text="Fela þær sem ég er búinn með"
-						value={hideCompleted}
-						toggle={setHideCompleted}
+						selected={quickFilter === "hide-completed"}
+						onClick={setQuickFilter}
+						quickFilter="hide-completed"
 					/>
 				</Compartment>
 			</FilterOuter>
@@ -63,4 +65,5 @@ export const FilterSearch = connect(mapStateToPropss, {
 	setHideCompleted,
 	setMinWordCount,
 	setMaxWordCount,
+	setQuickFilter,
 })(FilterComponent);
