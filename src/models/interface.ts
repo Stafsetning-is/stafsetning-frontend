@@ -25,7 +25,6 @@ export interface Exercise {
 	completed: boolean;
 	title?: string;
 	_id: string;
-	bestAttempt?: number;
 	length: number;
 	difficultRange: {
 		min: number;
@@ -34,6 +33,7 @@ export interface Exercise {
 	report: Report;
 	wordCount: number;
 	practice?: string;
+	score?: number;
 }
 
 export interface Report {

@@ -32,8 +32,8 @@ export const SecondaryTitle = styled.span`
 
 export const BestPracticeTitle = styled.span`
 	${subTitleBase}
-	color: #00EE88;
-	font-weight: bold;
+	color: #00d855;
+	font-weight: 500;
 `;
 
 export const Container = styled.div`

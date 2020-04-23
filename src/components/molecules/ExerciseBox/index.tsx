@@ -19,12 +19,12 @@ import { ProtectedNavLink } from "../../../hoc";
  */
 export const ExerciseBox = ({
 	title,
-	bestAttempt,
 	_id,
 	difficultRange: { min, max },
 	wordCount,
 	practice,
 	completed,
+	score,
 	report,
 }: IProps) => {
 	/**
@@ -39,7 +39,9 @@ export const ExerciseBox = ({
 	 */
 	const link = practice ? `/completed/${practice}` : `/exercise/${_id}`;
 	const ruleString = reportToRuleString(report);
-
+	const scoreString = score
+		? `Besta hingað til: ${Math.round(score * 100)}%`
+		: "";
 	return (
 		<BoxWrap padding="0px">
 			<Container>
@@ -50,7 +52,7 @@ export const ExerciseBox = ({
 							{wordCount} orð • {min}-{max} bekkur
 						</SecondaryTitle>
 						<SecondaryTitle>{ruleString}</SecondaryTitle>
-						<BestPracticeTitle>{bestPractice(bestAttempt)}</BestPracticeTitle>
+						<BestPracticeTitle>{scoreString}</BestPracticeTitle>
 					</InfoBox>
 				</InfoContainer>
 				<ProtectedNavLink to={link} service="log-in">
