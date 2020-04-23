@@ -10,6 +10,7 @@ import {
 	InfoContainer,
 	BestPracticeTitle,
 	TopLine,
+	StarBox,
 } from "./styles";
 import { bestPractice, reportToRuleString } from "./utils";
 import { ProtectedNavLink } from "../../../hoc";
@@ -51,6 +52,10 @@ export const ExerciseBox = ({
 	const saveEndpoint =
 		`/api/v1/users/exercises${_id}/` + isSaved ? "unsave" : "save";
 
+	const handleSave = () => {
+		setIsSaved((curr) => !curr);
+	};
+
 	return (
 		<BoxWrap padding="0px">
 			<Container>
@@ -58,7 +63,9 @@ export const ExerciseBox = ({
 					<InfoBox>
 						<TopLine theme={{ isSaved }}>
 							<TitleText>{title}</TitleText>
-							<FontAwesomeIcon icon={faStar} />
+							<StarBox onClick={handleSave}>
+								<FontAwesomeIcon icon={faStar} />
+							</StarBox>
 						</TopLine>
 						<SecondaryTitle>
 							{wordCount} orð • {min}-{max} bekkur

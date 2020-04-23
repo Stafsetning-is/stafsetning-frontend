@@ -27,7 +27,11 @@ export const TopLine = styled.div`
 	align-items: center;
 	svg {
 		color: ${(props) =>
-			props.theme.isSaved ? "rgba(255, 238, 34, 0.9)" : "#cecece"};
+			props.theme.isSaved
+				? `
+			rgba(255, 238, 34, 0.9);
+			text-shadow: 0px 0px 5px rgba(0,0,0,0.2)`
+				: "#cecece"};
 		cursor: pointer;
 	}
 `;
