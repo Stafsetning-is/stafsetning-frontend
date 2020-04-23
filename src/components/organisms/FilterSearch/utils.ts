@@ -14,4 +14,8 @@ export const FILTER_BUTTONS: FilterButton[] = [
 		label: "Fela þær sem ég er búinn með",
 		quickFilter: "hide-completed",
 	},
+	{
+		label: "Sýna vistaðar",
+		quickFilter: "show-saved",
+	},
 ];

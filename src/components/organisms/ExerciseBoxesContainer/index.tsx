@@ -5,6 +5,9 @@ import { IProps } from "./interface";
 import { connect } from "react-redux";
 import { starExerciseInSelection } from "../../../actions";
 
+/**
+ * Renders a list of exercises
+ */
 const Component = ({ exercises, limit, starExerciseInSelection }: IProps) => {
 	const sliceAt = limit ?? exercises.length;
 
