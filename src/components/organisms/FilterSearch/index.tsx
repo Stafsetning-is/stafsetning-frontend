@@ -27,10 +27,11 @@ const FilterComponent = ({
 	minWordCount,
 	setQuickFilter,
 	quickFilter,
+	sidebarVisible,
 }: IProps) => {
 	return (
 		<AuthHider setAuthLevel="user">
-			<FilterOuter>
+			<FilterOuter theme={{ open: sidebarVisible }}>
 				<Header>
 					<span>Leita</span>
 					<FontAwesomeIcon icon={faWindowClose} />
