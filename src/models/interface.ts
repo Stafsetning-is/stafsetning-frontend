@@ -23,7 +23,7 @@ export interface ErrorObject {
 export interface Exercise {
 	parts: string[];
 	completed: boolean;
-	title?: string;
+	title: string;
 	_id: string;
 	length: number;
 	difficultRange: {

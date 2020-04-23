@@ -21,3 +21,11 @@ export const reportToRuleString = (report: Report) => {
 	rules.sort((a, b) => a.count - b.count);
 	return rules.pop()?.name;
 };
+
+/**
+ * cut's title if it is too long
+ */
+export const cutTitle = (title: string) => {
+	if (title.length < 29) return title;
+	else return title.slice(0, 26) + "...";
+};

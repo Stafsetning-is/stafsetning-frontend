@@ -20,7 +20,6 @@ export const Outer = styled.div`
 	padding: 0;
 	display: flex;
 	position: relative;
-	float: left;
 	margin-bottom: 5px;
 	align-items: center;
 	cursor: pointer;
