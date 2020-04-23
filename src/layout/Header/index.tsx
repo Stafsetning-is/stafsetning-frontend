@@ -1,7 +1,8 @@
 import React from "react";
-import { Container, FlexHeader, Image, RightSide } from "./styles";
+import { Container, FlexHeader, Image, ImageCog, RightSide } from "./styles";
 import { NavLink } from "react-router-dom";
 import Logo from "../../static/images/logo.png";
+import Cog from "../../static/images/cog-icon.png";
 import CenterBlock from "../CenterBlock";
 import HeaderItem from "../HeaderItem";
 import { urlWithoutPath } from "./utils";
@@ -45,6 +46,12 @@ const Header = ({ user, signOut }: IProps) => {
                         <AuthHider setAuthLevel="user">
                             <NavLink to={"/"}>
                                 <HeaderItem text="Skrá út" onClick={signOut} />
+                            </NavLink>
+                        </AuthHider>
+
+                        <AuthHider setAuthLevel="user">
+                            <NavLink to="/user/settings">
+                                <ImageCog src={Cog} />
                             </NavLink>
                         </AuthHider>
                     </RightSide>
