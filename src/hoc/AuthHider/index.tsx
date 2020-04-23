@@ -20,7 +20,7 @@ const Component = ({ userType, isAuth, setAuthLevel, children }: IProps) => {
 const mapStateToProps = (state: StoreState) => ({
 	isAuth: state.auth.type !== "guest",
 	user: state.auth.user,
-	userType: state.auth.type
+	userType: state.auth.type,
 });
 
 export const AuthHider = connect(mapStateToProps)(Component);

@@ -8,44 +8,32 @@ import { CharSpan, ErrSpan, TypedError } from "./styles";
  */
 
 export default ({ char, error }: IProps) => {
-    const [showError, setShowError] = useState(false);
+	const [showError, setShowError] = useState(false);
 
-    /**here the error highlight will be
-     * predefined as common mistakes made with symbols */
-    if (error === " ") error = "óþarfa bil";
-    if (error === ".") error = "óþarfa punktur";
-    if (error === ",") error = "óþarfa komma";
-    /**
-     * here we could use regex for greater coverage of error messages
-     */
-    // var regexpAlphabetChar = new RegExp(/^[a-zA-Z]/);
-    // if (error) {
-    //     var errorChar = error.charAt(0);
-    //     if (!regexpAlphabetChar.test(errorChar)) {
-    //         error = "hvad gerdis her?";
-    //     }
-    // }
+	// here the error highlight will be predefined as common mistakes made with symbols
+	if (error === " ") error = "óþarfa bil";
+	if (error === ".") error = "óþarfa punktur";
+	if (error === ",") error = "óþarfa komma";
+	if (char === " " && error) char = "_";
 
-    /**
-     * here if the error is null or essentially not a error it will receive a null value
-     */
-    const typedError = showError ? <TypedError>{error}</TypedError> : null;
+	// here if the error is null or essentially not a error it will receive a null value
+	const typedError = showError ? <TypedError>{error}</TypedError> : null;
 
-    /** However if the supposed error truly is an error, the if(error) will be true
-     * and will return the character and the wrongly typed character aswell
-     */
-    if (error)
-        return (
-            /**
-             * here the onMouse will show the error message
-             */
-            <ErrSpan
-                onMouseEnter={() => setShowError(true)}
-                onMouseLeave={() => setShowError(false)}
-            >
-                {char}
-                {typedError}
-            </ErrSpan>
-        );
-    return <CharSpan>{char}</CharSpan>;
+	/** However if the supposed error truly is an error, the if(error) will be true
+	 * and will return the character and the wrongly typed character aswell
+	 */
+	if (error)
+		return (
+			/**
+			 * here the onMouse will show the error message
+			 */
+			<ErrSpan
+				onMouseEnter={() => setShowError(true)}
+				onMouseLeave={() => setShowError(false)}
+			>
+				{char}
+				{typedError}
+			</ErrSpan>
+		);
+	return <CharSpan>{char}</CharSpan>;
 };
