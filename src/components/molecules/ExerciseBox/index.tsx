@@ -12,8 +12,9 @@ import {
 	TopLine,
 	StarBox,
 } from "./styles";
-import { reportToRuleString } from "./utils";
-import { ProtectedNavLink } from "../../../hoc";
+import { reportToRuleString, cutTitle } from "./utils";
+import { Api } from "../../../api";
+import { ProtectedNavLink, AuthHider } from "../../../hoc";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
@@ -50,10 +51,17 @@ export const ExerciseBox = ({
 		: "";
 	const buttonString = practice ? "Skoða einkunn" : "Opna";
 	const saveEndpoint =
-		`/api/v1/users/exercises${_id}/` + isSaved ? "unsave" : "save";
+		`/api/v1/users/exercises/${_id}/` + (isSaved ? "unsave" : "save");
 
 	const handleSave = () => {
-		setIsSaved((curr) => !curr);
+		const updateValue = !isSaved;
+		Api.post(saveEndpoint, {})
+			.then((data) => {
+				setIsSaved(updateValue);
+			})
+			.catch((e) => {
+				// handle error
+			});
 	};
 
 	return (
@@ -62,9 +70,11 @@ export const ExerciseBox = ({
 				<InfoContainer>
 					<InfoBox>
 						<TopLine theme={{ isSaved }}>
-							<TitleText>{title}</TitleText>
+							<TitleText>{cutTitle(title)}</TitleText>
 							<StarBox onClick={handleSave}>
-								<FontAwesomeIcon icon={faStar} />
+								<AuthHider setAuthLevel="user">
+									<FontAwesomeIcon icon={faStar} />
+								</AuthHider>
 							</StarBox>
 						</TopLine>
 						<SecondaryTitle>
