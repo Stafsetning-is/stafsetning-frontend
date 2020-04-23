@@ -13,10 +13,8 @@ import {
 	StarBox,
 } from "./styles";
 import { reportToRuleString, cutTitle } from "./utils";
-import { Api } from "../../../api";
 import { ProtectedNavLink, AuthHider } from "../../../hoc";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import Star from "./Star";
 
 /**
  * Displays exercise in a box that
@@ -50,19 +48,6 @@ export const ExerciseBox = ({
 		? `Besta hingað til: ${Math.round(score * 100)}%`
 		: "";
 	const buttonString = practice ? "Skoða einkunn" : "Opna";
-	const saveEndpoint =
-		`/api/v1/users/exercises/${_id}/` + (isSaved ? "unsave" : "save");
-
-	const handleSave = () => {
-		const updateValue = !isSaved;
-		Api.post(saveEndpoint, {})
-			.then((data) => {
-				setIsSaved(updateValue);
-			})
-			.catch((e) => {
-				// handle error
-			});
-	};
 
 	return (
 		<BoxWrap padding="0px">
@@ -71,11 +56,14 @@ export const ExerciseBox = ({
 					<InfoBox>
 						<TopLine theme={{ isSaved }}>
 							<TitleText>{cutTitle(title)}</TitleText>
-							<StarBox onClick={handleSave}>
-								<AuthHider setAuthLevel="user">
-									<FontAwesomeIcon icon={faStar} />
-								</AuthHider>
-							</StarBox>
+
+							<AuthHider setAuthLevel="user">
+								<Star
+									handleToogle={(saved) => setIsSaved(saved)}
+									exercise={_id}
+									saved={isSaved}
+								/>
+							</AuthHider>
 						</TopLine>
 						<SecondaryTitle>
 							{wordCount} orð • {min}-{max} bekkur
