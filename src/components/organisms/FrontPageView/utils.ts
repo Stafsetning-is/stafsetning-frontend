@@ -49,6 +49,7 @@ const handleHideByGrammarRule = (
 		? true
 		: filterSettings.filterGrammarRule.every((rule) => exercise.report[rule]);
 
+// handles quick filter methods like handle completed, show saved
 const handleQuickFilter = (exercise: Exercise, filterSettings: FilterState) => {
 	switch (filterSettings.quickFilter) {
 		case "hide-completed":
