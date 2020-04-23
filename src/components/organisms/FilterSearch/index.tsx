@@ -52,7 +52,7 @@ const FilterComponent = ({
 							text={button.label}
 							selected={quickFilter === button.quickFilter}
 							onClick={setQuickFilter}
-							quickFilter={quickFilter}
+							quickFilter={button.quickFilter}
 						/>
 					))}
 				</Compartment>
