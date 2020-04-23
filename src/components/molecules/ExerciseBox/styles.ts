@@ -24,6 +24,7 @@ export const TopLine = styled.div`
 	display: flex;
 	width: 100%;
 	justify-content: space-between;
+	align-items: center;
 `;
 export const TitleText = styled.span`
 	color: #333;

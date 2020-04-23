@@ -13,6 +13,8 @@ import {
 } from "./styles";
 import { bestPractice, reportToRuleString } from "./utils";
 import { ProtectedNavLink } from "../../../hoc";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * Displays exercise in a box that
@@ -24,9 +26,9 @@ export const ExerciseBox = ({
 	difficultRange: { min, max },
 	wordCount,
 	practice,
-	completed,
 	score,
 	report,
+	saved,
 }: IProps) => {
 	/**
 	 * Props for ExerciseBox Component represents
@@ -52,11 +54,11 @@ export const ExerciseBox = ({
 					<InfoBox>
 						<TopLine>
 							<TitleText>{title}</TitleText>
+							<FontAwesomeIcon icon={faStar} />
 						</TopLine>
 						<SecondaryTitle>
 							{wordCount} orð • {min}-{max} bekkur
 						</SecondaryTitle>
-
 						<SecondaryTitle>{ruleString}</SecondaryTitle>
 						<BestPracticeTitle>{scoreString}</BestPracticeTitle>
 					</InfoBox>
