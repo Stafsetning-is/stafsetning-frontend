@@ -10,10 +10,10 @@ import { AuthHider } from "../../../hoc";
 import { connect } from "react-redux";
 import { IProps } from "./interface";
 import { StoreState } from "../../../reducers";
-import { FilterOuter } from "./styles";
+import { FilterOuter, Header } from "./styles";
 import GrammarRules from "./GrammarRules";
 import Compartment from "./Compartment";
-import FilterButton from "./FilterButton";
+import FilterButton from "./QuickFilterButton";
 import { SLIDER_PROPS, FILTER_BUTTONS } from "./utils";
 /**
  * Filter menu for search on front page
@@ -29,10 +29,11 @@ const FilterComponent = ({
 	return (
 		<AuthHider setAuthLevel="user">
 			<FilterOuter>
-				<Compartment>
+				<Header></Header>
+				<Compartment label="Málfræði reglur">
 					<GrammarRules />
 				</Compartment>
-				<Compartment>
+				<Compartment label="Lengd æfingar">
 					<DoubleSlider
 						{...SLIDER_PROPS}
 						value={{
@@ -46,7 +47,7 @@ const FilterComponent = ({
 						type="text-input"
 					/>
 				</Compartment>
-				<Compartment>
+				<Compartment label="Flýtileiðir">
 					{FILTER_BUTTONS.map((button) => (
 						<FilterButton
 							text={button.label}

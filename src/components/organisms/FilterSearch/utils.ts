@@ -6,7 +6,7 @@ export const SLIDER_PROPS = {
 		max: 200,
 	},
 	passProps: {},
-	label: "Lengd á æfingu",
+	label: "",
 };
 
 export const FILTER_BUTTONS: FilterButton[] = [

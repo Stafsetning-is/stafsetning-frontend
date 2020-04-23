@@ -1,6 +1,5 @@
 export interface IProps {
 	name: string;
-	onClick: (id: string) => void;
+	onClick: () => void;
 	selected: boolean;
-	id: string;
 }

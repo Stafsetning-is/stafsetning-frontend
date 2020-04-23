@@ -4,7 +4,7 @@ import { IProps } from "./interface";
 import { StoreState } from "../../../../reducers";
 import { countRules } from "./utils";
 import { addRuleToFilter, removeRuleFromFilter } from "../../../../actions";
-import RuleBox from "./RuleBox";
+import FilterToggleBox from "../FilterToggleBox";
 
 /**
  * Component that takes exercises
@@ -26,7 +26,13 @@ const Component = ({
 	const ruleJSX = rules.map((rule) => {
 		const isSelected = selectedRules.includes(rule.id);
 		const clickHandler = isSelected ? removeRuleFromFilter : addRuleToFilter;
-		return <RuleBox {...rule} onClick={clickHandler} selected={isSelected} />;
+		return (
+			<FilterToggleBox
+				{...rule}
+				onClick={() => clickHandler(rule.id)}
+				selected={isSelected}
+			/>
+		);
 	});
 
 	// returns the RuleBoxes as JSX in a div
