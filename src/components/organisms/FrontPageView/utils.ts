@@ -49,9 +49,19 @@ const handleHideByGrammarRule = (
 		? true
 		: filterSettings.filterGrammarRule.every((rule) => exercise.report[rule]);
 
+const handleQuickFilter = (exercise: Exercise, filterSettings: FilterState) => {
+	switch (filterSettings.quickFilter) {
+		case "hide-completed":
+			return !exercise.completed;
+		default:
+			return true;
+	}
+};
+
 const filterRules = (): FilterFunction[] => [
 	handleHideCompleted,
 	handleHideLongText,
 	handleHideShortText,
 	handleHideByGrammarRule,
+	handleQuickFilter,
 ];
