@@ -5,6 +5,8 @@ import {
 	AddRuleToGrammarFilterAction,
 	RemoveGrammarRuleFromFilterAction,
 	SetQuickFilterAction,
+	CloseFilterAction,
+	OpenFilterAction,
 } from "./interface";
 import { ActionTypes } from "../types";
 import { QuickFilter } from "../../services";
@@ -49,6 +51,20 @@ export function setQuickFilter(option: QuickFilter): SetQuickFilterAction {
 	return {
 		payload: option,
 		type: ActionTypes.setQuickFilter,
+	};
+}
+
+export function closeFilterSideBar(): CloseFilterAction {
+	return {
+		type: ActionTypes.closeFilterSideBar,
+		payload: null,
+	};
+}
+
+export function openFilterSideBar(): OpenFilterAction {
+	return {
+		type: ActionTypes.openFilterSideBar,
+		payload: null,
 	};
 }
 

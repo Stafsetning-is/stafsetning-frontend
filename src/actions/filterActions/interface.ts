@@ -30,3 +30,13 @@ export interface SetQuickFilterAction {
 	type: ActionTypes.setQuickFilter;
 	payload: QuickFilter;
 }
+
+export interface CloseFilterAction {
+	type: ActionTypes.closeFilterSideBar;
+	payload: null;
+}
+
+export interface OpenFilterAction {
+	type: ActionTypes.openFilterSideBar;
+	payload: null;
+}

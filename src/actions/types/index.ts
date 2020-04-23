@@ -15,6 +15,8 @@ export enum ActionTypes {
 	addGrammarRuleToFilter,
 	removeGrammarRuleFromFilter,
 	setQuickFilter,
+	closeFilterSideBar,
+	openFilterSideBar,
 }
 
 export type Actions =
@@ -28,4 +30,6 @@ export type Actions =
 	| UserProfileActions.GetFinishedExercisesAction
 	| FilterActions.AddRuleToGrammarFilterAction
 	| FilterActions.RemoveGrammarRuleFromFilterAction
-	| FilterActions.SetQuickFilterAction;
+	| FilterActions.SetQuickFilterAction
+	| FilterActions.CloseFilterAction
+	| FilterActions.OpenFilterAction;

@@ -7,6 +7,7 @@ export const initialState: FilterState = {
 	maxWordCount: 1000,
 	filterGrammarRule: [],
 	quickFilter: "none",
+	sidebarVisible: false,
 };
 
 export default (
@@ -46,6 +47,16 @@ export default (
 			return {
 				...state,
 				quickFilter: action.payload,
+			};
+		case ActionTypes.closeFilterSideBar:
+			return {
+				...state,
+				sidebarVisible: false,
+			};
+		case ActionTypes.openFilterSideBar:
+			return {
+				...state,
+				sidebarVisible: true,
 			};
 		default:
 			return state;

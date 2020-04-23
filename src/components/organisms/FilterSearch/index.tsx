@@ -15,6 +15,8 @@ import GrammarRules from "./GrammarRules";
 import Compartment from "./Compartment";
 import FilterButton from "./QuickFilterButton";
 import { SLIDER_PROPS, FILTER_BUTTONS } from "./utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
 /**
  * Filter menu for search on front page
  */
@@ -29,7 +31,10 @@ const FilterComponent = ({
 	return (
 		<AuthHider setAuthLevel="user">
 			<FilterOuter>
-				<Header>Leita</Header>
+				<Header>
+					<span>Leita</span>
+					<FontAwesomeIcon icon={faWindowClose} />
+				</Header>
 				<Compartment label="Málfræði reglur">
 					<GrammarRules />
 				</Compartment>
