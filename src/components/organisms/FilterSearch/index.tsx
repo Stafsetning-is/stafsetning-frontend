@@ -5,18 +5,20 @@ import {
 	setMaxWordCount,
 	setMinWordCount,
 	setQuickFilter,
+	closeFilterSideBar,
+	openFilterSideBar,
 } from "../../../actions";
 import { AuthHider } from "../../../hoc";
 import { connect } from "react-redux";
 import { IProps } from "./interface";
 import { StoreState } from "../../../reducers";
-import { FilterOuter, Header } from "./styles";
+import { FilterOuter, Header, OpenFilter } from "./styles";
 import GrammarRules from "./GrammarRules";
 import Compartment from "./Compartment";
 import FilterButton from "./QuickFilterButton";
 import { SLIDER_PROPS, FILTER_BUTTONS } from "./utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
+import { faWindowClose, faFilter } from "@fortawesome/free-solid-svg-icons";
 /**
  * Filter menu for search on front page
  */
@@ -28,17 +30,23 @@ const FilterComponent = ({
 	setQuickFilter,
 	quickFilter,
 	sidebarVisible,
+	closeFilterSideBar,
+	openFilterSideBar,
 }: IProps) => {
 	return (
 		<AuthHider setAuthLevel="user">
+			<OpenFilter onClick={openFilterSideBar}>
+				<FontAwesomeIcon icon={faFilter} />
+			</OpenFilter>
 			<FilterOuter theme={{ open: sidebarVisible }}>
 				<Header>
 					<span>Leita</span>
-					<FontAwesomeIcon icon={faWindowClose} />
+					<FontAwesomeIcon icon={faWindowClose} onClick={closeFilterSideBar} />
 				</Header>
 				<Compartment label="Málfræði reglur">
 					<GrammarRules />
 				</Compartment>
+
 				<Compartment label="Lengd æfingar">
 					<DoubleSlider
 						{...SLIDER_PROPS}
@@ -75,4 +83,6 @@ export const FilterSearch = connect(mapStateToPropss, {
 	setMinWordCount,
 	setMaxWordCount,
 	setQuickFilter,
+	closeFilterSideBar,
+	openFilterSideBar,
 })(FilterComponent);

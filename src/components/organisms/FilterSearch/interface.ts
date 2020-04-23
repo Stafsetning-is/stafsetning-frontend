@@ -5,6 +5,8 @@ export interface IProps extends FilterObject {
 	setMaxWordCount: (newValue: number) => void;
 	setMinWordCount: (newValue: number) => void;
 	setQuickFilter: (filter: QuickFilter) => void;
+	closeFilterSideBar: () => void;
+	openFilterSideBar: () => void;
 }
 
 export interface FilterButton {

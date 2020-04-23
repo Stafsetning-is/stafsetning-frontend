@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+const WIDTH = 350;
+
 export const FilterOuter = styled.div`
 	display: flex;
 	:last-child {
@@ -9,11 +11,23 @@ export const FilterOuter = styled.div`
 	position: fixed;
 	flex-direction: column;
 	background: #f8f8f8;
-	width: 350px;
+	width: ${WIDTH}px;
 	border-radius: 0px 4px 4px 0;
 	box-shadow: px 0px 25px rgba(102, 0, 255, 0.25);
 	border: 1px solid #cecece;
-	left: 0;
+	z-index: 6;
+	transition: 0.7s;
+	${(props) =>
+		props.theme.open
+			? `
+		left: 0;
+		opacity: 1
+	
+	`
+			: `
+		left: -${WIDTH}px;
+		opacity: 0
+	`}
 `;
 
 export const Header = styled.div`
@@ -36,4 +50,19 @@ export const Header = styled.div`
 			opacity: 0.7;
 		}
 	}
+`;
+
+export const OpenFilter = styled.div`
+	height: 50px;
+	width: 50px;
+	background: #6600ff;
+	border-radius: 0px 4px 4px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #f8f8f8;
+	cursor: pointer;
+	position: fixed;
+	left: 0px;
+	z-index: 5;
 `;
