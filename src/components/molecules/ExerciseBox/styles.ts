@@ -25,11 +25,10 @@ export const TopLine = styled.div`
 	width: 100%;
 	justify-content: space-between;
 	align-items: center;
-	.fa {
-		${(props) =>
-			props.theme.isSaved
-				? "rgba(255, 238, 34, 0.9)"
-				: "rgba(255, 238, 34, 0.4)"}
+	svg {
+		color: ${(props) =>
+			props.theme.isSaved ? "rgba(255, 238, 34, 0.9)" : "#cecece"};
+		cursor: pointer;
 	}
 `;
 export const TitleText = styled.span`

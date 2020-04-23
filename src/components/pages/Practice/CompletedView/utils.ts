@@ -27,6 +27,7 @@ export const placeHolderPractice: PracticePopulated = {
 		_id: "",
 		report: {},
 		wordCount: 0,
+		saved: false,
 	},
 	duration: 0,
 	exerciseString: "",
