@@ -1,4 +1,5 @@
 import { ActionTypes } from "../types";
+import { QuickFilter } from "../../services";
 
 export interface SetMinWordCountAction {
 	type: ActionTypes.setMinWordCount;
@@ -15,12 +16,17 @@ export interface SetMaxWordCountAction {
 	payload: number;
 }
 
-export interface AddRuleToGrammarFilter {
+export interface AddRuleToGrammarFilterAction {
 	type: ActionTypes.addGrammarRuleToFilter;
 	payload: string;
 }
 
-export interface RemoveGrammarRuleFromFilter {
+export interface RemoveGrammarRuleFromFilterAction {
 	type: ActionTypes.removeGrammarRuleFromFilter;
 	payload: string;
+}
+
+export interface SetQuickFilterAction {
+	type: ActionTypes.setQuickFilter;
+	payload: QuickFilter;
 }

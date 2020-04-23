@@ -2,10 +2,12 @@ import {
 	SetMinWordCountAction,
 	SetHideCompletedAction,
 	SetMaxWordCountAction,
-	AddRuleToGrammarFilter,
-	RemoveGrammarRuleFromFilter,
+	AddRuleToGrammarFilterAction,
+	RemoveGrammarRuleFromFilterAction,
+	SetQuickFilterAction,
 } from "./interface";
 import { ActionTypes } from "../types";
+import { QuickFilter } from "../../services";
 
 export function setMinWordCount(newMin: number): SetMinWordCountAction {
 	return {
@@ -28,7 +30,7 @@ export function setMaxWordCount(newMax: number): SetMaxWordCountAction {
 	};
 }
 
-export function addRuleToFilter(newRule: string): AddRuleToGrammarFilter {
+export function addRuleToFilter(newRule: string): AddRuleToGrammarFilterAction {
 	return {
 		payload: newRule,
 		type: ActionTypes.addGrammarRuleToFilter,
@@ -36,10 +38,17 @@ export function addRuleToFilter(newRule: string): AddRuleToGrammarFilter {
 }
 export function removeRuleFromFilter(
 	rule: string
-): RemoveGrammarRuleFromFilter {
+): RemoveGrammarRuleFromFilterAction {
 	return {
 		payload: rule,
 		type: ActionTypes.removeGrammarRuleFromFilter,
+	};
+}
+
+export function setQuickFilter(option: QuickFilter): SetQuickFilterAction {
+	return {
+		payload: option,
+		type: ActionTypes.setQuickFilter,
 	};
 }
 

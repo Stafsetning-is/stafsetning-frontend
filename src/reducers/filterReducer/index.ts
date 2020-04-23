@@ -42,6 +42,11 @@ export default (
 				...state,
 				filterGrammarRule: rules,
 			};
+		case ActionTypes.setQuickFilter:
+			return {
+				...state,
+				quickFilter: action.payload,
+			};
 		default:
 			return state;
 	}
