@@ -12,7 +12,7 @@ import {
 	TopLine,
 	StarBox,
 } from "./styles";
-import { bestPractice, reportToRuleString } from "./utils";
+import { reportToRuleString } from "./utils";
 import { ProtectedNavLink } from "../../../hoc";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
