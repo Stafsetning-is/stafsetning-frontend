@@ -10,3 +10,8 @@ export interface IProps {
 	hideCompleted: boolean;
 	quickFilter: QuickFilter;
 }
+
+export interface FilterButton {
+	quickFilter: QuickFilter;
+	label: string;
+}

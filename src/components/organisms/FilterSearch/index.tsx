@@ -14,7 +14,7 @@ import { FilterOuter } from "./styles";
 import GrammarRules from "./GrammarRules";
 import Compartment from "./Compartment";
 import FilterButton from "./FilterButton";
-import { sliderProps } from "./utils";
+import { SLIDER_PROPS, FILTER_BUTTONS } from "./utils";
 /**
  * Filter menu for search on front page
  */
@@ -34,7 +34,7 @@ const FilterComponent = ({
 				</Compartment>
 				<Compartment>
 					<DoubleSlider
-						{...sliderProps}
+						{...SLIDER_PROPS}
 						value={{
 							min: minWordCount,
 							max: maxWordCount,
@@ -47,12 +47,14 @@ const FilterComponent = ({
 					/>
 				</Compartment>
 				<Compartment>
-					<FilterButton
-						text="Fela þær sem ég er búinn með"
-						selected={quickFilter === "hide-completed"}
-						onClick={setQuickFilter}
-						quickFilter="hide-completed"
-					/>
+					{FILTER_BUTTONS.map((button) => (
+						<FilterButton
+							text={button.label}
+							selected={quickFilter === button.quickFilter}
+							onClick={setQuickFilter}
+							quickFilter={quickFilter}
+						/>
+					))}
 				</Compartment>
 			</FilterOuter>
 		</AuthHider>
