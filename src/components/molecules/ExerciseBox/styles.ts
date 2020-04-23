@@ -15,6 +15,7 @@ export const Button = styled.div`
 	align-items: center;
 	color: #6600ff;
 	cursor: pointer;
+	transition: 0.4s;
 `;
 
 export const InfoBox = styled.div``;

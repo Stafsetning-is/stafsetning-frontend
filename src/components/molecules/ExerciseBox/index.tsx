@@ -42,6 +42,8 @@ export const ExerciseBox = ({
 	const scoreString = score
 		? `Besta hingað til: ${Math.round(score * 100)}%`
 		: "";
+	const buttonString = practice ? "Skoða einkunn" : "Opna";
+
 	return (
 		<BoxWrap padding="0px">
 			<Container>
@@ -56,7 +58,7 @@ export const ExerciseBox = ({
 					</InfoBox>
 				</InfoContainer>
 				<ProtectedNavLink to={link} service="log-in">
-					<Button>Opna</Button>
+					<Button>{buttonString}</Button>
 				</ProtectedNavLink>
 			</Container>
 		</BoxWrap>
