@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { BoxWrap } from "../../";
 import { IProps } from "./interface";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import {
 	Button,
 	InfoBox,
@@ -14,7 +16,7 @@ import {
 } from "./styles";
 import { reportToRuleString, cutTitle } from "./utils";
 import { ProtectedNavLink, AuthHider } from "../../../hoc";
-import Star from "./Star";
+import { ClipLoader } from "react-spinners";
 
 /**
  * Displays exercise in a box that
@@ -29,6 +31,7 @@ export const ExerciseBox = ({
 	score,
 	report,
 	saved,
+	onStarClick,
 }: IProps) => {
 	/**
 	 * Props for ExerciseBox Component represents
@@ -41,7 +44,7 @@ export const ExerciseBox = ({
 	 * /exercise/:exerciseId url
 	 */
 
-	const [isSaved, setIsSaved] = useState(!!saved);
+	const [loading, setLoading] = useState(false);
 	const link = practice ? `/completed/${practice}` : `/exercise/${_id}`;
 	const ruleString = reportToRuleString(report);
 	const scoreString = score
@@ -49,20 +52,26 @@ export const ExerciseBox = ({
 		: "";
 	const buttonString = practice ? "Skoða einkunn" : "Opna";
 
+	const handleStarClick = () => {
+		onStarClick(_id, !saved);
+		setLoading(true);
+	};
+
 	return (
 		<BoxWrap padding="0px">
 			<Container>
 				<InfoContainer>
 					<InfoBox>
-						<TopLine theme={{ isSaved }}>
+						<TopLine theme={{ saved }}>
 							<TitleText>{cutTitle(title)}</TitleText>
-
 							<AuthHider setAuthLevel="user">
-								<Star
-									handleToogle={(saved) => setIsSaved(saved)}
-									exercise={_id}
-									saved={isSaved}
-								/>
+								<StarBox onClick={handleStarClick}>
+									{loading ? (
+										<ClipLoader size={5} color={"rgba(255, 195, 55, 1)"} />
+									) : (
+										<FontAwesomeIcon icon={faStar} />
+									)}
+								</StarBox>
 							</AuthHider>
 						</TopLine>
 						<SecondaryTitle>
