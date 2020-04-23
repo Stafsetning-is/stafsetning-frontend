@@ -20,18 +20,22 @@ export const Button = styled.div`
 
 export const InfoBox = styled.div``;
 
+export const StarBox = styled.div``;
+
 export const TopLine = styled.div`
 	display: flex;
 	width: 100%;
 	justify-content: space-between;
 	align-items: center;
 	svg {
-		color: ${(props) =>
+		${(props) =>
 			props.theme.isSaved
 				? `
-			rgba(255, 238, 34, 0.9);
-			text-shadow: 0px 0px 5px rgba(0,0,0,0.2)`
-				: "#cecece"};
+				color: rgba(255, 195, 55, 1);
+				`
+				: `
+				color: #cecece
+				`};
 		cursor: pointer;
 	}
 `;
