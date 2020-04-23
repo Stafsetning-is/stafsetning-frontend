@@ -47,7 +47,7 @@ const handleHideByGrammarRule = (
 ) =>
 	filterSettings.filterGrammarRule.length === 0
 		? true
-		: filterSettings.filterGrammarRule.some((rule) => exercise.report[rule]);
+		: filterSettings.filterGrammarRule.every((rule) => exercise.report[rule]);
 
 const filterRules = (): FilterFunction[] => [
 	handleHideCompleted,
