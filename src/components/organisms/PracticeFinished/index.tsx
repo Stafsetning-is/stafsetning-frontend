@@ -47,7 +47,7 @@ const Component = ({
 			</OverviewContainer>
 			<PracticeText exerciseString={exerciseString} errors={errorItems} />
 			<SuggestionTitle>Haltu áfram að æfa þig!</SuggestionTitle>
-			<ExerciseBoxesContainer exercises={nextUp} />
+			<ExerciseBoxesContainer exercises={nextUp} limit={9} />
 		</React.Fragment>
 	);
 };
