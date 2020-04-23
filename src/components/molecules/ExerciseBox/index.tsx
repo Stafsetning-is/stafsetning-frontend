@@ -9,6 +9,7 @@ import {
 	Container,
 	InfoContainer,
 	BestPracticeTitle,
+	TopLine,
 } from "./styles";
 import { bestPractice, reportToRuleString } from "./utils";
 import { ProtectedNavLink } from "../../../hoc";
@@ -49,10 +50,13 @@ export const ExerciseBox = ({
 			<Container>
 				<InfoContainer>
 					<InfoBox>
-						<TitleText>{title}</TitleText>
+						<TopLine>
+							<TitleText>{title}</TitleText>
+						</TopLine>
 						<SecondaryTitle>
 							{wordCount} orð • {min}-{max} bekkur
 						</SecondaryTitle>
+
 						<SecondaryTitle>{ruleString}</SecondaryTitle>
 						<BestPracticeTitle>{scoreString}</BestPracticeTitle>
 					</InfoBox>
