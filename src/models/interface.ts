@@ -34,6 +34,7 @@ export interface Exercise {
 	wordCount: number;
 	practice?: string;
 	score?: number;
+	saved: boolean;
 }
 
 export interface Report {

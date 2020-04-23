@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BoxWrap } from "../../";
 import { IProps } from "./interface";
 import {
@@ -40,19 +40,23 @@ export const ExerciseBox = ({
 	 * the exercise for the user via the
 	 * /exercise/:exerciseId url
 	 */
+
+	const [isSaved, setIsSaved] = useState(!!saved);
 	const link = practice ? `/completed/${practice}` : `/exercise/${_id}`;
 	const ruleString = reportToRuleString(report);
 	const scoreString = score
 		? `Besta hingað til: ${Math.round(score * 100)}%`
 		: "";
 	const buttonString = practice ? "Skoða einkunn" : "Opna";
+	const saveEndpoint =
+		`/api/v1/users/exercises${_id}/` + isSaved ? "unsave" : "save";
 
 	return (
 		<BoxWrap padding="0px">
 			<Container>
 				<InfoContainer>
 					<InfoBox>
-						<TopLine>
+						<TopLine theme={{ isSaved }}>
 							<TitleText>{title}</TitleText>
 							<FontAwesomeIcon icon={faStar} />
 						</TopLine>
