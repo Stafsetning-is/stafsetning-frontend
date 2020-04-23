@@ -6,6 +6,7 @@ export const initialState: FilterState = {
 	hideCompleted: false,
 	maxWordCount: 1000,
 	filterGrammarRule: [],
+	quickFilter: "none",
 };
 
 export default (
