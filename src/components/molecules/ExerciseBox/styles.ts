@@ -25,6 +25,12 @@ export const TopLine = styled.div`
 	width: 100%;
 	justify-content: space-between;
 	align-items: center;
+	.fa {
+		${(props) =>
+			props.theme.isSaved
+				? "rgba(255, 238, 34, 0.9)"
+				: "rgba(255, 238, 34, 0.4)"}
+	}
 `;
 export const TitleText = styled.span`
 	color: #333;
