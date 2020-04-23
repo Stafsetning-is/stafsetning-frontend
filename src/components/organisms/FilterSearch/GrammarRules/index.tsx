@@ -29,8 +29,8 @@ const Component = ({
 		return (
 			<FilterToggleBox
 				{...rule}
-				onClick={() => clickHandler(rule.id)}
 				selected={isSelected}
+				onClick={() => clickHandler(rule.id)}
 			/>
 		);
 	});
