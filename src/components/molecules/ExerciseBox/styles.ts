@@ -29,7 +29,7 @@ export const TopLine = styled.div`
 	align-items: center;
 	svg {
 		${(props) =>
-			props.theme.isSaved
+			props.theme.saved
 				? `
 				color: rgba(255, 195, 55, 1);
 				`

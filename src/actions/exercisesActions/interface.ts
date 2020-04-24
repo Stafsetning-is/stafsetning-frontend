@@ -10,3 +10,13 @@ export interface GetExercisesByUserAction {
 	type: ActionTypes.getExercisesByUser;
 	payload: Exercise[];
 }
+
+export interface ReloadSelectionAction {
+	type: ActionTypes.reloadSelection;
+	payload: null;
+}
+
+export interface StarExerciseInSelectionAction {
+	type: Ac;
+	payload: { saved: boolean; exercise: string };
+}

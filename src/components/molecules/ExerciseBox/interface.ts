@@ -1,2 +1,4 @@
 import { Exercise } from "../../../models";
-export type IProps = Exercise;
+export interface IProps extends Exercise {
+	onStarClick: (id: string, saved: boolean) => void;
+}

@@ -17,6 +17,8 @@ export enum ActionTypes {
 	setQuickFilter,
 	closeFilterSideBar,
 	openFilterSideBar,
+	reloadSelection,
+	starExerciseInSelection,
 }
 
 export type Actions =
@@ -32,4 +34,6 @@ export type Actions =
 	| FilterActions.RemoveGrammarRuleFromFilterAction
 	| FilterActions.SetQuickFilterAction
 	| FilterActions.CloseFilterAction
-	| FilterActions.OpenFilterAction;
+	| FilterActions.OpenFilterAction
+	| ExercisesActions.ReloadSelectionAction
+	| ExercisesActions.StarExerciseInSelectionAction;

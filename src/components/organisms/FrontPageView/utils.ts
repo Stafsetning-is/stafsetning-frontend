@@ -54,6 +54,8 @@ const handleQuickFilter = (exercise: Exercise, filterSettings: FilterState) => {
 	switch (filterSettings.quickFilter) {
 		case "hide-completed":
 			return !exercise.completed;
+		case "show-saved":
+			return exercise.saved;
 		default:
 			return true;
 	}
