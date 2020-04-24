@@ -5,8 +5,8 @@
 export const durationToTime = (dur: number): [string, string] => {
 	let min = Math.round(dur / 60).toString();
 	let sec = (dur % 60).toString();
-	min = min.length == 1 ? `0${min}` : min;
-	sec = sec.length == 1 ? `0${sec}` : sec;
+	min = min.length === 1 ? `0${min}` : min;
+	sec = sec.length === 1 ? `0${sec}` : sec;
 	return [min, sec];
 };
 
@@ -23,7 +23,7 @@ export const getFeedback = (errorItems: number) => {
  * errorWord determines whether the error is plural or singular. Where all numbers ending in 1 except for 11 is pronounced in the singular form villa
  */
 const errorWord = (errorItems: number) => {
-	if (errorItems % 10 === 1 && errorItems != 11) return "villa";
+	if (errorItems % 10 === 1 && errorItems !== 11) return "villa";
 	return "villur";
 };
 /**
