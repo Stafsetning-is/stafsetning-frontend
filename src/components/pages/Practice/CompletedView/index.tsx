@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { LayoutWrapper } from "../../../../layout";
 import { LoaderBox, ErrorModal, PracticeFinished } from "../../../";
 import { IProps } from "./interface";
 import { PracticePopulated } from "../../../../models";
