@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { SpellingPractice, LoaderBox, ErrorModal } from "../../../";
+import { SpellingPractice, LoaderBox, ErrorModal } from "../../..";
 import { LayoutWrapper } from "../../../../layout";
 import { fetchExerciseText } from "./utils";
 import { RouteComponentProps } from "react-router-dom";
