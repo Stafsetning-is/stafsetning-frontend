@@ -9,4 +9,3 @@ export * from "./ErrorModal";
 export * from "./PracticeFinished";
 export * from "./FilterSearch";
 export * from "./FrontPageView";
-export * from "./PlainTextEditor";
