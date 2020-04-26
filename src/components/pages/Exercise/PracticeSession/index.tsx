@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { SpellingPractice, LoaderBox, ErrorModal } from "../../..";
-import { LayoutWrapper } from "../../../../layout";
 import { fetchExerciseText } from "./utils";
 import { RouteComponentProps } from "react-router-dom";
 import { IProps } from "./interface";
@@ -37,17 +36,15 @@ export default ({ match }: RouteComponentProps<IProps>) => {
 	}, []);
 
 	return (
-		<LayoutWrapper>
-			<ProtectPageWrapper>
-				<ErrorModal errorMessage={errorMessage}>
-					<LoaderBox loading={loading}>
-						<SpellingPractice
-							exercise={exerciseId}
-							sentenceParts={exerciseParts}
-						/>
-					</LoaderBox>
-				</ErrorModal>
-			</ProtectPageWrapper>
-		</LayoutWrapper>
+		<ProtectPageWrapper>
+			<ErrorModal errorMessage={errorMessage}>
+				<LoaderBox loading={loading}>
+					<SpellingPractice
+						exercise={exerciseId}
+						sentenceParts={exerciseParts}
+					/>
+				</LoaderBox>
+			</ErrorModal>
+		</ProtectPageWrapper>
 	);
 };

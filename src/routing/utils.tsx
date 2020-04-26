@@ -8,14 +8,16 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
  */
 const mapItemsToSwitchedRoutes = (pages: IPage[], prefix = "") => (
 	<Switch>
-		{pages.map((Page) => (
-			<Route
-				path={`${prefix}${Page.route}`}
-				exact={false}
-				key={Page.route}
-				component={Page.component}
-			/>
-		))}
+		{pages.map((Page) => {
+			return (
+				<Route
+					path={`${prefix}${Page.route}`}
+					exact={false}
+					key={Page.route}
+					component={Page.component}
+				/>
+			);
+		})}
 	</Switch>
 );
 
@@ -24,8 +26,8 @@ const mapItemsToSwitchedRoutes = (pages: IPage[], prefix = "") => (
  * and creates switched routes
  */
 export const RouteFactory = ({ pages, modals }: IProps) => (
-	<Router>
+	<React.Fragment>
 		{mapItemsToSwitchedRoutes(pages)}
 		{mapItemsToSwitchedRoutes(modals, "*")}
-	</Router>
+	</React.Fragment>
 );
