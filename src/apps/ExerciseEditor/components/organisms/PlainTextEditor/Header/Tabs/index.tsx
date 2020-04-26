@@ -53,13 +53,14 @@ const Component = ({
 				<FontAwesomeIcon icon={expanded ? faCompressAlt : faExpandAlt} />
 			</Collapse>
 			{!noTabsOpen
-				? documents.map(({ fileName, _id }, i) => (
+				? documents.map(({ fileName, _id, modified }, i) => (
 						<Tab
 							key={_id}
 							name={fileName}
 							selected={_id === openTab}
 							onClick={() => setOpenTab(_id)}
 							onClose={() => setCloseTab(_id)}
+							modified={modified}
 						/>
 				  ))
 				: null}
