@@ -7,4 +7,5 @@ export const EditorHeader = styled.div`
 	box-sizing: border-box;
 	height: 50px;
 	justify-content: flex-start;
+	overflow-x: scroll;
 `;
