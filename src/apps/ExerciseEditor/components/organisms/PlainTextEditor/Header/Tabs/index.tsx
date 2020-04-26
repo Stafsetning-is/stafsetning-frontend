@@ -4,7 +4,25 @@ import Tab from "./Tab";
 import NewTab from "./NewTab";
 import { connect } from "react-redux";
 import { StoreState } from "../../../../../reducers";
-import { setOpenTab, createNewFile, setCloseTab } from "../../../../../actions";
+import {
+	setOpenTab,
+	createNewFile,
+	setCloseTab,
+	closeEditor,
+	maximizeEditor,
+	minimizeEditor,
+	collapseEditor,
+	expandEditor,
+} from "../../../../../actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+	faExpandAlt,
+	faCompressAlt,
+	faWindowClose,
+	faWindowMinimize,
+	faWindowMaximize,
+} from "@fortawesome/free-solid-svg-icons";
+import { Close, Collapse, Maximize } from "./styles";
 
 const Component = ({
 	documents,
@@ -12,18 +30,40 @@ const Component = ({
 	setOpenTab,
 	createNewFile,
 	setCloseTab,
+	closeEditor,
+	minimized,
+	expanded,
+	maximizeEditor,
+	minimizeEditor,
+	collapseEditor,
+	expandEditor,
 }: IProps) => {
+	const noTabsOpen = documents.length === 0;
 	return (
 		<React.Fragment>
-			{documents.map(({ fileName, _id }, i) => (
-				<Tab
-					name={fileName}
-					selected={_id === openTab}
-					onClick={() => setOpenTab(_id)}
-					onClose={() => setCloseTab(_id)}
+			<Close onClick={closeEditor}>
+				<FontAwesomeIcon icon={faWindowClose} />
+			</Close>
+			<Maximize onClick={minimized ? maximizeEditor : minimizeEditor}>
+				<FontAwesomeIcon
+					icon={minimized ? faWindowMaximize : faWindowMinimize}
 				/>
-			))}
-			<NewTab onClick={createNewFile} />
+			</Maximize>
+			<Collapse onClick={expanded ? collapseEditor : expandEditor}>
+				<FontAwesomeIcon icon={expanded ? faCompressAlt : faExpandAlt} />
+			</Collapse>
+			{!noTabsOpen
+				? documents.map(({ fileName, _id }, i) => (
+						<Tab
+							key={_id}
+							name={fileName}
+							selected={_id === openTab}
+							onClick={() => setOpenTab(_id)}
+							onClose={() => setCloseTab(_id)}
+						/>
+				  ))
+				: null}
+			<NewTab onClick={createNewFile} verbose={noTabsOpen} />
 		</React.Fragment>
 	);
 };
@@ -31,10 +71,17 @@ const Component = ({
 const mapStateToProps = (state: StoreState) => ({
 	openTab: state.editor.openTab,
 	documents: state.editor.openFiles,
+	minimized: state.editor.minimized,
+	expanded: state.editor.expanded,
 });
 
 export default connect(mapStateToProps, {
 	setOpenTab,
 	createNewFile,
 	setCloseTab,
+	closeEditor,
+	maximizeEditor,
+	minimizeEditor,
+	collapseEditor,
+	expandEditor,
 })(Component);
