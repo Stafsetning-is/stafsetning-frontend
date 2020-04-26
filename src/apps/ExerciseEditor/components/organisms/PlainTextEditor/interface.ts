@@ -1,9 +1,11 @@
+import { File } from "../../../models";
+
 export interface TabsProps {
 	openTab: string | null;
 	setOpenTab: (id: string) => void;
 	createNewFile: () => void;
 	setCloseTab: (id: string) => void;
-	documents: BaseDocument[];
+	documents: File[];
 	closeEditor: () => void;
 	minimized: boolean;
 	expanded: boolean;
