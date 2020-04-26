@@ -2,13 +2,13 @@ import React, { useState, useMemo, useEffect } from "react";
 import { createEditor, Node } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
 import { withHistory } from "slate-history";
-import { EditorFrame, EditorOuter, EditorHeader } from "./styles";
-import { textToNodeArray, mapDocArrayToDocMap, handleKeyDown } from "./utils";
-import Tabs from "./Tabs";
+import { EditorFrame, EditorOuter } from "./styles";
+import { textToNodeArray, handleKeyDown } from "./utils";
 import { TextEditorProps as IProps, BaseDocument, DocMap } from "./interface";
 import { connect } from "react-redux";
 import { StoreState } from "../../../reducers";
 import { writeToOpenFile } from "../../../actions";
+import Header from "./Header";
 
 const Component = <Doc extends BaseDocument>({
 	documents,
@@ -28,9 +28,7 @@ const Component = <Doc extends BaseDocument>({
 	// buta thetta MIKID BETUR NIDUR
 	return (
 		<EditorOuter>
-			<EditorHeader>
-				<Tabs />
-			</EditorHeader>
+			<Header />
 			<EditorFrame>
 				{selected ? (
 					<Slate
