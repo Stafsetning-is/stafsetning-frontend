@@ -14,6 +14,7 @@ export interface BaseDocument {
 
 export interface EditorProps {
 	writeToOpenFile: (text: string) => void;
-	openFile: BaseDocument | undefined;
+	openFileText: string;
 	noFiles: boolean;
+	tabNotSelected: boolean;
 }

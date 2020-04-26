@@ -19,7 +19,7 @@ export default (
 			return {
 				...state,
 				openFiles: state.openFiles.filter((doc) => doc._id !== action.payload),
-				openTab: "",
+				openTab: null,
 			};
 		case ActionTypes.setOpenTab:
 			return {
