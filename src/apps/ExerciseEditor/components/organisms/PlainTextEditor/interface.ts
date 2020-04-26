@@ -4,12 +4,25 @@ export interface TabsProps {
 	createNewFile: () => void;
 	setCloseTab: (id: string) => void;
 	documents: BaseDocument[];
+	closeEditor: () => void;
+	minimized: boolean;
+	expanded: boolean;
+	maximizeEditor: () => void;
+	minimizeEditor: () => void;
+	collapseEditor: () => void;
+	expandEditor: () => void;
 }
 
 export interface BaseDocument {
 	text: string;
 	fileName: string;
 	_id: string;
+}
+
+export interface IProps {
+	open: boolean;
+	minimized: boolean;
+	expanded: boolean;
 }
 
 export interface EditorProps {
