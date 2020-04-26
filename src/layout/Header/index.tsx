@@ -14,48 +14,48 @@ import { signOut } from "../../actions";
  * Header component for layout
  */
 const Header = ({ user, signOut }: IProps) => {
-    return (
-        <Container>
-            <CenterBlock>
-                <FlexHeader>
-                    <NavLink to="/">
-                        <Image src={Logo} />
-                    </NavLink>
-                    <RightSide>
-                        <AuthHider setAuthLevel="guest">
-                            <NavLink to={`${urlWithoutPath()}sign-up`}>
-                                <HeaderItem text="Búa til aðgang" />
-                            </NavLink>
-                        </AuthHider>
-                        <AuthHider setAuthLevel="guest">
-                            <NavLink to={`${urlWithoutPath()}log-in`}>
-                                <HeaderItem text="Skrá inn" />
-                            </NavLink>
-                        </AuthHider>
-                        <AuthHider setAuthLevel="admin">
-                            <NavLink to={`${urlWithoutPath()}log-in`}>
-                                <HeaderItem text="Búa til æfingu" />
-                            </NavLink>
-                        </AuthHider>
-                        <AuthHider setAuthLevel="user">
-                            <NavLink to={`/user/profile`}>
-                                <HeaderItem text={user.name} />
-                            </NavLink>
-                        </AuthHider>
-                        <AuthHider setAuthLevel="user">
-                            <NavLink to={"/"}>
-                                <HeaderItem text="Skrá út" onClick={signOut} />
-                            </NavLink>
-                        </AuthHider>
-                    </RightSide>
-                </FlexHeader>
-            </CenterBlock>
-        </Container>
-    );
+	return (
+		<Container>
+			<CenterBlock>
+				<FlexHeader>
+					<NavLink to="/">
+						<Image src={Logo} />
+					</NavLink>
+					<RightSide>
+						<AuthHider setAuthLevel="guest">
+							<NavLink to={`${urlWithoutPath()}sign-up`}>
+								<HeaderItem text="Búa til aðgang" />
+							</NavLink>
+						</AuthHider>
+						<AuthHider setAuthLevel="guest">
+							<NavLink to={`${urlWithoutPath()}log-in`}>
+								<HeaderItem text="Skrá inn" />
+							</NavLink>
+						</AuthHider>
+						<AuthHider setAuthLevel="admin">
+							<NavLink to={"/app/exercise-editor"}>
+								<HeaderItem text="Mín skjöl" />
+							</NavLink>
+						</AuthHider>
+						<AuthHider setAuthLevel="user">
+							<NavLink to={`/user/profile`}>
+								<HeaderItem text={user.name} />
+							</NavLink>
+						</AuthHider>
+						<AuthHider setAuthLevel="user">
+							<NavLink to={"/"}>
+								<HeaderItem text="Skrá út" onClick={signOut} />
+							</NavLink>
+						</AuthHider>
+					</RightSide>
+				</FlexHeader>
+			</CenterBlock>
+		</Container>
+	);
 };
 
 const mapStateToProps = ({ auth: { user } }: StoreState) => ({
-    user,
+	user,
 });
 
 export default connect(mapStateToProps, { signOut })(Header);
