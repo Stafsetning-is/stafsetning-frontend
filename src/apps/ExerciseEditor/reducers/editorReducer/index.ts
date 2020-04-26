@@ -74,6 +74,17 @@ export default (
 				expanded: true,
 				minimized: false,
 			};
+		case ActionTypes.openExerciseFile:
+			const found = state.openFiles.find(
+				({ _id }) => _id === action.payload._id
+			);
+			if (found) return { ...state };
+			return {
+				...state,
+				openFiles: [...state.openFiles, action.payload],
+				open: true,
+				minimized: false,
+			};
 		default:
 			return state;
 	}
