@@ -1,4 +1,5 @@
 import { ActionTypes } from "../types";
+import { File } from "../../models";
 
 export interface SetOpenTabAction {
 	type: ActionTypes.setOpenTab;
@@ -48,4 +49,9 @@ export interface MinimizeEditorAction {
 export interface MaximizeEditorAction {
 	type: ActionTypes.maximizeEditor;
 	payload: null;
+}
+
+export interface OpenExerciseFileAction {
+	type: ActionTypes.openExerciseFile;
+	payload: File;
 }
