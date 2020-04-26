@@ -8,6 +8,7 @@ export const getTextFromNodes = (nodes: Node[]) => {
 export const handleKeyDown = (
 	event: React.KeyboardEvent<HTMLDivElement>
 ): void => {
+	console.log("4", 4);
 	if (event.key == "Enter") event.preventDefault();
 };
 
@@ -18,7 +19,7 @@ export const textToNodes = (text: string) => [
 ];
 
 export const NO_FILES_OPEN_TEXT =
-	"Þú getur ýtt á plúsinn hér fyrir ofan eða valið úr skrám í þínum æfingum.";
+	"Þú getur ýtt á plúsinn hér fyrir ofan eða valið úr skrám undir ,,þínum æfingum.”";
 
 export const NO_TAB_OPEN_TEXT = "Veldu flipa til þess að vinna með texta";
 
