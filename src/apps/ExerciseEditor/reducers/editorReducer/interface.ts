@@ -1,6 +1,7 @@
+import { File } from "../../models";
 export interface EditorState {
 	openTab: string | null;
-	openFiles: BaseDocument[];
+	openFiles: File[];
 	open: boolean;
 	minimized: boolean;
 	expanded: boolean;
