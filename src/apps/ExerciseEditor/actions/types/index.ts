@@ -1,4 +1,5 @@
 import * as EditorActions from "../editorActions";
+import * as DesktopActions from "../desktopActions";
 
 export enum ActionTypes {
 	setOpenTab,
@@ -11,6 +12,8 @@ export enum ActionTypes {
 	maximizeEditor,
 	collapseEditor,
 	expandEditor,
+	fetchFiles,
+	openExerciseFile,
 }
 
 export type Actions =
@@ -23,4 +26,6 @@ export type Actions =
 	| EditorActions.CollapseEditorAction
 	| EditorActions.MaximizeEditorAction
 	| EditorActions.MinimizeEditorAction
-	| EditorActions.ExpandEditorAction;
+	| EditorActions.ExpandEditorAction
+	| DesktopActions.FetchFilesAction
+	| EditorActions.OpenExerciseFileAction;
