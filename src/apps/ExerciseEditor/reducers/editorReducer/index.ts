@@ -52,6 +52,11 @@ export default (
 				...state,
 				open: false,
 			};
+		case ActionTypes.openEditor:
+			return {
+				...state,
+				open: true,
+			};
 		case ActionTypes.minimizeEditor:
 			return {
 				...state,
