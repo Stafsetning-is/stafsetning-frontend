@@ -4,12 +4,11 @@ import { Dispatch } from "redux";
 import { LogInUserAction, LogOutUserAction } from "./interface";
 import { Api } from "../../api";
 import { removeToken } from "../../services";
-import { fetchExercisesSample } from "../exercisesActions";
 
 export function logInUser(user: User) {
 	return {
 		type: ActionTypes.logInUser,
-		payload: user
+		payload: user,
 	};
 }
 
@@ -19,17 +18,17 @@ export function logInUser(user: User) {
  * start
  */
 export function fetchUserFromToken() {
-	return async function(dispatch: Dispatch) {
+	return async function (dispatch: Dispatch) {
 		try {
 			const { data } = await Api.get<User>("/api/v1/users/auth");
 			dispatch<LogInUserAction>({
 				type: ActionTypes.logInUser,
-				payload: data
+				payload: data,
 			});
 		} catch (error) {
 			dispatch<LogOutUserAction>({
 				type: ActionTypes.logOutUser,
-				payload: null
+				payload: null,
 			});
 		}
 	};
@@ -39,7 +38,7 @@ export function signOut(): LogOutUserAction {
 	removeToken();
 	return {
 		type: ActionTypes.logOutUser,
-		payload: null
+		payload: null,
 	};
 }
 
