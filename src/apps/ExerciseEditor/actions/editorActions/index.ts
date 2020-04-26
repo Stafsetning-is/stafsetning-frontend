@@ -1,10 +1,15 @@
-import { SetOpenTabAction, CreateNewFileAction } from "./interface";
+import {
+	SetOpenTabAction,
+	CreateNewFileAction,
+	SetCloseTabAction,
+	WriteToOpenFileAction,
+} from "./interface";
 import { ActionTypes } from "../types";
 
-export function setOpenTab(tabName: string): SetOpenTabAction {
+export function setOpenTab(fileId: string): SetOpenTabAction {
 	return {
 		type: ActionTypes.setOpenTab,
-		payload: tabName,
+		payload: fileId,
 	};
 }
 
