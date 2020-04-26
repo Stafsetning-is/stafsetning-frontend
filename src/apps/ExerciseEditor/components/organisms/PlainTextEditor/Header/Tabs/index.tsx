@@ -1,17 +1,17 @@
 import React from "react";
-import { HeaderProps as IProps, BaseDocument } from "../interface";
+import { HeaderProps as IProps, BaseDocument } from "../../interface";
 import Tab from "./Tab";
 import NewTab from "./NewTab";
 import { connect } from "react-redux";
-import { StoreState } from "../../../../reducers";
-import { setOpenTab, createNewFile, setCloseTab } from "../../../../actions";
+import { StoreState } from "../../../../../reducers";
+import { setOpenTab, createNewFile, setCloseTab } from "../../../../../actions";
 
 const Component = <T extends BaseDocument>({
 	documents,
 	openTab,
 	setOpenTab,
 	createNewFile,
-	setCloseTab
+	setCloseTab,
 }: IProps<T>) => {
 	return (
 		<React.Fragment>
@@ -33,6 +33,8 @@ const mapStateToProps = (state: StoreState) => ({
 	documents: state.editor.openFiles,
 });
 
-export default connect(mapStateToProps, { setOpenTab, createNewFile, setCloseTab })(
-	Component
-);
+export default connect(mapStateToProps, {
+	setOpenTab,
+	createNewFile,
+	setCloseTab,
+})(Component);
