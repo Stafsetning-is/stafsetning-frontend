@@ -43,6 +43,7 @@ export default (
 			const doc = state.openFiles.find((file) => file._id === state.openTab);
 			if (!doc) return state;
 			doc.text = action.payload;
+			doc.modified = true;
 			return {
 				...state,
 				openFiles: [...state.openFiles],
