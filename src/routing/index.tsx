@@ -19,8 +19,9 @@ export default () => {
 			<LayoutWrapper>
 				<Switch>
 					<Route path="/app/exercise-editor/" component={Apps} />
-					<RouteFactory pages={Pages} modals={Modals} />
+					<RouteFactory pages={Pages} modals={[]} />
 				</Switch>
+				<RouteFactory pages={[]} modals={Modals} />
 			</LayoutWrapper>
 		</Router>
 	);
