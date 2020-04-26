@@ -9,7 +9,10 @@ import {
 	ExpandEditorAction,
 	MaximizeEditorAction,
 	MinimizeEditorAction,
+	OpenExerciseFileAction,
 } from "./interface";
+import { File } from "../../models";
+
 import { ActionTypes } from "../types";
 
 export function setOpenTab(fileId: string): SetOpenTabAction {
@@ -79,6 +82,13 @@ export function maximizeEditor(): MaximizeEditorAction {
 	return {
 		type: ActionTypes.maximizeEditor,
 		payload: null,
+	};
+}
+
+export function openExerciseFile(file: File): OpenExerciseFileAction {
+	return {
+		type: ActionTypes.openExerciseFile,
+		payload: file,
 	};
 }
 
