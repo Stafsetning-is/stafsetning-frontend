@@ -1,18 +1,18 @@
 import React from "react";
-import { HeaderProps as IProps, BaseDocument } from "../../interface";
+import { TabsProps as IProps } from "../../interface";
 import Tab from "./Tab";
 import NewTab from "./NewTab";
 import { connect } from "react-redux";
 import { StoreState } from "../../../../../reducers";
 import { setOpenTab, createNewFile, setCloseTab } from "../../../../../actions";
 
-const Component = <T extends BaseDocument>({
+const Component = ({
 	documents,
 	openTab,
 	setOpenTab,
 	createNewFile,
 	setCloseTab,
-}: IProps<T>) => {
+}: IProps) => {
 	return (
 		<React.Fragment>
 			{documents.map(({ fileName, _id }, i) => (
