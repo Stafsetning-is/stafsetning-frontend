@@ -2,12 +2,11 @@ import { EditorState } from "./interface";
 import { ActionTypes, Actions } from "../../actions/types";
 
 export const initialState: EditorState = {
-	openFiles: [
-		{ fileName: "Ng og nk #1", text: "þetta er texti í þessum file", _id: "1" },
-		{ fileName: "Ng og nk #3", text: "Annar texti", _id: "2" },
-		{ fileName: "Kalli fór hvert?", text: "Ekki hugmynd", _id: "3" },
-	],
+	openFiles: [],
 	openTab: null,
+	open: true,
+	minimized: false,
+	expanded: false,
 };
 
 export default (
