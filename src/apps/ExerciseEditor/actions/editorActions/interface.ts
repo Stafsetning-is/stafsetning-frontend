@@ -19,3 +19,33 @@ export interface WriteToOpenFileAction {
 	type: ActionTypes.writeToOpenFile;
 	payload: string;
 }
+
+export interface OpenEditorAction {
+	type: ActionTypes.openEditor;
+	payload: null;
+}
+
+export interface CloseEditorAction {
+	type: ActionTypes.closeEditor;
+	payload: null;
+}
+
+export interface ExpandEditorAction {
+	type: ActionTypes.expandEditor;
+	payload: null;
+}
+
+export interface CollapseEditorAction {
+	type: ActionTypes.collapseEditor;
+	payload: null;
+}
+
+export interface MinimizeEditorAction {
+	type: ActionTypes.minimizeEditor;
+	payload: null;
+}
+
+export interface MaximizeEditorAction {
+	type: ActionTypes.maximizeEditor;
+	payload: null;
+}
