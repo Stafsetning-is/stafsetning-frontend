@@ -48,6 +48,33 @@ export default (
 				...state,
 				openFiles: [...state.openFiles],
 			};
+		case ActionTypes.closeEditor:
+			return {
+				...state,
+				open: false,
+			};
+		case ActionTypes.minimizeEditor:
+			return {
+				...state,
+				minimized: true,
+				expanded: false,
+			};
+		case ActionTypes.maximizeEditor:
+			return {
+				...state,
+				minimized: false,
+			};
+		case ActionTypes.collapseEditor:
+			return {
+				...state,
+				expanded: false,
+			};
+		case ActionTypes.expandEditor:
+			return {
+				...state,
+				expanded: true,
+				minimized: false,
+			};
 		default:
 			return state;
 	}
