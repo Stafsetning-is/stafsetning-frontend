@@ -6,7 +6,7 @@ import { EditorFrame } from "./styles";
 import {
 	getTextFromNodes,
 	handleKeyDown,
-	getTextFromFile,
+	textToNodes,
 	NO_FILES_OPEN_TEXT,
 	NO_TAB_OPEN_TEXT,
 	EDITOR_PLACEHOLDER,
@@ -16,45 +16,55 @@ import { StoreState } from "../../../../reducers";
 import { writeToOpenFile } from "../../../../actions";
 import { EditorProps as IProps } from "../interface";
 
-const EditText = ({ writeToOpenFile, openFile, noFiles }: IProps) => {
+const EditText = ({
+	writeToOpenFile,
+	openFileText,
+	noFiles,
+	tabNotSelected,
+}: IProps) => {
 	const editor = useMemo(() => withHistory(withReact(createEditor())), []);
 
 	const handleChange = (nodes: Node[]) => {
-		if (!openFile) return;
+		console.log("node", nodes);
+		if (!openFileText) return;
 		const text = getTextFromNodes(nodes);
 		writeToOpenFile(text);
 	};
 
-	const getPlaceholderText = () => {
-		if (noFiles) return NO_FILES_OPEN_TEXT;
-		return NO_TAB_OPEN_TEXT;
-	};
-
 	return (
 		<EditorFrame>
-			{openFile ? (
+			{!tabNotSelected ? (
 				<Slate
 					editor={editor}
-					value={getTextFromFile(openFile)}
-					onChange={handleChange}
+					value={textToNodes(openFileText)}
+					onChange={(v) => {
+						writeToOpenFile(getTextFromNodes(v));
+					}}
 				>
 					<Editable
 						placeholder={EDITOR_PLACEHOLDER}
 						onKeyDown={handleKeyDown}
 					/>
 				</Slate>
+			) : noFiles ? (
+				NO_FILES_OPEN_TEXT
 			) : (
-				getPlaceholderText()
+				NO_TAB_OPEN_TEXT
 			)}
 		</EditorFrame>
 	);
 };
 
-const mapStateToProps = (state: StoreState) => ({
-	openFile: state.editor.openFiles.find(
+const mapStateToProps = (state: StoreState) => {
+	const file = state.editor.openFiles.find(
 		(file) => file._id === state.editor.openTab
-	),
-	noFiles: state.editor.openFiles.length === 0,
-});
+	);
+
+	return {
+		openFileText: file ? file.text : "",
+		noFiles: state.editor.openFiles.length === 0,
+		tabNotSelected: state.editor.openTab === null,
+	};
+};
 
 export default connect(mapStateToProps, { writeToOpenFile })(EditText);
