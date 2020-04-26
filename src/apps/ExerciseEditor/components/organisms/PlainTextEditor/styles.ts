@@ -4,6 +4,8 @@ export const EditorFrame = styled.div`
 	padding: 20px;
 	background-color: #f8f8f8;
 	font-size: 18px;
+	height: 100%;
+	min-height: 400px;
 `;
 
 export const EditorOuter = styled.div`
@@ -14,11 +16,8 @@ export const EditorOuter = styled.div`
 export const EditorHeader = styled.div`
 	background: #343a40;
 	display: flex;
-	align-items: center;
+	align-items: flex-end;
 	box-sizing: border-box;
-	padding: 15px;
-`;
-
-export const HeaderItem = styled.div`
-	color: #f8f8f8;
+	height: 50px;
+	justify-content: flex-start;
 `;
