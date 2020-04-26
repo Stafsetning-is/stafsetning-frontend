@@ -6,16 +6,6 @@ export const textToNodeArray = (text: string) => [
 	},
 ];
 
-export const mapDocArrayToDocMap = <T extends BaseDocument>(
-	docs: T[]
-): DocMap<T> => {
-	const result: DocMap<T> = {};
-	docs.forEach((doc) => {
-		result[doc._id] = doc;
-	});
-	return result;
-};
-
 export const handleKeyDown = (
 	event: React.KeyboardEvent<HTMLDivElement>
 ): void => {
