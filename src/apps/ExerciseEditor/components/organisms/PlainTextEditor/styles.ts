@@ -6,7 +6,7 @@ export const EditorOuter = styled.div`
 	position: fixed;
 	height: 550px;
 	right: 20px;
-	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
 	transition: 0.3s;
 	background: #f8f8f8;
 	width: 500px;
