@@ -1,19 +1,9 @@
-interface BaseProps<T> {
-	documents: T[];
-}
-
-export interface TextEditorProps<T> extends BaseProps<T> {
-	onChange?: (text: string) => void;
-	onSave?: (doc: T) => void;
-	selected: string | null;
-	writeToOpenFile: (input: string) => void;
-}
-
-export interface HeaderProps<T> extends BaseProps<T> {
+export interface TabsProps {
 	openTab: string | null;
 	setOpenTab: (id: string) => void;
 	createNewFile: () => void;
 	setCloseTab: (id: string) => void;
+	documents: BaseDocument[];
 }
 
 export interface BaseDocument {
@@ -22,4 +12,8 @@ export interface BaseDocument {
 	_id: string;
 }
 
-export type DocMap<T> = { [key: string]: T };
+export interface EditorProps {
+	writeToOpenFile: (text: string) => void;
+	openFile: BaseDocument | undefined;
+	noFiles: boolean;
+}
