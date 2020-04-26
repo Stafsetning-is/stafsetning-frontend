@@ -24,6 +24,8 @@ export const Outer = styled.div`
 	border-right: 1px solid #666;
 	cursor: pointer;
 	position: relative;
+	flex: 1;
+	max-width: 200px;
 	${(props) =>
 		props.theme.selected
 			? `
@@ -46,4 +48,12 @@ export const Outer = styled.div`
 
 export const Text = styled.span`
 	padding: 10px;
+	white-space: nowrap;
+`;
+
+export const ModifiedDot = styled.div`
+	background: #ff6600;
+	height: 12px;
+	width: 12px;
+	border-radius: 16px;
 `;
