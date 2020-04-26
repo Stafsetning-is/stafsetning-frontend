@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { createEditor, Node } from "slate";
+import { createEditor } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
 import { withHistory } from "slate-history";
 import { EditorFrame } from "./styles";
@@ -29,7 +29,7 @@ const EditText = ({
 			{!tabNotSelected ? (
 				<Slate
 					editor={editor}
-					value={textToNodes(openFileText ? openFileText : " ")}
+					value={textToNodes(openFileText ? openFileText : "")}
 					onChange={(v) => {
 						writeToOpenFile(getTextFromNodes(v));
 					}}
