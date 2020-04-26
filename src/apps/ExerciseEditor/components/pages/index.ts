@@ -1,3 +1,8 @@
-import EditText from "./ManageText";
+import FileExplorer from "./FileExplorer";
 
-export default [...EditText];
+export default [
+	{
+		route: "/",
+		component: FileExplorer,
+	},
+];
