@@ -3,4 +3,5 @@ export interface IProps {
 	selected: boolean;
 	onClick: () => void;
 	onClose: () => void;
+	modified?: boolean;
 }
