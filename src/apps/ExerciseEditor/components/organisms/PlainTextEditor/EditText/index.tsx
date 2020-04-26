@@ -24,19 +24,12 @@ const EditText = ({
 }: IProps) => {
 	const editor = useMemo(() => withHistory(withReact(createEditor())), []);
 
-	const handleChange = (nodes: Node[]) => {
-		console.log("node", nodes);
-		if (!openFileText) return;
-		const text = getTextFromNodes(nodes);
-		writeToOpenFile(text);
-	};
-
 	return (
 		<EditorFrame>
 			{!tabNotSelected ? (
 				<Slate
 					editor={editor}
-					value={textToNodes(openFileText)}
+					value={textToNodes(openFileText ? openFileText : " ")}
 					onChange={(v) => {
 						writeToOpenFile(getTextFromNodes(v));
 					}}
