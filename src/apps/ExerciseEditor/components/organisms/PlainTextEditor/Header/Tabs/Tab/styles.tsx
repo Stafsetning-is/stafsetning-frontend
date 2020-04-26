@@ -46,4 +46,4 @@ export const Outer = styled.div`
 
 export const Text = styled.span`
 	padding: 10px;
-`
+`;
