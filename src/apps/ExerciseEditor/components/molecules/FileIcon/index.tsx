@@ -38,4 +38,8 @@ const Component = ({
 	);
 };
 
-export const FileIcon = connect(null, { openExerciseFile })(Component);
+export const FileIcon = connect(null, {
+	openExerciseFile,
+	selectSingleFile,
+	selectFile,
+})(Component);
