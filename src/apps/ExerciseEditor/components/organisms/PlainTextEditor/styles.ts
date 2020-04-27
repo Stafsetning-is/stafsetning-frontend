@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const EditorOuter = styled.div`
-	border: 1px solid #343a40;
 	border-radius: 4px;
 	position: fixed;
 	height: 550px;
@@ -10,6 +9,9 @@ export const EditorOuter = styled.div`
 	transition: 0.3s;
 	background: #f8f8f8;
 	width: 500px;
+	display: flex;
+	box-sizing: border-box;
+	flex-direction: column;
 	${(props) =>
 		props.theme.minimized
 			? `
@@ -17,11 +19,11 @@ export const EditorOuter = styled.div`
 		
 	`
 			: `
-		top: calc(100% - 500px);
+		top: calc(100% - 550px);
 		${
 			props.theme.expanded
 				? `
-				height: 500px;
+				height: 600px;
 				top: 40%;
 				margin-top: -250px;
 

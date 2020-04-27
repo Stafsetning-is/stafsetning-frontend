@@ -1,4 +1,5 @@
 import { File } from "../../../models";
+import { RouteComponentProps } from "react-router";
 
 export interface TabsProps {
 	openTab: string | null;
@@ -13,6 +14,7 @@ export interface TabsProps {
 	minimizeEditor: () => void;
 	collapseEditor: () => void;
 	expandEditor: () => void;
+	renameFile: (name: string) => void;
 }
 
 export interface BaseDocument {
@@ -21,10 +23,15 @@ export interface BaseDocument {
 	_id: string;
 }
 
-export interface IProps {
+export interface IProps extends RouteComponentProps {
 	open: boolean;
 	minimized: boolean;
 	expanded: boolean;
+	openFile: File | undefined;
+	setErrorMessage: (text: string) => void;
+	minimizeEditor: () => void;
+	setCloseTab: (fileId: string) => void;
+	clearErrorMessage: () => void;
 }
 
 export interface EditorProps {
