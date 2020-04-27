@@ -5,17 +5,32 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileAlt } from "@fortawesome/free-solid-svg-icons";
 import { IconWrapper } from "../../";
 import { connect } from "react-redux";
-import { openExerciseFile } from "../../../actions";
+import {
+	openExerciseFile,
+	selectSingleFile,
+	selectFile,
+} from "../../../actions";
 
-const Component = ({ fileName, file, openExerciseFile }: IProps) => {
+const Component = ({
+	fileName,
+	_id,
+	file,
+	openExerciseFile,
+	selectSingleFile,
+	selectFile,
+	selected,
+}: IProps) => {
 	return (
 		<IconWrapper
 			type="file"
-			onClick={() => {}}
+			onClick={(metakey) => {
+				if (metakey) selectFile(_id);
+				else selectSingleFile(_id);
+			}}
 			onRightClick={() => {}}
 			onDoubleClick={() => openExerciseFile(file)}
 		>
-			<Outer>
+			<Outer theme={{ selected }}>
 				<FontAwesomeIcon icon={faFileAlt} />
 				<Name>{fileName}</Name>
 			</Outer>
