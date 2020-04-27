@@ -4,6 +4,7 @@ import { ActionTypes, Actions } from "../../actions/types";
 export const initialState: DesktopState = {
 	files: [],
 	doneFetching: false,
+	selected: [],
 };
 
 export default (
@@ -16,6 +17,17 @@ export default (
 				...state,
 				doneFetching: true,
 				files: action.payload,
+			};
+		case ActionTypes.selectFile:
+			return {
+				...state,
+				selected: [...state.selected, action.payload],
+			};
+		case ActionTypes.selectSingleFile:
+			console.log("h4", 4);
+			return {
+				...state,
+				selected: [action.payload],
 			};
 		default:
 			return { ...state };
