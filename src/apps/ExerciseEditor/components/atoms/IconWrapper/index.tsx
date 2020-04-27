@@ -15,26 +15,31 @@ export const IconWrapper = ({
 	let lastDoubleClick = new Date().getTime();
 
 	const handleClick = (event: React.MouseEvent) => {
+		const metakey = hasMetaKey(event);
 		const currClickTime = new Date().getTime();
 		lastClick = getClickId();
 		if (currClickTime - lastClickTime < DOUBLE_CLICK_DELAY) return;
 		lastClickTime = currClickTime;
-		setTimeout(() => handleSingleClick(lastClick, event), DOUBLE_CLICK_DELAY);
+		setTimeout(() => handleSingleClick(lastClick, metakey), DOUBLE_CLICK_DELAY);
 	};
 
-	const handleSingleClick = (clickId: string, event: React.MouseEvent) => {
+	const handleSingleClick = (clickId: string, metakey: boolean) => {
 		if (clickId !== lastClick) return;
 		if (new Date().getTime() - lastDoubleClick < DOUBLE_CLICK_DELAY) return;
-		onClick();
+		onClick(metakey);
 	};
 
 	const handleDoubleClick = (event: React.MouseEvent) => {
 		lastDoubleClick = new Date().getTime();
-		onDoubleClick();
+		onDoubleClick(hasMetaKey(event));
 	};
 
 	const handleRightClick = (event: React.MouseEvent) => {
-		onRightClick();
+		onRightClick(hasMetaKey(event));
+	};
+
+	const hasMetaKey = (event: React.MouseEvent) => {
+		return event.metaKey || event.ctrlKey;
 	};
 
 	return (
