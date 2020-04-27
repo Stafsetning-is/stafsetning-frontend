@@ -14,6 +14,11 @@ export enum ActionTypes {
 	expandEditor,
 	fetchFiles,
 	openExerciseFile,
+	selectSingleFile,
+	selectFile,
+	renameFileInEditor,
+	setErrorMessage,
+	clearErrorMessage,
 }
 
 export type Actions =
@@ -28,4 +33,9 @@ export type Actions =
 	| EditorActions.MinimizeEditorAction
 	| EditorActions.ExpandEditorAction
 	| DesktopActions.FetchFilesAction
-	| EditorActions.OpenExerciseFileAction;
+	| EditorActions.OpenExerciseFileAction
+	| DesktopActions.SelectFileAction
+	| DesktopActions.SelectSingleFileAction
+	| EditorActions.RenameFileInEditorAction
+	| EditorActions.SetErrorMessageAction
+	| EditorActions.ClearErrorMessageAction;
