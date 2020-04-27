@@ -2,7 +2,7 @@ import React from "react";
 import { IProps } from "./interface";
 import { Wrapper } from "./styles";
 import { getClickId } from "./utils";
-const DOUBLE_CLICK_DELAY = 300;
+const DOUBLE_CLICK_DELAY = 150;
 
 export const IconWrapper = ({
 	children,
