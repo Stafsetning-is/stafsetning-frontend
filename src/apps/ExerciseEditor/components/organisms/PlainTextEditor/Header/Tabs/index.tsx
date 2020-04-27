@@ -13,6 +13,7 @@ import {
 	minimizeEditor,
 	collapseEditor,
 	expandEditor,
+	renameFile,
 } from "../../../../../actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -37,6 +38,7 @@ const Component = ({
 	minimizeEditor,
 	collapseEditor,
 	expandEditor,
+	renameFile,
 }: IProps) => {
 	const noTabsOpen = documents.length === 0;
 	return (
@@ -61,6 +63,7 @@ const Component = ({
 							onClick={() => setOpenTab(_id)}
 							onClose={() => setCloseTab(_id)}
 							modified={modified}
+							onRename={renameFile}
 						/>
 				  ))
 				: null}
@@ -85,4 +88,5 @@ export default connect(mapStateToProps, {
 	minimizeEditor,
 	collapseEditor,
 	expandEditor,
+	renameFile,
 })(Component);
