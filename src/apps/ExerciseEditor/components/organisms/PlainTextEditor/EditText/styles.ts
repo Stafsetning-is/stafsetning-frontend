@@ -6,7 +6,7 @@ export const EditorFrame = styled.div`
 	font-size: 18px;
 	flex: 1;
 	display: flex;
-
+	height: 100%;
 	div[role="textbox"] {
 		width: 100% !important;
 	}
