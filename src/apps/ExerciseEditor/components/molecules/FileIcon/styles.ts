@@ -16,6 +16,7 @@ export const Outer = styled.div`
 	:hover {
 		background: #e1e1e1;
 	}
+	${(props) => (props.theme.selected ? "background: #e1e1e1;" : "")}
 `;
 
 export const Name = styled.p`
