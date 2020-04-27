@@ -55,3 +55,18 @@ export interface OpenExerciseFileAction {
 	type: ActionTypes.openExerciseFile;
 	payload: File;
 }
+
+export interface RenameFileInEditorAction {
+	type: ActionTypes.renameFileInEditor;
+	payload: string;
+}
+
+export interface SetErrorMessageAction {
+	type: ActionTypes.setErrorMessage;
+	payload: string;
+}
+
+export interface ClearErrorMessageAction {
+	type: ActionTypes.clearErrorMessage;
+	payload: null;
+}
