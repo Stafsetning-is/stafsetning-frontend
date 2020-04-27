@@ -10,6 +10,9 @@ import {
 	MaximizeEditorAction,
 	MinimizeEditorAction,
 	OpenExerciseFileAction,
+	RenameFileInEditorAction,
+	SetErrorMessageAction,
+	ClearErrorMessageAction,
 } from "./interface";
 import { File } from "../../models";
 
@@ -89,6 +92,27 @@ export function openExerciseFile(file: File): OpenExerciseFileAction {
 	return {
 		type: ActionTypes.openExerciseFile,
 		payload: file,
+	};
+}
+
+export function renameFile(newName: string): RenameFileInEditorAction {
+	return {
+		type: ActionTypes.renameFileInEditor,
+		payload: newName,
+	};
+}
+
+export function clearErrorMessage(): ClearErrorMessageAction {
+	return {
+		type: ActionTypes.clearErrorMessage,
+		payload: null,
+	};
+}
+
+export function setErrorMessage(message: string): SetErrorMessageAction {
+	return {
+		type: ActionTypes.setErrorMessage,
+		payload: message,
 	};
 }
 
