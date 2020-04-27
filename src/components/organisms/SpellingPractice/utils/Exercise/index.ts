@@ -168,7 +168,7 @@ export class Exercise {
 			else this.handleError(input);
 			if ([",", "."].includes(input)) this.type(" ");
 		} catch (e) {
-			console.log(e.message);
+			// console.log(e.message);
 		}
 		this.addToSessionStorage(input);
 	}
@@ -185,12 +185,12 @@ export class Exercise {
 		if (prevVal === null)
 			SessionStorageService.put<CachedExercise>(this.exerciseCacheKey(), {
 				typed: char,
-				errorFlag: this.errorFlag
+				errorFlag: this.errorFlag,
 			});
 		else
 			SessionStorageService.put<CachedExercise>(this.exerciseCacheKey(), {
 				typed: prevVal.typed + char,
-				errorFlag: this.errorFlag
+				errorFlag: this.errorFlag,
 			});
 	}
 
@@ -268,7 +268,7 @@ export class Exercise {
 			errorItems: this.errors,
 			exerciseString: this.getText(),
 			duration: 69,
-			exercise: this.id
+			exercise: this.id,
 		};
 	}
 
@@ -279,9 +279,7 @@ export class Exercise {
 	 */
 	private getPreviewText() {
 		const startOfNext = this.partIndexes[1];
-		return this.getText()
-			.slice(this.typingAt, startOfNext)
-			.trim();
+		return this.getText().slice(this.typingAt, startOfNext).trim();
 	}
 
 	/**

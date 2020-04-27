@@ -24,17 +24,28 @@ export interface ErrorObject {
 export interface Exercise {
 	parts: string[];
 	completed: boolean;
-	title?: string;
+	title: string;
 	_id: string;
-	bestAttempt?: number;
 	length: number;
 	difficultRange: {
 		min: number;
 		max: number;
 	};
+	report: Report;
 	wordCount: number;
+	practice?: string;
+	score?: number;
+	saved: boolean;
+}
+
+export interface Report {
+	[key: string]: {
+		count: number;
+		name: string;
+	};
 }
 
 export interface User {
 	name: string;
+	avatar: string;
 }

@@ -1,6 +1,7 @@
 import * as FilterActions from "../filterActions";
 import * as AuthActions from "../authActions";
 import * as ExercisesActions from "../exercisesActions";
+import * as UserProfileActions from "../userProfileActions";
 
 export enum ActionTypes {
 	setMinWordCount,
@@ -9,7 +10,15 @@ export enum ActionTypes {
 	logInUser,
 	logOutUser,
 	getExerciseSample,
-	getExercisesByUser
+	getExercisesByUser,
+	getFinishedExercises,
+	addGrammarRuleToFilter,
+	removeGrammarRuleFromFilter,
+	setQuickFilter,
+	closeFilterSideBar,
+	openFilterSideBar,
+	reloadSelection,
+	starExerciseInSelection,
 }
 
 export type Actions =
@@ -19,4 +28,12 @@ export type Actions =
 	| AuthActions.LogInUserAction
 	| AuthActions.LogOutUserAction
 	| ExercisesActions.GetExerciseSampleAction
-	| ExercisesActions.GetExercisesByUserAction;
+	| ExercisesActions.GetExercisesByUserAction
+	| UserProfileActions.GetFinishedExercisesAction
+	| FilterActions.AddRuleToGrammarFilterAction
+	| FilterActions.RemoveGrammarRuleFromFilterAction
+	| FilterActions.SetQuickFilterAction
+	| FilterActions.CloseFilterAction
+	| FilterActions.OpenFilterAction
+	| ExercisesActions.ReloadSelectionAction
+	| ExercisesActions.StarExerciseInSelectionAction;

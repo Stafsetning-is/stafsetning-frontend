@@ -1,1 +1,1 @@
-export const EMPTY_USER = { name: "" };
+export const EMPTY_USER = { name: "", avatar: "" };

@@ -15,10 +15,30 @@ export const Button = styled.div`
 	align-items: center;
 	color: #6600ff;
 	cursor: pointer;
+	transition: 0.4s;
 `;
 
 export const InfoBox = styled.div``;
 
+export const StarBox = styled.div``;
+
+export const TopLine = styled.div`
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+	svg {
+		${(props) =>
+			props.theme.saved
+				? `
+				color: rgba(255, 195, 55, 1);
+				`
+				: `
+				color: #cecece
+				`};
+		cursor: pointer;
+	}
+`;
 export const TitleText = styled.span`
 	color: #333;
 	margin: 5px 0 5px 0;
@@ -32,12 +52,14 @@ export const SecondaryTitle = styled.span`
 
 export const BestPracticeTitle = styled.span`
 	${subTitleBase}
-	color: #00EE88;
-	font-weight: bold;
+	color: #00d855;
+	font-weight: 500;
 `;
 
 export const Container = styled.div`
 	padding: 5px 17.5px 0 17.5px;
+	border: 1px solid #cecece;
+	border-radius: 4px;
 `;
 
 export const InfoContainer = styled.div`

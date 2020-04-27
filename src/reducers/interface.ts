@@ -1,9 +1,11 @@
 import { AuthState } from "./authReducer";
 import { FilterState } from "./filterReducer";
 import { ExercisesState } from "./exercisesReducer";
+import { PracticesState } from "././userProfileReducer";
 
 export interface StoreState {
-	auth: AuthState;
-	filter: FilterState;
-	exercises: ExercisesState;
+    auth: AuthState;
+    filter: FilterState;
+    exercises: ExercisesState;
+    userProfile: PracticesState;
 }

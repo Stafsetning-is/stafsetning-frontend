@@ -4,52 +4,72 @@ import {
 	setHideCompleted,
 	setMaxWordCount,
 	setMinWordCount,
+	setQuickFilter,
+	closeFilterSideBar,
+	openFilterSideBar,
 } from "../../../actions";
 import { AuthHider } from "../../../hoc";
 import { connect } from "react-redux";
 import { IProps } from "./interface";
 import { StoreState } from "../../../reducers";
-import { FilterOuter } from "./styles";
+import { FilterOuter, Header, OpenFilter } from "./styles";
+import GrammarRules from "./GrammarRules";
 import Compartment from "./Compartment";
-import FilterButton from "./FilterButton";
-
+import FilterButton from "./QuickFilterButton";
+import { SLIDER_PROPS, FILTER_BUTTONS } from "./utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWindowClose, faFilter } from "@fortawesome/free-solid-svg-icons";
+/**
+ * Filter menu for search on front page
+ */
 const FilterComponent = ({
-	hideCompleted,
 	setMaxWordCount,
 	setMinWordCount,
 	maxWordCount,
 	minWordCount,
-	setHideCompleted,
+	setQuickFilter,
+	quickFilter,
+	sidebarVisible,
+	closeFilterSideBar,
+	openFilterSideBar,
 }: IProps) => {
 	return (
 		<AuthHider setAuthLevel="user">
-			<FilterOuter>
-				<Compartment> </Compartment>
-				<Compartment>
+			<OpenFilter onClick={openFilterSideBar}>
+				<FontAwesomeIcon icon={faFilter} />
+			</OpenFilter>
+			<FilterOuter theme={{ open: sidebarVisible }}>
+				<Header>
+					<span>Leita</span>
+					<FontAwesomeIcon icon={faWindowClose} onClick={closeFilterSideBar} />
+				</Header>
+				<Compartment label="Málfræði reglur">
+					<GrammarRules />
+				</Compartment>
+
+				<Compartment label="Lengd æfingar">
 					<DoubleSlider
+						{...SLIDER_PROPS}
 						value={{
 							min: minWordCount,
 							max: maxWordCount,
-						}}
-						defaultValues={{
-							min: 0,
-							max: 200,
 						}}
 						onChange={({ min, max }) => {
 							setMaxWordCount(max);
 							setMinWordCount(min);
 						}}
-						passProps={{}}
-						label="Lengd á æfingu"
 						type="text-input"
 					/>
 				</Compartment>
-				<Compartment>
-					<FilterButton
-						text="Fela þær sem ég er búinn með"
-						value={hideCompleted}
-						toggle={setHideCompleted}
-					/>
+				<Compartment label="Flýtileiðir">
+					{FILTER_BUTTONS.map((button) => (
+						<FilterButton
+							text={button.label}
+							selected={quickFilter === button.quickFilter}
+							onClick={setQuickFilter}
+							quickFilter={button.quickFilter}
+						/>
+					))}
 				</Compartment>
 			</FilterOuter>
 		</AuthHider>
@@ -62,4 +82,7 @@ export const FilterSearch = connect(mapStateToPropss, {
 	setHideCompleted,
 	setMinWordCount,
 	setMaxWordCount,
+	setQuickFilter,
+	closeFilterSideBar,
+	openFilterSideBar,
 })(FilterComponent);

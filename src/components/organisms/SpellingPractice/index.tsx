@@ -54,6 +54,7 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 				setTyped(text);
 				setPreview(preview);
 			});
+
 		setPreviewCallback(() => () => session.showPreview());
 		setErrorCount(session.getErrorCount());
 		return () => session.stopListening();

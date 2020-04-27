@@ -5,7 +5,6 @@ import {
 	TitleText,
 	TitleElement,
 	SecondaryTitle,
-	PositiveElement,
 	OverviewContainer,
 	SuggestionTitle,
 	Outer,
@@ -18,23 +17,17 @@ import Moment from "moment";
 import "moment/locale/is";
 import PracticeText from "./PracticeText";
 import { getFeedback } from "./utils";
-import { Api } from "../../../api";
 
 const Component = ({
 	nextUp,
 	exercise: { title },
 	errorItems,
-	duration, //should remove this!
 	createdAt,
 	exerciseString,
 }: IProps) => {
 	// const [mm, ss] = durationToTime(duration);
-	Moment.locale('is');
+	Moment.locale("is");
 	const test = Moment(createdAt).fromNow();
-
-	useEffect(() => {
-		Api.get
-	}, [])
 
 	return (
 		<React.Fragment>
@@ -45,7 +38,7 @@ const Component = ({
 				<TitleElement>{test}</TitleElement>
 			</SecondaryTitle>
 			<TopBar>
-				<PositiveElement>Æfingin skapar meistarann</PositiveElement>
+				<p>Vel gert! Æfingin skapar meistarann</p>
 			</TopBar>
 			<OverviewContainer>
 				<Outer>
@@ -54,7 +47,7 @@ const Component = ({
 			</OverviewContainer>
 			<PracticeText exerciseString={exerciseString} errors={errorItems} />
 			<SuggestionTitle>Haltu áfram að æfa þig!</SuggestionTitle>
-			<ExerciseBoxesContainer exercises={nextUp} />
+			<ExerciseBoxesContainer exercises={nextUp} limit={9} />
 		</React.Fragment>
 	);
 };

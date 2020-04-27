@@ -19,15 +19,11 @@ export const getFeedback = (errorItems: number) => {
 	)}`;
 };
 
-export const getProverb = (errorItems: number) => {
-	
-}
-
 /**
  * errorWord determines whether the error is plural or singular. Where all numbers ending in 1 except for 11 is pronounced in the singular form villa
  */
 const errorWord = (errorItems: number) => {
-	if (errorItems % 10 === 1 && errorItems !== 11) return "villa";
+	if (errorItems % 10 === 1 && errorItems != 11) return "villa";
 	return "villur";
 };
 /**
