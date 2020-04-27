@@ -18,7 +18,7 @@ export default () => {
 		<Router history={history}>
 			<LayoutWrapper>
 				<Switch>
-					<Route path="/app/exercise-editor/" component={Apps} />
+					<Route path="/app/exercise-editor/*" component={Apps} exact={true} />
 					<RouteFactory pages={Pages} modals={[]} />
 				</Switch>
 				<RouteFactory pages={[]} modals={Modals} />

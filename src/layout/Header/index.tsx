@@ -33,7 +33,7 @@ const Header = ({ user, signOut }: IProps) => {
 							</NavLink>
 						</AuthHider>
 						<AuthHider setAuthLevel="admin">
-							<NavLink to={"/app/exercise-editor"}>
+							<NavLink to={"/app/exercise-editor/"}>
 								<HeaderItem text="Mín skjöl" />
 							</NavLink>
 						</AuthHider>

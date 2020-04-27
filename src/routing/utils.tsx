@@ -12,7 +12,7 @@ const mapItemsToSwitchedRoutes = (pages: IPage[], prefix = "") => (
 			return (
 				<Route
 					path={`${prefix}${Page.route}`}
-					exact={false}
+					exact={true}
 					key={Page.route}
 					component={Page.component}
 				/>
