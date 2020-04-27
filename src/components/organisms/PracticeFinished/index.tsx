@@ -1,26 +1,25 @@
-import React from 'react';
-import { IProps } from './interface';
+import React, { useEffect } from "react";
+import { IProps } from "./interface";
 import {
 	TopBar,
 	TitleText,
 	TitleElement,
 	SecondaryTitle,
+	PositiveElement,
 	OverviewContainer,
 	SuggestionTitle,
 	Outer,
 	ErrorCount,
-	TimeText,
-	feedBack,
-	PositiveElement,
-} from './styles';
-import { ExerciseBoxesContainer } from '../../';
-import { connect } from 'react-redux';
-import { StoreState } from '../../../reducers';
-import Moment from 'moment';
-import 'moment/locale/is';
-import PracticeText from './PracticeText';
-import FeedBack from './FeedBack';
-import { getFeedback } from './FeedBack/utils';
+} from "./styles";
+import { ExerciseBoxesContainer } from "../../";
+import { connect } from "react-redux";
+import { StoreState } from "../../../reducers";
+import Moment from "moment";
+import "moment/locale/is";
+import PracticeText from "./PracticeText";
+import { getFeedback } from "./utils";
+import { Api } from "../../../api";
+
 const Component = ({
 	nextUp,
 	exercise: { title },
@@ -28,11 +27,14 @@ const Component = ({
 	duration, //should remove this!
 	createdAt,
 	exerciseString,
-	proverbText = 'æfingin skapar meistarann!',
 }: IProps) => {
 	// const [mm, ss] = durationToTime(duration);
 	Moment.locale('is');
 	const test = Moment(createdAt).fromNow();
+
+	useEffect(() => {
+		Api.get
+	}, [])
 
 	return (
 		<React.Fragment>
@@ -43,7 +45,7 @@ const Component = ({
 				<TitleElement>{test}</TitleElement>
 			</SecondaryTitle>
 			<TopBar>
-				<PositiveElement>{proverbText}</PositiveElement>
+				<PositiveElement>Æfingin skapar meistarann</PositiveElement>
 			</TopBar>
 			<OverviewContainer>
 				<Outer>
