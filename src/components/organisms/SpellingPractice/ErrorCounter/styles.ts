@@ -5,17 +5,15 @@ export const Outer = styled.div`
 	width: 70px;
 	height: 59px;
 	right: 0;
-	top: 250px;
+	top: 100px;
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
 	background: #${(props) => (props.theme.count ? "ff0066" : "cecece")};
 	box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.15);
 	color: #f8f8f8;
-	@media (min-width: 900px) {
-		left: 50%;
-		margin-left: 380px;
-	}
+	left: 58%;
+	margin-left: 380px;
 	transition: 0.3s;
 `;
 
