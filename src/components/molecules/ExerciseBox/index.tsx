@@ -45,7 +45,9 @@ export const ExerciseBox = ({
 	 */
 
 	const [loading, setLoading] = useState(false);
-	const link = practice ? `/completed/${practice}` : `/exercise/${_id}`;
+	const link = practice
+		? `/completed/${practice}`
+		: `/exercise/practice/${_id}`;
 	const ruleString = reportToRuleString(report);
 	const scoreString = score
 		? `Besta hingað til: ${Math.round(score * 100)}%`

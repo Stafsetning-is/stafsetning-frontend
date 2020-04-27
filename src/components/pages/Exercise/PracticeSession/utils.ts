@@ -1,5 +1,5 @@
 import { Api } from "../../../../api";
-import { Exercise } from "../.././../../models";
+import { Exercise } from "../../../../models";
 /**
  * fetches exercise from backend
  * @param id the id of the exercise

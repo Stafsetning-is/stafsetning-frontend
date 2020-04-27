@@ -1,3 +1,4 @@
+import { AuthLevels } from "../services";
 export interface Practice {
 	errorItems: ErrorObject[];
 	exerciseString: string;
@@ -47,4 +48,5 @@ export interface Report {
 export interface User {
 	name: string;
 	avatar: string;
+	type: AuthLevels;
 }
