@@ -6,6 +6,16 @@ export interface FetchFilesAction {
 	payload: File[];
 }
 
+export interface SelectSingleFileAction {
+	type: ActionTypes.selectSingleFile;
+	payload: string;
+}
+
+export interface SelectFileAction {
+	type: ActionTypes.selectFile;
+	payload: string;
+}
+
 export interface FetchFilesRespnse {
 	_id: string;
 	difficultRange: {
