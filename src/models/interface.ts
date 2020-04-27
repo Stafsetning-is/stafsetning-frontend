@@ -13,7 +13,6 @@ export interface PracticePopulated {
 	exercise: Exercise;
 	_id: string;
 	createdAt: string;
-	proverbText: string;
 }
 
 export interface ErrorObject {
