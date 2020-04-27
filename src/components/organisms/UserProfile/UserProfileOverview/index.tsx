@@ -3,16 +3,16 @@ import { ExerciseBoxesContainer } from "../../../organisms/ExerciseBoxesContaine
 import { StoreState } from "../../../../reducers";
 import { connect } from "react-redux";
 import { IProps } from "./interface";
-import { fetchSavedExercises } from "../../../../actions";
+import { fetchFinishedExercises } from "../../../../actions";
 /**
  * UserProfileOverview component takes in props for the array of
  * exercises as well as all the finished exercises fetched from
  * the redux store userProfile
  *
  */
-const Component = ({ exercises, fetchSavedExercises }: IProps) => {
+const Component = ({ exercises, fetchFinishedExercises }: IProps) => {
     useEffect(() => {
-        fetchSavedExercises();
+        fetchFinishedExercises();
     }, []);
     return (
         <Fragment>
@@ -22,9 +22,9 @@ const Component = ({ exercises, fetchSavedExercises }: IProps) => {
 };
 
 const mapStateToProps = (store: StoreState) => ({
-    exercises: store.exercises.selection,
+    exercises: store.userProfile.finishedExercises
 });
 
 export const UserProfileOverview = connect(mapStateToProps, {
-    fetchSavedExercises,
+    fetchFinishedExercises
 })(Component);
