@@ -1,6 +1,7 @@
 export interface DesktopState {
 	files: Document[];
 	doneFetching: boolean;
+	selected: string[];
 }
 
 interface Document {
