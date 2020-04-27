@@ -80,16 +80,39 @@ export default (
 				expanded: true,
 				minimized: false,
 			};
+		case ActionTypes.renameFileInEditor:
+			const toRename = state.openFiles.find(
+				(file) => file._id === state.openTab
+			);
+			if (!toRename) return state;
+			toRename.fileName = action.payload;
+			toRename.modified = true;
+			console.log("toRename", toRename);
+			return {
+				...state,
+				openFiles: [...state.openFiles],
+			};
 		case ActionTypes.openExerciseFile:
 			const found = state.openFiles.find(
 				({ _id }) => _id === action.payload._id
 			);
-			if (found) return { ...state };
+			if (found) return { ...state, open: true, openTab: action.payload._id };
 			return {
 				...state,
 				openFiles: [...state.openFiles, action.payload],
 				open: true,
 				minimized: false,
+				openTab: action.payload._id,
+			};
+		case ActionTypes.clearErrorMessage:
+			return {
+				...state,
+				errorMessage: "",
+			};
+		case ActionTypes.setErrorMessage:
+			return {
+				...state,
+				errorMessage: action.payload,
 			};
 		default:
 			return state;
