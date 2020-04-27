@@ -27,18 +27,21 @@ export const IGNORE_CODES_ARRAY = [
 	124,
 	125,
 	126,
-	222
+	222,
 ];
 
 export const MAPPED_ICELANDIC_CHARS: { [key: string]: string } = {
 	"189": "ö",
 	"219": "ð",
 	"191": "þ",
-	"186": "æ"
+	"246": "ö",
+	"230": "æ",
+	"240": "ð",
+	"254": "þ",
 };
 
 export const SPECIAL_CHARS = {
-	accent: 222
+	accent: 222,
 };
 
 export const ACCENT_MAP: { [key: string]: string } = {
@@ -47,5 +50,5 @@ export const ACCENT_MAP: { [key: string]: string } = {
 	i: "í",
 	o: "ó",
 	u: "ú",
-	y: "ý"
+	y: "ý",
 };
