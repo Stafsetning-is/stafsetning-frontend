@@ -44,11 +44,19 @@ export const Outer = styled.div`
 	:hover {
 		color: #f8f8f8;
 	}
+	input {
+		border: none;
+		outline: none;
+		background: #f8f8f8;
+		font-size: 14px;
+		padding: 5px;
+	}
 `;
 
 export const Text = styled.span`
 	padding: 10px;
 	white-space: nowrap;
+	flex: 1;
 `;
 
 export const ModifiedDot = styled.div`

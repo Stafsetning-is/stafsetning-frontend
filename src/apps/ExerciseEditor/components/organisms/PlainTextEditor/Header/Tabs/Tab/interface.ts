@@ -4,4 +4,5 @@ export interface IProps {
 	onClick: () => void;
 	onClose: () => void;
 	modified?: boolean;
+	onRename: (newName: string) => void;
 }
