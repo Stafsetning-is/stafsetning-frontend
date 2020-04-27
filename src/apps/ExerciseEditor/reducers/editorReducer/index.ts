@@ -7,6 +7,7 @@ export const initialState: EditorState = {
 	open: true,
 	minimized: false,
 	expanded: false,
+	errorMessage: "",
 };
 
 export default (

@@ -5,6 +5,7 @@ export interface EditorState {
 	open: boolean;
 	minimized: boolean;
 	expanded: boolean;
+	errorMessage: string;
 }
 
 export interface BaseDocument {
