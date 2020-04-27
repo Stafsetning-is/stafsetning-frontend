@@ -1,4 +1,9 @@
-import { FetchFilesAction, FetchFilesRespnse } from "./interface";
+import {
+	FetchFilesAction,
+	FetchFilesRespnse,
+	SelectFileAction,
+	SelectSingleFileAction,
+} from "./interface";
 import { ActionTypes } from "../types";
 import { Dispatch } from "redux";
 import { Api } from "../../../../api";
@@ -22,6 +27,20 @@ export function fetchFiles() {
 				payload: [],
 			});
 		}
+	};
+}
+
+export function selectFile(fileId: string): SelectFileAction {
+	return {
+		type: ActionTypes.selectFile,
+		payload: fileId,
+	};
+}
+
+export function selectSingleFile(fileId: string): SelectSingleFileAction {
+	return {
+		type: ActionTypes.selectSingleFile,
+		payload: fileId,
 	};
 }
 
