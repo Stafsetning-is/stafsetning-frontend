@@ -1,5 +1,5 @@
 import { ActionTypes } from "../types";
-import { File } from "../../models";
+import { File, ExerciseRepr } from "../../models";
 
 export interface FetchFilesAction {
 	type: ActionTypes.fetchFiles;
@@ -16,14 +16,9 @@ export interface SelectFileAction {
 	payload: string;
 }
 
-export interface FetchFilesRespnse {
-	_id: string;
-	difficultRange: {
-		min: number;
-		max: number;
-	};
-	published: boolean;
-	fileName: string;
-	title: string;
-	parts: string[];
+export interface SaveFileToDesktopAction {
+	type: ActionTypes.saveFileToDesktop;
+	payload: File;
 }
+
+export interface FetchFilesRespnse extends ExerciseRepr {}

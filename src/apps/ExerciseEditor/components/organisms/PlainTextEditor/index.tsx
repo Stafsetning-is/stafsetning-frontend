@@ -14,6 +14,7 @@ import {
 	minimizeEditor,
 	setCloseTab,
 	clearErrorMessage,
+	saveFileToDesktop,
 } from "../../../actions";
 
 const Editor = ({
@@ -26,6 +27,7 @@ const Editor = ({
 	minimizeEditor,
 	setCloseTab,
 	history,
+	saveFileToDesktop,
 }: IProps) => {
 	console.log("open", open);
 	if (!open) return null;
@@ -34,6 +36,7 @@ const Editor = ({
 		if (!openFile) return;
 		try {
 			await verifyDocument(openFile);
+			saveFileToDesktop(openFile);
 			setCloseTab(openFile._id);
 			clearErrorMessage();
 			minimizeEditor();
@@ -70,6 +73,7 @@ const ReduxConnected = connect(mapStateToProps, {
 	minimizeEditor,
 	setCloseTab,
 	clearErrorMessage,
+	saveFileToDesktop,
 })(Editor);
 
 export const PlainTextEditor = withRouter(ReduxConnected);
