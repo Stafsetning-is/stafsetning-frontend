@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Publisher } from "../../";
 import { LoaderBox } from "../../../../../components";
 import { connect } from "react-redux";
@@ -19,7 +19,7 @@ const Component = ({
 		const doc = documents.find((doc) => doc._id === id);
 		console.log("doc", doc);
 		if (doc) openFileInPublisher(doc);
-	}, [id, documents]);
+	}, [id, documents, openFileInPublisher, fetchFiles]);
 
 	return (
 		<LoaderBox loading={!openFile}>
