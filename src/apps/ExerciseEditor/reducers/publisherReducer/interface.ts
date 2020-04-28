@@ -5,4 +5,5 @@ export interface PublisherState {
 	splits: number[];
 	startRange?: number;
 	endRange?: number;
+	completedFileId?: string;
 }
