@@ -67,7 +67,7 @@ export function starExerciseInSelection(id: string, save: boolean) {
 export function fetchSavedExercises() {
 	return async function (dispatch: Dispatch) {
 		try {
-			const { data } = await Api.get<Exercise[]>("/api/v1/exercises/by_difficulty");
+			const { data } = await Api.get<Exercise[]>("/api/v1/users/exercises/saved");
 			dispatch<FetchSavedExercisesAction>({
 				type: ActionTypes.fetchSavedExercises,
 				payload: data
