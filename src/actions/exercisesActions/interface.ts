@@ -20,8 +20,3 @@ export interface StarExerciseInSelectionAction {
 	type: ActionTypes.starExerciseInSelection;
 	payload: { saved: boolean; exercise: string };
 }
-
-export interface getSavedExercisesAction {
-    type: ActionTypes.getSavedExercises;
-    payload: Exercise[];
-}

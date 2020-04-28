@@ -22,7 +22,7 @@ const Component = ({ exercises, getSavedExercises }: IProps) => {
 };
 
 const mapStateToProps = (store: StoreState) => ({
-    exercises: store.exercises.selection,
+    exercises: store.userProfile.drawer,
 });
 
 export const UserProfileSaved = connect(mapStateToProps, {

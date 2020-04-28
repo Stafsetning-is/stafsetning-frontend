@@ -2,7 +2,7 @@ import { PracticesState } from "./interface";
 import { ActionTypes, Actions } from "../../actions/types";
 
 export const initialState: PracticesState = {
-    finishedExercises: [],
+    drawer: [],
 };
 
 export default (
@@ -13,8 +13,13 @@ export default (
         case ActionTypes.getFinishedExercises:
             return {
                 ...state,
-                finishedExercises: action.payload,
+                drawer: action.payload,
             };
+            case ActionTypes.getSavedExercises:
+                return {
+                    ...state,
+                    drawer: action.payload,
+                }
         default:
             return state;
     }

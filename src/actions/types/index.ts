@@ -38,4 +38,4 @@ export type Actions =
 	| FilterActions.OpenFilterAction
 	| ExercisesActions.ReloadSelectionAction
 	| ExercisesActions.StarExerciseInSelectionAction
-	| ExercisesActions.getSavedExercisesAction;
+	| UserProfileActions.getSavedExercisesAction;

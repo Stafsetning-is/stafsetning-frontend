@@ -4,8 +4,7 @@ import { Dispatch } from "redux";
 import {
 	GetExerciseSampleAction,
 	GetExercisesByUserAction,
-	StarExerciseInSelectionAction,
-	getSavedExercisesAction
+	StarExerciseInSelectionAction
 } from "./interface";
 import { ActionTypes } from "../types";
 
@@ -57,20 +56,6 @@ export function starExerciseInSelection(id: string, save: boolean) {
 			dispatch<StarExerciseInSelectionAction>({
 				type: ActionTypes.starExerciseInSelection,
 				payload: { saved: save, exercise: id },
-			});
-		} catch (error) {
-			console.log("Error getting exercises");
-		}
-	};
-}
-
-export function getSavedExercises() {
-	return async function (dispatch: Dispatch) {
-		try {
-			const { data } = await Api.get<Exercise[]>("/api/v1/users/exercises/saved");
-			dispatch<getSavedExercisesAction>({
-				type: ActionTypes.getSavedExercises,
-				payload: data
 			});
 		} catch (error) {
 			console.log("Error getting exercises");
