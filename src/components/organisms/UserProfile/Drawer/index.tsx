@@ -6,7 +6,6 @@ import { DRAWER_LIST } from "./utils";
 
 export default () => {
     const handleClick = (toOpen: Drawers) => {};
-    //const button =  ? kláraðar : vistaðar
     return (
         <Frame>
             {DRAWER_LIST.map((item) => (

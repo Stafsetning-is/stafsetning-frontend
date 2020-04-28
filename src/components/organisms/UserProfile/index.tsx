@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import UserProfileDetails from "./UserProfileDetails";
-import { UserProfileOverview } from "./UserProfileOverview";
+import { UserProfileFinished } from "./UserProfileFinished";
+import { UserProfileSaved } from "./UserProfileSaved";
 import Drawer from "./Drawer";
 import { IProps } from "./interface";
 import { connect } from "react-redux";
@@ -11,7 +12,7 @@ const Component = ({ user }: IProps) => {
         <Fragment>
             <UserProfileDetails {...user} />
             <Drawer />
-            <UserProfileOverview />
+            <UserProfileFinished />
         </Fragment>
     );
 };
