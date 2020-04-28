@@ -29,6 +29,9 @@
         "react-spinners": "^0.8.0",
         "redux-thunk": "^2.3.0",
         "reshake": "^1.2.1",
+        "slate": "^0.57.1",
+        "slate-history": "^0.57.1",
+        "slate-react": "^0.57.1",
         "styled-components": "^5.0.1",
         "typescript": "~3.7.2"
     },

@@ -4,8 +4,7 @@ export const Button = styled.button`
 	position: absolute;
 	width: 70px;
 	height: 59px;
-	right: 0;
-	top: 320px;
+	top: 170px;
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
@@ -16,10 +15,8 @@ export const Button = styled.button`
 	border: none;
 	font-size: 14px;
 	padding-left: 20px;
-	@media (min-width: 900px) {
-		left: 50%;
-		margin-left: 380px;
-	}
+	left: 58%;
+	margin-left: 380px;
 	&:hover {
 		box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.15);
 	}
