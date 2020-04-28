@@ -49,4 +49,5 @@ export interface User {
 	name: string;
 	avatar: string;
 	type: AuthLevels;
+	_id: string;
 }
