@@ -13,7 +13,7 @@ import { signOut } from "../../actions";
 /**
  * Header component for layout
  */
-const Header = ({ user, signOut }: IProps) => {
+const Header = ({ user, signOut, pendingInvitesCount }: IProps) => {
 	return (
 		<Container>
 			<CenterBlock>
@@ -30,6 +30,14 @@ const Header = ({ user, signOut }: IProps) => {
 						<AuthHider setAuthLevel="guest">
 							<NavLink to={`${urlWithoutPath()}log-in`}>
 								<HeaderItem text="Skrá inn" />
+							</NavLink>
+						</AuthHider>
+						<AuthHider setAuthLevel="admin">
+							<NavLink to={"/user/pending-admin-invites/"}>
+								<HeaderItem
+									text="Nýir kennarar"
+									notifications={pendingInvitesCount}
+								/>
 							</NavLink>
 						</AuthHider>
 						<AuthHider setAuthLevel="admin">
@@ -54,8 +62,11 @@ const Header = ({ user, signOut }: IProps) => {
 	);
 };
 
-const mapStateToProps = ({ auth: { user } }: StoreState) => ({
+const mapStateToProps = ({
+	auth: { user, pendingAdminInvite },
+}: StoreState) => ({
 	user,
+	pendingInvitesCount: pendingAdminInvite.length,
 });
 
 export default connect(mapStateToProps, { signOut })(Header);
