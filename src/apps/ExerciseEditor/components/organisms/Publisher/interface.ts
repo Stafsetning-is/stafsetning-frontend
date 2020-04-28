@@ -5,6 +5,7 @@ export interface IProps {
 	splits: number[];
 	startRange?: number;
 	endRange?: number;
+	completePublish: (id: string) => void;
 }
 
 export type SplitType = "none" | "closed-split" | "not-closed";
