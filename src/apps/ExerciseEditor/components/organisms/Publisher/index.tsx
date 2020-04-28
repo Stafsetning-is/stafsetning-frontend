@@ -4,30 +4,43 @@ import SplitterView from "./SplitterView";
 import DifficultySettings from "./DifficultySettings";
 import { IProps } from "./interface";
 import { UIButton } from "../../";
-import { ButtonContainer } from "./styles";
+import { ButtonContainer, ErrorText } from "./styles";
 import { publish } from "./utils";
 import { connect } from "react-redux";
 import { StoreState } from "../../../reducers";
+import { completePublish } from "../../../actions";
+import { Redirect } from "react-router-dom";
 
-const Component = ({ file, splits, startRange, endRange }: IProps) => {
+const Component = ({
+	file,
+	splits,
+	startRange,
+	endRange,
+	completePublish,
+}: IProps) => {
 	const [errorMsg, setErrorMsg] = useState<string>();
+	const [redirectUrl, setRedirectUrl] = useState<string>();
+
 	const charArray = file!.text.split("");
 	charArray.push(" ");
 
 	const handleClick = async () => {
 		try {
-			await publish(file, splits, startRange, endRange);
+			const data = await publish(file, splits, startRange, endRange);
+			completePublish(data._id);
+			setRedirectUrl("/app/exercise-editor/publish/done");
 		} catch (error) {
 			setErrorMsg(error.message);
 		}
 	};
 
+	if (redirectUrl) return <Redirect to={redirectUrl} />;
 	return (
 		<div>
-			{errorMsg}
 			<InfoBox />
 			<SplitterView text={file.text} />
 			<DifficultySettings />
+			<ErrorText theme={{ hasError: errorMsg }}>{errorMsg}</ErrorText>
 			<ButtonContainer>
 				<UIButton onClick={handleClick} label="Birta æfingu" />
 			</ButtonContainer>
@@ -41,4 +54,6 @@ const mapStateToProps = (state: StoreState) => ({
 	splits: state.publisher.splits,
 });
 
-export const Publisher = connect(mapStateToProps)(Component);
+export const Publisher = connect(mapStateToProps, { completePublish })(
+	Component
+);
