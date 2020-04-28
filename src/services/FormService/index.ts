@@ -1,5 +1,3 @@
-import { InputAdornmentClassKey } from "@material-ui/core";
-
 export type FormElements =
 	| "check-box"
 	| "text-input"
