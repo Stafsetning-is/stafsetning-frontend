@@ -34,16 +34,19 @@ export default (
 				splits: [...splits],
 			};
 		case ActionTypes.setStartRage:
-			console.log("action.payload", action.payload);
 			return {
 				...state,
 				startRange: action.payload,
 			};
 		case ActionTypes.setEndRange:
-			console.log("action.payload", action.payload);
 			return {
 				...state,
 				endRange: action.payload,
+			};
+		case ActionTypes.completePublish:
+			return {
+				...state,
+				completedFileId: action.payload,
 			};
 		default:
 			return { ...state };
