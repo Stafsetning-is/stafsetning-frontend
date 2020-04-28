@@ -23,6 +23,7 @@ interface InputBase {
 	validationMessage?: string;
 	value: any;
 	passProps?: any;
+	hidden?: boolean;
 }
 
 export interface InputElementValidation {
