@@ -25,3 +25,8 @@ export interface SetEndRangeAction {
 	type: ActionTypes.setEndRange;
 	payload: number;
 }
+
+export interface CompletePublishAction {
+	type: ActionTypes.completePublish;
+	payload: string;
+}

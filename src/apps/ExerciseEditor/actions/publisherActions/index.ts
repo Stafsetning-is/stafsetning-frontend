@@ -4,6 +4,7 @@ import {
 	RemoveSplitAction,
 	SetEndRangeAction,
 	SetStartRangeAction,
+	CompletePublishAction,
 } from "./interface";
 import { File } from "../../models";
 import { ActionTypes } from "../types";
@@ -39,6 +40,13 @@ export const setEndRange = (value: number): SetEndRangeAction => {
 export const setStartRange = (value: number): SetStartRangeAction => {
 	return {
 		type: ActionTypes.setStartRage,
+		payload: value,
+	};
+};
+
+export const completePublish = (value: string): CompletePublishAction => {
+	return {
+		type: ActionTypes.completePublish,
 		payload: value,
 	};
 };

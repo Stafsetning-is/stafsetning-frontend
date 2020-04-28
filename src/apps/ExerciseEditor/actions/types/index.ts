@@ -26,6 +26,7 @@ export enum ActionTypes {
 	saveFileToDesktop,
 	setStartRage,
 	setEndRange,
+	completePublish,
 }
 
 export type Actions =
@@ -51,4 +52,5 @@ export type Actions =
 	| PublisherActions.RemoveSplitAction
 	| DesktopActions.SaveFileToDesktopAction
 	| PublisherActions.SetStartRangeAction
-	| PublisherActions.SetEndRangeAction;
+	| PublisherActions.SetEndRangeAction
+	| PublisherActions.CompletePublishAction;
