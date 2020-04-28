@@ -11,7 +11,6 @@ export const IGNORE_CODES_ARRAY = [
     40,
     91,
     93,
-    192,
     112,
     113,
     114,
@@ -35,10 +34,10 @@ export const MAPPED_ICELANDIC_CHARS: { [key: string]: string } = {
     "219": "ð",
     "191": "þ",
     "186": "æ",
-    "246": "ö",
-    "240": "ð",
-    "254": "þ",
-    "230": "æ"
+    "187": "ö",
+    "221": "ð",
+    //"189": "þ",
+    "192": "æ"
 };
 
 export const SPECIAL_CHARS = {

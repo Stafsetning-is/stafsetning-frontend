@@ -141,7 +141,6 @@ export default class KeyboardListener {
      * @param e keyboard event
      */
     private isKeyCodeIcelandic(e: KeyboardEvent) {
-        console.log("íslenskt");
         return MAPPED_ICELANDIC_CHARS[this.stringedKeyCode(e)] !== undefined;
     }
 
@@ -154,9 +153,6 @@ export default class KeyboardListener {
      * @param e keyboard event
      */
     private mapToIcelandicKey(e: KeyboardEvent) {
-        console.log("prump", e);
-        console.log(MAPPED_ICELANDIC_CHARS);
-
         return MAPPED_ICELANDIC_CHARS[this.stringedKeyCode(e)];
     }
 
