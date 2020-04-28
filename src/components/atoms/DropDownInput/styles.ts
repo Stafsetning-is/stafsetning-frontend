@@ -29,4 +29,5 @@ export const Choices = styled.div`
 	height: 209px;
 	overflow-y: scroll;
 	cursor: pointer;
+	z-index: 3;
 `;
