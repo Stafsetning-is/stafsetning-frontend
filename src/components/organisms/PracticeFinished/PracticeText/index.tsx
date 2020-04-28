@@ -1,7 +1,6 @@
 import React from "react";
 import { IProps } from "./interface";
 import Char from "../Character";
-import { Practice } from "./interface";
 import { Outer } from "./styles";
 
 /**

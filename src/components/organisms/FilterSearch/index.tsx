@@ -64,6 +64,7 @@ const FilterComponent = ({
 				<Compartment label="Flýtileiðir">
 					{FILTER_BUTTONS.map((button) => (
 						<FilterButton
+							key={button.label}
 							text={button.label}
 							selected={quickFilter === button.quickFilter}
 							onClick={setQuickFilter}
