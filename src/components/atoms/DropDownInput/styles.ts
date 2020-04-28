@@ -26,7 +26,8 @@ export const Choices = styled.div`
 	position: absolute;
 	width: 100%;
 	box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-	height: 200px;
+	height: 209px;
 	overflow-y: scroll;
 	cursor: pointer;
+	z-index: 3;
 `;

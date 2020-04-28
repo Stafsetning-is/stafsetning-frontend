@@ -11,20 +11,21 @@ import { fetchFinishedExercises } from "../../../../actions";
  *
  */
 const Component = ({ exercises, fetchFinishedExercises }: IProps) => {
-    useEffect(() => {
-        fetchFinishedExercises();
-    }, []);
-    return (
-        <Fragment>
-            <ExerciseBoxesContainer exercises={exercises} />
-        </Fragment>
-    );
+	useEffect(() => {
+		fetchFinishedExercises();
+	}, [fetchFinishedExercises]);
+
+	return (
+		<Fragment>
+			<ExerciseBoxesContainer exercises={exercises} />
+		</Fragment>
+	);
 };
 
 const mapStateToProps = (store: StoreState) => ({
-    exercises: store.userProfile.finishedExercises
+	exercises: store.userProfile.finishedExercises,
 });
 
 export const UserProfileOverview = connect(mapStateToProps, {
-    fetchFinishedExercises
+	fetchFinishedExercises,
 })(Component);

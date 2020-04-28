@@ -29,7 +29,8 @@ const validators: ValidationInstructions[] = [
 	},
 	{
 		message: "Nafn skjalsins inniheldur óleyfð tákn",
-		validationFunction: (file) => !!file.fileName.match(/^[a-zA-Z0-9_\- ]*$/g),
+		validationFunction: (file) =>
+			!!file.fileName.match(/^[a-zA-Z0-9_\-áéíýúóðþæÁÉÍÝÚÓÆÐÞ ]*$/g),
 	},
 ];
 

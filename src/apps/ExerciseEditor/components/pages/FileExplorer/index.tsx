@@ -8,7 +8,7 @@ import { IProps } from "./interface";
 const Component = ({ files, fetchFiles }: IProps) => {
 	useEffect(() => {
 		fetchFiles();
-	}, []);
+	}, [fetchFiles]);
 	return (
 		<div>
 			<FileGrid files={files}>

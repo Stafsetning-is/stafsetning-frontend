@@ -32,6 +32,7 @@ export interface IProps extends RouteComponentProps {
 	minimizeEditor: () => void;
 	setCloseTab: (fileId: string) => void;
 	clearErrorMessage: () => void;
+	saveFileToDesktop: (file: File) => void;
 }
 
 export interface EditorProps {

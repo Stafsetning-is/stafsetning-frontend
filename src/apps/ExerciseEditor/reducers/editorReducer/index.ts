@@ -36,6 +36,7 @@ export default (
 						fileName: "",
 						text: "",
 						_id: id,
+						local: true,
 					},
 				],
 				openTab: id,

@@ -1,12 +1,17 @@
 import React from "react";
-import { Button } from "./styles";
 import { IProps } from "./interface";
+import { Outer } from "./styles";
 import { connect } from "react-redux";
 import { StoreState } from "../../../../reducers";
+import { UIButton } from "../../../";
 
 const Component = ({ shouldHide, onClick }: IProps) => {
 	if (shouldHide) return null;
-	return <Button onClick={onClick}>Ljúka við æfingu</Button>;
+	return (
+		<Outer>
+			<UIButton onClick={onClick} label="Ljúka við æfingu" />
+		</Outer>
+	);
 };
 
 const mapStateToProps = (store: StoreState) => {
