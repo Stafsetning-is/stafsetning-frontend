@@ -27,7 +27,7 @@ export default ({ match }: RouteComponentProps<IProps>) => {
 				setLoading(false);
 				setErrorMessage(e.message);
 			});
-	}, []);
+	}, [match.params.id]);
 
 	return (
 		<ProtectPageWrapper>
