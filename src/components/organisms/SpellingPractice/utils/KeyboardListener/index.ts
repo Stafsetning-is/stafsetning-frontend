@@ -2,7 +2,7 @@ import {
 	IGNORE_CODES_ARRAY,
 	MAPPED_ICELANDIC_CHARS,
 	SPECIAL_CHARS,
-	ACCENT_MAP
+	ACCENT_MAP,
 } from "./utils";
 import keycode from "keycode";
 
