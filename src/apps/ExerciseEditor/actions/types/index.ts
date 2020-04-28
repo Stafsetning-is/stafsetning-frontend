@@ -1,5 +1,6 @@
 import * as EditorActions from "../editorActions";
 import * as DesktopActions from "../desktopActions";
+import * as PublisherActions from "../publisherActions";
 
 export enum ActionTypes {
 	setOpenTab,
@@ -19,6 +20,13 @@ export enum ActionTypes {
 	renameFileInEditor,
 	setErrorMessage,
 	clearErrorMessage,
+	openFileInPublisher,
+	addSplit,
+	removeSplit,
+	saveFileToDesktop,
+	setStartRage,
+	setEndRange,
+	completePublish,
 }
 
 export type Actions =
@@ -38,4 +46,11 @@ export type Actions =
 	| DesktopActions.SelectSingleFileAction
 	| EditorActions.RenameFileInEditorAction
 	| EditorActions.SetErrorMessageAction
-	| EditorActions.ClearErrorMessageAction;
+	| EditorActions.ClearErrorMessageAction
+	| PublisherActions.OpenFileInPublisherActions
+	| PublisherActions.AddSplitAction
+	| PublisherActions.RemoveSplitAction
+	| DesktopActions.SaveFileToDesktopAction
+	| PublisherActions.SetStartRangeAction
+	| PublisherActions.SetEndRangeAction
+	| PublisherActions.CompletePublishAction;

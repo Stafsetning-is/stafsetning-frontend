@@ -33,7 +33,7 @@ export default ({ match }: RouteComponentProps<IProps>) => {
 			.catch((e) => {
 				setErrorMessage(e.message);
 			});
-	}, []);
+	}, [match.params.id]);
 
 	return (
 		<ProtectPageWrapper>

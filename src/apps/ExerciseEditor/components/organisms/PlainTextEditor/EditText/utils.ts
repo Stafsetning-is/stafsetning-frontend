@@ -9,7 +9,7 @@ export const handleKeyDown = (
 	event: React.KeyboardEvent<HTMLDivElement>
 ): void => {
 	console.log("4", 4);
-	if (event.key == "Enter") event.preventDefault();
+	if (event.key === "Enter") event.preventDefault();
 };
 
 export const textToNodes = (text: string) => [

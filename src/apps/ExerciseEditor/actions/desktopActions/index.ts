@@ -3,10 +3,12 @@ import {
 	FetchFilesRespnse,
 	SelectFileAction,
 	SelectSingleFileAction,
+	SaveFileToDesktopAction,
 } from "./interface";
 import { ActionTypes } from "../types";
 import { Dispatch } from "redux";
 import { Api } from "../../../../api";
+import { File } from "../../models";
 
 export function fetchFiles() {
 	return async function (dispatch: Dispatch) {
@@ -41,6 +43,13 @@ export function selectSingleFile(fileId: string): SelectSingleFileAction {
 	return {
 		type: ActionTypes.selectSingleFile,
 		payload: fileId,
+	};
+}
+
+export function saveFileToDesktop(file: File): SaveFileToDesktopAction {
+	return {
+		type: ActionTypes.saveFileToDesktop,
+		payload: file,
 	};
 }
 

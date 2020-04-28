@@ -12,6 +12,7 @@ export const EditorOuter = styled.div`
 	display: flex;
 	box-sizing: border-box;
 	flex-direction: column;
+	z-index: 10;
 	${(props) =>
 		props.theme.minimized
 			? `
