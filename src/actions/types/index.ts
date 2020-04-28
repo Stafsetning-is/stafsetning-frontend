@@ -19,7 +19,7 @@ export enum ActionTypes {
 	openFilterSideBar,
 	reloadSelection,
 	starExerciseInSelection,
-	fetchSavedExercises
+	getSavedExercises
 }
 
 export type Actions =
@@ -38,4 +38,4 @@ export type Actions =
 	| FilterActions.OpenFilterAction
 	| ExercisesActions.ReloadSelectionAction
 	| ExercisesActions.StarExerciseInSelectionAction
-	| ExercisesActions.FetchSavedExercisesAction;
+	| ExercisesActions.getSavedExercisesAction;

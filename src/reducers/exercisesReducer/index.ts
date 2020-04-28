@@ -33,7 +33,7 @@ export default (
 				...state,
 				selection: [...state.selection],
 			};
-		case ActionTypes.fetchSavedExercises:
+		case ActionTypes.getSavedExercises:
 			return {
 				...state,
 				selection: action.payload,

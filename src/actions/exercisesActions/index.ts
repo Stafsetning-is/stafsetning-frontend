@@ -5,7 +5,7 @@ import {
 	GetExerciseSampleAction,
 	GetExercisesByUserAction,
 	StarExerciseInSelectionAction,
-	FetchSavedExercisesAction
+	getSavedExercisesAction
 } from "./interface";
 import { ActionTypes } from "../types";
 
@@ -64,12 +64,12 @@ export function starExerciseInSelection(id: string, save: boolean) {
 	};
 }
 
-export function fetchSavedExercises() {
+export function getSavedExercises() {
 	return async function (dispatch: Dispatch) {
 		try {
 			const { data } = await Api.get<Exercise[]>("/api/v1/users/exercises/saved");
-			dispatch<FetchSavedExercisesAction>({
-				type: ActionTypes.fetchSavedExercises,
+			dispatch<getSavedExercisesAction>({
+				type: ActionTypes.getSavedExercises,
 				payload: data
 			});
 		} catch (error) {
