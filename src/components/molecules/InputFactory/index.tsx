@@ -7,6 +7,8 @@ import { TextInput, PasswordInput as PwInput, DropDown } from "../../";
  * returns the specified component needed.
  */
 export const InputFactory = (props: InputComponent) => {
+	if (props.hidden) return null;
+
 	const { type, onChange, label, passProps } = props;
 	switch (type) {
 		case "text-input":
