@@ -1,7 +1,7 @@
-import { File, ExerciseRepr } from "../../../models";
+import { File, CreateExercise, ExerciseRepr } from "../../../models";
 import { Api } from "../../../../../api";
 
-type validateFunction = (e: ExerciseRepr) => boolean;
+type validateFunction = (e: CreateExercise) => boolean;
 interface ValidateRequirement {
 	method: validateFunction;
 	message: string;
@@ -12,40 +12,53 @@ export const publish = async (
 	splits: number[],
 	startRange?: number,
 	endRange?: number
-) => {
+): Promise<ExerciseRepr> => {
 	const difficultRange = {
 		min: startRange!,
 		max: endRange!,
 	};
-
+	const saveMethod = file.local ? handleSave : handleUpdate;
+	const isNew = file.local;
 	const textParts = splitText(file.text, splits);
-
-	const exercise: ExerciseRepr = {
-		_id: file._id,
+	const data: CreateExercise = {
 		difficultRange,
 		parts: textParts,
 		fileName: file.fileName,
+		_id: isNew ? undefined : file._id,
 	};
 
-	// validate(exercise);
-	const saveMethod = file.local ? handleSave : handleUpdate;
+	validate(data);
+
 	try {
-		await saveMethod(exercise);
-		await handlePublish(exercise);
+		const exercise = await saveMethod(data);
+		return await handlePublish(exercise);
 	} catch (error) {
-		console.log("error", error);
 		throw new Error("Ekki tókst að vista æfingu");
 	}
 };
 
-const handleSave = async (exercise: ExerciseRepr) =>
-	await Api.post("/api/admin/exercises/", exercise);
+const getResData = async <D, R>(data: D, url: string): Promise<R> => {
+	const res = await Api.post<R>(url, data);
+	return res.data;
+};
 
-const handleUpdate = async (exercise: ExerciseRepr) =>
-	await Api.post("/api/admin/exercises/update", exercise);
+const handleSave = async (exercise: CreateExercise) =>
+	await getResData<CreateExercise, ExerciseRepr>(
+		exercise,
+		"/api/admin/exercises/"
+	);
+
+const handleUpdate = async (exercise: CreateExercise) =>
+	await getResData<CreateExercise, ExerciseRepr>(
+		exercise,
+		"/api/admin/exercises/update"
+	);
 
 const handlePublish = async (exercise: ExerciseRepr) =>
-	await Api.post(`/api/admin/exercises/${exercise._id}/publish`);
+	await getResData<CreateExercise, ExerciseRepr>(
+		exercise,
+		`/api/admin/exercises/${exercise._id}/publish`
+	);
 
 const splitText = (text: string, splits: number[]) => {
 	const value = [];
@@ -61,7 +74,7 @@ const validators: ValidateRequirement[] = [
 	{
 		method: ({ difficultRange }) =>
 			!!difficultRange.min && !!difficultRange.max,
-		message: "Það vantar upplýsinga rum erfiðleikastig",
+		message: "Það vantar upplýsingar um erfiðleikastig",
 	},
 	{
 		method: ({ difficultRange }) => difficultRange.min <= difficultRange.max,
@@ -70,7 +83,7 @@ const validators: ValidateRequirement[] = [
 	},
 ];
 
-const validate = async (exercise: ExerciseRepr) =>
+const validate = (exercise: CreateExercise) =>
 	validators.forEach((val) => {
 		if (!val.method(exercise)) throw Error(val.message);
 	});
