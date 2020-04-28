@@ -19,7 +19,10 @@ export enum ActionTypes {
 	openFilterSideBar,
 	reloadSelection,
 	starExerciseInSelection,
-	fetchSavedExercises
+	fetchSavedExercises,
+	fetchAdminInvites,
+	requestAdminStatusForUser,
+	changePendingAdminInviteToLoading,
 }
 
 export type Actions =
@@ -38,4 +41,7 @@ export type Actions =
 	| FilterActions.OpenFilterAction
 	| ExercisesActions.ReloadSelectionAction
 	| ExercisesActions.StarExerciseInSelectionAction
-	| ExercisesActions.FetchSavedExercisesAction;
+	| ExercisesActions.FetchSavedExercisesAction
+	| AuthActions.FetchAdminInvitesAction
+	| AuthActions.RequestAdminStatusForUserAction
+	| AuthActions.ChangePendingAdminInviteToLoadingAction;
