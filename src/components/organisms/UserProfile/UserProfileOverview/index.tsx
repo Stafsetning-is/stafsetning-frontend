@@ -22,9 +22,9 @@ const Component = ({ exercises, fetchFinishedExercises }: IProps) => {
 };
 
 const mapStateToProps = (store: StoreState) => ({
-    exercises: store.userProfile.finishedExercises,
+    exercises: store.userProfile.finishedExercises
 });
 
 export const UserProfileOverview = connect(mapStateToProps, {
-    fetchFinishedExercises,
+    fetchFinishedExercises
 })(Component);
