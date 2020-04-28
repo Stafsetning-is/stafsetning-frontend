@@ -1,7 +1,13 @@
 import { ActionTypes } from "../types";
 import { User } from "../../models";
 import { Dispatch } from "redux";
-import { LogInUserAction, LogOutUserAction } from "./interface";
+import {
+	LogInUserAction,
+	LogOutUserAction,
+	FetchAdminInvitesAction,
+	ChangePendingAdminInviteToLoadingAction,
+	RequestAdminStatusForUserAction,
+} from "./interface";
 import { Api } from "../../api";
 import { removeToken } from "../../services";
 
@@ -30,6 +36,59 @@ export function fetchUserFromToken() {
 				type: ActionTypes.logOutUser,
 				payload: null,
 			});
+		}
+	};
+}
+
+/**
+ * changes an user with "admin-invite-pending" to "loading"
+ * while the request has not responded
+ * @param id users id
+ */
+export function changePendingAdminInviteToLoading(
+	id: string
+): ChangePendingAdminInviteToLoadingAction {
+	return {
+		type: ActionTypes.changePendingAdminInviteToLoading,
+		payload: id,
+	};
+}
+
+/**
+ * Request admin status for user
+ */
+export function requestAdminStatusForUser(id: string) {
+	return async function (dispatch: Dispatch) {
+		try {
+			dispatch<ChangePendingAdminInviteToLoadingAction>({
+				type: ActionTypes.changePendingAdminInviteToLoading,
+				payload: id,
+			});
+			await Api.post<void>(`/api/admin/users/${id}/make_admin`);
+			dispatch<RequestAdminStatusForUserAction>({
+				type: ActionTypes.requestAdminStatusForUser,
+				payload: id,
+			});
+		} catch (error) {
+			console.log("requestAdminStatusForUser", error);
+		}
+	};
+}
+
+/**
+ * fetches pending admin invites from backend
+ */
+
+export function fetchAdminInviteList() {
+	return async function (dispatch: Dispatch) {
+		try {
+			const { data } = await Api.get<User[]>("/api/admin/users/invite_list/");
+			dispatch<FetchAdminInvitesAction>({
+				type: ActionTypes.fetchAdminInvites,
+				payload: data,
+			});
+		} catch (error) {
+			// error during fetching
 		}
 	};
 }

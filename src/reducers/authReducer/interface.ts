@@ -4,4 +4,5 @@ import { AuthLevels } from "../../services";
 export interface AuthState {
 	user: User;
 	type: AuthLevels;
+	pendingAdminInvite: User[];
 }
