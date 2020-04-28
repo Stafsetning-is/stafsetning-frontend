@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const TopBar = styled.div`
 	background: #00ffaa;
@@ -12,6 +12,7 @@ export const TopBar = styled.div`
 		color: #333;
 	}
 	margin: 20px 0 40px 0;
+	padding-left: 10px;
 `;
 
 export const TitleText = styled.div`
@@ -33,6 +34,14 @@ export const SecondaryTitle = styled.div`
 `;
 
 export const TitleElement = styled.span``;
+
+export const PositiveElement = styled.div`
+	scolor: #666;
+	* {
+		margin: 0 20px 0 0;
+		color: #999;
+	}
+`;
 
 export const OverviewContainer = styled.div`
 	display: flex;

@@ -5,6 +5,7 @@ import {
 	GetExerciseSampleAction,
 	GetExercisesByUserAction,
 	StarExerciseInSelectionAction,
+	FetchSavedExercisesAction
 } from "./interface";
 import { ActionTypes } from "../types";
 
@@ -56,6 +57,20 @@ export function starExerciseInSelection(id: string, save: boolean) {
 			dispatch<StarExerciseInSelectionAction>({
 				type: ActionTypes.starExerciseInSelection,
 				payload: { saved: save, exercise: id },
+			});
+		} catch (error) {
+			console.log("Error getting exercises");
+		}
+	};
+}
+
+export function fetchSavedExercises() {
+	return async function (dispatch: Dispatch) {
+		try {
+			const { data } = await Api.get<Exercise[]>("/api/v1/exercises/by_difficulty");
+			dispatch<FetchSavedExercisesAction>({
+				type: ActionTypes.fetchSavedExercises,
+				payload: data
 			});
 		} catch (error) {
 			console.log("Error getting exercises");
