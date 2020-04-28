@@ -7,6 +7,7 @@ import {
 	fetchUserFromToken,
 	fetchExercisesSample,
 	fetchExercisesForUser,
+	fetchAdminInviteList,
 } from "../../actions";
 import { StoreState } from "../../reducers";
 import { LoaderBox } from "../../components";
@@ -18,6 +19,7 @@ const Component = ({
 	fetchExercisesForUser,
 	fetchExercisesSample,
 	fetchUserFromToken,
+	fetchAdminInviteList,
 }: IProps) => {
 	/**
 	 * Fetches info about logged in
@@ -35,6 +37,14 @@ const Component = ({
 		if (userType === "guest") fetchExercisesSample();
 		else if (["admin", "user"].includes(userType)) fetchExercisesForUser();
 	}, [userType, fetchExercisesSample, fetchExercisesForUser]);
+
+	/**
+	 * fetches list of pending users
+	 * for admin priveledges
+	 */
+	useEffect(() => {
+		if (userType === "admin") fetchAdminInviteList();
+	}, [userType]);
 
 	return (
 		<BackDrop>
@@ -54,4 +64,5 @@ export const LayoutWrapper = connect(mapStateToProps, {
 	fetchUserFromToken,
 	fetchExercisesSample,
 	fetchExercisesForUser,
+	fetchAdminInviteList,
 })(Component);
