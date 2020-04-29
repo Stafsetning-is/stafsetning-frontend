@@ -12,6 +12,7 @@ import {
 import { StoreState } from "../../reducers";
 import { LoaderBox } from "../../components";
 import { connect } from "react-redux";
+import { SIGNED_IN_USER_LEVELS, GUEST, ADMIN } from "./utils";
 
 const Component = ({
 	children,
@@ -20,6 +21,7 @@ const Component = ({
 	fetchExercisesSample,
 	fetchUserFromToken,
 	fetchAdminInviteList,
+	userId,
 }: IProps) => {
 	/**
 	 * Fetches info about logged in
@@ -34,8 +36,8 @@ const Component = ({
 	 * when ever the user type changes
 	 */
 	useEffect(() => {
-		if (userType === "guest") fetchExercisesSample();
-		else if (["admin", "user"].includes(userType)) fetchExercisesForUser();
+		if (userType === GUEST) fetchExercisesSample();
+		else if (SIGNED_IN_USER_LEVELS.includes(userType)) fetchExercisesForUser();
 	}, [userType, fetchExercisesSample, fetchExercisesForUser]);
 
 	/**
@@ -43,7 +45,7 @@ const Component = ({
 	 * for admin priveledges
 	 */
 	useEffect(() => {
-		if (userType === "admin") fetchAdminInviteList();
+		if (userType === ADMIN) fetchAdminInviteList();
 	}, [userType]);
 
 	return (
@@ -58,6 +60,7 @@ const Component = ({
 
 const mapStateToProps = (state: StoreState) => ({
 	userType: state.auth.type,
+	userId: state.auth.user._id,
 });
 
 export const LayoutWrapper = connect(mapStateToProps, {
