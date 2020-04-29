@@ -3,11 +3,14 @@ import { IProps } from "./interface";
 import { Exercise } from "./utils";
 import ErrorCounter from "./ErrorCounter";
 import PreviewButton from "./PreviewButton";
+import StatBox from "./StatBox";
 import TypedText, { refObject } from "./TypedText";
 import { Redirect } from "react-router-dom";
 import { Report } from "./utils/Exercise/interface";
 import { Practice } from "../../../models";
 import { Api } from "../../../api";
+import { ExerciseContainer } from "./styles";
+
 type cb = () => void;
 
 /**
@@ -17,7 +20,7 @@ type cb = () => void;
  * So it takes the string[] as input when it's ready
  * The SpellingPractice should only be used when all data is ready
  */
-export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
+export const SpellingPractice = ({ _id, parts, counter, owner }: IProps) => {
 	const [errorCount, setErrorCount] = useState(0);
 	const [typed, setTyped] = useState("");
 	const [preview, setPreview] = useState("");
@@ -31,7 +34,7 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 		 * for the four events that
 		 * might occur on user input
 		 */
-		const session = Exercise.startExercise(sentenceParts, exercise)
+		const session = Exercise.startExercise(parts, _id)
 			.on("error", () => {
 				if (typeTextRef.current) typeTextRef.current.giveErrorFeedback();
 			})
@@ -58,7 +61,7 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 		setPreviewCallback(() => () => session.showPreview());
 		setErrorCount(session.getErrorCount());
 		return () => session.stopListening();
-	}, [exercise, sentenceParts]);
+	}, [_id, parts]);
 
 	useEffect(() => {
 		previewCallback();
@@ -68,9 +71,12 @@ export const SpellingPractice = ({ exercise, sentenceParts }: IProps) => {
 		return <Redirect to={`/completed/${comletedPracticeId}`} />;
 	return (
 		<React.Fragment>
-			<ErrorCounter count={errorCount} />
-			<PreviewButton onClick={previewCallback} />
-			<TypedText ref={typeTextRef} typed={typed} preview={preview} />
+			<StatBox counter={counter} ownerId={owner} />
+			<ExerciseContainer>
+				<ErrorCounter count={errorCount} />
+				<PreviewButton onClick={previewCallback} />
+				<TypedText ref={typeTextRef} typed={typed} preview={preview} />
+			</ExerciseContainer>
 		</React.Fragment>
 	);
 };
