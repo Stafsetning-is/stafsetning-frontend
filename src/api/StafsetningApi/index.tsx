@@ -1,16 +1,13 @@
 import Axios, { AxiosRequestConfig } from "axios";
 import { getAuthToken } from "../../services";
-
+import { URL } from "../utils";
 /**
  * Creates an instance of
  * axios that always uses the stafsetning.is api
  * base route
  */
 const axios = Axios.create({
-	baseURL:
-		process.env.NODE_ENV === "development"
-			? "https://stafs-api.herokuapp.com"
-			: "https://stafs-api.herokuapp.com",
+	baseURL: URL,
 });
 
 /**

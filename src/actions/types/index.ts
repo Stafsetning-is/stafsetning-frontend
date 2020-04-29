@@ -27,6 +27,7 @@ export enum ActionTypes {
 	setActiveUsers,
 	getSavedExercises,
 	setOpenDrawer,
+	changeUserPoints,
 }
 
 export type Actions =
@@ -51,4 +52,5 @@ export type Actions =
 	| UserProfileActions.GetSavedExercisesAction
 	| UserProfileActions.SetOpenDrawerAction
 	| AuthActions.ChangePendingAdminInviteToLoadingAction
-	| SocketActions.SetActiveUsersAction;
+	| SocketActions.SetActiveUsersAction
+	| AuthActions.ChangeUserPointsAction;
