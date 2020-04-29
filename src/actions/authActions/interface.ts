@@ -25,3 +25,7 @@ export interface ChangePendingAdminInviteToLoadingAction {
 	type: ActionTypes.changePendingAdminInviteToLoading;
 	payload: string;
 }
+export interface ChangeUserPointsAction {
+	type: ActionTypes.changeUserPoints;
+	payload: number;
+}

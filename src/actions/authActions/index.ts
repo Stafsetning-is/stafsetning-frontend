@@ -7,6 +7,7 @@ import {
 	FetchAdminInvitesAction,
 	ChangePendingAdminInviteToLoadingAction,
 	RequestAdminStatusForUserAction,
+	ChangeUserPointsAction,
 } from "./interface";
 import { Api } from "../../api";
 import { emitLogin } from "../";
@@ -104,4 +105,10 @@ export function signOut(): LogOutUserAction {
 	};
 }
 
+export function changeUserPoints(points: number): ChangeUserPointsAction {
+	return {
+		type: ActionTypes.changeUserPoints,
+		payload: points,
+	};
+}
 export * from "./interface";
