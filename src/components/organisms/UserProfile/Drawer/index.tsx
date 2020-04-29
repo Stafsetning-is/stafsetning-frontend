@@ -1,18 +1,19 @@
-import React, { MouseEvent } from "react";
-import { Frame, Button } from "./styles";
-import { Drawers } from "./interface";
-import { DRAWER_LIST } from "./utils";
-/* Should contain a line and under the line we have a two clickable options */
+import React from 'react';
+import { connect } from "react-redux";
+import { IProps } from "./interface";
+import { StoreState } from "../../../../reducers";
 
-export default () => {
-    const handleClick = (toOpen: Drawers) => {};
+const Component = ({ type, children, openDrawer }: IProps) => {
+    if (type !== openDrawer) return null;
     return (
-        <Frame>
-            {DRAWER_LIST.map((item) => (
-                <Button onClick={() => handleClick(item.drawerType)}>
-                    {item.label}
-                </Button>
-            ))}
-        </Frame>
-    );
+        <React.Fragment>
+            {children}
+        </React.Fragment>
+    )
 };
+
+const mapStateToProps = (state: StoreState) => ({
+    openDrawer: state.userProfile.openDrawer,
+});
+
+export default connect(mapStateToProps)(Component);
