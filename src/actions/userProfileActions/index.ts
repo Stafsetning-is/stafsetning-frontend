@@ -2,7 +2,8 @@ import { Api } from "../../api";
 import { Exercise } from "../../models";
 import { Dispatch } from "redux";
 import { ActionTypes } from "../types";
-import { GetFinishedExercisesAction, getSavedExercisesAction } from "./interface";
+import { GetFinishedExercisesAction, GetSavedExercisesAction, SetOpenDrawerAction } from "./interface";
+import { Drawers } from "../../services";
 
 export function fetchFinishedExercises() {
     return async function (dispatch: Dispatch) {
@@ -23,7 +24,7 @@ export function getSavedExercises() {
 	return async function (dispatch: Dispatch) {
 		try {
 			const { data } = await Api.get<Exercise[]>("/api/v1/users/exercises/saved");
-			dispatch<getSavedExercisesAction>({
+			dispatch<GetSavedExercisesAction>({
 				type: ActionTypes.getSavedExercises,
 				payload: data
 			});
@@ -31,6 +32,13 @@ export function getSavedExercises() {
 			console.log("Error getting exercises");
 		}
 	};
+}
+
+export function setOpenDrawer(drawer: Drawers): SetOpenDrawerAction {
+    return {
+        type: ActionTypes.setOpenDrawer,
+        payload: drawer
+    };
 }
 
 export * from "./interface";

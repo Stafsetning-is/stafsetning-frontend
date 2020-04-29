@@ -4,3 +4,4 @@ export * from "./LocalStoreService";
 export * from "./SessionStorageService";
 export * from "./FilterService";
 export * from "./AuthService";
+export * from "./UserProfileService";

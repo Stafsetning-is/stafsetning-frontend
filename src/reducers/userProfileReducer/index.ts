@@ -1,25 +1,32 @@
-import { PracticesState } from "./interface";
+import { UserProfileState } from "./interface";
 import { ActionTypes, Actions } from "../../actions/types";
 
-export const initialState: PracticesState = {
-    drawer: [],
+export const initialState: UserProfileState = {
+    saved: [],
+    finished: [],
+    openDrawer: "finished"
 };
 
 export default (
-    state: PracticesState = initialState,
+    state: UserProfileState = initialState,
     action: Actions
-): PracticesState => {
+): UserProfileState => {
     switch (action.type) {
         case ActionTypes.getFinishedExercises:
             return {
                 ...state,
-                drawer: action.payload,
+                finished: action.payload,
             };
-            case ActionTypes.getSavedExercises:
-                return {
-                    ...state,
-                    drawer: action.payload,
-                }
+        case ActionTypes.getSavedExercises:
+            return {
+                ...state,
+                saved: action.payload,
+            }
+        case ActionTypes.setOpenDrawer:
+            return {
+                ...state,
+                openDrawer: action.payload
+            }
         default:
             return state;
     }
