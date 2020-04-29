@@ -5,7 +5,7 @@ export const Outer = styled.div`
 	color: #f8f8f8;
 	font-weight: 200;
 	cursor: pointer;
-	padding: 20px 0 20px 30px;
+	padding: 20px 25px 20px 5px;
 	position: relative;
 `;
 
