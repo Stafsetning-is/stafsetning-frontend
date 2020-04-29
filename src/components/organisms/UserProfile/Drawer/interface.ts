@@ -1,6 +1,7 @@
-export type Drawers = "saved" | "finished";
+import { Drawers } from "../../../../services";
 
-export interface DrawerRecipe {
-    drawerType: Drawers;
-    label: string;
-};
+export interface IProps {
+    type: Drawers;
+    children: React.ReactNode;
+    openDrawer: Drawers;
+}
