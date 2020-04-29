@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Outer, InfoBox } from "./styles";
+import { Outer } from "./styles";
 import { signupForm } from "./formRecipe";
-import { FormGenerator } from "../../../";
+import { FormGenerator, InfoBox } from "../../../";
 import { logInUser } from "../../../../actions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
