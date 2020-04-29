@@ -59,5 +59,18 @@ const difficulty: LiveInputElementRecipe = {
         ],
     },
 };
+const password: LiveInputElementRecipe = {
+    label: "Lykilorð",
+    type: "password-input",
+    placeholder: "Breyta lykilorði",
+    validation: {
+        minLength: 6,
+        trim: true,
+    },
+    modified: false,
+    value: "",
+    passProps: null,
+};
 
-export const formRecipe = { difficulty };
+export const formRecipe1 = { difficulty };
+export const formRecipe2 = { password };
