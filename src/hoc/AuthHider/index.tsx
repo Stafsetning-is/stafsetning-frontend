@@ -8,6 +8,7 @@ import { IProps } from "./interface";
  */
 
 const Component = ({ userType, isAuth, setAuthLevel, children }: IProps) => {
+	if (userType === "unknown") return null;
 	const shouldShow =
 		(!isAuth && setAuthLevel === "guest") ||
 		(isAuth && setAuthLevel === "user") ||
@@ -20,7 +21,7 @@ const Component = ({ userType, isAuth, setAuthLevel, children }: IProps) => {
 const mapStateToProps = (state: StoreState) => ({
 	isAuth: state.auth.type !== "guest",
 	user: state.auth.user,
-	userType: state.auth.type
+	userType: state.auth.type,
 });
 
 export const AuthHider = connect(mapStateToProps)(Component);

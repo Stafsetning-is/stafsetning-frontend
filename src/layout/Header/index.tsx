@@ -14,7 +14,7 @@ import { signOut } from "../../actions";
 /**
  * Header component for layout
  */
-const Header = ({ user, signOut }: IProps) => {
+const Header = ({ user, signOut, pendingInvitesCount }: IProps) => {
     return (
         <Container>
             <CenterBlock>
@@ -34,8 +34,16 @@ const Header = ({ user, signOut }: IProps) => {
                             </NavLink>
                         </AuthHider>
                         <AuthHider setAuthLevel="admin">
-                            <NavLink to={`${urlWithoutPath()}log-in`}>
-                                <HeaderItem text="Búa til æfingu" />
+                            <NavLink to={"/user/pending-admin-invites/"}>
+                                <HeaderItem
+                                    text="Nýir kennarar"
+                                    notifications={pendingInvitesCount}
+                                />
+                            </NavLink>
+                        </AuthHider>
+                        <AuthHider setAuthLevel="admin">
+                            <NavLink to={"/app/exercise-editor/"}>
+                                <HeaderItem text="Mín skjöl" />
                             </NavLink>
                         </AuthHider>
                         <AuthHider setAuthLevel="user">
@@ -48,9 +56,8 @@ const Header = ({ user, signOut }: IProps) => {
                                 <HeaderItem text="Skrá út" onClick={signOut} />
                             </NavLink>
                         </AuthHider>
-
                         <AuthHider setAuthLevel="user">
-                            <NavLink to="/user/settings">
+                            <NavLink to={"/user/settings"}>
                                 <ImageCog src={Cog} />
                             </NavLink>
                         </AuthHider>
@@ -61,8 +68,11 @@ const Header = ({ user, signOut }: IProps) => {
     );
 };
 
-const mapStateToProps = ({ auth: { user } }: StoreState) => ({
+const mapStateToProps = ({
+    auth: { user, pendingAdminInvite },
+}: StoreState) => ({
     user,
+    pendingInvitesCount: pendingAdminInvite.length,
 });
 
 export default connect(mapStateToProps, { signOut })(Header);

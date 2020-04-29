@@ -1,3 +1,3 @@
-import {FilterObject} from  "../../services"
+import { FilterObject } from "../../services";
 
-export interface FilterState extends FilterObject{}
+export interface FilterState extends FilterObject {}

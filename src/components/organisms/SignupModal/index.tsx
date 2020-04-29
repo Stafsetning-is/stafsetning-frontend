@@ -10,8 +10,24 @@ import { logInUser } from "../../../actions";
 
 const Component = ({ logInUser }: IProps) => {
 	const [redirectURL, setRedirectURL] = useState<string>();
+	const [showForm, setShowForm] = useState(false);
 
 	if (redirectURL) return <Redirect to={redirectURL} />;
+	if (!showForm)
+		return (
+			<Modal onBackgroundClick={() => setRedirectURL(clearLoginUrl())}>
+				<BasicButton
+					text={"Ég er nemandi"}
+					onClick={() => setShowForm(true)}
+					type="default"
+				/>
+				<BasicButton
+					text={"Ég er Kennari"}
+					onClick={() => setRedirectURL("/user/create-admin-account/")}
+					type="secondary"
+				/>
+			</Modal>
+		);
 	return (
 		<Modal onBackgroundClick={() => setRedirectURL(clearLoginUrl())}>
 			<FormGenerator<SignupRes>

@@ -8,3 +8,6 @@ export * from "./FormLabel";
 export * from "./Backdrop";
 export * from "./DoubleSlider";
 export * from "./DropDownInput";
+export * from "./Table";
+export * from "./TableRow";
+export * from "./InfoBox";
