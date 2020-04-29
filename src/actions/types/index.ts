@@ -26,7 +26,7 @@ export enum ActionTypes {
 	changePendingAdminInviteToLoading,
 	setActiveUsers,
 	getSavedExercises,
-	setOpenDrawer
+	setOpenDrawer,
 }
 
 export type Actions =
@@ -49,6 +49,6 @@ export type Actions =
 	| AuthActions.RequestAdminStatusForUserAction
 	| AuthActions.ChangePendingAdminInviteToLoadingAction
 	| UserProfileActions.GetSavedExercisesAction
-	| UserProfileActions.SetOpenDrawerAction;
+	| UserProfileActions.SetOpenDrawerAction
 	| AuthActions.ChangePendingAdminInviteToLoadingAction
 	| SocketActions.SetActiveUsersAction;
