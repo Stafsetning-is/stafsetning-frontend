@@ -36,6 +36,8 @@ export interface Exercise {
 	practice?: string;
 	score?: number;
 	saved: boolean;
+	counter: number;
+	owner: string;
 }
 
 export interface Report {
