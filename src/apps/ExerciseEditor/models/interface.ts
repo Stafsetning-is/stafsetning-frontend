@@ -4,6 +4,7 @@ export interface File {
 	text: string;
 	modified?: boolean;
 	local?: boolean;
+	counter: number;
 }
 
 export interface BaseExercise {
@@ -18,6 +19,7 @@ export interface BaseExercise {
 export interface ExerciseRepr extends BaseExercise {
 	_id: string;
 	title: string;
+	counter: number;
 }
 
 export interface CreateExercise extends BaseExercise {

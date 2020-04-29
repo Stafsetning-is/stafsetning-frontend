@@ -8,6 +8,7 @@ import { IProps } from "./interface";
  */
 
 const Component = ({ userType, isAuth, setAuthLevel, children }: IProps) => {
+	if (userType === "unknown") return null;
 	const shouldShow =
 		(!isAuth && setAuthLevel === "guest") ||
 		(isAuth && setAuthLevel === "user") ||

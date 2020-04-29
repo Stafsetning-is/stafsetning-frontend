@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { FileGrid, TextEditorIcon } from "../../";
+import { FileGrid, TextEditorIcon, StatViewerIcon } from "../../";
 import { connect } from "react-redux";
 import { StoreState } from "../../../reducers";
 import { fetchFiles } from "../../../actions";
@@ -13,6 +13,7 @@ const Component = ({ files, fetchFiles }: IProps) => {
 		<div>
 			<FileGrid files={files}>
 				<TextEditorIcon fileName="Ritill" />
+				<StatViewerIcon />
 			</FileGrid>
 		</div>
 	);

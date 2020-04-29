@@ -29,17 +29,19 @@ const Component = ({
 	// const [mm, ss] = durationToTime(duration);
 	Moment.locale("is");
 	const test = Moment(createdAt).fromNow();
-	const initialState = '';
+	const initialState = "";
 
-	const [data, setData] = useState(initialState)
+	const [data, setData] = useState(initialState);
 
 	useEffect(() => {
 		const url = window.location.href;
 		const practiceId = url.substring(url.lastIndexOf("/") + 1);
 		const fetchData = async () => {
-			const result = await Api.get<string>(`/api/v1/practices/${practiceId}/proverb`);
+			const result = await Api.get<string>(
+				`/api/v1/practices/${practiceId}/proverb`
+			);
 			setData(result.data);
-		}
+		};
 		fetchData();
 	}, []);
 
@@ -51,9 +53,7 @@ const Component = ({
 			<SecondaryTitle>
 				<TitleElement>{test}</TitleElement>
 			</SecondaryTitle>
-			<TopBar>
-				<h4>Málsháttur: {data}</h4>
-			</TopBar>
+			<TopBar>{data}</TopBar>
 			<OverviewContainer>
 				<Outer>
 					<ErrorCount>{getFeedback(errorItems.length)}</ErrorCount>

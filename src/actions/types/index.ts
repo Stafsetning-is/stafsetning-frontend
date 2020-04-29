@@ -23,6 +23,8 @@ export enum ActionTypes {
 	fetchAdminInvites,
 	requestAdminStatusForUser,
 	changePendingAdminInviteToLoading,
+	getSavedExercises,
+	setOpenDrawer
 }
 
 export type Actions =
@@ -41,7 +43,8 @@ export type Actions =
 	| FilterActions.OpenFilterAction
 	| ExercisesActions.ReloadSelectionAction
 	| ExercisesActions.StarExerciseInSelectionAction
-	| ExercisesActions.FetchSavedExercisesAction
 	| AuthActions.FetchAdminInvitesAction
 	| AuthActions.RequestAdminStatusForUserAction
-	| AuthActions.ChangePendingAdminInviteToLoadingAction;
+	| AuthActions.ChangePendingAdminInviteToLoadingAction
+	| UserProfileActions.GetSavedExercisesAction
+	| UserProfileActions.SetOpenDrawerAction;
