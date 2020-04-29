@@ -7,8 +7,7 @@ export const Frame = styled.div`
 
 export const UserPictureContainer = styled.div`
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin 0 auto;
     width: 25%;
     border-radius: 50%;
     overflow: hidden;
@@ -20,6 +19,7 @@ export const UserPicture = styled.img`
     display: block;
 `;
 
-export const UserName = styled.div`
+export const UserName = styled.h3`
     text-align: center;
+    padding-top: 25px;
 `;
