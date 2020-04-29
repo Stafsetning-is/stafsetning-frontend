@@ -10,7 +10,7 @@ const Component = ({ setOpenDrawer }: IProps) => {
     return (
         <Frame>
             {DRAWER_LIST.map((item) => (
-                <Button onClick={() => setOpenDrawer(item.drawerType)}>
+                <Button key={item.label} onClick={() => setOpenDrawer(item.drawerType)}>
                     {item.label}
                 </Button>
             ))}

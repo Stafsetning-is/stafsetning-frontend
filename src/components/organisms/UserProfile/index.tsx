@@ -3,6 +3,7 @@ import UserProfileDetails from "./UserProfileDetails";
 import DrawerSelector from "./DrawerSelector";
 import Drawer from "./Drawer";
 import { ExerciseBoxesContainer } from "../../";
+import EmptyListMessage from "./EmptyListMessage";
 import { IProps } from "./interface";
 import { connect } from "react-redux";
 import { StoreState } from "../../../reducers";
@@ -18,10 +19,18 @@ const Component = ({ user, saved, finished, getSavedExercises, fetchFinishedExer
             <UserProfileDetails {...user} />
             <DrawerSelector />
             <Drawer type="finished">
-                <ExerciseBoxesContainer exercises={finished} />
+                {   // Check if there are any saved exercises
+                    (finished.length !== 0)
+                        ? <ExerciseBoxesContainer exercises={finished} />
+                        : <EmptyListMessage>Þú hefur ekki klárað neinar æfingar. Farðu í gegnum heila æfingu til að birta þær hér.</EmptyListMessage>
+                }
             </Drawer>
             <Drawer type="saved">
-                <ExerciseBoxesContainer exercises={saved} />
+            {   // Check if there are any finished exercises
+                (saved.length !== 0)
+                    ? <ExerciseBoxesContainer exercises={saved} />
+                    : <EmptyListMessage>Þú hefur ekki vistað neinar æfingar. Smelltu á stjörnuna uppi í horni æfingar til að vista hana.</EmptyListMessage>
+            }
             </Drawer>
         </Fragment>
     );
