@@ -19,7 +19,7 @@ export const UserPicture = styled.img`
     display: block;
 `;
 
-export const UserName = styled.div`
+export const UserName = styled.h3`
     text-align: center;
-    padding-top: 30px;
+    padding-top: 25px;
 `;
