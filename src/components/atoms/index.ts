@@ -12,3 +12,4 @@ export * from "./Table";
 export * from "./TableRow";
 export * from "./InfoBox";
 export * from "./SmallAvatar";
+export * from "./Points";
