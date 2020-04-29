@@ -1,6 +1,7 @@
 import FileExplorer from "./FileExplorer";
 import PublisherPage from "./PublisherPage";
 import PublishSuccess from "./PublishSuccess";
+import FileStats from "./StatsPage";
 
 export default [
 	{
@@ -10,6 +11,10 @@ export default [
 	{
 		route: "*/publish/:id",
 		component: PublisherPage,
+	},
+	{
+		route: "*/stats/",
+		component: FileStats,
 	},
 	{
 		route: "*/",
