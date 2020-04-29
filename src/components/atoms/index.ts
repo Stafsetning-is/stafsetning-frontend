@@ -11,3 +11,4 @@ export * from "./DropDownInput";
 export * from "./Table";
 export * from "./TableRow";
 export * from "./InfoBox";
+export * from "./SmallAvatar";

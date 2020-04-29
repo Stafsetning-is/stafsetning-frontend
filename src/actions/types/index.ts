@@ -2,6 +2,7 @@ import * as FilterActions from "../filterActions";
 import * as AuthActions from "../authActions";
 import * as ExercisesActions from "../exercisesActions";
 import * as UserProfileActions from "../userProfileActions";
+import * as SocketActions from "../socketActions";
 
 export enum ActionTypes {
 	setMinWordCount,
@@ -23,6 +24,7 @@ export enum ActionTypes {
 	fetchAdminInvites,
 	requestAdminStatusForUser,
 	changePendingAdminInviteToLoading,
+	setActiveUsers,
 	getSavedExercises,
 	setOpenDrawer
 }
@@ -48,3 +50,5 @@ export type Actions =
 	| AuthActions.ChangePendingAdminInviteToLoadingAction
 	| UserProfileActions.GetSavedExercisesAction
 	| UserProfileActions.SetOpenDrawerAction;
+	| AuthActions.ChangePendingAdminInviteToLoadingAction
+	| SocketActions.SetActiveUsersAction;

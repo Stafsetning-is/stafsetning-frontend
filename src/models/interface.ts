@@ -53,3 +53,8 @@ export interface User {
 	type: AuthLevels;
 	_id: string;
 }
+
+export interface SocketUser {
+	username: string;
+	_id: string;
+}
