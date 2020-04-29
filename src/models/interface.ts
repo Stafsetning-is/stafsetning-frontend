@@ -52,6 +52,7 @@ export interface User {
 	avatar: string;
 	type: AuthLevels;
 	_id: string;
+	points: number;
 }
 
 export interface SocketUser {
