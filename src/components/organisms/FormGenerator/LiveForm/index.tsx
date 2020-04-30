@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { InputFactory } from "../../..";
 import { LayoutWrapper } from "../../../../layout";
 import { TopErrorLabel, Form } from "../styles";
@@ -36,11 +36,7 @@ export const LiveForm = <T extends {}>({
     };
 
     return (
-        //<LayoutWrapper> // Fyrir utan hérna er LayoutWrapper bara notaður í /src/routing/index.tsx
-        //                   þar sem hann er notaður utan um route-in svo hann renderist bara einu sinni
-        //                   (þegar síðan er hlaðin í fyrsta skipti) og sé sem header utan um allt saman.
-        //                   Þegar hann er tekinn út og React Fragment sett í staðinn lagast útlitið.
-        <React.Fragment>
+        <Fragment>
             <TopErrorLabel>{errorMessage}</TopErrorLabel>
             <Form onSubmit={(e) => e.preventDefault()}>
                 {inputElements.map((element) => (
@@ -52,16 +48,7 @@ export const LiveForm = <T extends {}>({
                         />
                     </InputElementContainer>
                 ))}
-                {inputElements.map((element) => (
-                    <InputElementContainer>
-                        <InputFactory
-                            {...element}
-                            onChange={(val) => handleChange(element.key, val)}
-                        />
-                    </InputElementContainer>
-                ))}
             </Form>
-        </React.Fragment>
-        //</LayoutWrapper>
+        </Fragment>
     );
 };
