@@ -48,14 +48,6 @@ export const LiveForm = <T extends {}>({
                         />
                     </InputElementContainer>
                 ))}
-                {inputElements.map((element) => (
-                    <InputElementContainer>
-                        <InputFactory
-                            {...element}
-                            onChange={(val) => handleChange(element.key, val)}
-                        />
-                    </InputElementContainer>
-                ))}
             </Form>
         </LayoutWrapper>
     );
