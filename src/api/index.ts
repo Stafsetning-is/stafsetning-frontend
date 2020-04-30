@@ -1,2 +1,2 @@
-export * from "./MockApi";
 export * from "./StafsetningApi";
+export * from "./utils";

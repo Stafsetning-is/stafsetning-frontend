@@ -4,7 +4,7 @@ import { fetchExerciseText } from "./utils";
 import { RouteComponentProps } from "react-router-dom";
 import { IProps } from "./interface";
 import { ProtectPageWrapper } from "../../../../hoc";
-
+import { Exercise } from "../../../../models";
 /**
  * Component contains the entire page for an practice exercise
  * It also manages the basic logic of fetching the exercise
@@ -15,8 +15,7 @@ import { ProtectPageWrapper } from "../../../../hoc";
 export default ({ match }: RouteComponentProps<IProps>) => {
 	const [loading, setLoading] = useState(true);
 	const [errorMessage, setErrorMessage] = useState("");
-	const [exerciseId, setExerciseId] = useState("");
-	const [exerciseParts, setExerciseParts] = useState<string[]>([]);
+	const [exercise, setExercise] = useState<Exercise>();
 
 	/**
 	 * Use effect fires only on first render
@@ -25,24 +24,20 @@ export default ({ match }: RouteComponentProps<IProps>) => {
 	 */
 	useEffect(() => {
 		fetchExerciseText(match.params.id)
-			.then(({ parts, _id }) => {
+			.then((exercise) => {
 				setLoading(false);
-				setExerciseId(_id);
-				setExerciseParts(parts);
+				setExercise(exercise);
 			})
 			.catch((e) => {
 				setErrorMessage(e.message);
 			});
-	}, []);
+	}, [match.params.id]);
 
 	return (
 		<ProtectPageWrapper>
 			<ErrorModal errorMessage={errorMessage}>
 				<LoaderBox loading={loading}>
-					<SpellingPractice
-						exercise={exerciseId}
-						sentenceParts={exerciseParts}
-					/>
+					{exercise ? <SpellingPractice {...exercise} /> : null}
 				</LoaderBox>
 			</ErrorModal>
 		</ProtectPageWrapper>

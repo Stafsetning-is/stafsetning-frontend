@@ -4,7 +4,7 @@ import { Dispatch } from "redux";
 import {
 	GetExerciseSampleAction,
 	GetExercisesByUserAction,
-	StarExerciseInSelectionAction,
+	StarExerciseInSelectionAction
 } from "./interface";
 import { ActionTypes } from "../types";
 

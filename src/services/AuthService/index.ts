@@ -1,7 +1,13 @@
 const TOKEN_KEY = "xt6q5Vluvxd0gTCX/gIyCw";
-const HOURS_TO_EXPIRE = 2;
+const HOURS_TO_EXPIRE = 6;
 
-export type AuthLevels = "user" | "guest" | "admin" | "unknown";
+export type AuthLevels =
+	| "user"
+	| "guest"
+	| "admin"
+	| "unknown"
+	| "pending-admin-invite"
+	| "loading";
 
 /**
  * set Auth Bearer as cookie

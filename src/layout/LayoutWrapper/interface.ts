@@ -6,5 +6,7 @@ export interface IProps {
 	fetchUserFromToken: () => void;
 	fetchExercisesSample: () => void;
 	fetchExercisesForUser: () => void;
+	fetchAdminInviteList: () => void;
 	userType: AuthLevels;
+	userId: string;
 }

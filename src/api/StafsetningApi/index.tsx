@@ -1,16 +1,13 @@
 import Axios, { AxiosRequestConfig } from "axios";
 import { getAuthToken } from "../../services";
-
+import { URL } from "../utils";
 /**
  * Creates an instance of
  * axios that always uses the stafsetning.is api
  * base route
  */
 const axios = Axios.create({
-	baseURL:
-		process.env.NODE_ENV === "development"
-			? "http://localhost:5000"
-			: "https://stafs-api.herokuapp.com",
+	baseURL: URL,
 });
 
 /**
@@ -18,7 +15,8 @@ const axios = Axios.create({
  * each request call
  */
 axios.interceptors.request.use((config: AxiosRequestConfig) => {
-	if (getAuthToken()) config.headers["Authorization"] = getAuthToken();
+	if (getAuthToken())
+		config.headers["Authorization"] = `Bearer ${getAuthToken()}`;
 	return config;
 });
 

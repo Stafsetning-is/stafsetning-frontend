@@ -1,6 +1,6 @@
 import React from "react";
 import { IPage, IProps } from "./interface";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 /**
  * Maps out items to routes
  * @param pages items implementing IPage initerface

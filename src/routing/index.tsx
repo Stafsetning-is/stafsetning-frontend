@@ -6,7 +6,6 @@ import { LayoutWrapper } from "../layout";
 import { createBrowserHistory } from "history";
 import Apps from "../apps/ExerciseEditor";
 
-const Test = () => <div>4</div>;
 /**
  * Exports Page Factory which encapsulates
  * creating switched routes from array of objects with

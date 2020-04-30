@@ -1,11 +1,7 @@
+import { File } from "../../models";
+
 export interface DesktopState {
-	files: Document[];
+	files: File[];
 	doneFetching: boolean;
 	selected: string[];
-}
-
-interface Document {
-	fileName: string;
-	_id: string;
-	text: string;
 }

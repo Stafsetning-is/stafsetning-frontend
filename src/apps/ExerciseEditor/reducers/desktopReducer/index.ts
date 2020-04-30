@@ -13,6 +13,7 @@ export default (
 ): DesktopState => {
 	switch (action.type) {
 		case ActionTypes.fetchFiles:
+			console.log("action.payload", action.payload);
 			return {
 				...state,
 				doneFetching: true,
@@ -24,10 +25,14 @@ export default (
 				selected: [...state.selected, action.payload],
 			};
 		case ActionTypes.selectSingleFile:
-			console.log("h4", 4);
 			return {
 				...state,
 				selected: [action.payload],
+			};
+		case ActionTypes.saveFileToDesktop:
+			return {
+				...state,
+				files: [...state.files, action.payload],
 			};
 		default:
 			return { ...state };

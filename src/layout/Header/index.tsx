@@ -10,10 +10,11 @@ import { connect } from "react-redux";
 import { IProps } from "./interface";
 import { StoreState } from "../../reducers";
 import { signOut } from "../../actions";
+import { Points } from "../../components";
 /**
  * Header component for layout
  */
-const Header = ({ user, signOut }: IProps) => {
+const Header = ({ user, signOut, pendingInvitesCount }: IProps) => {
 	return (
 		<Container>
 			<CenterBlock>
@@ -33,18 +34,27 @@ const Header = ({ user, signOut }: IProps) => {
 							</NavLink>
 						</AuthHider>
 						<AuthHider setAuthLevel="admin">
+							<NavLink to={"/user/pending-admin-invites/"}>
+								<HeaderItem
+									text="Nýir kennarar"
+									notifications={pendingInvitesCount}
+								/>
+							</NavLink>
+						</AuthHider>
+						<AuthHider setAuthLevel="admin">
 							<NavLink to={"/app/exercise-editor/"}>
 								<HeaderItem text="Mín skjöl" />
 							</NavLink>
 						</AuthHider>
 						<AuthHider setAuthLevel="user">
-							<NavLink to={`/user/profile`}>
-								<HeaderItem text={user.name} />
+							<NavLink to={"/"}>
+								<HeaderItem text="Skrá út" onClick={signOut} />
 							</NavLink>
 						</AuthHider>
 						<AuthHider setAuthLevel="user">
-							<NavLink to={"/"}>
-								<HeaderItem text="Skrá út" onClick={signOut} />
+							<Points points={user.points} />
+							<NavLink to={`/user/profile`}>
+								<HeaderItem text={user.name} />
 							</NavLink>
 						</AuthHider>
 					</RightSide>
@@ -54,8 +64,11 @@ const Header = ({ user, signOut }: IProps) => {
 	);
 };
 
-const mapStateToProps = ({ auth: { user } }: StoreState) => ({
+const mapStateToProps = ({
+	auth: { user, pendingAdminInvite },
+}: StoreState) => ({
 	user,
+	pendingInvitesCount: pendingAdminInvite.length,
 });
 
 export default connect(mapStateToProps, { signOut })(Header);

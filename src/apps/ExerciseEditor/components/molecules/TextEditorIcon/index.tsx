@@ -2,7 +2,7 @@ import React from "react";
 import { Outer, Name } from "./styles";
 import { IProps } from "./interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFont } from "@fortawesome/free-solid-svg-icons";
+import { faPencilRuler } from "@fortawesome/free-solid-svg-icons";
 import { IconWrapper } from "../../";
 import { connect } from "react-redux";
 import { openEditor } from "../../../actions";
@@ -16,7 +16,7 @@ const Component = ({ fileName, openEditor }: IProps) => {
 			onRightClick={() => {}}
 		>
 			<Outer>
-				<FontAwesomeIcon icon={faFont} />
+				<FontAwesomeIcon icon={faPencilRuler} />
 				<Name>{fileName}</Name>
 			</Outer>
 		</IconWrapper>

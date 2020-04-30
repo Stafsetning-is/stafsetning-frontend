@@ -11,4 +11,21 @@ export interface LogOutUserAction {
 	payload: null;
 }
 
-export { default as User } from "../../models";
+export interface FetchAdminInvitesAction {
+	type: ActionTypes.fetchAdminInvites;
+	payload: User[];
+}
+
+export interface RequestAdminStatusForUserAction {
+	type: ActionTypes.requestAdminStatusForUser;
+	payload: string;
+}
+
+export interface ChangePendingAdminInviteToLoadingAction {
+	type: ActionTypes.changePendingAdminInviteToLoading;
+	payload: string;
+}
+export interface ChangeUserPointsAction {
+	type: ActionTypes.changeUserPoints;
+	payload: number;
+}

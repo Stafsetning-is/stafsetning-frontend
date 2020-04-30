@@ -1,4 +1,5 @@
-export interface IProps {
-	exercise: string;
-	sentenceParts: string[];
+import { Exercise } from "../../../models";
+
+export interface IProps extends Exercise {
+	userId: string;
 }
