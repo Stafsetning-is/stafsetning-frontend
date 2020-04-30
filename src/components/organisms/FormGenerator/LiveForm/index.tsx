@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { InputFactory } from "../../..";
 import { LayoutWrapper } from "../../../../layout";
 import { TopErrorLabel, Form } from "../styles";
@@ -9,7 +9,7 @@ import { IProps } from "./interface";
 export const LiveForm = <T extends {}>({
     fields,
     postTo,
-    onSuccess,
+    onSuccess
 }: IProps<T>) => {
     const [formObject, setFormObject] = useState(fields);
     const [errorMessage, setErrorMessage] = useState("");
@@ -36,7 +36,7 @@ export const LiveForm = <T extends {}>({
     };
 
     return (
-        <LayoutWrapper>
+        <Fragment>
             <TopErrorLabel>{errorMessage}</TopErrorLabel>
             <Form onSubmit={(e) => e.preventDefault()}>
                 {inputElements.map((element) => (
@@ -49,6 +49,6 @@ export const LiveForm = <T extends {}>({
                     </InputElementContainer>
                 ))}
             </Form>
-        </LayoutWrapper>
+        </Fragment>
     );
 };
