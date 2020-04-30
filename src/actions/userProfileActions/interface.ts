@@ -14,5 +14,10 @@ export interface GetSavedExercisesAction {
 
 export interface SetOpenDrawerAction {
     type: ActionTypes.setOpenDrawer;
-    payload: Drawers
+    payload: Drawers;
+}
+
+export interface ChangeDifficultyAction {
+    type: ActionTypes.changeDifficulty;
+    payload: number;
 }

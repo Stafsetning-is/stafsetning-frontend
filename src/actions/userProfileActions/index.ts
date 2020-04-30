@@ -2,7 +2,12 @@ import { Api } from "../../api";
 import { Exercise } from "../../models";
 import { Dispatch } from "redux";
 import { ActionTypes } from "../types";
-import { GetFinishedExercisesAction, GetSavedExercisesAction, SetOpenDrawerAction } from "./interface";
+import {
+    GetFinishedExercisesAction,
+    GetSavedExercisesAction,
+    SetOpenDrawerAction,
+    ChangeDifficultyAction
+} from "./interface";
 import { Drawers } from "../../services";
 
 export function fetchFinishedExercises() {
@@ -12,7 +17,7 @@ export function fetchFinishedExercises() {
 
             dispatch<GetFinishedExercisesAction>({
                 type: ActionTypes.getFinishedExercises,
-                payload: data,
+                payload: data
             });
         } catch (error) {
             console.log("Error getting sample");
@@ -21,23 +26,41 @@ export function fetchFinishedExercises() {
 }
 
 export function getSavedExercises() {
-	return async function (dispatch: Dispatch) {
-		try {
-			const { data } = await Api.get<Exercise[]>("/api/v1/users/exercises/saved");
-			dispatch<GetSavedExercisesAction>({
-				type: ActionTypes.getSavedExercises,
-				payload: data
-			});
-		} catch (error) {
-			console.log("Error getting exercises");
-		}
-	};
+    return async function (dispatch: Dispatch) {
+        try {
+            const { data } = await Api.get<Exercise[]>(
+                "/api/v1/users/exercises/saved"
+            );
+            dispatch<GetSavedExercisesAction>({
+                type: ActionTypes.getSavedExercises,
+                payload: data
+            });
+        } catch (error) {
+            console.log("Error getting exercises");
+        }
+    };
 }
 
 export function setOpenDrawer(drawer: Drawers): SetOpenDrawerAction {
     return {
         type: ActionTypes.setOpenDrawer,
         payload: drawer
+    };
+}
+
+export function changeDifficulty() {
+    return async function (dispatch: Dispatch) {
+        try {
+            const { data } = await Api.post<number>(
+                "/api/v1/users/change_difficulty"
+            );
+            dispatch<ChangeDifficultyAction>({
+                type: ActionTypes.changeDifficulty,
+                payload: data
+            });
+        } catch (error) {
+            console.log("Error getting exercises");
+        }
     };
 }
 
