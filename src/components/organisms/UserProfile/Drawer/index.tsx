@@ -1,12 +1,19 @@
-import React from "react";
-import { Frame, Button } from "./styles";
-/* Should contain a line and under the line we have a two clickable options */
+import React from 'react';
+import { connect } from "react-redux";
+import { IProps } from "./interface";
+import { StoreState } from "../../../../reducers";
 
-export default () => {
+const Component = ({ type, children, openDrawer }: IProps) => {
+    if (type !== openDrawer) return null;
     return (
-        <Frame>
-            <Button>Kláraðar æfingar</Button>
-            <Button>Vistaðar æfingar</Button>
-        </Frame>
-    );
+        <React.Fragment>
+            {children}
+        </React.Fragment>
+    )
 };
+
+const mapStateToProps = (state: StoreState) => ({
+    openDrawer: state.userProfile.openDrawer,
+});
+
+export default connect(mapStateToProps)(Component);

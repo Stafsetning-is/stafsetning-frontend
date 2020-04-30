@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import { IProps } from "./interface";
 import { StoreState } from "../../reducers";
 import { signOut } from "../../actions";
+import { Points } from "../../components";
 /**
  * Header component for layout
  */
@@ -69,10 +70,10 @@ const Header = ({ user, signOut, pendingInvitesCount }: IProps) => {
 };
 
 const mapStateToProps = ({
-    auth: { user, pendingAdminInvite },
+    auth: { user, pendingAdminInvite }
 }: StoreState) => ({
     user,
-    pendingInvitesCount: pendingAdminInvite.length,
+    pendingInvitesCount: pendingAdminInvite.length
 });
 
 export default connect(mapStateToProps, { signOut })(Header);

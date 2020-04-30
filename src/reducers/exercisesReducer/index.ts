@@ -33,11 +33,6 @@ export default (
 				...state,
 				selection: [...state.selection],
 			};
-		case ActionTypes.fetchSavedExercises:
-			return {
-				...state,
-				selection: [...state.selection],
-			}
 		default:
 			return state;
 	}

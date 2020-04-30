@@ -9,10 +9,10 @@ export default ({ ratio }: IProps) => {
 		setBarLength(ratio);
 	}, []);
 
-	const displayWith = ratio === 0 ? 0.01 : barLength;
+	const displayWidth = ratio === 0 ? 0.01 : barLength;
 	return (
 		<Outer>
-			<Inner theme={{ ratio: displayWith }} />
+			<Inner theme={{ ratio: displayWidth }} />
 		</Outer>
 	);
 };

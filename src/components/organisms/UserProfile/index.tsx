@@ -1,23 +1,45 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import UserProfileDetails from "./UserProfileDetails";
-import { UserProfileOverview } from "./UserProfileOverview";
+import DrawerSelector from "./DrawerSelector";
 import Drawer from "./Drawer";
+import { ExerciseBoxesContainer } from "../../";
 import { IProps } from "./interface";
 import { connect } from "react-redux";
 import { StoreState } from "../../../reducers";
+import { getSavedExercises, fetchFinishedExercises } from "../../../actions";
 
-const Component = ({ user }: IProps) => {
-    return (
-        <Fragment>
-            <UserProfileDetails {...user} />
-            <Drawer />
-            <UserProfileOverview />
-        </Fragment>
-    );
+const Component = ({
+	user,
+	saved,
+	finished,
+	getSavedExercises,
+	fetchFinishedExercises,
+}: IProps) => {
+	useEffect(() => {
+		getSavedExercises();
+		fetchFinishedExercises();
+	}, []);
+	return (
+		<Fragment>
+			<UserProfileDetails {...user} />
+			<DrawerSelector />
+			<Drawer type="finished">
+				<ExerciseBoxesContainer exercises={finished} />
+			</Drawer>
+			<Drawer type="saved">
+				<ExerciseBoxesContainer exercises={saved} />
+			</Drawer>
+		</Fragment>
+	);
 };
 
 const mapStateToProps = (store: StoreState) => ({
-    user: store.auth.user,
+	user: store.auth.user,
+	saved: store.userProfile.saved,
+	finished: store.userProfile.finished,
 });
 
-export const UserProfile = connect(mapStateToProps)(Component);
+export const UserProfile = connect(mapStateToProps, {
+	getSavedExercises,
+	fetchFinishedExercises,
+})(Component);

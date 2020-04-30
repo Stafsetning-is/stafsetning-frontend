@@ -5,4 +5,5 @@ export const EMPTY_USER: User = {
 	avatar: "",
 	type: "unknown",
 	_id: "",
+	points: 0,
 };

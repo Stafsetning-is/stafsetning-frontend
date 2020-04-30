@@ -6,12 +6,12 @@ const mobile: InputElementRecipe = {
     placeholder: "GSM númer",
     validation: {
         pattern: {
-            regex: new RegExp(/[6,8]\d{2}[-\s]?\d{4}$/, "g"),
-            message: "Símanúmer ekki rétt",
-        },
+            regex: new RegExp(/[6-8]\d{2}[-\s]?\d{4}$/, "g"),
+            message: "Símanúmer ekki rétt"
+        }
     },
     value: "",
-    passProps: {},
+    passProps: {}
 };
 
 const name: InputElementRecipe = {
@@ -19,10 +19,10 @@ const name: InputElementRecipe = {
     type: "text-input",
     placeholder: "Fullt nafn",
     validation: {
-        minLength: 6,
+        minLength: 6
     },
     value: "",
-    passProps: {},
+    passProps: {}
 };
 
 const username: InputElementRecipe = {
@@ -30,10 +30,10 @@ const username: InputElementRecipe = {
     type: "text-input",
     placeholder: "Notendanafn",
     validation: {
-        minLength: 6,
+        minLength: 6
     },
     value: "",
-    passProps: {},
+    passProps: {}
 };
 
 const password: InputElementRecipe = {
@@ -42,10 +42,10 @@ const password: InputElementRecipe = {
     placeholder: "Lykilorð",
     validation: {
         minLength: 6,
-        trim: true,
+        trim: true
     },
     value: "",
-    passProps: {},
+    passProps: {}
 };
 
 const difficulty: InputElementRecipe = {
@@ -54,57 +54,57 @@ const difficulty: InputElementRecipe = {
     placeholder: "Veldu námsstig",
     validation: {
         minLength: 6,
-        trim: true,
+        trim: true
     },
     value: "",
     passProps: {
         selections: [
             {
                 text: "1. bekkur",
-                value: 1,
+                value: 1
             },
             {
                 text: "2. bekkur",
-                value: 2,
+                value: 2
             },
             {
                 text: "3. bekkur",
-                value: 3,
+                value: 3
             },
             {
                 text: "4. bekkur",
-                value: 4,
+                value: 4
             },
             {
                 text: "5. bekkur",
-                value: 5,
+                value: 5
             },
             {
                 text: "6. bekkur",
-                value: 6,
+                value: 6
             },
             {
                 text: "7. bekkur",
-                value: 7,
+                value: 7
             },
             {
                 text: "8. bekkur",
-                value: 8,
+                value: 8
             },
             {
                 text: "9. bekkur",
-                value: 9,
+                value: 9
             },
             {
                 text: "10. bekkur",
-                value: 10,
+                value: 10
             },
             {
                 text: "Framhaldsskóli",
-                value: 11,
-            },
-        ],
-    },
+                value: 11
+            }
+        ]
+    }
 };
 
 export const signupForm: InputObject = {
@@ -112,5 +112,5 @@ export const signupForm: InputObject = {
     username,
     mobile,
     password,
-    difficulty,
+    difficulty
 };
