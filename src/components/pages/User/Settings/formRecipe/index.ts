@@ -1,7 +1,4 @@
-import {
-    LiveInputElementRecipe,
-    InputElementRecipe
-} from "../../../../../services";
+import { LiveInputElementRecipe } from "../../../../../services";
 
 const difficulty: LiveInputElementRecipe = {
     label: "Námsstig",
