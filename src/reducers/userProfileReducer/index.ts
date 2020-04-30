@@ -4,7 +4,8 @@ import { ActionTypes, Actions } from "../../actions/types";
 export const initialState: UserProfileState = {
     saved: [],
     finished: [],
-    openDrawer: "finished"
+    openDrawer: "finished",
+    difficulty: 1
 };
 
 export default (
@@ -15,18 +16,23 @@ export default (
         case ActionTypes.getFinishedExercises:
             return {
                 ...state,
-                finished: action.payload,
+                finished: action.payload
             };
         case ActionTypes.getSavedExercises:
             return {
                 ...state,
-                saved: action.payload,
-            }
+                saved: action.payload
+            };
         case ActionTypes.setOpenDrawer:
             return {
                 ...state,
                 openDrawer: action.payload
-            }
+            };
+        case ActionTypes.changeDifficulty:
+            return {
+                ...state,
+                difficulty: action.payload
+            };
         default:
             return state;
     }

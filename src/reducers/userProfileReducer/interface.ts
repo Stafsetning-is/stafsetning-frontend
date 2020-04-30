@@ -4,5 +4,6 @@ import { Drawers } from "../../services";
 export interface UserProfileState {
     saved: Exercise[];
     finished: Exercise[];
-    openDrawer: Drawers
+    openDrawer: Drawers;
+    difficulty: number;
 }
