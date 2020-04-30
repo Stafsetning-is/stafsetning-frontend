@@ -28,6 +28,8 @@ export enum ActionTypes {
 	getSavedExercises,
 	setOpenDrawer,
 	changeUserPoints,
+	closeTrophyModal,
+	handleNewTrophy,
 }
 
 export type Actions =
@@ -53,4 +55,6 @@ export type Actions =
 	| UserProfileActions.SetOpenDrawerAction
 	| AuthActions.ChangePendingAdminInviteToLoadingAction
 	| SocketActions.SetActiveUsersAction
-	| AuthActions.ChangeUserPointsAction;
+	| AuthActions.ChangeUserPointsAction
+	| SocketActions.CloseSocketModalAction
+	| SocketActions.HandleNewTrophy;
