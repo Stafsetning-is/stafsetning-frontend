@@ -15,7 +15,7 @@ export const NotificationBubble = styled.div`
 	border-radius: 8px;
 	position: absolute;
 	top: 9px;
-	right: -10px;
+	right: 15px;
 	background-color: #00ffcc;
 	color: #333;
 	box-shadow: 2.5px 2.5px 5px rgba(0, 0, 0, 0.3);

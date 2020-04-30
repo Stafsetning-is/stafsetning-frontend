@@ -15,7 +15,8 @@ const axios = Axios.create({
  * each request call
  */
 axios.interceptors.request.use((config: AxiosRequestConfig) => {
-	if (getAuthToken()) config.headers["Authorization"] = getAuthToken();
+	if (getAuthToken())
+		config.headers["Authorization"] = `Bearer ${getAuthToken()}`;
 	return config;
 });
 
