@@ -48,15 +48,13 @@ export function setOpenDrawer(drawer: Drawers): SetOpenDrawerAction {
     };
 }
 
-export function changeDifficulty() {
+export function changeDifficulty(difficulty: number) {
     return async function (dispatch: Dispatch) {
         try {
-            const { data } = await Api.post<number>(
-                "/api/v1/users/change_difficulty"
-            );
+            await Api.post<void>("/api/v1/users/change_difficulty");
             dispatch<ChangeDifficultyAction>({
                 type: ActionTypes.changeDifficulty,
-                payload: data
+                payload: difficulty
             });
         } catch (error) {
             console.log("Error getting exercises");
