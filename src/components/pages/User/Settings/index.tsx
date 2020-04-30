@@ -8,6 +8,5 @@ export default () => (
     <ProtectPageWrapper>
         <LiveForm fields={formRecipe1} postTo="" onSuccess={() => {}} />
         <LiveForm fields={formRecipe2} postTo="" onSuccess={() => {}} />
-        {/* <Form fields={formRecipe1} postTo="" onSuccess={() => {}} /> */}
     </ProtectPageWrapper>
 );
