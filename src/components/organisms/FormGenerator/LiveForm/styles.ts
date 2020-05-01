@@ -7,4 +7,9 @@ export const InputElementContainer = styled.div`
     align-items: center;
 `;
 
-export const Feedback = styled.span``;
+export const Feedback = styled.span`
+    display: flex;
+`;
+export const Title = styled.span`
+    display: flex;
+`;

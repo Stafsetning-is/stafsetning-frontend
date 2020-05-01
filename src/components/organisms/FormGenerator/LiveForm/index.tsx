@@ -2,11 +2,11 @@ import React, { useState, Fragment } from "react";
 import { InputFactory } from "../../..";
 import { LayoutWrapper } from "../../../../layout";
 import { TopErrorLabel, Form } from "../styles";
-import { InputElementContainer, Feedback } from "./styles";
+import { InputElementContainer, Feedback, Title } from "./styles";
 import {
     getLiveInputElementsArray,
     validateErrors,
-    getUserData
+    getUserData,
 } from "../utils";
 import { IProps } from "./interface";
 import { handlePost } from "../utils";
@@ -18,7 +18,7 @@ import { changeDifficulty } from "../../../../actions"; */
 export const LiveForm = <T extends {}>({
     fields,
     postTo,
-    onSuccess
+    onSuccess,
 }: IProps<T>) => {
     const [formObject, setFormObject] = useState(fields);
     const [errorMessage, setErrorMessage] = useState("");
@@ -63,11 +63,12 @@ export const LiveForm = <T extends {}>({
 
     return (
         <Fragment>
+            <Title>Hér að neðan getur þú breytt námsstigi þínu</Title>
             <TopErrorLabel>{errorMessage}</TopErrorLabel>
             <Form onSubmit={(e) => e.preventDefault()}>
                 {inputElements.map((element) => (
                     <InputElementContainer>
-                        <Feedback>{element.modified ? "🤔" : "✅"}</Feedback>
+                        <Feedback>{element.modified ? "✅" : ""}</Feedback>
                         <InputFactory
                             {...element}
                             onChange={(val) => handleChange(element.key, val)}
