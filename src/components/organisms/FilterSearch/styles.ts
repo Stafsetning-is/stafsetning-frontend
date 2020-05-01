@@ -8,13 +8,14 @@ export const FilterOuter = styled.div`
 		border-width: 0;
 	}
 	margin-bottom: 20px;
+	top: 50%;
+	transform: translateY(-50%);
 	position: fixed;
 	flex-direction: column;
 	background: #f8f8f8;
 	width: ${WIDTH}px;
 	border-radius: 0px 4px 4px 0;
-	box-shadow: px 0px 25px rgba(102, 0, 255, 0.25);
-	border: 1px solid #cecece;
+	box-shadow: 0px 0px 25px rgba(102, 0, 255, 0.15);
 	z-index: 6;
 	transition: 0.7s;
 	${(props) =>
@@ -66,3 +67,5 @@ export const OpenFilter = styled.div`
 	left: 0px;
 	z-index: 5;
 `;
+
+export const FilterTitle = styled.span``;
