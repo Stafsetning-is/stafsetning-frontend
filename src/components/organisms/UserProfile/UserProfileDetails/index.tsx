@@ -8,13 +8,13 @@ import {
 	PointsContainer,
 } from "./styles";
 import { Points } from "../../../";
-import userIcon from "./Michelin-5.jpg";
+import PLACEHOLDER_IMG from "./Michelin-5.jpg";
 
 export default ({ avatar, name, points }: IProps) => {
 	return (
 		<Frame>
 			<UserPictureContainer>
-				<UserPicture src={userIcon} />
+				<UserPicture src={PLACEHOLDER_IMG} />
 			</UserPictureContainer>
 			<UserName>{name}</UserName>
 			<PointsContainer>
