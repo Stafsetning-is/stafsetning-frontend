@@ -45,6 +45,7 @@ const FilterComponent = ({
 		}),
 		[minWordCount, maxWordCount]
 	);
+
 	return (
 		<AuthHider setAuthLevel="user">
 			<DifficultyHider min={4} max={11}>

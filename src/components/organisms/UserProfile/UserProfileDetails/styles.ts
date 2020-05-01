@@ -23,11 +23,11 @@ export const UserPicture = styled.img`
 
 export const UserName = styled.p`
 	padding: 50px 0 0 0;
-	font-family: Roboto;
 	font-style: normal;
 	font-weight: 500;
 	font-size: 16px;
 	line-height: 19px;
+	color: #333;
 `;
 
 export const PointsContainer = styled.p`
