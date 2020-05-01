@@ -6,7 +6,7 @@ import { ExerciseBoxesContainer } from "../../";
 import { IProps } from "./interface";
 import { connect } from "react-redux";
 import { StoreState } from "../../../reducers";
-import { Trophy } from "../../molecules";
+import { TrophyBoxesContainer } from "../../organisms";
 import {
 	getSavedExercises,
 	fetchFinishedExercises,
@@ -38,9 +38,7 @@ const Component = ({
 				<ExerciseBoxesContainer exercises={saved} hideStar />
 			</Drawer>
 			<Drawer type="trophies">
-				{trophies.map((item) => (
-					<Trophy {...item} />
-				))}
+				<TrophyBoxesContainer trophies={trophies} />
 			</Drawer>
 		</Fragment>
 	);
