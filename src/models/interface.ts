@@ -55,6 +55,7 @@ export interface User {
 	type: AuthLevels;
 	_id: string;
 	points: number;
+	difficulty: number;
 }
 
 export interface SocketUser {
