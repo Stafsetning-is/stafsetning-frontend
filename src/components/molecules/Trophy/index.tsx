@@ -1,15 +1,15 @@
 import React from "react";
-import { Outer, Title, Description, Icon } from "./styles";
+import { Outer, Title, Icon } from "./styles";
 import { IProps } from "./interface";
 import { TrophyIcon } from "../../";
 
-export const Trophy = ({ icon, title, description }: IProps) => {
+export const Trophy = ({ icon, title }: IProps) => {
 	return (
 		<Outer>
-			<Title>{title}</Title>
 			<Icon>
 				<TrophyIcon icon={icon} />
 			</Icon>
+			<Title>{title}</Title>
 		</Outer>
 	);
 };
