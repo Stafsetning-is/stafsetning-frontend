@@ -1,3 +1,5 @@
 import { Trophy } from "../../../models";
 
-export interface IProps extends Trophy {}
+export interface IProps {
+	icon: any;
+}
