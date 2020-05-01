@@ -6,6 +6,7 @@ import { ExerciseBoxesContainer } from "../../";
 import { IProps } from "./interface";
 import { connect } from "react-redux";
 import { StoreState } from "../../../reducers";
+import { Trophy } from "../../molecules";
 import {
 	getSavedExercises,
 	fetchFinishedExercises,
@@ -36,7 +37,11 @@ const Component = ({
 			<Drawer type="saved">
 				<ExerciseBoxesContainer exercises={saved} hideStar />
 			</Drawer>
-			<Drawer type="trophies">{trophies.length}Bikarar</Drawer>
+			<Drawer type="trophies">
+				{trophies.map((item) => (
+					<Trophy {...item} />
+				))}
+			</Drawer>
 		</Fragment>
 	);
 };
