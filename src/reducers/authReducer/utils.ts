@@ -6,4 +6,5 @@ export const EMPTY_USER: User = {
 	type: "unknown",
 	_id: "",
 	points: 0,
+	difficulty: 0,
 };
