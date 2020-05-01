@@ -24,10 +24,10 @@ const Component = ({
 			<UserProfileDetails {...user} />
 			<DrawerSelector />
 			<Drawer type="finished">
-				<ExerciseBoxesContainer exercises={finished} />
+				<ExerciseBoxesContainer exercises={finished} hideStar />
 			</Drawer>
 			<Drawer type="saved">
-				<ExerciseBoxesContainer exercises={saved} />
+				<ExerciseBoxesContainer exercises={saved} hideStar />
 			</Drawer>
 		</Fragment>
 	);
