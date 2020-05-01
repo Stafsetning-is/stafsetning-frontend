@@ -86,9 +86,7 @@ export const handlePost = async <T>(
     url: string
 ): Promise<T> => {
     try {
-        console.log("fyrri", url, fields);
         const { data } = await Api.post<T>(url, getUserData(fields));
-        console.log("seinni", data);
         return await delay(data);
     } catch (error) {
         await delay(null);
