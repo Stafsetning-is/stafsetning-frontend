@@ -7,11 +7,18 @@ import {
 	FetchAdminInvitesAction,
 	ChangePendingAdminInviteToLoadingAction,
 	RequestAdminStatusForUserAction,
+	ChangeUserPointsAction,
 } from "./interface";
 import { Api } from "../../api";
+import { emitLogin } from "../";
 import { removeToken } from "../../services";
 
-export function logInUser(user: User) {
+/**
+ * logs the user in and emits the login
+ * @param user
+ */
+export function logInUser(user: User): LogInUserAction {
+	emitLogin(user._id);
 	return {
 		type: ActionTypes.logInUser,
 		payload: user,
@@ -27,10 +34,7 @@ export function fetchUserFromToken() {
 	return async function (dispatch: Dispatch) {
 		try {
 			const { data } = await Api.get<User>("/api/v1/users/auth");
-			dispatch<LogInUserAction>({
-				type: ActionTypes.logInUser,
-				payload: data,
-			});
+			dispatch<LogInUserAction>(logInUser(data));
 		} catch (error) {
 			dispatch<LogOutUserAction>({
 				type: ActionTypes.logOutUser,
@@ -101,4 +105,10 @@ export function signOut(): LogOutUserAction {
 	};
 }
 
+export function changeUserPoints(points: number): ChangeUserPointsAction {
+	return {
+		type: ActionTypes.changeUserPoints,
+		payload: points,
+	};
+}
 export * from "./interface";

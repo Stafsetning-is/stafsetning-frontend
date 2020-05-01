@@ -2,13 +2,18 @@ import React from "react";
 import { LiveForm } from "../../../";
 import { formRecipe1, formRecipe2 } from "./formRecipe";
 import { ProtectPageWrapper } from "../../../../hoc";
-/* import { Form } from "../../../organisms/FormGenerator/styles";
- */
+import { changeDifficulty } from "../../../../actions";
+import { DifficultyRes } from "./interface";
+
 export default () => (
     <ProtectPageWrapper>
-        <div>hello</div>
-        <LiveForm fields={formRecipe1} postTo="" onSuccess={() => {}} />
-        <LiveForm fields={formRecipe2} postTo="" onSuccess={() => {}} />
-        {/* <Form fields={formRecipe1} postTo="" onSuccess={() => {}} /> */}
+        <LiveForm<DifficultyRes>
+            fields={formRecipe1}
+            postTo="/api/v1/users/change_difficulty"
+            onSuccess={({ difficulty }) => {
+                changeDifficulty(difficulty);
+            }}
+        />
+        {/*  <LiveForm fields={formRecipe2} postTo="" onSuccess={() => {}} /> */}
     </ProtectPageWrapper>
 );

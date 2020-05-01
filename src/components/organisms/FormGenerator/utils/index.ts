@@ -23,24 +23,24 @@ const mapFieldsToArray = <T>(fields: T) => {
     for (const key in fields) {
         const item = {
             ...fields[key],
-            key,
+            key
         };
         inputElementArray.push(item);
     }
     return inputElementArray;
 };
 /**
- * Turns the formObject to an mappable array
+ * Turns the formObject to a mapable array
  * that can be easily turned to JSX
  * also adds validation messages if validator thinks
- * its necessary
+ * it's necessary
  */
 export const getInputElementsArray = (fields: InputObject) => {
     const inputElementArray = [];
     for (const key in fields) {
         const item = {
             ...fields[key],
-            key,
+            key
         };
         inputElementArray.push(item);
     }
@@ -62,8 +62,8 @@ export const getUserData = (fields: InputObject) => {
 };
 
 /**
- * Checks the fields and throw an error
- * if there is error in user input
+ * Checks the fields and throws an error
+ * if there's an error in user input
  * @param fields fields to validate for errors
  */
 export const validateErrors = (fields: InputObject) => {
@@ -76,7 +76,7 @@ export const validateErrors = (fields: InputObject) => {
 
 /**
  * Handles communication with backend and
- * throw an error with a message
+ * throws an error with a message
  * that can be displayable to the user
  * @param fields the InputObject to send
  * @param url POST url
@@ -86,7 +86,9 @@ export const handlePost = async <T>(
     url: string
 ): Promise<T> => {
     try {
+        console.log("fyrri", url, fields);
         const { data } = await Api.post<T>(url, getUserData(fields));
+        console.log("seinni", data);
         return await delay(data);
     } catch (error) {
         await delay(null);

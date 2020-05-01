@@ -5,6 +5,10 @@ import { TopErrorLabel, Form } from "../styles";
 import { InputElementContainer, Feedback } from "./styles";
 import { getLiveInputElementsArray } from "../utils";
 import { IProps } from "./interface";
+import { handlePost } from "../utils";
+/* import { StoreState } from "../../../../reducers";
+import { connect } from "react-redux";
+import { changeDifficulty } from "../../../../actions"; */
 
 export const LiveForm = <T extends {}>({
     fields,
@@ -15,7 +19,7 @@ export const LiveForm = <T extends {}>({
     const [errorMessage, setErrorMessage] = useState("");
     const inputElements = getLiveInputElementsArray(formObject);
 
-    const handleChange = (key: keyof typeof fields, val: any) => {
+    const handleChange = async (key: keyof typeof fields, val: any) => {
         const formObjectCopy = { ...formObject };
         const formElementCopy = { ...formObjectCopy[key] };
         formElementCopy.value = val;
@@ -23,6 +27,8 @@ export const LiveForm = <T extends {}>({
         formObjectCopy[key] = formElementCopy;
         setFormObject({ ...formObjectCopy });
         setTimeout(handleChangeElementsToNotModified, 1000);
+        const data = await handlePost<T>(formObject, postTo);
+        onSuccess(data);
     };
 
     const handleChangeElementsToNotModified = () => {
@@ -52,3 +58,10 @@ export const LiveForm = <T extends {}>({
         </Fragment>
     );
 };
+/* 
+const mapStateToProps = (store: StoreState) => ({
+    difficulty: store.userProfile.difficulty
+});
+
+connect(mapStateToProps, {})(LiveForm);
+ */
