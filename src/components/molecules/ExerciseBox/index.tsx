@@ -32,6 +32,7 @@ export const ExerciseBox = ({
 	report,
 	saved,
 	onStarClick,
+	hideStar,
 }: IProps) => {
 	/**
 	 * Props for ExerciseBox Component represents
@@ -67,13 +68,15 @@ export const ExerciseBox = ({
 						<TopLine theme={{ saved }}>
 							<TitleText>{cutTitle(title)}</TitleText>
 							<AuthHider setAuthLevel="user">
-								<StarBox onClick={handleStarClick}>
-									{loading ? (
-										<ClipLoader size={5} color={"rgba(255, 195, 55, 1)"} />
-									) : (
-										<FontAwesomeIcon icon={faStar} />
-									)}
-								</StarBox>
+								{hideStar ? null : (
+									<StarBox onClick={handleStarClick}>
+										{loading ? (
+											<ClipLoader size={5} color={"rgba(255, 195, 55, 1)"} />
+										) : (
+											<FontAwesomeIcon icon={faStar} />
+										)}
+									</StarBox>
+								)}
 							</AuthHider>
 						</TopLine>
 						<SecondaryTitle>

@@ -10,7 +10,12 @@ import { InfoPage } from "../../";
 /**
  * Renders a list of exercises
  */
-const Component = ({ exercises, limit, starExerciseInSelection }: IProps) => {
+const Component = ({
+	exercises,
+	limit,
+	starExerciseInSelection,
+	hideStar,
+}: IProps) => {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -33,6 +38,7 @@ const Component = ({ exercises, limit, starExerciseInSelection }: IProps) => {
 			<Container>
 				{exercises.slice(0, sliceAt).map((itm) => (
 					<ExerciseBox
+						hideStar={hideStar}
 						{...itm}
 						key={`${itm._id}:${itm.saved}`}
 						onStarClick={starExerciseInSelection}
