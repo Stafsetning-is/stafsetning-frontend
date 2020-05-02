@@ -6,19 +6,19 @@ import { InputElementContainer, Feedback, Title } from "./styles";
 import {
     getLiveInputElementsArray,
     validateErrors,
-    getUserData,
+    getUserData
 } from "../utils";
 import { IProps } from "./interface";
 import { handlePost } from "../utils";
 import { LiveInputObject } from "../../../../services";
-/* import { StoreState } from "../../../../reducers";
-import { connect } from "react-redux";
-import { changeDifficulty } from "../../../../actions"; */
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { ClipLoader } from "react-spinners";
 
 export const LiveForm = <T extends {}>({
     fields,
     postTo,
-    onSuccess,
+    onSuccess
 }: IProps<T>) => {
     const [formObject, setFormObject] = useState(fields);
     const [errorMessage, setErrorMessage] = useState("");
@@ -68,7 +68,13 @@ export const LiveForm = <T extends {}>({
             <Form onSubmit={(e) => e.preventDefault()}>
                 {inputElements.map((element) => (
                     <InputElementContainer>
-                        <Feedback>{element.modified ? "✅" : ""}</Feedback>
+                        <Feedback>
+                            {element.modified ? (
+                                <FontAwesomeIcon icon={faCheck} />
+                            ) : (
+                                <ClipLoader size={25} color={"#6600ff"} />
+                            )}
+                        </Feedback>
                         <InputFactory
                             {...element}
                             onChange={(val) => handleChange(element.key, val)}

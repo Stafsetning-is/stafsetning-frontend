@@ -9,6 +9,7 @@ export const InputElementContainer = styled.div`
 
 export const Feedback = styled.span`
     display: flex;
+    padding: 20px 10px 0 0;
 `;
 export const Title = styled.span`
     display: flex;
