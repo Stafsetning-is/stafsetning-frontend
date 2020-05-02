@@ -5,25 +5,27 @@ export const InputElementOuter = styled.div`
 	display: flex;
 	align-items: center;
 	height: 40px;
+	margin-bottom: 30px;
 `;
 
 export const Outer = styled.div`
-	width: 100%;
-	padding: 40px 40px;
-	> ${InputElementOuter} {
-		margin-bottom: 35px;
-	}
+	padding: 30px 0;
+	margin-bottom: 100px;
 `;
 
-export const Feedback = styled.div`
-	width: 40px;
-	height: 40px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-top: 15px;
+export const Inner = styled.div`
+	padding-top: 50px;
+	width: 100%;
+	border-bottom: 1px dashed #999;
+	border-top: 1px dashed #999;
 `;
 
 export const InputerElementInner = styled.div`
 	width: 100%;
+`;
+
+export const Title = styled.div`
+	font-size: 20px;
+	color: #666;
+	margin-bottom: 10px;
 `;
