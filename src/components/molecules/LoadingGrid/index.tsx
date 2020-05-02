@@ -5,7 +5,6 @@ import { LOAD_TIME_DURATION } from "./utils";
 
 export const LoadingGrid = ({ children, itemsInRow }: IProps) => {
 	const [loading, setLoading] = useState(true);
-
 	const childrenCount = React.Children.toArray(children).length;
 	const noChildren = childrenCount === 0;
 

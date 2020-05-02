@@ -67,4 +67,6 @@ export interface Trophy {
 	icon: any;
 	title: string;
 	description: string;
+	locked?: boolean;
+	old?: boolean;
 }
