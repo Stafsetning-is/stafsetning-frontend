@@ -68,7 +68,6 @@ export const LiveForm = <T extends {}>({
             <Form onSubmit={(e) => e.preventDefault()}>
                 {inputElements.map((element) => (
                     <InputElementContainer>
-                        <Feedback>{element.modified ? "✅" : ""}</Feedback>
                         <InputFactory
                             {...element}
                             onChange={(val) => handleChange(element.key, val)}
