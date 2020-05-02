@@ -23,19 +23,17 @@ export default class Validator {
 	 * to the user specified validation
 	 * @param field the field to validate
 	 */
-	public static check(fields: InputElementRecipe[]) {
-		for (const field of fields) {
-			if (!field.validation) return;
-			/**
-			 * Possibility of type errors on runtime
-			 * try catch will thus catch the errors
-			 * and ignore them
-			 */
-			Validator.clearError(field);
-			try {
-				Validator.validationMethods.forEach((method) => method(field));
-			} catch (error) {}
-		}
+	public static check(field: InputElementRecipe) {
+		if (!field.validation) return;
+		/**
+		 * Possibility of type errors on runtime
+		 * try catch will thus catch the errors
+		 * and ignore them
+		 */
+		Validator.clearError(field);
+		try {
+			Validator.validationMethods.forEach((method) => method(field));
+		} catch (error) {}
 	}
 
 	/**

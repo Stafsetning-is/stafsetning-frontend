@@ -1,16 +1,29 @@
 import styled from "styled-components";
 
-export const InputElementContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-items: center;
+export const InputElementOuter = styled.div`
+	width: 100%;
+	display: flex;
+	align-items: center;
+	height: 40px;
 `;
 
-export const Feedback = styled.span`
-    display: flex;
-    padding: 20px 10px 0 0;
+export const Outer = styled.div`
+	width: 100%;
+	padding: 40px 40px;
+	> ${InputElementOuter} {
+		margin-bottom: 35px;
+	}
 `;
-export const Title = styled.span`
-    display: flex;
+
+export const Feedback = styled.div`
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 15px;
+`;
+
+export const InputerElementInner = styled.div`
+	width: 100%;
 `;

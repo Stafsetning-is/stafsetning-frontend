@@ -2,7 +2,6 @@ import React from "react";
 import { Container, FlexHeader, Image, ImageCog, RightSide } from "./styles";
 import { NavLink } from "react-router-dom";
 import Logo from "../../static/images/logo.png";
-import Cog from "../../static/images/cog-icon.png";
 import CenterBlock from "../CenterBlock";
 import HeaderItem from "../HeaderItem";
 import { urlWithoutPath } from "./utils";
@@ -16,64 +15,72 @@ import { Points } from "../../components";
  * Header component for layout
  */
 const Header = ({ user, signOut, pendingInvitesCount }: IProps) => {
-    return (
-        <Container>
-            <CenterBlock>
-                <FlexHeader>
-                    <NavLink to="/">
-                        <Image src={Logo} />
-                    </NavLink>
-                    <RightSide>
-                        <AuthHider setAuthLevel="guest">
-                            <NavLink to={`${urlWithoutPath()}sign-up`}>
-                                <HeaderItem text="Búa til aðgang" />
-                            </NavLink>
-                        </AuthHider>
-                        <AuthHider setAuthLevel="guest">
-                            <NavLink to={`${urlWithoutPath()}log-in`}>
-                                <HeaderItem text="Skrá inn" />
-                            </NavLink>
-                        </AuthHider>
-                        <AuthHider setAuthLevel="admin">
-                            <NavLink to={"/user/pending-admin-invites/"}>
-                                <HeaderItem
-                                    text="Nýir kennarar"
-                                    notifications={pendingInvitesCount}
-                                />
-                            </NavLink>
-                        </AuthHider>
-                        <AuthHider setAuthLevel="admin">
-                            <NavLink to={"/app/exercise-editor/"}>
-                                <HeaderItem text="Mín skjöl" />
-                            </NavLink>
-                        </AuthHider>
-                        <AuthHider setAuthLevel="user">
-                            <NavLink to={`/user/profile`}>
-                                <HeaderItem text={user.name} />
-                            </NavLink>
-                        </AuthHider>
-                        <AuthHider setAuthLevel="user">
-                            <NavLink to={"/"}>
-                                <HeaderItem text="Skrá út" onClick={signOut} />
-                            </NavLink>
-                        </AuthHider>
-                        <AuthHider setAuthLevel="user">
-                            <NavLink to={"/user/settings"}>
-                                <ImageCog src={Cog} />
-                            </NavLink>
-                        </AuthHider>
-                    </RightSide>
-                </FlexHeader>
-            </CenterBlock>
-        </Container>
-    );
+	return (
+		<Container>
+			<CenterBlock>
+				<FlexHeader>
+					<NavLink to="/">
+						<Image src={Logo} />
+					</NavLink>
+					<RightSide>
+						<AuthHider setAuthLevel="guest">
+							<HeaderItem
+								text="Búa til aðgang"
+								dropDownItems={[]}
+								to={`${urlWithoutPath()}sign-up`}
+							/>
+						</AuthHider>
+						<AuthHider setAuthLevel="guest">
+							<HeaderItem
+								to={`${urlWithoutPath()}log-in`}
+								text="Skrá inn"
+								dropDownItems={[]}
+							/>
+						</AuthHider>
+						<AuthHider setAuthLevel="admin">
+							<HeaderItem
+								to="/user/pending-admin-invites/"
+								text="Nýir kennarar"
+								notifications={pendingInvitesCount}
+								dropDownItems={[]}
+							/>
+						</AuthHider>
+						<AuthHider setAuthLevel="user">
+							<Points points={user.points} />
+						</AuthHider>
+						<AuthHider setAuthLevel="user">
+							<HeaderItem
+								to="/user/profile"
+								text={user.name}
+								dropDownItems={[
+									{
+										label: "Mín skjöl",
+										to: "/app/exercise-editor/",
+									},
+									{
+										label: "Stillingar",
+										to: "/user/settings",
+									},
+									{
+										label: "Skrá út",
+										onclick: signOut,
+										to: "/",
+									},
+								]}
+							/>
+						</AuthHider>
+					</RightSide>
+				</FlexHeader>
+			</CenterBlock>
+		</Container>
+	);
 };
 
 const mapStateToProps = ({
-    auth: { user, pendingAdminInvite }
+	auth: { user, pendingAdminInvite },
 }: StoreState) => ({
-    user,
-    pendingInvitesCount: pendingAdminInvite.length
+	user,
+	pendingInvitesCount: pendingAdminInvite.length,
 });
 
 export default connect(mapStateToProps, { signOut })(Header);

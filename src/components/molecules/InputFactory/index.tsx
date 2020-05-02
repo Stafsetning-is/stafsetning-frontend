@@ -1,6 +1,11 @@
 import * as React from "react";
 import { InputComponent } from "../../../services";
-import { TextInput, PasswordInput as PwInput, DropDown } from "../../";
+import {
+	TextInput,
+	PasswordInput as PwInput,
+	DropDown,
+	CheckBoxInput,
+} from "../../";
 
 /**
  * This functional component takes in input component props and
@@ -26,6 +31,23 @@ export const InputFactory = (props: InputComponent) => {
 					onChange={(val) => onChange(val)}
 					key={label}
 					selections={passProps.selections}
+				/>
+			);
+		case "drop-down":
+			return (
+				<DropDown
+					{...props}
+					onChange={(val) => onChange(val)}
+					key={label}
+					selections={passProps.selections}
+				/>
+			);
+		case "check-box":
+			return (
+				<CheckBoxInput
+					{...props}
+					onChange={(val) => onChange(val)}
+					key={label}
 				/>
 			);
 		default:
