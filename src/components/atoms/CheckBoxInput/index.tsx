@@ -1,12 +1,13 @@
 import * as React from "react";
 import { InputComponent } from "../../../services";
-import { FormLabel } from "../../";
-import { Input } from "./styles";
+import { FormLabel } from "..";
+import Toggle from "react-toggle";
+import { ToggleWrapper } from "./styles";
 /**
  * Password input that takes in value and onChange function
  * This is for the form functionality
  */
-export const PasswordInput = ({
+export const CheckBoxInput = ({
 	value,
 	onChange,
 	label,
@@ -24,12 +25,12 @@ export const PasswordInput = ({
 	return (
 		<React.Fragment>
 			<FormLabel text={label} errorMessage={getValidationMessage()} />
-			<Input
-				type="password"
-				value={value}
-				onChange={(e) => onChange(e.target.value)}
-				placeholder={placeholder}
-			/>
+			<ToggleWrapper>
+				<Toggle
+					defaultChecked={value}
+					onChange={(e) => onChange(e.target.checked)}
+				/>
+			</ToggleWrapper>
 		</React.Fragment>
 	);
 };

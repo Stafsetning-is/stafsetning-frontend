@@ -1,5 +1,5 @@
 import { ActionTypes } from "../types";
-import { User } from "../../models";
+import { User, UserPreference } from "../../models";
 import { Dispatch } from "redux";
 import {
 	LogInUserAction,
@@ -8,6 +8,8 @@ import {
 	ChangePendingAdminInviteToLoadingAction,
 	RequestAdminStatusForUserAction,
 	ChangeUserPointsAction,
+	ChangeUserPreferencesAction,
+	ChangeUserDifficulltyAction,
 } from "./interface";
 import { Api } from "../../api";
 import { emitLogin } from "../";
@@ -111,4 +113,23 @@ export function changeUserPoints(points: number): ChangeUserPointsAction {
 		payload: points,
 	};
 }
+
+export function changeUserPreferences(
+	preferences: UserPreference
+): ChangeUserPreferencesAction {
+	return {
+		type: ActionTypes.changeUserPreferences,
+		payload: preferences,
+	};
+}
+
+export function changeUserDifficulty(
+	value: number
+): ChangeUserDifficulltyAction {
+	return {
+		type: ActionTypes.changeUserDifficulty,
+		payload: value,
+	};
+}
+
 export * from "./interface";

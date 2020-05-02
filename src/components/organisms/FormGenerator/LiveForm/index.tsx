@@ -1,94 +1,77 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import { InputFactory } from "../../..";
-import { LayoutWrapper } from "../../../../layout";
-import { TopErrorLabel, Form } from "../styles";
-import { InputElementContainer, Feedback, Title } from "./styles";
 import {
-    getLiveInputElementsArray,
-    validateErrors,
-    getUserData
+	InputElementOuter,
+	Outer,
+	Title,
+	InputerElementInner,
+	Inner,
+} from "./styles";
+import { Api } from "../../../../api";
+import {
+	getLiveInputElementsArray,
+	getUserData,
+	applyDefaultValues,
 } from "../utils";
 import { IProps } from "./interface";
-import { handlePost } from "../utils";
-import { LiveInputObject } from "../../../../services";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { ClipLoader } from "react-spinners";
+import { LiveInputObject, InputObject } from "../../../../services";
 
 export const LiveForm = <T extends {}>({
-    fields,
-    postTo,
-    onSuccess
+	fields,
+	postTo,
+	label,
+	onSuccess,
+	defaultValues,
 }: IProps<T>) => {
-    const [formObject, setFormObject] = useState(fields);
-    const [errorMessage, setErrorMessage] = useState("");
-    const inputElements = getLiveInputElementsArray(formObject);
+	const [formObject, setFormObject] = useState(
+		applyDefaultValues(fields, defaultValues)
+	);
 
-    // const handleChange = async (key: keyof typeof fields, val: any) => {
-    //     console.log("val as a param:", val);
-    //     val = 1;
-    //     console.log("val is now:", val);
-    //     const formObjectCopy = { ...formObject };
-    //     const formElementCopy = { ...formObjectCopy[key] };
-    //     formElementCopy.value = val;
-    //     console.log("formElementCopy:", formElementCopy);
-    //     formElementCopy.modified = true;
-    //     formObjectCopy[key] = formElementCopy;
-    //     setFormObject({ ...formObjectCopy });
-    //     setTimeout(handleChangeElementsToNotModified, 1000);
-    //     console.log(formObject);
-    // validateErrors(formObject);
-    // const data = await handlePost<T>(formObject, postTo);
-    // onSuccess(data);
-    // };
+	const inputElements = getLiveInputElementsArray(formObject);
 
-    const handleChange = (key: keyof typeof fields, val: any) => {
-        const formObjectCopy = { ...formObject };
-        for (const key in formObjectCopy) {
-            const formElementCopy = { ...formObjectCopy[key] };
-            formElementCopy.value = val;
-            formElementCopy.modified = true;
-            formObjectCopy[key] = formElementCopy;
-        }
-        setFormObject({ ...formObjectCopy });
-        postDifficulty(formObjectCopy);
-    };
+	const handleChange = (key: keyof typeof fields, val: any) => {
+		const formObjectCopy = { ...formObject };
+		const formElementCopy = { ...formObjectCopy[key] };
+		formElementCopy.value = val;
+		formElementCopy.modified = true;
+		formObjectCopy[key] = formElementCopy;
+		setFormObject({ ...formObjectCopy });
+		postDifficulty(formObjectCopy);
+	};
 
-    const postDifficulty = async (formObject: LiveInputObject) => {
-        validateErrors(formObject);
-        const data = await handlePost<T>(formObject, postTo);
-        console.log(data);
-        onSuccess(data);
-    };
+	const postDifficulty = async (form: LiveInputObject) => {
+		const modified = getLiveInputElementsArray(form).filter(
+			(item) => item.modified
+		);
+		if (!modified.length) return;
+		const values: { [key: string]: any } = {};
+		modified.forEach((item) => {
+			console.log("item.value", item.value);
+			values[item.key] = item.value;
+		});
+		try {
+			const { data } = await Api.post(postTo, values);
+			onSuccess(data);
+		} catch (error) {
+			// error sending request
+		}
+	};
 
-    return (
-        <Fragment>
-            <Title>Hér að neðan getur þú breytt námsstigi þínu</Title>
-            <TopErrorLabel>{errorMessage}</TopErrorLabel>
-            <Form onSubmit={(e) => e.preventDefault()}>
-                {inputElements.map((element) => (
-                    <InputElementContainer>
-                        <Feedback>
-                            {element.modified ? (
-                                <FontAwesomeIcon icon={faCheck} />
-                            ) : (
-                                <ClipLoader size={25} color={"#6600ff"} />
-                            )}
-                        </Feedback>
-                        <InputFactory
-                            {...element}
-                            onChange={(val) => handleChange(element.key, val)}
-                        />
-                    </InputElementContainer>
-                ))}
-            </Form>
-        </Fragment>
-    );
+	return (
+		<Outer>
+			<Title>{label}</Title>
+			<Inner>
+				{inputElements.map((element) => (
+					<InputElementOuter>
+						<InputerElementInner>
+							<InputFactory
+								{...element}
+								onChange={(val) => handleChange(element.key, val)}
+							/>
+						</InputerElementInner>
+					</InputElementOuter>
+				))}
+			</Inner>
+		</Outer>
+	);
 };
-/* 
-const mapStateToProps = (store: StoreState) => ({
-    difficulty: store.userProfile.difficulty
-});
-
-connect(mapStateToProps, {})(LiveForm);
- */

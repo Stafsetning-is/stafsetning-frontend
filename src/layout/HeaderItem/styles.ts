@@ -1,5 +1,18 @@
 import styled from "styled-components";
 
+export const DropDownContainer = styled.div`
+	display: none;
+	top: 57px;
+	left: 0;
+	transform: translateX(-20%);
+	width: 200px;
+	position: absolute;
+	border: 1px solid #cecece;
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+	z-index: 20;
+	border-top: none;
+`;
+
 export const Outer = styled.div`
 	font-size: 14px;
 	color: #f8f8f8;
@@ -7,6 +20,9 @@ export const Outer = styled.div`
 	cursor: pointer;
 	padding: 20px 25px 20px 5px;
 	position: relative;
+	:hover ${DropDownContainer} {
+		display: block;
+	}
 `;
 
 export const NotificationBubble = styled.div`
