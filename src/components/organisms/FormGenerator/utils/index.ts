@@ -1,14 +1,39 @@
 import Validator from "./Validator";
-import { InputObject } from "../../../../services";
+import { InputObject, LiveInputObject } from "../../../../services";
 import { Api } from "../../../../api";
 
 export const SHAKE_DURATION = 500;
 
 /**
- * Turns the formObject to an mappable array
+ * Turns the LiveformObject to an mappable array
  * that can be easily turned to JSX
  * also adds validation messages if validator thinks
  * its necessary
+ */
+export const getLiveInputElementsArray = (fields: LiveInputObject) => {
+    return mapFieldsToArray<LiveInputObject>(fields);
+};
+
+/**
+ * helper function that maps object of
+ * fields to array of fields
+ */
+const mapFieldsToArray = <T>(fields: T) => {
+    const inputElementArray = [];
+    for (const key in fields) {
+        const item = {
+            ...fields[key],
+            key
+        };
+        inputElementArray.push(item);
+    }
+    return inputElementArray;
+};
+/**
+ * Turns the formObject to a mapable array
+ * that can be easily turned to JSX
+ * also adds validation messages if validator thinks
+ * it's necessary
  */
 export const getInputElementsArray = (fields: InputObject) => {
     const inputElementArray = [];
@@ -17,7 +42,6 @@ export const getInputElementsArray = (fields: InputObject) => {
             ...fields[key],
             key
         };
-        Validator.check(item);
         inputElementArray.push(item);
     }
     return inputElementArray;
@@ -38,8 +62,8 @@ export const getUserData = (fields: InputObject) => {
 };
 
 /**
- * Checks the fields and throw an error
- * if there is error in user input
+ * Checks the fields and throws an error
+ * if there's an error in user input
  * @param fields fields to validate for errors
  */
 export const validateErrors = (fields: InputObject) => {
@@ -52,7 +76,7 @@ export const validateErrors = (fields: InputObject) => {
 
 /**
  * Handles communication with backend and
- * throw an error with a message
+ * throws an error with a message
  * that can be displayable to the user
  * @param fields the InputObject to send
  * @param url POST url
