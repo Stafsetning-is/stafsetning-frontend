@@ -15,3 +15,4 @@ export * from "./SmallAvatar";
 export * from "./Points";
 export * from "./FlipCard";
 export * from "./TrophyIcon";
+export * from "./Trophy";

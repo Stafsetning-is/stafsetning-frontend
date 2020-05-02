@@ -23,6 +23,14 @@ export function closeTrophyModal(): CloseSocketModalAction {
 	};
 }
 
+export function setTrophy(trophy: Trophy): HandleNewTrophy {
+	console.log("4", 4);
+	return {
+		type: ActionTypes.handleNewTrophy,
+		payload: trophy,
+	};
+}
+
 // socket events dispatching actions
 io.on(CURRENT_USERS, (data: SocketUser[]) => {
 	store.dispatch<SetActiveUsersAction>({
@@ -39,10 +47,7 @@ io.on(UPDATE_POINTS, (data: number) => {
 });
 
 io.on(NEW_TROPHY, (data: Trophy) => {
-	store.dispatch<HandleNewTrophy>({
-		type: ActionTypes.handleNewTrophy,
-		payload: data,
-	});
+	store.dispatch<HandleNewTrophy>(setTrophy(data));
 });
 
 // functions that dispatch events via socket
