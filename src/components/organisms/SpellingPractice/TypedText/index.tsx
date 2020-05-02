@@ -3,7 +3,7 @@ import React, {
 	useImperativeHandle,
 	useState,
 	useEffect,
-	useMemo
+	useMemo,
 } from "react";
 import {
 	SHAKE_DURATION,
@@ -15,14 +15,14 @@ import {
 	getFontSizeSelection as getAdjacentFonts,
 	cacheFontSize,
 	cacheBackgroundSetting,
-	getBackgroundSettingOnLoad
+	getBackgroundSettingOnLoad,
 } from "./utils";
 import {
 	TextSpan,
 	PreviewSpan,
 	Block,
 	TypedTextContainer,
-	ToggleSeperator
+	ToggleSeperator,
 } from "./styles";
 import { FontSize } from "./interface";
 import { Shaky } from "../../../";
@@ -79,12 +79,12 @@ export default forwardRef(({ typed, preview }: IProps, ref) => {
 	 * outside
 	 */
 	useImperativeHandle(ref, () => ({
-		giveErrorFeedback
+		giveErrorFeedback,
 	}));
 
 	const theme = useMemo(() => ({ fontFamily: font, fontSize: fontSize }), [
 		font,
-		fontSize
+		fontSize,
 	]);
 
 	/**
@@ -132,8 +132,8 @@ export default forwardRef(({ typed, preview }: IProps, ref) => {
 	}, [preview, theme]);
 
 	/**
-	 * Maps fonts to fonot buttons
-	 * uses memo to only rerender when fon changes
+	 * Maps fonts to font buttons
+	 * uses memo to only rerender when font changes
 	 */
 	const fontButtons = useMemo(
 		() =>
@@ -206,5 +206,5 @@ export default forwardRef(({ typed, preview }: IProps, ref) => {
 });
 
 export const refObject = {
-	giveErrorFeedback: () => {}
+	giveErrorFeedback: () => {},
 };

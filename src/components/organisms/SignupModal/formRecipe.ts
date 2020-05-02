@@ -6,7 +6,7 @@ const mobile: InputElementRecipe = {
 	placeholder: "GSM númer",
 	validation: {
 		pattern: {
-			regex: new RegExp(/[6,8]\d{2}[-\s]?\d{4}$/, "g"),
+			regex: new RegExp(/[6-8]\d{2}[-\s]?\d{4}$/, "g"),
 			message: "Símanúmer ekki rétt",
 		},
 	},

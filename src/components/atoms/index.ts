@@ -11,3 +11,8 @@ export * from "./DropDownInput";
 export * from "./Table";
 export * from "./TableRow";
 export * from "./InfoBox";
+export * from "./SmallAvatar";
+export * from "./Points";
+export * from "./FlipCard";
+export * from "./TrophyIcon";
+export * from "./Trophy";

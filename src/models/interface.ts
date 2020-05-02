@@ -1,4 +1,6 @@
 import { AuthLevels } from "../services";
+import { IconName } from "../../node_modules/@fortawesome/free-solid-svg-icons";
+
 export interface Practice {
 	errorItems: ErrorObject[];
 	exerciseString: string;
@@ -52,4 +54,19 @@ export interface User {
 	avatar: string;
 	type: AuthLevels;
 	_id: string;
+	points: number;
+	difficulty: number;
+}
+
+export interface SocketUser {
+	username: string;
+	_id: string;
+}
+
+export interface Trophy {
+	icon: any;
+	title: string;
+	description: string;
+	locked?: boolean;
+	old?: boolean;
 }

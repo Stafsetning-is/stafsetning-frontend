@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import { IProps } from "./interface";
 import { StoreState } from "../../reducers";
 import { signOut } from "../../actions";
+import { Points } from "../../components";
 /**
  * Header component for layout
  */
@@ -46,13 +47,14 @@ const Header = ({ user, signOut, pendingInvitesCount }: IProps) => {
 							</NavLink>
 						</AuthHider>
 						<AuthHider setAuthLevel="user">
-							<NavLink to={`/user/profile`}>
-								<HeaderItem text={user.name} />
+							<NavLink to={"/"}>
+								<HeaderItem text="Skrá út" onClick={signOut} />
 							</NavLink>
 						</AuthHider>
 						<AuthHider setAuthLevel="user">
-							<NavLink to={"/"}>
-								<HeaderItem text="Skrá út" onClick={signOut} />
+							<Points points={user.points} />
+							<NavLink to={`/user/profile`}>
+								<HeaderItem text={user.name} />
 							</NavLink>
 						</AuthHider>
 					</RightSide>

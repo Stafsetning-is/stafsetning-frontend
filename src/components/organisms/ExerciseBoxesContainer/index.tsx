@@ -1,28 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ExerciseBox, LoaderBox } from "../../";
-import { Container } from "./styles";
 import { IProps } from "./interface";
 import { connect } from "react-redux";
 import { starExerciseInSelection } from "../../../actions";
+import { LoadingGrid } from "../../";
 
 /**
  * Renders a list of exercises
  */
-const Component = ({ exercises, limit, starExerciseInSelection }: IProps) => {
+const Component = ({
+	exercises,
+	limit,
+	starExerciseInSelection,
+	hideStar,
+}: IProps) => {
 	const sliceAt = limit ?? exercises.length;
 
 	return (
-		<LoaderBox loading={exercises.length === 0}>
-			<Container>
-				{exercises.slice(0, sliceAt).map((itm) => (
-					<ExerciseBox
-						{...itm}
-						key={`${itm._id}:${itm.saved}`}
-						onStarClick={starExerciseInSelection}
-					/>
-				))}
-			</Container>
-		</LoaderBox>
+		<LoadingGrid itemsInRow={3}>
+			{exercises.slice(0, sliceAt).map((itm) => (
+				<ExerciseBox
+					hideStar={hideStar}
+					{...itm}
+					key={`${itm._id}:${itm.saved}`}
+					onStarClick={starExerciseInSelection}
+				/>
+			))}
+		</LoadingGrid>
 	);
 };
 

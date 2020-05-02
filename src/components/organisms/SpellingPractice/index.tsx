@@ -10,6 +10,9 @@ import { Report } from "./utils/Exercise/interface";
 import { Practice } from "../../../models";
 import { Api } from "../../../api";
 import { ExerciseContainer } from "./styles";
+import { StoreState } from "../../../reducers";
+import { connect } from "react-redux";
+import { emitFinishExercise } from "../../../actions";
 
 type cb = () => void;
 
@@ -20,7 +23,7 @@ type cb = () => void;
  * So it takes the string[] as input when it's ready
  * The SpellingPractice should only be used when all data is ready
  */
-export const SpellingPractice = ({ _id, parts, counter, owner }: IProps) => {
+const Component = ({ _id, parts, counter, owner, userId }: IProps) => {
 	const [errorCount, setErrorCount] = useState(0);
 	const [typed, setTyped] = useState("");
 	const [preview, setPreview] = useState("");
@@ -47,6 +50,7 @@ export const SpellingPractice = ({ _id, parts, counter, owner }: IProps) => {
 			.on("complete", (report: Report) => {
 				Api.post<Practice>("/api/v1/exercises/complete", report)
 					.then(({ data }) => {
+						emitFinishExercise(userId);
 						setCompletedPracticeId(data._id);
 					})
 					.catch((error) => {
@@ -80,3 +84,9 @@ export const SpellingPractice = ({ _id, parts, counter, owner }: IProps) => {
 		</React.Fragment>
 	);
 };
+
+const mapStateToProps = (state: StoreState) => ({
+	userId: state.auth.user._id,
+});
+
+export const SpellingPractice = connect(mapStateToProps)(Component);

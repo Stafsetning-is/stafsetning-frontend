@@ -13,3 +13,8 @@ export interface FilterButton {
 	quickFilter: QuickFilter;
 	label: string;
 }
+
+export interface SliderValues {
+	min: number;
+	max: number;
+}

@@ -5,7 +5,7 @@ export const Outer = styled.div`
 `;
 export const MessageContainer = styled.div`
 	display: flex;
-	margin-top: 200px;
+	margin-top: 15px;
 `;
 
 export const IconContainer = styled.div`
