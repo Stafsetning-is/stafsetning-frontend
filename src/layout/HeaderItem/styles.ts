@@ -5,7 +5,7 @@ export const DropDownContainer = styled.div`
 	top: 57px;
 	left: 0;
 	transform: translateX(-20%);
-	width: 120%;
+	width: 200px;
 	position: absolute;
 	border: 1px solid #cecece;
 	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
@@ -23,21 +23,6 @@ export const Outer = styled.div`
 	:hover ${DropDownContainer} {
 		display: block;
 	}
-`;
-
-export const DropDownItem = styled.div`
-	width: 100%;
-	padding: 20px;
-	box-sizing: border-box;
-	background: #eee;
-	border-bottom: 1px dashed #dedede;
-	:last-child {
-	}
-	:hover {
-		background: #e1e1e1;
-	}
-	color: #333;
-	font-weight: 400;
 `;
 
 export const NotificationBubble = styled.div`

@@ -1,6 +1,7 @@
+import { AuthLevels } from "../../services";
+
 export interface IProps {
 	text: string;
-	onClick?: () => void;
 	notifications?: number;
 	dropDownItems: DropDownItem[];
 	to: string;
@@ -9,5 +10,6 @@ export interface IProps {
 interface DropDownItem {
 	label: string;
 	to: string;
-	onclick?: () => void;
+	onClick?: () => void;
+	authLevel: AuthLevels;
 }

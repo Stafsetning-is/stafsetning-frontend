@@ -1,28 +1,15 @@
 import * as React from "react";
-import {
-	Outer,
-	NotificationBubble,
-	DropDownContainer,
-	DropDownItem,
-} from "./styles";
+import { Outer, NotificationBubble, DropDownContainer } from "./styles";
 import { IProps } from "./interface";
 import { NavLink } from "react-router-dom";
-
+import DropDownItem from "../DropDownItem";
 /**
  * Single header item
  */
-export default ({
-	onClick,
-	text,
-	notifications,
-	dropDownItems,
-	to,
-}: IProps) => {
-	onClick = onClick ? onClick : () => {};
+export default ({ text, notifications, dropDownItems, to }: IProps) => {
 	const hasDropDown = dropDownItems.length > 0;
-
 	return (
-		<Outer onClick={onClick}>
+		<Outer>
 			{notifications ? (
 				<NotificationBubble>{notifications}</NotificationBubble>
 			) : null}
@@ -31,9 +18,7 @@ export default ({
 			{hasDropDown ? (
 				<DropDownContainer>
 					{dropDownItems.map((item) => (
-						<NavLink to={item.to}>
-							<DropDownItem onClick={item.onclick}>{item.label}</DropDownItem>
-						</NavLink>
+						<DropDownItem {...item} />
 					))}
 				</DropDownContainer>
 			) : null}

@@ -56,15 +56,18 @@ const Header = ({ user, signOut, pendingInvitesCount }: IProps) => {
 									{
 										label: "Mín skjöl",
 										to: "/app/exercise-editor/",
+										authLevel: "admin",
 									},
 									{
 										label: "Stillingar",
 										to: "/user/settings",
+										authLevel: "user",
 									},
 									{
 										label: "Skrá út",
-										onclick: signOut,
+										onClick: signOut,
 										to: "/",
+										authLevel: "user",
 									},
 								]}
 							/>
