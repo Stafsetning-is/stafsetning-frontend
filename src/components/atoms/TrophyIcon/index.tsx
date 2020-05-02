@@ -7,6 +7,5 @@ import * as fa from "@fortawesome/free-solid-svg-icons";
 export const TrophyIcon = ({ icon }: IProps) => {
 	// @ts-ignore due to bad declerations in external module
 	const iconProp = fa[icon] ? fa[icon] : fa[DEFAULT_ICON];
-
-	return <FontAwesomeIcon icon={fa["faBookReader"]} />;
+	return <FontAwesomeIcon icon={iconProp} />;
 };
