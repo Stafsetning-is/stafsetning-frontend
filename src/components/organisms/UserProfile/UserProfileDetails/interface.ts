@@ -1,4 +1,5 @@
 export interface IProps {
-    avatar: string;
-    name: string;
+	avatar: string;
+	name: string;
+	points: number;
 }

@@ -1,1 +1,1 @@
-export type Drawers = "saved" | "finished";
+export type Drawers = "saved" | "finished" | "trophies";

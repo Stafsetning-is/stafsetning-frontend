@@ -3,6 +3,7 @@ import { ActionTypes, Actions } from "../../actions/types";
 
 export const initialState: SocketState = {
 	connectedUsers: [],
+	trophy: undefined,
 };
 
 export default (
@@ -14,6 +15,16 @@ export default (
 			return {
 				...state,
 				connectedUsers: action.payload,
+			};
+		case ActionTypes.closeTrophyModal:
+			return {
+				...state,
+				trophy: undefined,
+			};
+		case ActionTypes.handleNewTrophy:
+			return {
+				...state,
+				trophy: action.payload,
 			};
 		default:
 			return state;

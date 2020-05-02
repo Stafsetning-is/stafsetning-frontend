@@ -12,7 +12,8 @@ export const Points = styled.div`
 	font-weight: 300;
 	font-size: 14px;
 	line-height: 16px;
-	color: #f8f8f8;
+
+	${(props) => (props.theme.darkText ? "color: #333;" : "color: #f8f8f8;")}
 `;
 
 export const Coin = styled.div`

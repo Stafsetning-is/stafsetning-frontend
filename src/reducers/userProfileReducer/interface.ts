@@ -1,8 +1,9 @@
-import { Exercise } from "../../models";
+import { Exercise, Trophy } from "../../models";
 import { Drawers } from "../../services";
 
 export interface UserProfileState {
-    saved: Exercise[];
-    finished: Exercise[];
-    openDrawer: Drawers
+	saved: Exercise[];
+	finished: Exercise[];
+	trophies: Trophy[];
+	openDrawer: Drawers;
 }
