@@ -5,6 +5,8 @@ import {
 	PasswordInput as PwInput,
 	DropDown,
 	CheckBoxInput,
+	SliderInput,
+	ColorPickerInput,
 } from "../../";
 
 /**
@@ -30,7 +32,7 @@ export const InputFactory = (props: InputComponent) => {
 					{...props}
 					onChange={(val) => onChange(val)}
 					key={label}
-					selections={passProps.selections}
+					selections={passProps ? passProps.selections : []}
 				/>
 			);
 		case "drop-down":
@@ -39,7 +41,7 @@ export const InputFactory = (props: InputComponent) => {
 					{...props}
 					onChange={(val) => onChange(val)}
 					key={label}
-					selections={passProps.selections}
+					selections={passProps ? passProps.selections : []}
 				/>
 			);
 		case "check-box":
@@ -48,6 +50,19 @@ export const InputFactory = (props: InputComponent) => {
 					{...props}
 					onChange={(val) => onChange(val)}
 					key={label}
+				/>
+			);
+		case "slider":
+			return (
+				<SliderInput {...props} onChange={(val) => onChange(val)} key={label} />
+			);
+		case "color-picker":
+			return (
+				<ColorPickerInput
+					{...props}
+					onChange={(val) => onChange(val)}
+					key={label}
+					colors={passProps ? passProps.colors ?? [] : []}
 				/>
 			);
 		default:
