@@ -72,103 +72,36 @@ const password: LiveInputElementRecipe = {
 const fontSize: LiveInputElementRecipe = {
 	label: "Letur stærð í æfingum",
 	placeholder: "Letur stærð",
-	type: "drop-down",
-	passProps: {
-		selections: [
-			{
-				text: "14px",
-				value: 14,
-			},
-			{
-				text: "16px",
-				value: 16,
-			},
-			{
-				text: "18px",
-				value: 18,
-			},
-			{
-				text: "20px",
-				value: 20,
-			},
-			{
-				text: "22px",
-				value: 22,
-			},
-			{
-				text: "24px",
-				value: 24,
-			},
-			{
-				text: "26px",
-				value: 26,
-			},
-			{
-				text: "28px",
-				value: 28,
-			},
-			{
-				text: "30px",
-				value: 30,
-			},
-		],
-	},
+	type: "slider",
 	modified: false,
 	value: "",
+
+	passProps: {
+		min: 14,
+		max: 32,
+		step: 2,
+		marks: true,
+	},
 };
 
 const previewTTL: LiveInputElementRecipe = {
 	label: "Hversu lengi viltu sjá næsta texta bút?",
 	placeholder: "Veldu tíma sem hentar þér",
-	type: "drop-down",
-	passProps: {
-		selections: [
-			{
-				text: "3 sekúndur",
-				value: 3000,
-			},
-			{
-				text: "4 sekúndur",
-				value: 4000,
-			},
-			{
-				text: "5 sekúndur",
-				value: 5000,
-			},
-			{
-				text: "6 sekúndur",
-				value: 6000,
-			},
-			{
-				text: "7 sekúndur",
-				value: 7000,
-			},
-			{
-				text: "8 sekúndur",
-				value: 8000,
-			},
-			{
-				text: "9 sekúndur",
-				value: 9000,
-			},
-			{
-				text: "10 sekúndur",
-				value: 10000,
-			},
-		],
-	},
+	type: "slider",
 	modified: false,
 	value: "",
+	passProps: {
+		min: 3,
+		max: 15,
+		step: 1,
+		marks: true,
+	},
 };
 
 const alwaysShowPreview: LiveInputElementRecipe = {
 	label: "Viltu að næsti texta bútur hverfi alls ekki?",
 	type: "check-box",
 	placeholder: "",
-	validation: {
-		minLength: 6,
-		trim: true,
-	},
 	modified: false,
 	value: false,
 	passProps: null,
@@ -178,13 +111,31 @@ const showOnScreenKeyboard: LiveInputElementRecipe = {
 	label: "Sýna lyklaborð á skjá",
 	type: "check-box",
 	placeholder: "",
-	validation: {
-		minLength: 6,
-		trim: true,
-	},
 	modified: false,
 	value: false,
 	passProps: null,
+};
+
+const textBackground: LiveInputElementRecipe = {
+	label: "Bakgrunnslitur fyrir aftan texta í æfingum",
+	type: "color-picker",
+	placeholder: "",
+	modified: false,
+	value: "#F8F8F8",
+	passProps: {
+		colors: [
+			"#F8F8F8",
+			"#96ADFC",
+			"#DBE1F1",
+			"#A8F29A",
+			"#D8D3D6",
+			"#EDDD6E",
+			"#EDD1B0",
+			"#B987DC",
+			"#E0A6AA",
+			"#A5F7E1",
+		],
+	},
 };
 
 export const changeDifficultyForm = { difficulty };
@@ -194,4 +145,5 @@ export const changeUserPreferenceForm = {
 	previewTTL,
 	alwaysShowPreview,
 	showOnScreenKeyboard,
+	textBackground,
 };
