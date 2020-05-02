@@ -56,6 +56,15 @@ export interface User {
 	_id: string;
 	points: number;
 	difficulty: number;
+	preferences: UserPreference;
+}
+
+export interface UserPreference {
+	fontSize: number;
+	previewTTL: number;
+	alwaysShowPreview: boolean;
+	showOnScreenKeyboard: boolean;
+	textBackground: string;
 }
 
 export interface SocketUser {
