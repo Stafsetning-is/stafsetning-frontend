@@ -54,6 +54,11 @@ const Header = ({ user, signOut, pendingInvitesCount }: IProps) => {
 								text={user.name}
 								dropDownItems={[
 									{
+										label: "Minn prófíll",
+										to: "/user/profile/",
+										authLevel: "user",
+									},
+									{
 										label: "Mín skjöl",
 										to: "/app/exercise-editor/",
 										authLevel: "admin",
