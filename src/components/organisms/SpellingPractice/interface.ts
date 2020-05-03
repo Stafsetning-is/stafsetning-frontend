@@ -1,5 +1,5 @@
-import { Exercise } from "../../../models";
+import { Exercise, User } from "../../../models";
 
 export interface IProps extends Exercise {
-	userId: string;
+	user: User;
 }

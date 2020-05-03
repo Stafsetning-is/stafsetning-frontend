@@ -1,20 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { IProps } from "./interface";
 import { Exercise } from "./utils";
 import ErrorCounter from "./ErrorCounter";
 import PreviewButton from "./PreviewButton";
 import StatBox from "./StatBox";
-import TypedText, { refObject } from "./TypedText";
+import TypedText from "./TypedText";
 import { Redirect } from "react-router-dom";
 import { Report } from "./utils/Exercise/interface";
 import { Practice } from "../../../models";
 import { Api } from "../../../api";
-import { ExerciseContainer } from "./styles";
+import { ExerciseContainer, AccessibilityContainer } from "./styles";
 import { StoreState } from "../../../reducers";
+import { AccessibilitySettings } from "../../";
 import { connect } from "react-redux";
 import { emitFinishExercise } from "../../../actions";
-
-type cb = () => void;
 
 /**
  * This component holds all the look and logic
@@ -23,12 +22,12 @@ type cb = () => void;
  * So it takes the string[] as input when it's ready
  * The SpellingPractice should only be used when all data is ready
  */
-const Component = ({ _id, parts, counter, owner, userId }: IProps) => {
+const Component = ({ _id, parts, counter, owner, user }: IProps) => {
 	const [errorCount, setErrorCount] = useState(0);
+	const [session, setSession] = useState<Exercise>();
 	const [typed, setTyped] = useState("");
 	const [preview, setPreview] = useState("");
-	const [previewCallback, setPreviewCallback] = useState<cb>(() => () => {});
-	const typeTextRef = useRef(refObject);
+	const [error, setError] = useState(false);
 	const [comletedPracticeId, setCompletedPracticeId] = useState<string>();
 
 	useEffect(() => {
@@ -37,12 +36,12 @@ const Component = ({ _id, parts, counter, owner, userId }: IProps) => {
 		 * for the four events that
 		 * might occur on user input
 		 */
-		const session = Exercise.startExercise(parts, _id)
+		const session = Exercise.startExercise(parts, _id, user.preferences)
 			.on("error", () => {
-				if (typeTextRef.current) typeTextRef.current.giveErrorFeedback();
+				setError(true);
 			})
 			.on("success", () => {
-				// handle success
+				setError(false);
 			})
 			.on("errorCountChange", (newCount) => {
 				setErrorCount(newCount);
@@ -50,7 +49,7 @@ const Component = ({ _id, parts, counter, owner, userId }: IProps) => {
 			.on("complete", (report: Report) => {
 				Api.post<Practice>("/api/v1/exercises/complete", report)
 					.then(({ data }) => {
-						emitFinishExercise(userId);
+						emitFinishExercise(user._id);
 						setCompletedPracticeId(data._id);
 					})
 					.catch((error) => {
@@ -62,14 +61,21 @@ const Component = ({ _id, parts, counter, owner, userId }: IProps) => {
 				setPreview(preview);
 			});
 
-		setPreviewCallback(() => () => session.showPreview());
+		session.emitText(true);
 		setErrorCount(session.getErrorCount());
+		setSession(session);
 		return () => session.stopListening();
 	}, [_id, parts]);
 
 	useEffect(() => {
-		previewCallback();
-	}, [previewCallback]);
+		if (!session) return;
+		session.setAlwaysShowPreview(user.preferences.alwaysShowPreview);
+	}, [user.preferences.alwaysShowPreview]);
+
+	useEffect(() => {
+		if (!session) return;
+		session.setPreviewTimeToLive(user.preferences.previewTTL);
+	}, [user.preferences.previewTTL]);
 
 	if (comletedPracticeId)
 		return <Redirect to={`/completed/${comletedPracticeId}`} />;
@@ -77,16 +83,19 @@ const Component = ({ _id, parts, counter, owner, userId }: IProps) => {
 		<React.Fragment>
 			<StatBox counter={counter} ownerId={owner} />
 			<ExerciseContainer>
+				<AccessibilityContainer>
+					<AccessibilitySettings label="Útlitsstillingar" />
+				</AccessibilityContainer>
 				<ErrorCounter count={errorCount} />
-				<PreviewButton onClick={previewCallback} />
-				<TypedText ref={typeTextRef} typed={typed} preview={preview} />
+				<PreviewButton onClick={() => session?.emitText(true)} />
+				<TypedText typed={typed} preview={preview} error={error} />
 			</ExerciseContainer>
 		</React.Fragment>
 	);
 };
 
 const mapStateToProps = (state: StoreState) => ({
-	userId: state.auth.user._id,
+	user: state.auth.user,
 });
 
 export const SpellingPractice = connect(mapStateToProps)(Component);
