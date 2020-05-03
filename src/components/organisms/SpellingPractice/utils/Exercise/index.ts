@@ -23,6 +23,7 @@ export class Exercise {
 	private error!: () => void;
 	private complete!: (report: Report) => void;
 	private textUpdate!: (typed: string, preview: string) => void;
+	private nextCharChange!: (nextChar: string) => void;
 	private listener: KeyboardListener;
 	private silentMode = true;
 	private errors: Error[];
@@ -133,6 +134,7 @@ export class Exercise {
 	private advance() {
 		this.typingAt += 1;
 		this.errorFlag = false;
+		this.doCallBack("nextCharChange");
 		this.validateCompleted();
 		this.emitText(false);
 		this.traverseToNextSentencePart();
@@ -252,6 +254,8 @@ export class Exercise {
 			case "success":
 				if (this[cb]) this.success();
 				break;
+			case "nextCharChange":
+				if (this[cb]) this.nextCharChange(this.getText().charAt(this.typingAt));
 		}
 	}
 
@@ -344,6 +348,7 @@ export class Exercise {
 			this.getText().slice(0, this.typingAt),
 			preview || this.options.alwaysShowPreview ? this.getPreviewText() : ""
 		);
+		this.doCallBack("nextCharChange");
 	}
 
 	/**

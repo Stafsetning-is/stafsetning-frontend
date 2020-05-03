@@ -5,4 +5,5 @@ export type SpellingTypeEvents =
 	| "errorCountChange"
 	| "success"
 	| "complete"
-	| "textUpdate";
+	| "textUpdate"
+	| "nextCharChange";

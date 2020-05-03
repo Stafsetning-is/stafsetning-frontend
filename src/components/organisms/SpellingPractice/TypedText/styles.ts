@@ -18,7 +18,6 @@ export const Block = styled.div`
 `;
 
 export const TypedTextContainer = styled.div`
-	padding: 20px 20px 125px 20px;
 	border: 1px solid #c3c3c3;
 	border-radius: 3px;
 	transition: 0.3s;
@@ -27,10 +26,10 @@ export const TypedTextContainer = styled.div`
 	font-weight: 200;
 	color: #000;
 	line-height: 1.5;
-
 	width: 100%;
-	margin-left: 50px;
-	margin-top: 67px;
+	position: relative;
+	box-sizing: border-box;
+	height: 100%;
 `;
 
 export const ToggleSeperator = styled.div`
@@ -63,4 +62,10 @@ export const Cursor = styled.div`
 			visibility: hidden;
 		}
 	}
+`;
+
+export const TextInner = styled.div`
+	width: 100%;
+	padding: 20px 20px 340px 20px;
+	box-sizing: border-box;
 `;

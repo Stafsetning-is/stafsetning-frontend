@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { SHAKE_DURATION } from "./utils";
-import { TextSpan, PreviewSpan, TypedTextContainer, Cursor } from "./styles";
+import {
+	TextSpan,
+	PreviewSpan,
+	TypedTextContainer,
+	Cursor,
+	TextInner,
+} from "./styles";
 import { Shaky } from "../../../";
 import { IProps } from "./interface";
 import { connect } from "react-redux";
@@ -41,16 +47,22 @@ const Component = ({
 			setTimeout(() => setShowErrorFeedback(false), SHAKE_DURATION);
 	}, [showErrorFeedback]);
 
+	useEffect(() => {
+		setShowErrorFeedback(error);
+	}, [error]);
+
 	const showPreview = preview && ![" ", ""].includes(preview);
 
 	return (
 		<TypedTextContainer theme={{ fontSize, textBackground }}>
 			<Shaky shake={showErrorFeedback}>
-				<TextSpan>{typed}</TextSpan>
-				<PreviewSpan>
-					<Cursor theme={{ fontSize }} />
-					{preview}
-				</PreviewSpan>
+				<TextInner>
+					<TextSpan>{typed}</TextSpan>
+					<PreviewSpan>
+						<Cursor theme={{ fontSize }} />
+						{preview}
+					</PreviewSpan>
+				</TextInner>
 			</Shaky>
 		</TypedTextContainer>
 	);

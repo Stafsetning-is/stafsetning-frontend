@@ -69,7 +69,6 @@ export default class KeyboardListener {
 	private onPress = (e: KeyboardEvent) => {
 		e.preventDefault();
 		let char = "";
-		console.log("e", e);
 		char = e.key;
 		char = this.accentCharIfShould(char, e);
 		char = this.capitalizeCharIfShould(char, e);
