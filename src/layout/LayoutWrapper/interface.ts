@@ -9,4 +9,5 @@ export interface IProps {
 	fetchAdminInviteList: () => void;
 	userType: AuthLevels;
 	userId: string;
+	difficulty: number;
 }

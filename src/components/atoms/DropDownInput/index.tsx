@@ -3,6 +3,7 @@ import { Outer, Button, Choices } from "./styles";
 import Selection from "./Selection";
 import { DropDownComponent } from "../../../services";
 import { FormLabel } from "../../";
+import { isBuffer } from "util";
 
 /**
  * DropDown element for forms
@@ -30,7 +31,6 @@ export const DropDown = ({
 	 */
 	const handleSelection = (value: any, text: string) => {
 		onChange(value);
-		setButtonText(text);
 		close();
 	};
 	/**
@@ -46,8 +46,11 @@ export const DropDown = ({
 	 * mounts
 	 */
 	useEffect(() => {
-		setButtonText(placeholder || "");
-	}, [placeholder]);
+		const selected = selections.find((item) => item.value === value);
+		console.log("selected", selected);
+		if (selected) setButtonText(selected.text);
+		else setButtonText(placeholder || "");
+	}, [placeholder, value]);
 
 	/**
 	 * Renders the drop down list

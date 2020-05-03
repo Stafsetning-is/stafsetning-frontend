@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, FlexHeader, Image, RightSide } from "./styles";
+import { Container, FlexHeader, Image, ImageCog, RightSide } from "./styles";
 import { NavLink } from "react-router-dom";
 import Logo from "../../static/images/logo.png";
 import CenterBlock from "../CenterBlock";
@@ -24,38 +24,62 @@ const Header = ({ user, signOut, pendingInvitesCount }: IProps) => {
 					</NavLink>
 					<RightSide>
 						<AuthHider setAuthLevel="guest">
-							<NavLink to={`${urlWithoutPath()}sign-up`}>
-								<HeaderItem text="Búa til aðgang" />
-							</NavLink>
+							<HeaderItem
+								text="Búa til aðgang"
+								dropDownItems={[]}
+								to={`${urlWithoutPath()}sign-up`}
+							/>
 						</AuthHider>
 						<AuthHider setAuthLevel="guest">
-							<NavLink to={`${urlWithoutPath()}log-in`}>
-								<HeaderItem text="Skrá inn" />
-							</NavLink>
+							<HeaderItem
+								to={`${urlWithoutPath()}log-in`}
+								text="Skrá inn"
+								dropDownItems={[]}
+							/>
 						</AuthHider>
 						<AuthHider setAuthLevel="admin">
-							<NavLink to={"/user/pending-admin-invites/"}>
-								<HeaderItem
-									text="Nýir kennarar"
-									notifications={pendingInvitesCount}
-								/>
-							</NavLink>
-						</AuthHider>
-						<AuthHider setAuthLevel="admin">
-							<NavLink to={"/app/exercise-editor/"}>
-								<HeaderItem text="Mín skjöl" />
-							</NavLink>
-						</AuthHider>
-						<AuthHider setAuthLevel="user">
-							<NavLink to={"/"}>
-								<HeaderItem text="Skrá út" onClick={signOut} />
-							</NavLink>
+							<HeaderItem
+								to="/user/pending-admin-invites/"
+								text="Nýir kennarar"
+								notifications={pendingInvitesCount}
+								dropDownItems={[]}
+							/>
 						</AuthHider>
 						<AuthHider setAuthLevel="user">
 							<Points points={user.points} />
-							<NavLink to={`/user/profile`}>
-								<HeaderItem text={user.name} />
-							</NavLink>
+						</AuthHider>
+						<AuthHider setAuthLevel="user">
+							<HeaderItem
+								to="/user/profile"
+								text={user.name}
+								dropDownItems={[
+									{
+										label: "Minn prófíll",
+										to: "/user/profile/",
+										authLevel: "user",
+										icon: "faUserCircle",
+									},
+									{
+										label: "Mín skjöl",
+										to: "/app/exercise-editor/",
+										authLevel: "admin",
+										icon: "faFolderOpen",
+									},
+									{
+										label: "Stillingar",
+										to: "/user/settings",
+										authLevel: "user",
+										icon: "faSlidersH",
+									},
+									{
+										label: "Skrá út",
+										onClick: signOut,
+										to: "/",
+										authLevel: "user",
+										icon: "faSignOutAlt",
+									},
+								]}
+							/>
 						</AuthHider>
 					</RightSide>
 				</FlexHeader>

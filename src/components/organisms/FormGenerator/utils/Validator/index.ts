@@ -130,7 +130,7 @@ export default class Validator {
 			symbols: new RegExp(/[^\w\s]/, "g"),
 			"white-space": new RegExp(/\s/, "g"),
 			"lower-case": new RegExp(/[a-z]/, "g"),
-			"upper-case": new RegExp(/[A-Z]/, "g")
+			"upper-case": new RegExp(/[A-Z]/, "g"),
 		}[type];
 	}
 
@@ -147,7 +147,7 @@ export default class Validator {
 			symbols: "tákn",
 			"white-space": "bil",
 			"lower-case": "lítinn staf",
-			"upper-case": "stóran staf"
+			"upper-case": "stóran staf",
 		}[type];
 	}
 
@@ -215,6 +215,6 @@ export default class Validator {
 		Validator.valRegexPattern,
 		Validator.trim,
 		Validator.valForbiddenChars,
-		Validator.valRequiredCharacters
+		Validator.valRequiredCharacters,
 	];
 }

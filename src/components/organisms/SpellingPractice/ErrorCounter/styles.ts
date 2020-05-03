@@ -13,8 +13,9 @@ export const Outer = styled.div`
 	box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.15);
 	color: #f8f8f8;
 	left: 58%;
-	margin-left: 380px;
+	margin-left: 400px;s
 	transition: 0.3s;
+	z-index: 5;
 `;
 
 export const Text = styled.span`

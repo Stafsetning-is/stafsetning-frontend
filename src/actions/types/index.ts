@@ -31,6 +31,8 @@ export enum ActionTypes {
 	closeTrophyModal,
 	handleNewTrophy,
 	fetchTrophies,
+	changeUserPreferences,
+	changeUserDifficulty,
 }
 
 export type Actions =
@@ -59,4 +61,6 @@ export type Actions =
 	| AuthActions.ChangeUserPointsAction
 	| SocketActions.CloseSocketModalAction
 	| SocketActions.HandleNewTrophy
-	| UserProfileActions.FetchTrophiesAction;
+	| UserProfileActions.FetchTrophiesAction
+	| AuthActions.ChangeUserPreferencesAction
+	| AuthActions.ChangeUserDifficulltyAction;

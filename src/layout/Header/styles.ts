@@ -27,6 +27,14 @@ export const Image = styled.img`
     cursor: hover;
 `;
 
+export const ImageCog = styled.img`
+    height: 15px;
+    cursor: hover;
+    justify-content: space-between;
+    position: relative;
+    top: 20px;
+    left: 25px;
+`;
 export const RightSide = styled.div`
     display: flex;
 `;

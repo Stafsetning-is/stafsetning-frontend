@@ -21,7 +21,7 @@ const Component = ({
 	fetchExercisesSample,
 	fetchUserFromToken,
 	fetchAdminInviteList,
-	userId,
+	difficulty,
 }: IProps) => {
 	/**
 	 * Fetches info about logged in
@@ -38,7 +38,7 @@ const Component = ({
 	useEffect(() => {
 		if (userType === GUEST) fetchExercisesSample();
 		else if (SIGNED_IN_USER_LEVELS.includes(userType)) fetchExercisesForUser();
-	}, [userType, fetchExercisesSample, fetchExercisesForUser]);
+	}, [userType, fetchExercisesSample, fetchExercisesForUser, difficulty]);
 
 	/**
 	 * fetches list of pending users
@@ -61,6 +61,7 @@ const Component = ({
 const mapStateToProps = (state: StoreState) => ({
 	userType: state.auth.type,
 	userId: state.auth.user._id,
+	difficulty: state.auth.user.difficulty,
 });
 
 export const LayoutWrapper = connect(mapStateToProps, {

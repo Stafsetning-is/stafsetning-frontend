@@ -7,7 +7,7 @@ export const Container = styled.div`
 
 export const LabelText = styled.span`
 	color: gray;
-	font-size: 14px;
+	font-size: 15px;
 `;
 
 export const ErrorText = styled.span`

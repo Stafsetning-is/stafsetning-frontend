@@ -53,6 +53,7 @@ export const StartOfDifficultyRange: DropDownRecipe = {
 	placeholder: "Veldu námstig",
 	value: "",
 	selections: SELECTIONS,
+	passProps: null,
 };
 
 export const EndOfDifficultyRange: DropDownRecipe = {
@@ -61,4 +62,5 @@ export const EndOfDifficultyRange: DropDownRecipe = {
 	placeholder: "Veldu námstig",
 	value: "",
 	selections: SELECTIONS,
+	passProps: null,
 };

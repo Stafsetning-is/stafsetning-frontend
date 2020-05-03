@@ -1,28 +1,11 @@
 import React from "react";
 import Slider from "@material-ui/core/Slider";
-import { createMuiTheme } from "@material-ui/core/styles";
 import { DoubleSliderValue } from "./interface";
 import { IProps } from "./interface";
 import { Outer } from "./styles";
 import { ThemeProvider } from "@material-ui/styles";
 import { FormLabel } from "../../";
-
-const muiTheme = createMuiTheme({
-	overrides: {
-		MuiSlider: {
-			thumb: {
-				color: "#6600ff",
-			},
-			track: {
-				color: "#6600ff",
-			},
-			rail: {
-				color: "black",
-			},
-		},
-	},
-});
-
+import { theme } from "./utils";
 /**
  * Double slider
  */
@@ -56,7 +39,7 @@ export const DoubleSlider = ({
 	return (
 		<Outer>
 			<FormLabel text={label} />
-			<ThemeProvider theme={muiTheme}>
+			<ThemeProvider theme={theme}>
 				<Slider
 					max={defaultValues.max}
 					min={defaultValues.min}

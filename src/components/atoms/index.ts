@@ -16,3 +16,6 @@ export * from "./Points";
 export * from "./FlipCard";
 export * from "./TrophyIcon";
 export * from "./Trophy";
+export * from "./CheckBoxInput";
+export * from "./SliderInput";
+export * from "./ColorPickerInput";
