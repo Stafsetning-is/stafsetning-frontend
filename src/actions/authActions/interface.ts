@@ -1,5 +1,5 @@
 import { ActionTypes } from "../types";
-import { User } from "../../models";
+import { UserPreference, User } from "../../models";
 
 export interface LogInUserAction {
 	type: ActionTypes.logInUser;
@@ -24,4 +24,18 @@ export interface RequestAdminStatusForUserAction {
 export interface ChangePendingAdminInviteToLoadingAction {
 	type: ActionTypes.changePendingAdminInviteToLoading;
 	payload: string;
+}
+export interface ChangeUserPointsAction {
+	type: ActionTypes.changeUserPoints;
+	payload: number;
+}
+
+export interface ChangeUserPreferencesAction {
+	type: ActionTypes.changeUserPreferences;
+	payload: UserPreference;
+}
+
+export interface ChangeUserDifficulltyAction {
+	type: ActionTypes.changeUserDifficulty;
+	payload: number;
 }

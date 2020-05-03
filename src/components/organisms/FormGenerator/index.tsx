@@ -8,6 +8,7 @@ import {
 	handlePost,
 	SHAKE_DURATION,
 } from "./utils";
+import Validator from "./utils/Validator";
 /**
  * Generates a form object based on a recipe provided
  *
@@ -20,10 +21,6 @@ import {
  *
  * Along with a submit button which submits the data
  *
- * TODO:
- *    [x] add form validation functionality
- *    [ ] add form onPost callback
- *    [x] add feedback to user about correctness of input
  */
 
 export const FormGenerator = <T extends {}>({
@@ -48,6 +45,7 @@ export const FormGenerator = <T extends {}>({
 		const formObjectCopy = { ...formObject };
 		const formElementCopy = { ...formObjectCopy[key] };
 		formElementCopy.value = val;
+		Validator.check(formElementCopy);
 		formObjectCopy[key] = formElementCopy;
 		setFormObject({ ...formObjectCopy });
 	};
@@ -64,10 +62,10 @@ export const FormGenerator = <T extends {}>({
 		try {
 			validateErrors(formObject);
 			setLoading(true);
+			console.log(formObject);
 			const data = await handlePost<T>(formObject, postTo);
 			onSuccess(data);
 		} catch (error) {
-			console.log("error", error);
 			setErrorMessage(error.message);
 			setShake(true);
 		} finally {
@@ -101,3 +99,5 @@ export const FormGenerator = <T extends {}>({
 		</Shaky>
 	);
 };
+
+export * from "./LiveForm";

@@ -8,4 +8,6 @@ export interface IProps {
 	fetchExercisesForUser: () => void;
 	fetchAdminInviteList: () => void;
 	userType: AuthLevels;
+	userId: string;
+	difficulty: number;
 }

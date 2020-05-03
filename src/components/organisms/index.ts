@@ -11,3 +11,6 @@ export * from "./FilterSearch";
 export * from "./FrontPageView";
 export * from "./AdminInvites";
 export * from "./InfoPage";
+export * from "./TrophyBoxesContainer";
+export * from "./SettingsPage";
+export * from "./AccessibilitySettings";

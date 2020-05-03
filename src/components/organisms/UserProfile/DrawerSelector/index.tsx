@@ -3,21 +3,30 @@ import { Frame, Button } from "./styles";
 import { IProps } from "./interface";
 import { DRAWER_LIST } from "./utils";
 import { setOpenDrawer } from "../../../../actions";
+import { StoreState } from "../../../../reducers";
 import { connect } from "react-redux";
 /* Should contain a line and under the line we have a two clickable options */
 
-const Component = ({ setOpenDrawer }: IProps) => {
-    return (
-        <Frame>
-            {DRAWER_LIST.map((item) => (
-                <Button key={item.label} onClick={() => setOpenDrawer(item.drawerType)}>
-                    {item.label}
-                </Button>
-            ))}
-        </Frame>
-    );
+const Component = ({ setOpenDrawer, openDrawer }: IProps) => {
+	return (
+		<Frame>
+			{DRAWER_LIST.map(({ label, drawerType }) => (
+				<Button
+					key={label}
+					onClick={() => setOpenDrawer(drawerType)}
+					theme={{ selected: drawerType === openDrawer }}
+				>
+					{label}
+				</Button>
+			))}
+		</Frame>
+	);
 };
 
-export default connect(null, {
-    setOpenDrawer
+const mapStateToProps = (state: StoreState) => ({
+	openDrawer: state.userProfile.openDrawer,
+});
+
+export default connect(mapStateToProps, {
+	setOpenDrawer,
 })(Component);

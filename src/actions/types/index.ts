@@ -2,6 +2,7 @@ import * as FilterActions from "../filterActions";
 import * as AuthActions from "../authActions";
 import * as ExercisesActions from "../exercisesActions";
 import * as UserProfileActions from "../userProfileActions";
+import * as SocketActions from "../socketActions";
 
 export enum ActionTypes {
 	setMinWordCount,
@@ -23,8 +24,15 @@ export enum ActionTypes {
 	fetchAdminInvites,
 	requestAdminStatusForUser,
 	changePendingAdminInviteToLoading,
+	setActiveUsers,
 	getSavedExercises,
-	setOpenDrawer
+	setOpenDrawer,
+	changeUserPoints,
+	closeTrophyModal,
+	handleNewTrophy,
+	fetchTrophies,
+	changeUserPreferences,
+	changeUserDifficulty,
 }
 
 export type Actions =
@@ -47,4 +55,12 @@ export type Actions =
 	| AuthActions.RequestAdminStatusForUserAction
 	| AuthActions.ChangePendingAdminInviteToLoadingAction
 	| UserProfileActions.GetSavedExercisesAction
-	| UserProfileActions.SetOpenDrawerAction;
+	| UserProfileActions.SetOpenDrawerAction
+	| AuthActions.ChangePendingAdminInviteToLoadingAction
+	| SocketActions.SetActiveUsersAction
+	| AuthActions.ChangeUserPointsAction
+	| SocketActions.CloseSocketModalAction
+	| SocketActions.HandleNewTrophy
+	| UserProfileActions.FetchTrophiesAction
+	| AuthActions.ChangeUserPreferencesAction
+	| AuthActions.ChangeUserDifficulltyAction;

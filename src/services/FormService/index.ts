@@ -4,7 +4,9 @@ export type FormElements =
 	| "password-input"
 	| "number-input"
 	| "radio-button"
-	| "drop-down";
+	| "drop-down"
+	| "slider"
+	| "color-picker";
 
 export type CharacterTypes =
 	| "letters"
@@ -22,7 +24,14 @@ interface InputBase {
 	valid?: boolean;
 	validationMessage?: string;
 	value: any;
-	passProps?: any;
+	passProps: {
+		[key: string]: any;
+		min?: number;
+		max?: number;
+		step?: number;
+		marks?: any;
+		colors?: string[];
+	} | null;
 	hidden?: boolean;
 }
 
@@ -46,6 +55,10 @@ export type InputObject = {
 	[keys: string]: InputElementRecipe;
 };
 
+export type LiveInputObject = {
+	[keys: string]: LiveInputElementRecipe;
+};
+
 export interface DropDownRecipe extends InputBase {
 	selections: DropDownSelection[];
 }
@@ -54,7 +67,7 @@ export interface InputComponent extends InputBase {
 	onChange: (newValue: any) => void;
 }
 
-export interface DropDownSelection {
+interface DropDownSelection {
 	text: string;
 	value: any;
 }
@@ -65,4 +78,8 @@ export interface DropDownComponent extends InputComponent {
 
 export interface DropDownFactoryElement extends InputComponent {
 	selections: DropDownSelection[];
+}
+
+export interface LiveInputElementRecipe extends InputElementRecipe {
+	modified: boolean;
 }

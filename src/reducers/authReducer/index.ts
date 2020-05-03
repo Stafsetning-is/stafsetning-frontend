@@ -41,6 +41,32 @@ export default (
 					(item) => item._id !== action.payload
 				),
 			};
+		case ActionTypes.changeUserPoints:
+			return {
+				...state,
+				user: {
+					...state.user,
+					points: action.payload,
+				},
+			};
+		case ActionTypes.changeUserPreferences:
+			return {
+				...state,
+				user: {
+					...state.user,
+					preferences: {
+						...action.payload,
+					},
+				},
+			};
+		case ActionTypes.changeUserDifficulty:
+			return {
+				...state,
+				user: {
+					...state.user,
+					difficulty: action.payload,
+				},
+			};
 		case ActionTypes.logOutUser:
 			return { ...initialState, type: "guest" };
 	}

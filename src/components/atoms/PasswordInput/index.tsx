@@ -20,6 +20,7 @@ export const PasswordInput = ({
 		if (!value) return "";
 		return validationMessage ?? "";
 	};
+
 	return (
 		<React.Fragment>
 			<FormLabel text={label} errorMessage={getValidationMessage()} />

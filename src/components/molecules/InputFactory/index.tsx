@@ -1,6 +1,13 @@
 import * as React from "react";
 import { InputComponent } from "../../../services";
-import { TextInput, PasswordInput as PwInput, DropDown } from "../../";
+import {
+	TextInput,
+	PasswordInput as PwInput,
+	DropDown,
+	CheckBoxInput,
+	SliderInput,
+	ColorPickerInput,
+} from "../../";
 
 /**
  * This functional component takes in input component props and
@@ -25,7 +32,37 @@ export const InputFactory = (props: InputComponent) => {
 					{...props}
 					onChange={(val) => onChange(val)}
 					key={label}
-					selections={passProps.selections}
+					selections={passProps ? passProps.selections : []}
+				/>
+			);
+		case "drop-down":
+			return (
+				<DropDown
+					{...props}
+					onChange={(val) => onChange(val)}
+					key={label}
+					selections={passProps ? passProps.selections : []}
+				/>
+			);
+		case "check-box":
+			return (
+				<CheckBoxInput
+					{...props}
+					onChange={(val) => onChange(val)}
+					key={label}
+				/>
+			);
+		case "slider":
+			return (
+				<SliderInput {...props} onChange={(val) => onChange(val)} key={label} />
+			);
+		case "color-picker":
+			return (
+				<ColorPickerInput
+					{...props}
+					onChange={(val) => onChange(val)}
+					key={label}
+					colors={passProps ? passProps.colors ?? [] : []}
 				/>
 			);
 		default:

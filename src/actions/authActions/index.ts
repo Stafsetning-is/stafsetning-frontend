@@ -1,5 +1,5 @@
 import { ActionTypes } from "../types";
-import { User } from "../../models";
+import { User, UserPreference } from "../../models";
 import { Dispatch } from "redux";
 import {
 	LogInUserAction,
@@ -7,11 +7,20 @@ import {
 	FetchAdminInvitesAction,
 	ChangePendingAdminInviteToLoadingAction,
 	RequestAdminStatusForUserAction,
+	ChangeUserPointsAction,
+	ChangeUserPreferencesAction,
+	ChangeUserDifficulltyAction,
 } from "./interface";
 import { Api } from "../../api";
+import { emitLogin } from "../";
 import { removeToken } from "../../services";
 
-export function logInUser(user: User) {
+/**
+ * logs the user in and emits the login
+ * @param user
+ */
+export function logInUser(user: User): LogInUserAction {
+	emitLogin(user._id);
 	return {
 		type: ActionTypes.logInUser,
 		payload: user,
@@ -27,10 +36,7 @@ export function fetchUserFromToken() {
 	return async function (dispatch: Dispatch) {
 		try {
 			const { data } = await Api.get<User>("/api/v1/users/auth");
-			dispatch<LogInUserAction>({
-				type: ActionTypes.logInUser,
-				payload: data,
-			});
+			dispatch<LogInUserAction>(logInUser(data));
 		} catch (error) {
 			dispatch<LogOutUserAction>({
 				type: ActionTypes.logOutUser,
@@ -98,6 +104,31 @@ export function signOut(): LogOutUserAction {
 	return {
 		type: ActionTypes.logOutUser,
 		payload: null,
+	};
+}
+
+export function changeUserPoints(points: number): ChangeUserPointsAction {
+	return {
+		type: ActionTypes.changeUserPoints,
+		payload: points,
+	};
+}
+
+export function changeUserPreferences(
+	preferences: UserPreference
+): ChangeUserPreferencesAction {
+	return {
+		type: ActionTypes.changeUserPreferences,
+		payload: preferences,
+	};
+}
+
+export function changeUserDifficulty(
+	value: number
+): ChangeUserDifficulltyAction {
+	return {
+		type: ActionTypes.changeUserDifficulty,
+		payload: value,
 	};
 }
 
