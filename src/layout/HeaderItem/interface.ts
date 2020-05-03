@@ -12,4 +12,5 @@ interface DropDownItem {
 	to: string;
 	onClick?: () => void;
 	authLevel: AuthLevels;
+	icon: string;
 }
