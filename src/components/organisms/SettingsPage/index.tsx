@@ -1,19 +1,13 @@
 import React from "react";
-import { LiveForm } from "../../";
-import { changeDifficultyForm, changeUserPreferenceForm } from "./formRecipe";
+import { LiveForm, AccessibilitySettings } from "../../";
+import { changeDifficultyForm } from "./formRecipe";
 import { Outer } from "./styles";
 import { connect } from "react-redux";
-import { StoreState } from "../../../reducers";
 import { IProps, DifficultyForm } from "./interface";
-import { UserPreference } from "../../../models";
-import { changeUserPreferences, changeUserDifficulty } from "../../../actions";
+import { changeUserDifficulty } from "../../../actions";
+import { StoreState } from "../../../reducers";
 
-const Component = ({
-	preferences,
-	changeUserPreferences,
-	changeUserDifficulty,
-	difficulty,
-}: IProps) => {
+const Component = ({ changeUserDifficulty, difficulty }: IProps) => {
 	return (
 		<Outer>
 			<LiveForm<DifficultyForm>
@@ -25,13 +19,7 @@ const Component = ({
 				label="Erfðleikastig"
 				defaultValues={{ difficulty }}
 			/>
-			<LiveForm<UserPreference>
-				fields={changeUserPreferenceForm}
-				postTo="/api/v1/users/preferences"
-				onSuccess={(data) => changeUserPreferences(data)}
-				label="Aðgengisstillingar"
-				defaultValues={preferences}
-			/>
+			<AccessibilitySettings label="Aðgengisstillingar" />
 		</Outer>
 	);
 };
@@ -39,6 +27,5 @@ const Component = ({
 const mapStateToProps = (state: StoreState) => state.auth.user;
 
 export const SettingsPage = connect(mapStateToProps, {
-	changeUserPreferences,
 	changeUserDifficulty,
 })(Component);
