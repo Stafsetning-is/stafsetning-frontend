@@ -4,12 +4,17 @@ import { Exercise } from "./utils";
 import ErrorCounter from "./ErrorCounter";
 import PreviewButton from "./PreviewButton";
 import StatBox from "./StatBox";
+import OnScreenKeyboard from "./OnScreenKeyboard";
 import TypedText from "./TypedText";
 import { Redirect } from "react-router-dom";
 import { Report } from "./utils/Exercise/interface";
 import { Practice } from "../../../models";
 import { Api } from "../../../api";
-import { ExerciseContainer, AccessibilityContainer } from "./styles";
+import {
+	ExerciseContainer,
+	AccessibilityContainer,
+	TextViewWrapper,
+} from "./styles";
 import { StoreState } from "../../../reducers";
 import { AccessibilitySettings } from "../../";
 import { connect } from "react-redux";
@@ -27,6 +32,7 @@ const Component = ({ _id, parts, counter, owner, user }: IProps) => {
 	const [session, setSession] = useState<Exercise>();
 	const [typed, setTyped] = useState("");
 	const [preview, setPreview] = useState("");
+	const [nextChar, setNextChar] = useState("");
 	const [error, setError] = useState(false);
 	const [comletedPracticeId, setCompletedPracticeId] = useState<string>();
 
@@ -59,6 +65,9 @@ const Component = ({ _id, parts, counter, owner, user }: IProps) => {
 			.on("textUpdate", (text: string, preview: string) => {
 				setTyped(text);
 				setPreview(preview);
+			})
+			.on("nextCharChange", (char: string) => {
+				setNextChar(char);
 			});
 
 		session.emitText(true);
@@ -88,7 +97,10 @@ const Component = ({ _id, parts, counter, owner, user }: IProps) => {
 				</AccessibilityContainer>
 				<ErrorCounter count={errorCount} />
 				<PreviewButton onClick={() => session?.emitText(true)} />
-				<TypedText typed={typed} preview={preview} error={error} />
+				<TextViewWrapper>
+					<TypedText typed={typed} preview={preview} error={error} />
+					<OnScreenKeyboard highlight={nextChar} />
+				</TextViewWrapper>
 			</ExerciseContainer>
 		</React.Fragment>
 	);
