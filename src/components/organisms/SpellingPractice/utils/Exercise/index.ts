@@ -1,7 +1,7 @@
 import KeyboardListener from "../KeyboardListener";
-import { SPACE, SpellingTypeEvents, PREVIEW_DURATION } from "./utils";
+import { SPACE, SpellingTypeEvents } from "./utils";
 import { SessionStorageService } from "../../../../../services";
-import { CachedExercise, Error, Report } from "./interface";
+import { CachedExercise, Error, Report, Options } from "./interface";
 
 export class Exercise {
 	/**
@@ -26,13 +26,14 @@ export class Exercise {
 	private listener: KeyboardListener;
 	private silentMode = true;
 	private errors: Error[];
+	private options: Options;
 
 	/**
 	 * Private constructor that
 	 * starts the exercise and inits variables
 	 * @param exerciseParts the parts of the exercise
 	 */
-	private constructor(exerciseParts: string[], id: string) {
+	private constructor(exerciseParts: string[], id: string, options: Options) {
 		this.exerciseParts = exerciseParts;
 		this.cleanParts();
 		this.typingAt = 0;
@@ -43,12 +44,12 @@ export class Exercise {
 		this.currentPartNumber = 0;
 		this.createPartIndexArray();
 		this.id = id;
-		this.restoreFromSession();
 		this.silentMode = false;
 		this.errors = [];
 		this.listener = KeyboardListener.listen((key) => {
 			this.type(key);
 		});
+		this.options = options;
 	}
 
 	public stopListening() {
@@ -71,21 +72,9 @@ export class Exercise {
 		return this.errorCount;
 	}
 
-	/**
-	 * restores exercise from cache if
-	 * it is cached in session storage
-	 */
-	private restoreFromSession() {
-		if (process.env.NODE_ENV === "test") return;
-		const stored = SessionStorageService.get<CachedExercise>(
-			this.exerciseCacheKey()
-		);
-		if (stored === null) return;
-		SessionStorageService.put(this.exerciseCacheKey(), null);
-		for (let i = 0; i < stored.typed.length; i++) {
-			this.type(stored.typed.charAt(i));
-		}
-		this.errorFlag = stored.errorFlag;
+	public setAlwaysShowPreview(value: boolean) {
+		this.options.alwaysShowPreview = value;
+		this.emitText();
 	}
 
 	/**
@@ -186,11 +175,13 @@ export class Exercise {
 			SessionStorageService.put<CachedExercise>(this.exerciseCacheKey(), {
 				typed: char,
 				errorFlag: this.errorFlag,
+				errors: this.errors,
 			});
 		else
 			SessionStorageService.put<CachedExercise>(this.exerciseCacheKey(), {
 				typed: prevVal.typed + char,
 				errorFlag: this.errorFlag,
+				errors: this.errors,
 			});
 	}
 
@@ -249,6 +240,7 @@ export class Exercise {
 		if (this.silentMode) return;
 		switch (cb) {
 			case "complete":
+				SessionStorageService.put(this.exerciseCacheKey(), null);
 				if (this[cb]) this.complete(this.getReport());
 				break;
 			case "error":
@@ -279,7 +271,7 @@ export class Exercise {
 	 */
 	private getPreviewText() {
 		const startOfNext = this.partIndexes[1];
-		return this.getText().slice(this.typingAt, startOfNext).trim();
+		return this.getText().slice(this.typingAt, startOfNext);
 	}
 
 	/**
@@ -320,11 +312,18 @@ export class Exercise {
 		this.emitText(true);
 		this.timeAtPreview = new Date().getTime();
 		if (this.clearTextTimeout) clearTimeout(this.clearTextTimeout);
-		this.clearTextTimeout = setTimeout(this.clearPreview, PREVIEW_DURATION);
+		this.clearTextTimeout = setTimeout(
+			this.clearPreview,
+			this.options.previewTTL * 1000
+		);
 	}
 
 	private handleSpaceBeforePreview() {
 		if (this.getNextChar() === SPACE) this.type(SPACE);
+	}
+
+	public setPreviewTimeToLive(seconds: number) {
+		this.options.previewTTL = seconds;
 	}
 
 	/**
@@ -339,11 +338,11 @@ export class Exercise {
 	 * emits text change callback
 	 * @param preview should preview be included
 	 */
-	private emitText(preview?: boolean) {
+	public emitText(preview?: boolean) {
 		if (!this.textUpdate || this.silentMode) return;
 		this.textUpdate(
 			this.getText().slice(0, this.typingAt),
-			preview ? this.getPreviewText() : ""
+			preview || this.options.alwaysShowPreview ? this.getPreviewText() : ""
 		);
 	}
 
@@ -356,8 +355,12 @@ export class Exercise {
 	 * for the keyboard
 	 * @param exerciseParts array of exercise parts
 	 */
-	public static startExercise(exerciseParts: string[], id: string) {
-		const instance = new Exercise(exerciseParts, id);
+	public static startExercise(
+		exerciseParts: string[],
+		id: string,
+		options: Options
+	) {
+		const instance = new Exercise(exerciseParts, id, options);
 		return instance;
 	}
 
