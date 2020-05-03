@@ -6,10 +6,9 @@ const fontSize: LiveInputElementRecipe = {
 	type: "slider",
 	modified: false,
 	value: "",
-
 	passProps: {
-		min: 14,
-		max: 32,
+		min: 26,
+		max: 50,
 		step: 2,
 		marks: true,
 	},
