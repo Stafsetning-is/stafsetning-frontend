@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, FlexHeader, Image, ImageCog, RightSide } from "./styles";
+import { Container, FlexHeader, Image, RightSide } from "./styles";
 import { NavLink } from "react-router-dom";
 import Logo from "../../static/images/logo.png";
 import CenterBlock from "../CenterBlock";
@@ -11,6 +11,7 @@ import { IProps } from "./interface";
 import { StoreState } from "../../reducers";
 import { signOut } from "../../actions";
 import { Points } from "../../components";
+import UserAvatar from "../UserAvatar";
 /**
  * Header component for layout
  */
@@ -20,7 +21,7 @@ const Header = ({ user, signOut, pendingInvitesCount }: IProps) => {
 			<CenterBlock>
 				<FlexHeader>
 					<NavLink to="/">
-						<Image src={Logo} />
+						<Image src={Logo} alt="Stafsetning.is myndmerki" />
 					</NavLink>
 					<RightSide>
 						<AuthHider setAuthLevel="guest">
@@ -48,6 +49,9 @@ const Header = ({ user, signOut, pendingInvitesCount }: IProps) => {
 						<AuthHider setAuthLevel="user">
 							<Points points={user.points} />
 						</AuthHider>
+						<NavLink to="/user/profile">
+							<UserAvatar src={user.avatar} />
+						</NavLink>
 						<AuthHider setAuthLevel="user">
 							<HeaderItem
 								to="/user/profile"

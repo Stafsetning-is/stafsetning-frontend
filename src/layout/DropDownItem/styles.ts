@@ -14,9 +14,12 @@ export const Outer = styled.div`
 	display: flex;
 	color: #333;
 	font-weight: 400;
+	color: #333;
 `;
 
-export const Text = styled.p``;
+export const Text = styled.p`
+	color: #333;
+`;
 
 export const Icon = styled.p`
 	font-size: 20px;
