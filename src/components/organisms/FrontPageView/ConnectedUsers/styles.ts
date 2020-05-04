@@ -16,4 +16,5 @@ export const Text = styled.div`
 	height: 100%;
 	display: flex;
 	align-items: center;
+	color: #666;
 `;
