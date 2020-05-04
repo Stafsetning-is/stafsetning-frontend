@@ -8,6 +8,3 @@ export interface IProps extends User {
 export interface DifficultyForm {
     difficulty: number;
 }
-export interface changePasswordForm {
-    password: number;
-}

@@ -40,10 +40,10 @@ export interface ChangeUserDifficulltyAction {
     payload: number;
 }
 
-export interface ChangeUserPasswordAction {
-    type: ActionTypes.changeUserPassword;
-    payload: string;
-}
+// export interface ChangeUserPasswordAction {
+//     type: ActionTypes.changeUserPassword;
+//     payload: string;
+// }
 
 export interface SetGenderAction {
     type: ActionTypes.setGender;

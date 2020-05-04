@@ -33,7 +33,6 @@ export enum ActionTypes {
     fetchTrophies,
     changeUserPreferences,
     changeUserDifficulty,
-    changeUserPassword,
     setGender,
 }
 

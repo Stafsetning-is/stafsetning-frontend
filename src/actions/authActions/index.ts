@@ -11,7 +11,7 @@ import {
     ChangeUserPreferencesAction,
     ChangeUserDifficulltyAction,
     SetGenderAction,
-    ChangeUserPasswordAction,
+    // ChangeUserPasswordAction,
 } from "./interface";
 import { Api } from "../../api";
 import { emitLogin } from "../";
@@ -132,13 +132,6 @@ export function changeUserDifficulty(
 ): ChangeUserDifficulltyAction {
     return {
         type: ActionTypes.changeUserDifficulty,
-        payload: value,
-    };
-}
-
-export function changeUserPassword(value: string): ChangeUserPasswordAction {
-    return {
-        type: ActionTypes.changeUserPassword,
         payload: value,
     };
 }

@@ -73,4 +73,4 @@ const password: InputElementRecipe = {
 };
 
 export const changeDifficultyForm = { difficulty };
-export const changePasswordForm: InputObject = { password };
+// export const changePasswordForm: InputObject = { password };
