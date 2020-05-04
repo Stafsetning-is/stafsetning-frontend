@@ -10,18 +10,17 @@ import {
 	fetchAdminInviteList,
 } from "../../actions";
 import { StoreState } from "../../reducers";
-import { LoaderBox } from "../../components";
+import { LoaderBox, PickGender } from "../../components";
 import { connect } from "react-redux";
 import { SIGNED_IN_USER_LEVELS, GUEST, ADMIN } from "./utils";
 
 const Component = ({
 	children,
-	userType,
 	fetchExercisesForUser,
 	fetchExercisesSample,
 	fetchUserFromToken,
 	fetchAdminInviteList,
-	difficulty,
+	user,
 }: IProps) => {
 	/**
 	 * Fetches info about logged in
@@ -36,32 +35,40 @@ const Component = ({
 	 * when ever the user type changes
 	 */
 	useEffect(() => {
-		if (userType === GUEST) fetchExercisesSample();
-		else if (SIGNED_IN_USER_LEVELS.includes(userType)) fetchExercisesForUser();
-	}, [userType, fetchExercisesSample, fetchExercisesForUser, difficulty]);
+		if (user.type === GUEST) fetchExercisesSample();
+		else if (SIGNED_IN_USER_LEVELS.includes(user.type))
+			fetchExercisesForUser();
+	}, [
+		user._id,
+		fetchExercisesSample,
+		fetchExercisesForUser,
+		user.difficulty,
+	]);
 
 	/**
 	 * fetches list of pending users
 	 * for admin priveledges
 	 */
 	useEffect(() => {
-		if (userType === ADMIN) fetchAdminInviteList();
-	}, [userType]);
+		if (user.type === ADMIN) fetchAdminInviteList();
+	}, [user.type]);
+
+	const userPickedGender = user.gender && user.gender !== "loading";
 
 	return (
 		<BackDrop>
 			<Header />
 			<CenterBlock>
-				<LoaderBox loading={userType === "unknown"}>{children}</LoaderBox>
+				<LoaderBox loading={user.type === "unknown"}>
+					{userPickedGender ? children : <PickGender />}
+				</LoaderBox>
 			</CenterBlock>
 		</BackDrop>
 	);
 };
 
 const mapStateToProps = (state: StoreState) => ({
-	userType: state.auth.type,
-	userId: state.auth.user._id,
-	difficulty: state.auth.user.difficulty,
+	user: state.auth.user,
 });
 
 export const LayoutWrapper = connect(mapStateToProps, {

@@ -39,3 +39,8 @@ export interface ChangeUserDifficulltyAction {
 	type: ActionTypes.changeUserDifficulty;
 	payload: number;
 }
+
+export interface SetGenderAction {
+	type: ActionTypes.setGender;
+	payload?: "male" | "female" | "loading";
+}

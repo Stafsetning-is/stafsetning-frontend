@@ -10,6 +10,7 @@ import {
 	ChangeUserPointsAction,
 	ChangeUserPreferencesAction,
 	ChangeUserDifficulltyAction,
+	SetGenderAction,
 } from "./interface";
 import { Api } from "../../api";
 import { emitLogin } from "../";
@@ -88,7 +89,9 @@ export function requestAdminStatusForUser(id: string) {
 export function fetchAdminInviteList() {
 	return async function (dispatch: Dispatch) {
 		try {
-			const { data } = await Api.get<User[]>("/api/admin/users/invite_list/");
+			const { data } = await Api.get<User[]>(
+				"/api/admin/users/invite_list/"
+			);
 			dispatch<FetchAdminInvitesAction>({
 				type: ActionTypes.fetchAdminInvites,
 				payload: data,
@@ -129,6 +132,32 @@ export function changeUserDifficulty(
 	return {
 		type: ActionTypes.changeUserDifficulty,
 		payload: value,
+	};
+}
+
+export function changeUserGender(gender: "male" | "female") {
+	return async function (dispatch: Dispatch) {
+		try {
+			dispatch<SetGenderAction>({
+				payload: "loading",
+				type: ActionTypes.setGender,
+			});
+			const { data } = await Api.post<User>("/api/v1/users/gender", {
+				gender,
+			});
+			dispatch<LogInUserAction>({
+				payload: data,
+				type: ActionTypes.logInUser,
+			});
+		} catch (error) {
+			// setting gender failed
+		}
+	};
+}
+
+export function openPickGenderView(): SetGenderAction {
+	return {
+		type: ActionTypes.setGender,
 	};
 }
 

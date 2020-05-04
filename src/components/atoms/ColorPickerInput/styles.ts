@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const Outer = styled.div`
 	margin: 20px 0 10px;
+	position: relative;
+	z-index: 30;
 `;
 
 export const Inner = styled.div`
@@ -16,6 +18,7 @@ export const Inner = styled.div`
 	align-items: center;
 	position: relative;
 	cursor: pointer;
+	z-index: 30;
 `;
 
 export const Text = styled.div`
@@ -53,4 +56,6 @@ export const Selections = styled.div`
 	top: 40px;
 	background-color: #eee;
 	border: 1px dashed #d1d1d1;
+	z-index: 10;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 `;

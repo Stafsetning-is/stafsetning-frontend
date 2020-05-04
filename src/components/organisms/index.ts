@@ -13,3 +13,5 @@ export * from "./AdminInvites";
 export * from "./InfoPage";
 export * from "./TrophyBoxesContainer";
 export * from "./SettingsPage";
+export * from "./AccessibilitySettings";
+export * from "./PickGender";

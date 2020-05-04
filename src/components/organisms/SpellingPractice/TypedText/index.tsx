@@ -1,14 +1,14 @@
-import React, {
-	forwardRef,
-	useImperativeHandle,
-	useState,
-	useEffect,
-} from "react";
+import React, { useState, useEffect } from "react";
 import { SHAKE_DURATION } from "./utils";
-import { TextSpan, PreviewSpan, TypedTextContainer } from "./styles";
+import {
+	TextSpan,
+	PreviewSpan,
+	TypedTextContainer,
+	Cursor,
+	TextInner,
+} from "./styles";
 import { Shaky } from "../../../";
 import { IProps } from "./interface";
-import Cursor from "../Cursor";
 import { connect } from "react-redux";
 import { StoreState } from "../../../../reducers";
 
@@ -23,58 +23,48 @@ import { StoreState } from "../../../../reducers";
  *     - change font size buttons
  *     - change BG color
  */
-const Component = forwardRef(
-	({ typed, preview, fontSize, textBackground }: IProps, ref) => {
-		/**
-		 * Stateful variables for the
-		 * TypedText component
-		 */
-		const [showErrorFeedback, setShowErrorFeedback] = useState(false);
 
-		/**
-		 * Handles the "toggling off"
-		 * when setShowErrorFeedback is toggled
-		 * to true
-		 */
-		useEffect(() => {
-			if (setShowErrorFeedback)
-				setTimeout(() => setShowErrorFeedback(false), SHAKE_DURATION);
-		}, [showErrorFeedback]);
+const Component = ({
+	typed,
+	preview,
+	fontSize,
+	textBackground,
+	error,
+}: IProps) => {
+	/**
+	 * Stateful variables for the
+	 * TypedText component
+	 */
+	const [showErrorFeedback, setShowErrorFeedback] = useState(error);
 
-		/**
-		 * shakes the text
-		 */
-		const giveErrorFeedback = () => {
-			setShowErrorFeedback(true);
-		};
+	/**
+	 * Handles the "toggling off"
+	 * when setShowErrorFeedback is toggled
+	 * to true
+	 */
+	useEffect(() => {
+		if (setShowErrorFeedback)
+			setTimeout(() => setShowErrorFeedback(false), SHAKE_DURATION);
+	}, [showErrorFeedback]);
 
-		/**
-		 * Opens these handlers to the
-		 * outside
-		 */
-		useImperativeHandle(ref, () => ({
-			giveErrorFeedback,
-		}));
+	useEffect(() => {
+		setShowErrorFeedback(error);
+	}, [error]);
 
-		const showPreview = preview && ![" ", ""].includes(preview);
-
-		return (
-			<React.Fragment>
-				<TypedTextContainer theme={{ fontSize, textBackground }}>
-					<Shaky shake={showErrorFeedback}>
-						<TextSpan>{typed}</TextSpan>
-						{showPreview ? <PreviewSpan>{preview}</PreviewSpan> : <Cursor />}
-					</Shaky>
-				</TypedTextContainer>
-			</React.Fragment>
-		);
-	}
-);
-
-export const refObject = {
-	giveErrorFeedback: () => {},
+	return (
+		<TypedTextContainer theme={{ fontSize, textBackground }}>
+			<Shaky shake={showErrorFeedback}>
+				<TextInner>
+					<TextSpan>{typed}</TextSpan>
+					<PreviewSpan>
+						<Cursor theme={{ fontSize }} />
+						{preview}
+					</PreviewSpan>
+				</TextInner>
+			</Shaky>
+		</TypedTextContainer>
+	);
 };
-
 const mapStateToProps = (state: StoreState) => state.auth.user.preferences;
 
 export default connect(mapStateToProps)(Component);

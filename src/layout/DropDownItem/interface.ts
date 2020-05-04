@@ -5,4 +5,5 @@ export interface IProps {
 	label: string;
 	onClick?: () => void;
 	authLevel: AuthLevels;
+	icon: string;
 }

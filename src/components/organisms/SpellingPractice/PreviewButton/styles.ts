@@ -16,9 +16,10 @@ export const Button = styled.button`
 	font-size: 14px;
 	padding-left: 20px;
 	left: 58%;
-	margin-left: 380px;
+	margin-left: 400px;
 	&:hover {
 		box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.15);
 	}
 	transition: 0.3s box-shadow;
+	z-index: 5;
 `;

@@ -5,6 +5,5 @@ export type SpellingTypeEvents =
 	| "errorCountChange"
 	| "success"
 	| "complete"
-	| "textUpdate";
-
-export const PREVIEW_DURATION = 7500;
+	| "textUpdate"
+	| "nextCharChange";

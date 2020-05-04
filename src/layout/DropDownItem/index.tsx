@@ -1,14 +1,24 @@
 import React from "react";
 import { IProps } from "./interface";
-import { Outer } from "./styles";
+import { Outer, Text, Icon } from "./styles";
 import { NavLink } from "react-router-dom";
 import { AuthHider } from "../../hoc";
+import * as fa from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 export default (props: IProps) => {
-	const onClick = props.onClick ? props.onClick : () => {};
+	const { to, label, authLevel, icon } = props;
+	// @ts-ignore due to bad declerations in external module
+	const iconProp = fa[icon] ? fa[icon] : null;
 	return (
-		<AuthHider setAuthLevel={props.authLevel}>
-			<NavLink to={props.to}>
-				<Outer {...props}>{props.label}</Outer>
+		<AuthHider setAuthLevel={authLevel}>
+			<NavLink to={to}>
+				<Outer {...props}>
+					<Icon>
+						<FontAwesomeIcon icon={iconProp} />
+					</Icon>
+					<Text>{label}</Text>
+				</Outer>
 			</NavLink>
 		</AuthHider>
 	);

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const TopBar = styled.div`
 	background: #00ffaa;
@@ -13,6 +13,7 @@ export const TopBar = styled.div`
 	}
 	margin: 20px 0 40px 0;
 	padding-left: 10px;
+	color: #333;
 `;
 
 export const TitleText = styled.div`
