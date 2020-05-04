@@ -4,14 +4,16 @@ import { Dispatch } from "redux";
 import {
 	GetExerciseSampleAction,
 	GetExercisesByUserAction,
-	StarExerciseInSelectionAction
+	StarExerciseInSelectionAction,
 } from "./interface";
 import { ActionTypes } from "../types";
 
 export function fetchExercisesSample() {
 	return async function (dispatch: Dispatch) {
 		try {
-			const { data } = await Api.get<Exercise[]>("/api/open/exercise_sample");
+			const { data } = await Api.get<Exercise[]>(
+				"/api/open/exercise_sample"
+			);
 
 			dispatch<GetExerciseSampleAction>({
 				type: ActionTypes.getExerciseSample,
@@ -29,11 +31,13 @@ export function fetchExercisesForUser() {
 			const { data } = await Api.get<Exercise[]>(
 				"/api/v1/exercises/by_difficulty"
 			);
+
 			dispatch<GetExercisesByUserAction>({
 				type: ActionTypes.getExercisesByUser,
 				payload: data,
 			});
 		} catch (error) {
+			console.log("error", error);
 			console.log("Error getting exercises");
 		}
 	};

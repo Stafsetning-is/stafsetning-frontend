@@ -51,8 +51,6 @@ const Component = ({
 		setShowErrorFeedback(error);
 	}, [error]);
 
-	const showPreview = preview && ![" ", ""].includes(preview);
-
 	return (
 		<TypedTextContainer theme={{ fontSize, textBackground }}>
 			<Shaky shake={showErrorFeedback}>

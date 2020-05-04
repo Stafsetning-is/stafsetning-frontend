@@ -1,10 +1,12 @@
 import React from "react";
 import { ExerciseBoxesContainer, FilterSearch } from "../../";
-import { filterExercises } from "./utils";
+import { filterExercises, MAIN_TEXT } from "./utils";
 import { connect } from "react-redux";
 import { StoreState } from "../../../reducers";
 import { IProps } from "./interface";
 import ConnectedUsers from "./ConnectedUsers";
+import { Title, Paragraph } from "./styles";
+import { AuthHider } from "../../../hoc";
 
 /**
  * View that renders all components
@@ -15,6 +17,12 @@ const View = ({ filterSettings, exercises, connectedUsers }: IProps) => {
 
 	return (
 		<React.Fragment>
+			<AuthHider setAuthLevel="guest">
+				<React.Fragment>
+					<Title>Stafsetningaræfingar</Title>
+					<Paragraph>{MAIN_TEXT}</Paragraph>
+				</React.Fragment>
+			</AuthHider>
 			<ConnectedUsers connectedUsers={connectedUsers} />
 			<FilterSearch />
 			<ExerciseBoxesContainer exercises={filtered} />

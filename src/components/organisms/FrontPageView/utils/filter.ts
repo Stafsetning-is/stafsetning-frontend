@@ -1,6 +1,6 @@
-import { FilterObject } from "../../../services";
-import { Exercise } from "../../../models";
-import { FilterState } from "../../../reducers/filterReducer";
+import { FilterObject } from "../../../../services";
+import { Exercise } from "../../../../models";
+import { FilterState } from "../../../../reducers/filterReducer";
 
 /**
  * Special function type that takes in
@@ -47,7 +47,9 @@ const handleHideByGrammarRule = (
 ) =>
 	filterSettings.filterGrammarRule.length === 0
 		? true
-		: filterSettings.filterGrammarRule.every((rule) => exercise.report[rule]);
+		: filterSettings.filterGrammarRule.every(
+				(rule) => exercise.report[rule]
+		  );
 
 // handles quick filter methods like handle completed, show saved
 const handleQuickFilter = (exercise: Exercise, filterSettings: FilterState) => {
