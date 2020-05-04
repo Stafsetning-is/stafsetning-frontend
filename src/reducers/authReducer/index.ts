@@ -68,7 +68,22 @@ export default (
 				},
 			};
 		case ActionTypes.logOutUser:
-			return { ...initialState, type: "guest" };
+			return {
+				...state,
+				user: {
+					...EMPTY_USER,
+					type: "guest",
+				},
+				type: "guest",
+			};
+		case ActionTypes.setGender:
+			return {
+				...state,
+				user: {
+					...state.user,
+					gender: action.payload,
+				},
+			};
 	}
 	return state;
 };
