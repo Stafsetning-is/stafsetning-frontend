@@ -33,6 +33,7 @@ export enum ActionTypes {
 	fetchTrophies,
 	changeUserPreferences,
 	changeUserDifficulty,
+	setGender,
 }
 
 export type Actions =
@@ -63,4 +64,5 @@ export type Actions =
 	| SocketActions.HandleNewTrophy
 	| UserProfileActions.FetchTrophiesAction
 	| AuthActions.ChangeUserPreferencesAction
-	| AuthActions.ChangeUserDifficulltyAction;
+	| AuthActions.ChangeUserDifficulltyAction
+	| AuthActions.SetGenderAction;
