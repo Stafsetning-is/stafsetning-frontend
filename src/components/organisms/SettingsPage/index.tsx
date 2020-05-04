@@ -8,24 +8,26 @@ import { changeUserDifficulty } from "../../../actions";
 import { StoreState } from "../../../reducers";
 
 const Component = ({ changeUserDifficulty, difficulty }: IProps) => {
-	return (
-		<Outer>
-			<LiveForm<DifficultyForm>
-				fields={changeDifficultyForm}
-				postTo="/api/v1/users/difficulty"
-				onSuccess={({ difficulty }) => {
-					changeUserDifficulty(difficulty);
-				}}
-				label="Erfðleikastig"
-				defaultValues={{ difficulty }}
-			/>
-			<AccessibilitySettings label="Aðgengisstillingar" />
-		</Outer>
-	);
+    return (
+        <Outer>
+            <LiveForm<DifficultyForm>
+                fields={changeDifficultyForm}
+                postTo="/api/v1/users/difficulty"
+                onSuccess={({ difficulty }) => {
+                    changeUserDifficulty(difficulty);
+                }}
+                label="Erfðleikastig"
+                defaultValues={{ difficulty }}
+            />
+
+            <div>hello</div>
+            <AccessibilitySettings label="Aðgengisstillingar" />
+        </Outer>
+    );
 };
 
 const mapStateToProps = (state: StoreState) => state.auth.user;
 
 export const SettingsPage = connect(mapStateToProps, {
-	changeUserDifficulty,
+    changeUserDifficulty,
 })(Component);
