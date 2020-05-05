@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { LiveForm, AccessibilitySettings } from "../../";
+import { LiveForm, AccessibilitySettings, FormGenerator } from "../../";
 import {} from "../../";
-import { changeDifficultyForm } from "./formRecipe";
+import { changeDifficultyForm, changePasswordForm } from "./formRecipe";
 import { Outer } from "./styles";
 import { connect } from "react-redux";
 import { IProps, DifficultyForm } from "./interface";
@@ -12,16 +12,6 @@ import { Form } from "../FormGenerator/styles";
 import { Api } from "../../../api";
 
 const Component = ({ changeUserDifficulty, difficulty }: IProps) => {
-    const [password, setPassword] = useState("");
-    // const [newpassword, setNewPassword] = useState("");
-
-    const handleChange = (value: any) => {
-        setPassword(value);
-    };
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-        Api.post<string>("/api/v1/users/password", password);
-    };
     return (
         <Outer>
             <LiveForm<DifficultyForm>
@@ -33,16 +23,12 @@ const Component = ({ changeUserDifficulty, difficulty }: IProps) => {
                 label="Erfiðleikastig"
                 defaultValues={{ difficulty }}
             />
-            <form onSubmit={handleSubmit}>
-                <PasswordInput
-                    type="password-input"
-                    label="Breyta lykilorði"
-                    value=""
-                    onChange={handleChange}
-                    placeholder="Lykilorð hér"
-                />
-            </form>
-            <div>hello</div>
+            <FormGenerator
+                fields={changePasswordForm}
+                label="Breyta um lykilorð"
+                onSuccess={({}) => {}}
+                postTo="/api/v1/users/password"
+            />
             <AccessibilitySettings label="Aðgengisstillingar" />
         </Outer>
     );

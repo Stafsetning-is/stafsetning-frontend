@@ -61,7 +61,19 @@ const difficulty: LiveInputElementRecipe = {
 };
 
 const password: InputElementRecipe = {
-    label: "Lykilorð",
+    label: "Gamla lykilorðið þitt",
+    type: "password-input",
+    placeholder: "Lykilorð",
+    validation: {
+        minLength: 6,
+        trim: true,
+    },
+    value: "",
+    passProps: {},
+};
+
+const newPassword: InputElementRecipe = {
+    label: "Nýja lykilorðið þitt",
     type: "password-input",
     placeholder: "Lykilorð",
     validation: {
@@ -73,4 +85,4 @@ const password: InputElementRecipe = {
 };
 
 export const changeDifficultyForm = { difficulty };
-// export const changePasswordForm: InputObject = { password };
+export const changePasswordForm: InputObject = { password, newPassword };
