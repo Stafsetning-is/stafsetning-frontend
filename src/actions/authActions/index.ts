@@ -77,7 +77,7 @@ export function requestAdminStatusForUser(id: string) {
 				payload: id,
 			});
 		} catch (error) {
-			console.log("requestAdminStatusForUser", error);
+			// error
 		}
 	};
 }
