@@ -46,7 +46,6 @@ export const LiveForm = <T extends {}>({
 		if (!modified.length) return;
 		const values: { [key: string]: any } = {};
 		modified.forEach((item) => {
-			console.log("item.value", item.value);
 			values[item.key] = item.value;
 		});
 		try {
@@ -66,7 +65,9 @@ export const LiveForm = <T extends {}>({
 						<InputerElementInner>
 							<InputFactory
 								{...element}
-								onChange={(val) => handleChange(element.key, val)}
+								onChange={(val) =>
+									handleChange(element.key, val)
+								}
 							/>
 						</InputerElementInner>
 					</InputElementOuter>
