@@ -5,3 +5,4 @@ export * from "./SessionStorageService";
 export * from "./FilterService";
 export * from "./AuthService";
 export * from "./UserProfileService";
+export * from "./Analytics";
