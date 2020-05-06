@@ -30,6 +30,7 @@ const Component = ({ changeUserDifficulty, difficulty }: IProps) => {
                 onSuccess={({}) => {}}
                 postTo="/api/v1/users/password"
             />
+
             <AccessibilitySettings label="Aðgengisstillingar" />
         </Outer>
     );
