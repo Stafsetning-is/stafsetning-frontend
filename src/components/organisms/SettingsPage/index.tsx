@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { LiveForm, AccessibilitySettings, FormGenerator } from "../../";
 import {} from "../../";
 import { changeDifficultyForm, changePasswordForm } from "./formRecipe";
-import { Outer } from "./styles";
+import { Outer, PasswordTitle } from "./styles";
 import { connect } from "react-redux";
 import { IProps, DifficultyForm } from "./interface";
 import { changeUserDifficulty } from "../../../actions";
@@ -23,6 +23,7 @@ const Component = ({ changeUserDifficulty, difficulty }: IProps) => {
                 label="Erfiðleikastig"
                 defaultValues={{ difficulty }}
             />
+            <PasswordTitle>Breyta um Lykilorð</PasswordTitle>
             <FormGenerator
                 fields={changePasswordForm}
                 label="Breyta um lykilorð"
