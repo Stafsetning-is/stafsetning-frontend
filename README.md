@@ -1,45 +1,63 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Logo](./logo.png)
 
-## Available Scripts
+# Stafsetning.is Frontend
+TODO Build status
+TODO codocov (or not)
+TODO [![dependencies Status](https://david-dm.org/Stafsetning-is/stafsetning-frontend/status.svg)](https://david-dm.org/Stafsetning-is/stafsetning-frontend)
 
-In the project directory, you can run:
+The full-fledged frontend for stafsetning.is
 
-### `yarn start`
+## Setup
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To setup on a local machine follow these steps.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+**1.** Open your favorite terminal and clone the repository to a directory with SSH or with HTTPS. Navigate to the newly created repository
 
-### `yarn test`
+`$ git clone git@github.com:Stafsetning-is/stafsetning-frontend.git`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`$ git clone https://github.com/Stafsetning-is/stafsetning-frontend.git`
 
-### `yarn build`
+`$ cd stafsetning-frontend`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**2.** Install all the necessary dependencies with npm. If you don't have npm, head to the [NodeJS website](https://nodejs.org/en/download/) and follow the steps to install Node which comes with npm. Write in your terminal:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+`$ npm install`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**3.** Provide all the required environment variables. First create a .env file.
 
-### `yarn eject`
+`$ touch .env` or by using our favorite text editor 😉 `vim .env`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The environment variables required are
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+MONGODB_URI<br>
+MONGODB_URI_LOCAL<br>
+SESSION_SECRET<br>
+PORT<br>
+USER_PW_HASH_KEY<br>
+S3_ACCESS_KEY<br>
+S3_SECRET_KEY<br>
+AVATAR_BUCKET_NAME
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Copy and paste these to your .env file with valid values.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**4.** Start up the website with npm
 
-## Learn More
+`$ npm run dev`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The default web browser should open displaying the site at localhost:3000. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-# stafsetning-frontend
+**5.** Alternatively you can visit the site with the link at the top of the repository page.
+
+## Contributing
+
+TODO
+
+#### Bug Reports & Feature Requests
+
+TODO
+
+Please use the issue tracker (add link here) to report any bugs or file feature requests.
+
+#### Developing
+
+TODO
