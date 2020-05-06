@@ -23,28 +23,15 @@ To setup on a local machine follow these steps.
 
 `$ npm install`
 
-**3.** Provide all the required environment variables. First create a .env file.
+**3.** An environment variable is needed to run the application. Add a .env file with the required variable:
 
-`$ touch .env` or by using our favorite text editor 😉 `vim .env`
+`$ echo "SKIP_PREFLIGHT_CHECK=true" > .env`
 
-The environment variables required are
-
-MONGODB_URI<br>
-MONGODB_URI_LOCAL<br>
-SESSION_SECRET<br>
-PORT<br>
-USER_PW_HASH_KEY<br>
-S3_ACCESS_KEY<br>
-S3_SECRET_KEY<br>
-AVATAR_BUCKET_NAME
-
-Copy and paste these to your .env file with valid values.
-
-**4.** Start up the website with npm
+**4.** Start up the application with npm
 
 `$ npm run dev`
 
-The default web browser should open displaying the site at localhost:3000. 
+The default web browser should open displaying the application at localhost:3000. 
 
 **5.** Alternatively you can visit the site with the link at the top of the repository page.
 
