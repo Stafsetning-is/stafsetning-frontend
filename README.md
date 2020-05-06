@@ -5,7 +5,7 @@ TODO Build status
 
 TODO codocov (or not)
 
-TODO [![dependencies Status](https://david-dm.org/Stafsetning-is/stafsetning-frontend/status.svg)](https://david-dm.org/Stafsetning-is/stafsetning-frontend)
+[![dependencies Status](https://david-dm.org/Stafsetning-is/stafsetning-frontend/status.svg)](https://david-dm.org/Stafsetning-is/stafsetning-frontend)
 
 The full-fledged frontend for stafsetning.is
 
