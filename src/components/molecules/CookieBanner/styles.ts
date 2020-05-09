@@ -14,16 +14,16 @@ export const Banner = styled.div`
 `;
 
 export const Description = styled.div`
-	width: 50%;
+    width: 50%;
 `;
 
 export const ButtonWrapper = styled.div`
-	width: 10%;
+    width: 10%;
 `;
 
 export const IconWrapper = styled.div`
-	widht: 20%;
-	display flex;
-	justify-content: center;
-	font-size: 60px;
+    widht: 20%;
+    display: flex;
+    justify-content: center;
+    font-size: 60px;
 `;
