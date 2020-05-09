@@ -1,27 +1,35 @@
 import React from "react";
-import { Heading, Content, Mailto } from "./styles";
+import { MainHeading, Heading, Content, Mailto } from "./styles";
 
 export const CookieInfo = () => {
     return (
         <React.Fragment>
-            <Heading>Um okkur</Heading>
+            <MainHeading>Skilmálar um notkun á vefkökum</MainHeading>
             <Content>
-                Stafsetning.is er kennsluvefur ætlaður nemendum í grunn- og
-                framhaldsskólum til að þjálfa sig í stafsetningu. Verkefnið var
-                unnið sem lokaverkefni til BS gráðu í tölvunarfræði við
-                Háskólann í Reykjavík. Markmið okkar með síðunni er að færa
-                stafsetningarkennslu frá kennslustofunni og yfir á rafrænt form.
-                Mikil áhersla var lögð á notendaupplifun og því er hún hönnuð
-                með notkun allra nemenda og allra aldurshópa í huga.
-                Þróunaraðilar eru Njáll Skarphéðinsson, Natalia López Peralta,
-                Kjartan Reynir Ólafsson, Gabríel Sighvatsson og Júlía
-                Ingadóttir. Endilega
-                <Mailto href="mailto:gabriel.sighvatsson@gmail.com">
-                    hafðu samband!
-                </Mailto>
+                Skilmálar þessir eiga við um notkun vefkaka á stafsetning.is.
             </Content>
-            {/* TODO
-            TOS, contact, report a bug, use of cookies */}
+            <Heading>Um vefkökur</Heading>
+            <Content>
+                Vefkökur (e. cookies) eru litlar textaskrár sem eru vistaðar á
+                tölvunni þinni eða öðrum snjalltækjum sem þú notar til að
+                heimsækja vefsíðu í fyrsta sinn. Vefkökurnar gera það að verkum
+                að vefsíðan man eftir þér og hvernig þú notaðir síðuna í hvert
+                sinn sem þú heimsækir hana aftur. Vefkökur innihalda ekki
+                persónuupplýsingar á borð við nafnið þitt, netfang, símanúmer
+                eða kennitölu.
+            </Content>
+            <Heading>Notkun á vefkökum</Heading>
+            <Content>
+                Vefkökur eru notaðar til að bæta virkni vefsíðunnar og um leið
+                bæta notendaupplifun þína þegar þú notar hana. Meðal þess sem
+                við notum vefkökur fyrir er til að muna hvort þú sért skráður
+                inn eða ekki, og til vefmælinga hjá Google Analytics.
+                Upplýsingar sem notaðar eru í þessum tilgangi eru sem dæmi
+                tegund vafra, stýrikerfis og skjástærð notenda, fjöldi og lengd
+                heimsókna, ferðalag notenda og leitarorð. Við notum þessar
+                upplýsingar til að bæta upplifun notenda og við þróun á
+                vefsíðunum okkar.
+            </Content>
         </React.Fragment>
     );
 };

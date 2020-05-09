@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-export const Heading = styled.h2``;
+export const MainHeading = styled.h1`
+    margin: 25px 0 20px 0;
+`;
+
+export const Heading = styled.h2`
+    margin: 15px 0 10px 0;
+`;
 
 export const Content = styled.p``;
 
