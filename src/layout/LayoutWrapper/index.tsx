@@ -13,6 +13,7 @@ import { StoreState } from "../../reducers";
 import { LoaderBox, PickGender } from "../../components";
 import { connect } from "react-redux";
 import { SIGNED_IN_USER_LEVELS, GUEST, ADMIN } from "./utils";
+import { CookieBanner } from "../../components";
 
 const Component = ({
 	children,
@@ -63,6 +64,11 @@ const Component = ({
 					{userPickedGender ? children : <PickGender />}
 				</LoaderBox>
 			</CenterBlock>
+			<CookieBanner
+				text={
+					"Við notum kökur á síðunni til að bæta notendaupplifun þína. Fyrir yfirlit yfir hvað við notum kökur fyrir, smelltu hér."
+				}
+			/>
 		</BackDrop>
 	);
 };
