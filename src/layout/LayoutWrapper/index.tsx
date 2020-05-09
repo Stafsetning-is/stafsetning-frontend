@@ -69,7 +69,6 @@ const Component = ({
                 </LoaderBox>
             </CenterBlock>
             <CookieConsent
-                debug={true}
                 buttonText="Samþykkja"
                 buttonStyle={{
                     height: "45px",
