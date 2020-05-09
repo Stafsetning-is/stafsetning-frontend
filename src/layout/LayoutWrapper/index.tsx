@@ -69,6 +69,7 @@ const Component = ({
                 </LoaderBox>
             </CenterBlock>
             <CookieConsent
+                debug={true}
                 buttonText="Samþykkja"
                 buttonStyle={{
                     height: "45px",
@@ -96,7 +97,7 @@ const Component = ({
                 Fyrir yfirlit yfir hvað við notum kökur fyrir, smelltu{" "}
                 <a
                     style={{ color: "#0000ee", textDecoration: "underline" }}
-                    href="#"
+                    href="/cookies"
                 >
                     hér.
                 </a>
