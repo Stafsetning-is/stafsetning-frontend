@@ -6,3 +6,4 @@ export * from "./FilterService";
 export * from "./AuthService";
 export * from "./UserProfileService";
 export * from "./Analytics";
+export * from "./Tutorial";

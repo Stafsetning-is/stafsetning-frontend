@@ -40,6 +40,7 @@ export interface Exercise {
 	saved: boolean;
 	counter: number;
 	owner: string;
+	tutorial?: boolean;
 }
 
 export interface Report {

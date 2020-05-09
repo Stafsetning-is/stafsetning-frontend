@@ -3,6 +3,7 @@ import * as AuthActions from "../authActions";
 import * as ExercisesActions from "../exercisesActions";
 import * as UserProfileActions from "../userProfileActions";
 import * as SocketActions from "../socketActions";
+import * as TutorialActions from "../tutorialActions";
 
 export enum ActionTypes {
 	setMinWordCount,
@@ -34,6 +35,13 @@ export enum ActionTypes {
 	changeUserPreferences,
 	changeUserDifficulty,
 	setGender,
+	queueTutorialItems,
+	shrinkTutorial,
+	continueTutorialDialog,
+	dequeueTutorialQueue,
+	removeDialogsByLocation,
+	growTutorial,
+	removeDialogByType,
 }
 
 export type Actions =
@@ -65,4 +73,11 @@ export type Actions =
 	| UserProfileActions.FetchTrophiesAction
 	| AuthActions.ChangeUserPreferencesAction
 	| AuthActions.ChangeUserDifficulltyAction
-	| AuthActions.SetGenderAction;
+	| AuthActions.SetGenderAction
+	| TutorialActions.QueueTutorialItemsAction
+	| TutorialActions.ShrinkTutorialAction
+	| TutorialActions.DequeDialogQueueAction
+	| TutorialActions.ContinueTutorialDialogAction
+	| TutorialActions.RemoveDialogsByLocationAction
+	| TutorialActions.GrowTutorialAction
+	| TutorialActions.RemoveDialogByTypeAction;
