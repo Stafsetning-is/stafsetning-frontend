@@ -21,7 +21,7 @@ export const AboutPage = () => {
                 </Mailto>
             </Content>
             {/* TODO
-            TOS, contact, report a bug */}
+            TOS, contact, report a bug, use of cookies */}
         </React.Fragment>
     );
 };
