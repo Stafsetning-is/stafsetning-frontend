@@ -19,3 +19,4 @@ export * from "./Trophy";
 export * from "./CheckBoxInput";
 export * from "./SliderInput";
 export * from "./ColorPickerInput";
+export * from "./CookieInfo";
