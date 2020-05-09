@@ -5,6 +5,14 @@ import { RouteComponentProps } from "react-router-dom";
 import { IProps } from "./interface";
 import { ProtectPageWrapper } from "../../../../hoc";
 import { Exercise } from "../../../../models";
+import {
+	EXERCISE_FIRST_STEP,
+	EXERCISE_SECOND_STEP,
+	EXERCISE_THIRD_STEP,
+	EXERCISE_FOURTH_STEP,
+	TutorialLocations,
+} from "../../../../services";
+import { TutorialWrapper } from "./../../../../hoc";
 
 const SpellingPractice = React.lazy(() =>
 	import(
@@ -46,7 +54,17 @@ export default ({ match }: RouteComponentProps<IProps>) => {
 				<LoaderBox loading={loading}>
 					{exercise ? (
 						<Suspense fallback={<Loader loading={true} />}>
-							<SpellingPractice {...exercise} />
+							<TutorialWrapper
+								items={[
+									EXERCISE_FIRST_STEP,
+									EXERCISE_SECOND_STEP,
+									EXERCISE_THIRD_STEP,
+									EXERCISE_FOURTH_STEP,
+								]}
+								location={TutorialLocations.exercisePage}
+							>
+								<SpellingPractice {...exercise} />
+							</TutorialWrapper>
 						</Suspense>
 					) : null}
 				</LoaderBox>
