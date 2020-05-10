@@ -93,10 +93,10 @@ const Header = ({ user, signOut, pendingInvitesCount }: IProps) => {
 };
 
 const mapStateToProps = ({
-	auth: { user, pendingAdminInvite },
+    auth: { user, pendingAdminInvite }
 }: StoreState) => ({
-	user,
-	pendingInvitesCount: pendingAdminInvite.length,
+    user,
+    pendingInvitesCount: pendingAdminInvite.length
 });
 
 export default connect(mapStateToProps, { signOut })(Header);
