@@ -11,7 +11,6 @@ import { changeUserPreferences } from "../../../actions";
  * uses the LiveForm component to automatically update the
  * choices made by the user, posts the changes to the backend
  * and keeps the changes in a redux state.
- *
  */
 const Component = ({ preferences, changeUserPreferences, label }: IProps) => {
     return (
