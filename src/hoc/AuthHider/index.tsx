@@ -1,3 +1,4 @@
+import React from "react";
 import { connect } from "react-redux";
 import { StoreState } from "../../reducers";
 import { IProps } from "./interface";
@@ -8,13 +9,24 @@ import { IProps } from "./interface";
  */
 
 const Component = ({ userType, isAuth, setAuthLevel, children }: IProps) => {
-	if (userType === "unknown") return null;
-	const shouldShow =
-		(!isAuth && setAuthLevel === "guest") ||
-		(isAuth && setAuthLevel === "user") ||
-		(setAuthLevel === "admin" && setAuthLevel === userType);
+	// declares should show and assigns as false
+	let shouldShow = false;
 
-	if (shouldShow) return children;
+	switch (setAuthLevel) {
+		case "guest":
+			shouldShow = !isAuth;
+			break;
+		case "user":
+			shouldShow = isAuth;
+			break;
+		case "admin":
+			shouldShow = userType === "admin";
+			break;
+		default:
+			shouldShow = false;
+	}
+
+	if (shouldShow) return <React.Fragment>{children}</React.Fragment>;
 	else return null;
 };
 
