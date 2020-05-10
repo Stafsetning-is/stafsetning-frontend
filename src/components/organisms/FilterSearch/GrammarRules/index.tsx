@@ -8,43 +8,45 @@ import FilterToggleBox from "../FilterToggleBox";
 
 /**
  * Component that takes exercises
- * finds out what rules are in those exerecises
+ * finds out what rules are in those exercises
  * and then maps them to rule boxes that
  * allow user to hide or unhide exercises
  * with certain grammar rules
  */
 const Component = ({
-	exercises,
-	selectedRules,
-	addRuleToFilter,
-	removeRuleFromFilter,
+    exercises,
+    selectedRules,
+    addRuleToFilter,
+    removeRuleFromFilter
 }: IProps) => {
-	// uses memo and util function to get rules
-	const rules = useMemo(() => countRules(exercises), [exercises]);
+    // uses memo and util function to get rules
+    const rules = useMemo(() => countRules(exercises), [exercises]);
 
-	// maps rules to JSX
-	const ruleJSX = rules.map((rule) => {
-		const isSelected = selectedRules.includes(rule.id);
-		const clickHandler = isSelected ? removeRuleFromFilter : addRuleToFilter;
-		return (
-			<FilterToggleBox
-				{...rule}
-				selected={isSelected}
-				onClick={() => clickHandler(rule.id)}
-			/>
-		);
-	});
+    // maps rules to JSX
+    const ruleJSX = rules.map((rule) => {
+        const isSelected = selectedRules.includes(rule.id);
+        const clickHandler = isSelected
+            ? removeRuleFromFilter
+            : addRuleToFilter;
+        return (
+            <FilterToggleBox
+                {...rule}
+                selected={isSelected}
+                onClick={() => clickHandler(rule.id)}
+            />
+        );
+    });
 
-	// returns the RuleBoxes as JSX in a div
-	return <div>{ruleJSX}</div>;
+    // returns the RuleBoxes as JSX in a div
+    return <div>{ruleJSX}</div>;
 };
 
 const mapStateToProps = (state: StoreState) => ({
-	exercises: state.exercises.selection,
-	selectedRules: state.filter.filterGrammarRule,
+    exercises: state.exercises.selection,
+    selectedRules: state.filter.filterGrammarRule
 });
 
 export default connect(mapStateToProps, {
-	addRuleToFilter,
-	removeRuleFromFilter,
+    addRuleToFilter,
+    removeRuleFromFilter
 })(Component);
