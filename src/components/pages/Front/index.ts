@@ -1,5 +1,5 @@
 import LandingPage from "./LandingPage";
-import AboutUs from "./AboutUsPage";
+import AboutUsPage from "./AboutUsPage";
 
 export default [
     {
@@ -8,6 +8,6 @@ export default [
     },
     {
         route: "/about-us",
-        component: AboutUs
+        component: AboutUsPage
     }
 ];
