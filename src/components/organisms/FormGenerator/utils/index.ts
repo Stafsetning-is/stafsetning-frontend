@@ -99,13 +99,11 @@ export const applyDefaultValues = <T extends InputObject>(
 	defaultValues?: { [key: string]: any }
 ) => {
 	if (!defaultValues) return formObject;
-	console.log("defaultValues", defaultValues);
 	Object.keys(defaultValues).forEach((key) => {
 		const inputElement = formObject[key];
 		if (!inputElement) return;
 		inputElement.value = defaultValues[key];
 	});
-	console.log("formObject", formObject);
 	return formObject;
 };
 

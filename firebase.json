@@ -1,38 +1,71 @@
 {
-  "hosting": {
-    "public": "build",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ],
-    "headers": [ {
-    // Specifies a CORS header for all font files
-    "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
-    "headers": [ {
-      "key": "Access-Control-Allow-Origin",
-      "value": "*"
-    } ]
-  }, {
-    // Overrides the default 1 hour browser cache with a 2 hour cache for all image files
-    "source": "**/*.@(css|js|jpg|jpeg|gif|png)",
-    "headers": [ {
-      "key": "Cache-Control",
-      "value": "max-age=28800"
-    } ]
-  }, {
-    // Sets the cache header for 404 pages to cache for 5 minutes
-    "source": "404.html",
-    "headers": [ {
-      "key": "Cache-Control",
-      "value": "max-age=300"
-    } ]
-  } ]
-  }
+	"hosting": {
+		"public": "build",
+		"ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+		"rewrites": [
+			{
+				"source": "**",
+				"destination": "/index.html"
+			}
+		],
+		"headers": [
+			{
+				"source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+				"headers": [
+					{
+						"key": "Access-Control-Allow-Origin",
+						"value": "*"
+					}
+				]
+			},
+			{
+				"source": "**/*.@(js|jpg|jpeg|gif|png)",
+				"headers": [
+					{
+						"key": "Cache-Control",
+						"value": "max-age=43200"
+					}
+				]
+			},
+			{
+				"source": "**/*.@(css)",
+				"headers": [
+					{
+						"key": "Cache-Control",
+						"value": "max-age=170000"
+					}
+				]
+			},
+			{
+				"source": "**/*/@(chunk.js)",
+				"headers": [
+					{
+						"key": "Cache-Control",
+						"value": "max-age=86400"
+					}
+				]
+			},
+			{
+				"source": "/analytics.js",
+				"headers": [
+					{
+						"key": "Cache-Control",
+						"value": "max-age=86400"
+					}
+				]
+			},
+			{
+				"source": "404.html",
+				"headers": [
+					{
+						"key": "Cache-Control",
+						"value": "max-age=300"
+					}
+				]
+			}
+		]
+	},
+	"env": {
+		"ga_tracking": "UA-165448557-1"
+	}
 }

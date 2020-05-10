@@ -3,66 +3,81 @@ import * as AuthActions from "../authActions";
 import * as ExercisesActions from "../exercisesActions";
 import * as UserProfileActions from "../userProfileActions";
 import * as SocketActions from "../socketActions";
+import * as TutorialActions from "../tutorialActions";
 
 export enum ActionTypes {
-	setMinWordCount,
-	setHideCompleted,
-	setMaxWordCount,
-	logInUser,
-	logOutUser,
-	getExerciseSample,
-	getExercisesByUser,
-	getFinishedExercises,
-	addGrammarRuleToFilter,
-	removeGrammarRuleFromFilter,
-	setQuickFilter,
-	closeFilterSideBar,
-	openFilterSideBar,
-	reloadSelection,
-	starExerciseInSelection,
-	fetchSavedExercises,
-	fetchAdminInvites,
-	requestAdminStatusForUser,
-	changePendingAdminInviteToLoading,
-	setActiveUsers,
-	getSavedExercises,
-	setOpenDrawer,
-	changeUserPoints,
-	closeTrophyModal,
-	handleNewTrophy,
-	fetchTrophies,
-	changeUserPreferences,
-	changeUserDifficulty,
-	setGender,
+    setMinWordCount,
+    setHideCompleted,
+    setMaxWordCount,
+    logInUser,
+    logOutUser,
+    getExerciseSample,
+    getExercisesByUser,
+    getFinishedExercises,
+    addGrammarRuleToFilter,
+    removeGrammarRuleFromFilter,
+    setQuickFilter,
+    closeFilterSideBar,
+    openFilterSideBar,
+    reloadSelection,
+    starExerciseInSelection,
+    fetchSavedExercises,
+    fetchAdminInvites,
+    requestAdminStatusForUser,
+    changePendingAdminInviteToLoading,
+    setActiveUsers,
+    getSavedExercises,
+    setOpenDrawer,
+    changeUserPoints,
+    closeTrophyModal,
+    handleNewTrophy,
+    fetchTrophies,
+    changeUserPreferences,
+    changeUserDifficulty,
+    setGender,
+    queueTutorialItems,
+    shrinkTutorial,
+    continueTutorialDialog,
+    dequeueTutorialQueue,
+    removeDialogsByLocation,
+    growTutorial,
+    removeDialogByType,
 }
 
 export type Actions =
-	| FilterActions.SetMinWordCountAction
-	| FilterActions.SetHideCompletedAction
-	| FilterActions.SetMaxWordCountAction
-	| AuthActions.LogInUserAction
-	| AuthActions.LogOutUserAction
-	| ExercisesActions.GetExerciseSampleAction
-	| ExercisesActions.GetExercisesByUserAction
-	| UserProfileActions.GetFinishedExercisesAction
-	| FilterActions.AddRuleToGrammarFilterAction
-	| FilterActions.RemoveGrammarRuleFromFilterAction
-	| FilterActions.SetQuickFilterAction
-	| FilterActions.CloseFilterAction
-	| FilterActions.OpenFilterAction
-	| ExercisesActions.ReloadSelectionAction
-	| ExercisesActions.StarExerciseInSelectionAction
-	| AuthActions.FetchAdminInvitesAction
-	| AuthActions.RequestAdminStatusForUserAction
-	| AuthActions.ChangePendingAdminInviteToLoadingAction
-	| UserProfileActions.GetSavedExercisesAction
-	| UserProfileActions.SetOpenDrawerAction
-	| AuthActions.ChangePendingAdminInviteToLoadingAction
-	| SocketActions.SetActiveUsersAction
-	| AuthActions.ChangeUserPointsAction
-	| SocketActions.CloseSocketModalAction
-	| SocketActions.HandleNewTrophy
-	| UserProfileActions.FetchTrophiesAction
-	| AuthActions.ChangeUserPreferencesAction
-	| AuthActions.ChangeUserDifficulltyAction
-	| AuthActions.SetGenderAction;
+    | FilterActions.SetMinWordCountAction
+    | FilterActions.SetHideCompletedAction
+    | FilterActions.SetMaxWordCountAction
+    | AuthActions.LogInUserAction
+    | AuthActions.LogOutUserAction
+    | ExercisesActions.GetExerciseSampleAction
+    | ExercisesActions.GetExercisesByUserAction
+    | UserProfileActions.GetFinishedExercisesAction
+    | FilterActions.AddRuleToGrammarFilterAction
+    | FilterActions.RemoveGrammarRuleFromFilterAction
+    | FilterActions.SetQuickFilterAction
+    | FilterActions.CloseFilterAction
+    | FilterActions.OpenFilterAction
+    | ExercisesActions.ReloadSelectionAction
+    | ExercisesActions.StarExerciseInSelectionAction
+    | AuthActions.FetchAdminInvitesAction
+    | AuthActions.RequestAdminStatusForUserAction
+    | AuthActions.ChangePendingAdminInviteToLoadingAction
+    | UserProfileActions.GetSavedExercisesAction
+    | UserProfileActions.SetOpenDrawerAction
+    | AuthActions.ChangePendingAdminInviteToLoadingAction
+    | SocketActions.SetActiveUsersAction
+    | AuthActions.ChangeUserPointsAction
+    | SocketActions.CloseSocketModalAction
+    | SocketActions.HandleNewTrophy
+    | UserProfileActions.FetchTrophiesAction
+    | AuthActions.ChangeUserPreferencesAction
+    | AuthActions.ChangeUserDifficulltyAction
+    | AuthActions.SetGenderAction
+    | TutorialActions.QueueTutorialItemsAction
+    | TutorialActions.ShrinkTutorialAction
+    | TutorialActions.DequeDialogQueueAction
+    | TutorialActions.ContinueTutorialDialogAction
+    | TutorialActions.RemoveDialogsByLocationAction
+    | TutorialActions.GrowTutorialAction
+    | TutorialActions.RemoveDialogByTypeAction;

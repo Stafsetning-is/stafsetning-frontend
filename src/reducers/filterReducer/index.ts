@@ -7,7 +7,7 @@ export const initialState: FilterState = {
 	maxWordCount: 1000,
 	filterGrammarRule: [],
 	quickFilter: "none",
-	sidebarVisible: true,
+	sidebarVisible: false,
 };
 
 export default (

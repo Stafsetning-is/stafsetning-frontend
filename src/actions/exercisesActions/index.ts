@@ -20,6 +20,7 @@ export function fetchExercisesSample() {
 				payload: data,
 			});
 		} catch (error) {
+			console.log("error", error);
 			console.log("Error getting sample");
 		}
 	};
