@@ -5,9 +5,9 @@ import { Screen } from "./styles";
 /**
  *
  * Grey, transcluscent backdrop that
- * fills screen and is absolu positioned
+ * fills screen and is absolute positioned
  */
 export const Backdrop = ({ onClick }: IProps) => {
-	const cb = onClick ?? (() => {});
-	return <Screen onClick={cb} />;
+    const cb = onClick ?? (() => {});
+    return <Screen onClick={cb} />;
 };
