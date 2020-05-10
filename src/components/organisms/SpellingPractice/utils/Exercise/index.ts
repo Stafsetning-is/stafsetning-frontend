@@ -159,7 +159,7 @@ export class Exercise {
 			else this.handleError(input);
 			if ([",", "."].includes(input)) this.type(" ");
 		} catch (e) {
-			// console.log(e.message);
+			// do nothing
 		}
 		this.addToSessionStorage(input);
 	}

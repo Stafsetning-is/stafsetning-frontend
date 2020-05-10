@@ -15,7 +15,6 @@ export const markAsCompleted = async (
 	item: TutorialItem,
 	userId: string
 ): Promise<void> => {
-	console.log("4", 4);
 	LocalStorageService.put(cacheKey(item, userId), "done");
 };
 
