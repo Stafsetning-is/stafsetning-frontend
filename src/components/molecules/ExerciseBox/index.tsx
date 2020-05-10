@@ -33,6 +33,7 @@ export const ExerciseBox = ({
 	saved,
 	onStarClick,
 	hideStar,
+	tutorial,
 }: IProps) => {
 	/**
 	 * Props for ExerciseBox Component represents
@@ -46,13 +47,16 @@ export const ExerciseBox = ({
 	 */
 
 	const [loading, setLoading] = useState(false);
-	const link = practice
+	const link = tutorial
+		? "/tutorial/exercise/"
+		: practice
 		? `/completed/${practice}`
 		: `/exercise/practice/${_id}`;
 	const ruleString = reportToRuleString(report);
-	const scoreString = score
-		? `Besta hingað til: ${Math.round(score * 100)}%`
-		: "";
+	const scoreString =
+		score !== undefined
+			? `Besta hingað til: ${Math.round(score * 100)}%`
+			: "";
 	const buttonString = practice ? "Skoða einkunn" : "Opna";
 
 	const handleStarClick = () => {
@@ -71,7 +75,10 @@ export const ExerciseBox = ({
 								{hideStar ? null : (
 									<StarBox onClick={handleStarClick}>
 										{loading ? (
-											<ClipLoader size={5} color={"rgba(255, 195, 55, 1)"} />
+											<ClipLoader
+												size={5}
+												color={"rgba(255, 195, 55, 1)"}
+											/>
 										) : (
 											<FontAwesomeIcon icon={faStar} />
 										)}

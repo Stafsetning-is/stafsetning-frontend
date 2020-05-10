@@ -62,7 +62,6 @@ export const FormGenerator = <T extends {}>({
 		try {
 			validateErrors(formObject);
 			setLoading(true);
-			console.log(formObject);
 			const data = await handlePost<T>(formObject, postTo);
 			onSuccess(data);
 		} catch (error) {
@@ -92,7 +91,11 @@ export const FormGenerator = <T extends {}>({
 							onChange={(val) => handleChange(element.key, val)}
 						/>
 					))}
-					<BasicButton text={label} type="default" onClick={handleSubmit} />
+					<BasicButton
+						text={label}
+						type="default"
+						onClick={handleSubmit}
+					/>
 					{children}
 				</Form>
 			</LoaderBox>

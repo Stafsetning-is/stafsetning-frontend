@@ -43,6 +43,7 @@ const Component = ({
 		fetchExercisesSample,
 		fetchExercisesForUser,
 		user.difficulty,
+		user.type,
 	]);
 
 	/**

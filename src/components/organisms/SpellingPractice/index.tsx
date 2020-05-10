@@ -18,7 +18,8 @@ import {
 import { StoreState } from "../../../reducers";
 import { AccessibilitySettings } from "../../";
 import { connect } from "react-redux";
-import { emitFinishExercise } from "../../../actions";
+import { emitFinishExercise, removeDialogByType } from "../../../actions";
+import { useRemoveTutorialItems } from "../../../hooks";
 
 /**
  * This component holds all the look and logic
@@ -27,7 +28,14 @@ import { emitFinishExercise } from "../../../actions";
  * So it takes the string[] as input when it's ready
  * The SpellingPractice should only be used when all data is ready
  */
-const Component = ({ _id, parts, counter, owner, user }: IProps) => {
+const Component = ({
+	_id,
+	parts,
+	counter,
+	owner,
+	user,
+	removeDialogByType,
+}: IProps) => {
 	const [errorCount, setErrorCount] = useState(0);
 	const [session, setSession] = useState<Exercise>();
 	const [typed, setTyped] = useState("");
@@ -86,6 +94,21 @@ const Component = ({ _id, parts, counter, owner, user }: IProps) => {
 		session.setPreviewTimeToLive(user.preferences.previewTTL);
 	}, [user.preferences.previewTTL]);
 
+	useRemoveTutorialItems(
+		() => typed.length === 10,
+		"exercise-explain-step-2"
+	);
+
+	useRemoveTutorialItems(
+		() => typed.length === 35,
+		"exercise-explain-step-3"
+	);
+
+	useRemoveTutorialItems(
+		() => typed.length === 60,
+		"exercise-explain-step-4"
+	);
+
 	if (comletedPracticeId)
 		return <Redirect to={`/completed/${comletedPracticeId}`} />;
 	return (
@@ -110,4 +133,6 @@ const mapStateToProps = (state: StoreState) => ({
 	user: state.auth.user,
 });
 
-export const SpellingPractice = connect(mapStateToProps)(Component);
+export const SpellingPractice = connect(mapStateToProps, {
+	removeDialogByType,
+})(Component);
