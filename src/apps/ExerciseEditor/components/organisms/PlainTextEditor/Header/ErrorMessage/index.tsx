@@ -7,6 +7,10 @@ import { clearErrorMessage } from "../../../../../actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * Component that displays the error message
+ * if any for the file editor
+ */
 const Component = ({ message, clearErrorMessage }: IProps) => {
 	const hasMessage = !!message;
 	return (

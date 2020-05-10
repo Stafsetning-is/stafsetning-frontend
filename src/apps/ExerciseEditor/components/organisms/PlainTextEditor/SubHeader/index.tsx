@@ -4,6 +4,11 @@ import { IProps } from "./interface";
 import { connect } from "react-redux";
 import { StoreState } from "../../../../reducers";
 
+/**
+ * Sub header that displays data
+ * about the document being edited
+ * like word count and char count
+ */
 const Component = ({ text, modified }: IProps) => {
 	const noText = text.length === 0;
 	const charCount = text.length;

@@ -11,6 +11,12 @@ import { StoreState } from "../../../reducers";
 import { completePublish } from "../../../actions";
 import { Redirect } from "react-router-dom";
 
+/**
+ * The publisher components
+ * takes care of splitting a file up,
+ * setting the difficulty range and finally
+ * saving the exercise
+ */
 const Component = ({
 	file,
 	splits,

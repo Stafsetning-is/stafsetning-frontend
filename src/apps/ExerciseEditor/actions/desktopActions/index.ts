@@ -10,12 +10,25 @@ import { Dispatch } from "redux";
 import { Api } from "../../../../api";
 import { File } from "../../models";
 
+/**
+ * DESKTOP ACTIONS
+ *
+ * these actions all change and maniuplate
+ * the desktop reducer state
+ */
+
+/**
+ * Fetches all files for the said user
+ */
 export function fetchFiles() {
+	// retunrs async action creator
 	return async function (dispatch: Dispatch) {
 		try {
+			// fetches the data
 			const { data } = await Api.get<FetchFilesRespnse[]>(
 				"/api/admin/users/exercises"
 			);
+			// dispatches the fetchFiles action
 			dispatch<FetchFilesAction>({
 				type: ActionTypes.fetchFiles,
 				payload: data.map((doc) => ({
@@ -24,6 +37,7 @@ export function fetchFiles() {
 				})),
 			});
 		} catch (error) {
+			// remove files if it fails
 			dispatch<FetchFilesAction>({
 				type: ActionTypes.fetchFiles,
 				payload: [],
@@ -32,6 +46,9 @@ export function fetchFiles() {
 	};
 }
 
+/**
+ * Select file by file id
+ */
 export function selectFile(fileId: string): SelectFileAction {
 	return {
 		type: ActionTypes.selectFile,
@@ -39,6 +56,10 @@ export function selectFile(fileId: string): SelectFileAction {
 	};
 }
 
+/**
+ * selects single file by file id
+ * @param fileId file id
+ */
 export function selectSingleFile(fileId: string): SelectSingleFileAction {
 	return {
 		type: ActionTypes.selectSingleFile,
@@ -46,6 +67,10 @@ export function selectSingleFile(fileId: string): SelectSingleFileAction {
 	};
 }
 
+/**
+ * saves file by adding it to desktop
+ * @param file  file interface
+ */
 export function saveFileToDesktop(file: File): SaveFileToDesktopAction {
 	return {
 		type: ActionTypes.saveFileToDesktop,
