@@ -8,7 +8,7 @@ import { requestAdminStatusForUser } from "../../../../actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCheck } from "@fortawesome/free-solid-svg-icons";
 /**
- * A component that holds the look of each particular row in
+ * A component that holds the look of each particular row (each item) in
  * the list of pending admins
  */
 const Component = ({ name, type, requestAdminStatusForUser, _id }: IProps) => {
