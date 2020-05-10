@@ -1,7 +1,7 @@
 import { getFeedback } from "../utils";
 /**
- * These tests are to ensure that the feedback is grammatically accurate
- * Both the number of errors as well as the feedback string is tested
+ * These tests are to ensure that the feedback is grammatically accurate.
+ * Both the number of errors as well as the feedback string is tested.
  */
 describe("Error feedback based on error", () => {
     it("Should give correct string with 0 errors and a plural form villur", () => {
