@@ -18,7 +18,16 @@ import "moment/locale/is";
 import PracticeText from "./PracticeText";
 import { getFeedback } from "./utils";
 import { Api } from "../../../api";
-
+/**
+ * PracticeFinished component which gives the user
+ * results from a specific exercise the user did.
+ * It gets the time in which the exercise was finished.
+ * It gets a proverb for the user from the api.
+ * Gives the user feedback on what he/she did wrong
+ * and gives the user suggestions on what exercises
+ * he/she should do next gotten from the redux store
+ * of the exercises.
+ */
 const Component = ({
     nextUp,
     exercise: { title },
@@ -26,7 +35,6 @@ const Component = ({
     createdAt,
     exerciseString
 }: IProps) => {
-    // const [mm, ss] = durationToTime(duration);
     Moment.locale("is");
     const test = Moment(createdAt).fromNow();
     const initialState = "";
