@@ -3,7 +3,6 @@ import { IProps } from "./interface";
 import { Screen } from "./styles";
 
 /**
- *
  * Grey, transcluscent backdrop that
  * fills screen and is absolute positioned
  */
