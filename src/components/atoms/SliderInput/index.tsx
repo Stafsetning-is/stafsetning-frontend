@@ -3,7 +3,9 @@ import Slider from "@material-ui/core/Slider";
 import { InputComponent } from "../../../services";
 import { FormLabel } from "../../";
 import { Outer } from "./styles";
-
+/**
+ * Sets the value to the unComittedValue using the setUnCommitedValue in regards to double slider value
+ */
 export const SliderInput = ({
     value,
     onChange,
