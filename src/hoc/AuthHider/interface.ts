@@ -6,5 +6,5 @@ export interface IProps {
 	user: User | null;
 	userType: AuthLevels;
 	setAuthLevel: AuthLevels;
-	children: any;
+	children: React.ReactNode;
 }

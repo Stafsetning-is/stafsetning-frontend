@@ -11,6 +11,10 @@ import { TableRow } from "../../../../../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserEdit } from "@fortawesome/free-solid-svg-icons";
 import Bar from "../CounterBar";
+
+/**
+ * A single row in the file stats table
+ */
 export default ({ fileName, counter, countRatio }: IProps) => {
 	return (
 		<TableRow>

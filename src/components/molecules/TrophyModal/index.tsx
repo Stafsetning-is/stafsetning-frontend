@@ -15,7 +15,18 @@ import { faTrophy, faTimes, faLock } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 import { StoreState } from "../../../reducers";
 import { closeTrophyModal } from "../../../actions";
+import { TROPHY_COLOR } from "./utils";
 
+/**
+ * Molecule that shows the trophy modal
+ * This component returns null and thus is not visible
+ * if no trophy is supplied in props
+ *
+ * If a trophy is given then it displayes as an flip card
+ * with a flip card animation
+ *
+ * it is closed by calling the closeTrophyModal action
+ */
 const Component = ({ trophy, closeTrophyModal }: IProps) => {
 	if (!trophy) return null;
 
@@ -28,16 +39,24 @@ const Component = ({ trophy, closeTrophyModal }: IProps) => {
 					<FontAwesomeIcon icon={faTimes} />
 				</CloseIcon>
 				<TopHeading>
-					<FontAwesomeIcon icon={headingDecoration} color="#fbc600" />
+					<FontAwesomeIcon
+						icon={headingDecoration}
+						color={TROPHY_COLOR}
+					/>
 					<TitleText>{trophy.title}</TitleText>
-					<FontAwesomeIcon icon={headingDecoration} color="#fbc600" />
+					<FontAwesomeIcon
+						icon={headingDecoration}
+						color={TROPHY_COLOR}
+					/>
 				</TopHeading>
-				{trophy.old ? null : <SubHeading>Þú fékkst nýjan bikar!</SubHeading>}
+				{trophy.old ? null : (
+					<SubHeading>Þú fékkst nýjan bikar!</SubHeading>
+				)}
 				<DescriptionText>{trophy.description}</DescriptionText>
 				{trophy.old ? null : (
 					<BottomText>
-						Bikararnir þínir eru geymdir á þinni síðu. Þú getur unnið inn fleiri
-						bikara með góðum árangri.
+						Bikararnir þínir eru geymdir á þinni síðu. Þú getur
+						unnið inn fleiri bikara með góðum árangri.
 					</BottomText>
 				)}
 			</FlipCard>

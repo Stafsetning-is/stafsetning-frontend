@@ -5,6 +5,9 @@ import { StoreState } from "../../../reducers";
 import { fetchFiles } from "../../../actions";
 import { IProps } from "./interface";
 
+/**
+ * The desktop seen in the file explorer app
+ */
 const Component = ({ files, fetchFiles }: IProps) => {
 	useEffect(() => {
 		fetchFiles();

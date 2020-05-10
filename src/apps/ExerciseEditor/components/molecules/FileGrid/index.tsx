@@ -4,6 +4,12 @@ import { IProps } from "./interface";
 import { Grid, Outer } from "./styles";
 import { connect } from "react-redux";
 import { StoreState } from "../../../reducers";
+
+/**
+ * Grid that maps files into a grid of file icons
+ * can also take in children and map those as well
+ * this might be icons that are not for files like the text editor
+ */
 const Component = ({ files, children, selected }: IProps) => {
 	const selectedDict: { [key: string]: boolean } = {};
 	selected.forEach((key) => (selectedDict[key] = true));

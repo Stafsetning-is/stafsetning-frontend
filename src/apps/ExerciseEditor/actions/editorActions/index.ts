@@ -15,9 +15,19 @@ import {
 	ClearErrorMessageAction,
 } from "./interface";
 import { File } from "../../models";
-
 import { ActionTypes } from "../types";
 
+/**
+ * EDITOR ACTIONS
+ *
+ * actions that change and manipulate the editor state
+ *
+ */
+
+/**
+ * sets a file (by id) as the open tab in editor
+ *
+ */
 export function setOpenTab(fileId: string): SetOpenTabAction {
 	return {
 		type: ActionTypes.setOpenTab,
@@ -25,6 +35,9 @@ export function setOpenTab(fileId: string): SetOpenTabAction {
 	};
 }
 
+/**
+ * Creates a new file
+ */
 export function createNewFile(): CreateNewFileAction {
 	return {
 		type: ActionTypes.createNewFile,
@@ -32,6 +45,10 @@ export function createNewFile(): CreateNewFileAction {
 	};
 }
 
+/**
+ * closes a file by file id
+ * @param fileId the file to close
+ */
 export function setCloseTab(fileId: string): SetCloseTabAction {
 	return {
 		type: ActionTypes.setCloseTab,
@@ -39,6 +56,10 @@ export function setCloseTab(fileId: string): SetCloseTabAction {
 	};
 }
 
+/**
+ * writes text into an open file
+ * @param text text to write into file
+ */
 export function writeToOpenFile(text: string): WriteToOpenFileAction {
 	return {
 		type: ActionTypes.writeToOpenFile,
@@ -46,6 +67,9 @@ export function writeToOpenFile(text: string): WriteToOpenFileAction {
 	};
 }
 
+/**
+ * Opens the editor
+ */
 export function openEditor(): OpenEditorAction {
 	return {
 		type: ActionTypes.openEditor,
@@ -53,6 +77,9 @@ export function openEditor(): OpenEditorAction {
 	};
 }
 
+/**
+ * closes the editor
+ */
 export function closeEditor(): CloseEditorAction {
 	return {
 		type: ActionTypes.closeEditor,
@@ -60,6 +87,9 @@ export function closeEditor(): CloseEditorAction {
 	};
 }
 
+/**
+ * Expands the editor
+ */
 export function expandEditor(): ExpandEditorAction {
 	return {
 		type: ActionTypes.expandEditor,
@@ -67,6 +97,9 @@ export function expandEditor(): ExpandEditorAction {
 	};
 }
 
+/**
+ * Collapses the editor
+ */
 export function collapseEditor(): CollapseEditorAction {
 	return {
 		type: ActionTypes.collapseEditor,
@@ -74,6 +107,9 @@ export function collapseEditor(): CollapseEditorAction {
 	};
 }
 
+/**
+ * Minimizes the editor
+ */
 export function minimizeEditor(): MinimizeEditorAction {
 	return {
 		type: ActionTypes.minimizeEditor,
@@ -81,6 +117,9 @@ export function minimizeEditor(): MinimizeEditorAction {
 	};
 }
 
+/**
+ * Maximizes the editor
+ */
 export function maximizeEditor(): MaximizeEditorAction {
 	return {
 		type: ActionTypes.maximizeEditor,
@@ -88,6 +127,10 @@ export function maximizeEditor(): MaximizeEditorAction {
 	};
 }
 
+/**
+ * opens an exercise file in the editor
+ * @param file file interface
+ */
 export function openExerciseFile(file: File): OpenExerciseFileAction {
 	return {
 		type: ActionTypes.openExerciseFile,
@@ -95,6 +138,10 @@ export function openExerciseFile(file: File): OpenExerciseFileAction {
 	};
 }
 
+/**
+ * Renames a file in the editor
+ * @param newName the new name for file
+ */
 export function renameFile(newName: string): RenameFileInEditorAction {
 	return {
 		type: ActionTypes.renameFileInEditor,
@@ -102,6 +149,9 @@ export function renameFile(newName: string): RenameFileInEditorAction {
 	};
 }
 
+/**
+ * clears any existent error message in editor
+ */
 export function clearErrorMessage(): ClearErrorMessageAction {
 	return {
 		type: ActionTypes.clearErrorMessage,
@@ -109,6 +159,10 @@ export function clearErrorMessage(): ClearErrorMessageAction {
 	};
 }
 
+/**
+ * Sets an error message for the text editor
+ * @param message the string to display
+ */
 export function setErrorMessage(message: string): SetErrorMessageAction {
 	return {
 		type: ActionTypes.setErrorMessage,

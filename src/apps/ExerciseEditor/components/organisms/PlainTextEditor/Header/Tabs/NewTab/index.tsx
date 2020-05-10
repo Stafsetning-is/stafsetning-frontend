@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { IProps } from "./interface";
 
+/**
+ * Special tab to create a new file
+ */
 export default ({ onClick, verbose }: IProps) => {
 	const text = verbose ? "Búa til æfingu" : "";
 	return (

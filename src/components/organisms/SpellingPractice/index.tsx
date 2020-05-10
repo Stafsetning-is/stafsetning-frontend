@@ -67,7 +67,7 @@ const Component = ({
 						setCompletedPracticeId(data._id);
 					})
 					.catch((error) => {
-						console.log("error", error);
+						// do thing
 					});
 			})
 			.on("textUpdate", (text: string, preview: string) => {

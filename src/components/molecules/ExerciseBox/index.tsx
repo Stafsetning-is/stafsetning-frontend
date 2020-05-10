@@ -14,7 +14,12 @@ import {
 	TopLine,
 	StarBox,
 } from "./styles";
-import { reportToRuleString, cutTitle } from "./utils";
+import {
+	reportToRuleString,
+	cutTitle,
+	LOADER_SIZE,
+	LOADER_PADDING,
+} from "./utils";
 import { ProtectedNavLink, AuthHider } from "../../../hoc";
 import { ClipLoader } from "react-spinners";
 
@@ -46,26 +51,34 @@ export const ExerciseBox = ({
 	 * /exercise/:exerciseId url
 	 */
 
+	// sets loading state to false
 	const [loading, setLoading] = useState(false);
-	const link = tutorial
-		? "/tutorial/exercise/"
-		: practice
+
+	// is link pointing to practice or exercise
+	const link = practice
 		? `/completed/${practice}`
 		: `/exercise/practice/${_id}`;
+
+	// takes grammar report and makes displayable rule string
 	const ruleString = reportToRuleString(report);
+
+	// creates score String based on score data
 	const scoreString =
 		score !== undefined
 			? `Besta hingað til: ${Math.round(score * 100)}%`
 			: "";
+
+	// button text based on if it's a practice or exercise
 	const buttonString = practice ? "Skoða einkunn" : "Opna";
 
+	// handles the star click by calling redux and updating loading state
 	const handleStarClick = () => {
 		onStarClick(_id, !saved);
 		setLoading(true);
 	};
 
 	return (
-		<BoxWrap padding="0px">
+		<BoxWrap padding={LOADER_PADDING}>
 			<Container>
 				<InfoContainer>
 					<InfoBox>
@@ -76,7 +89,7 @@ export const ExerciseBox = ({
 									<StarBox onClick={handleStarClick}>
 										{loading ? (
 											<ClipLoader
-												size={5}
+												size={LOADER_SIZE}
 												color={"rgba(255, 195, 55, 1)"}
 											/>
 										) : (

@@ -15,11 +15,11 @@ export const LoaderBox = ({ loading, height, children }: IProps) => {
 		return (
 			<Container
 				theme={{
-					height: height
+					height: height,
 				}}
 			>
 				<Loader loading={true} />
 			</Container>
 		);
-	return children;
+	return <React.Fragment>{children}</React.Fragment>;
 };

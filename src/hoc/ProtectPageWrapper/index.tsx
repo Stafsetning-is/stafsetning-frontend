@@ -10,12 +10,12 @@ import { Redirect } from "react-router-dom";
  * /log-in otherwise
  */
 const Component = ({ children, isAuth }: IProps) => {
-	if (isAuth) return children;
+	if (isAuth) return <React.Fragment>{children}</React.Fragment>;
 	return <Redirect to="/log-in" />;
 };
 
 const mapStateToProps = (state: StoreState) => ({
-	isAuth: state.auth.type !== "guest"
+	isAuth: state.auth.type !== "guest",
 });
 
 export const ProtectPageWrapper = connect(mapStateToProps)(Component);

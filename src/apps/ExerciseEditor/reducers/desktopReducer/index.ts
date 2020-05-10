@@ -13,7 +13,6 @@ export default (
 ): DesktopState => {
 	switch (action.type) {
 		case ActionTypes.fetchFiles:
-			console.log("action.payload", action.payload);
 			return {
 				...state,
 				doneFetching: true,

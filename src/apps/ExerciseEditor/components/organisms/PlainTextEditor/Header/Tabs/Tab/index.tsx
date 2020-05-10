@@ -4,6 +4,10 @@ import { IProps } from "./interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * Component for a single tab in the header
+ * of the text editor
+ */
 export default ({
 	name,
 	selected,
@@ -31,11 +35,7 @@ export default ({
 					value={tabName}
 				/>
 			) : (
-				<Text
-					onClick={onClick}
-					onBlur={() => console.log("4", 4)}
-					onDoubleClick={goToEditMode}
-				>
+				<Text onClick={onClick} onDoubleClick={goToEditMode}>
 					{tabName ? tabName : "Ónefnt skjal"}
 				</Text>
 			)}
