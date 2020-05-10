@@ -7,6 +7,14 @@ import { ToggleWrapper } from "./styles";
  * BoxInput that takes in value and onChange function
  * This is for the Form functionality
  */
+/**
+ *
+ * @param value is the input from the user
+ * @param onChange listens to if the value has been changed
+ * @param label describes the input form, can be thought of as a title
+ * @param placeholder describes and gives the user an idea of what they should input
+ * @param getValidationMessage
+ */
 export const CheckBoxInput = ({
     value,
     onChange,
