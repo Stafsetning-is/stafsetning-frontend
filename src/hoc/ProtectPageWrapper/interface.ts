@@ -1,4 +1,4 @@
 export interface IProps {
-	children: any;
+	children: React.ReactNode;
 	isAuth: boolean;
 }

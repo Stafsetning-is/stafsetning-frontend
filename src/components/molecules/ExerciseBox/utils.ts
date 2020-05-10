@@ -29,3 +29,9 @@ export const cutTitle = (title: string) => {
 	if (title.length < 29) return title;
 	else return title.slice(0, 26) + "...";
 };
+
+// size of clip loader
+export const LOADER_SIZE = 5;
+
+// padding of the loader box
+export const LOADER_PADDING = "0px";
