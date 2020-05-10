@@ -3,16 +3,16 @@ import { Outer, Inner } from "./styles";
 import { IProps } from "./interface";
 
 export default ({ ratio }: IProps) => {
-	const [barLength, setBarLength] = useState(0);
+    const [barLength, setBarLength] = useState(0);
 
-	useEffect(() => {
-		setBarLength(ratio);
-	}, []);
+    useEffect(() => {
+        setBarLength(ratio);
+    }, [ratio]);
 
-	const displayWidth = ratio === 0 ? 0.01 : barLength;
-	return (
-		<Outer>
-			<Inner theme={{ ratio: displayWidth }} />
-		</Outer>
-	);
+    const displayWidth = ratio === 0 ? 0.01 : barLength;
+    return (
+        <Outer>
+            <Inner theme={{ ratio: displayWidth }} />
+        </Outer>
+    );
 };
