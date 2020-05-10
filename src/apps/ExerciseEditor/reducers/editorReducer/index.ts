@@ -18,7 +18,9 @@ export default (
 		case ActionTypes.setCloseTab:
 			return {
 				...state,
-				openFiles: state.openFiles.filter((doc) => doc._id !== action.payload),
+				openFiles: state.openFiles.filter(
+					(doc) => doc._id !== action.payload
+				),
 				openTab: null,
 			};
 		case ActionTypes.setOpenTab:
@@ -43,7 +45,9 @@ export default (
 				openTab: id,
 			};
 		case ActionTypes.writeToOpenFile:
-			const doc = state.openFiles.find((file) => file._id === state.openTab);
+			const doc = state.openFiles.find(
+				(file) => file._id === state.openTab
+			);
 			if (!doc) return state;
 			doc.text = action.payload;
 			doc.modified = true;
@@ -90,7 +94,6 @@ export default (
 			if (!toRename) return state;
 			toRename.fileName = action.payload;
 			toRename.modified = true;
-			console.log("toRename", toRename);
 			return {
 				...state,
 				openFiles: [...state.openFiles],
@@ -99,7 +102,8 @@ export default (
 			const found = state.openFiles.find(
 				({ _id }) => _id === action.payload._id
 			);
-			if (found) return { ...state, open: true, openTab: action.payload._id };
+			if (found)
+				return { ...state, open: true, openTab: action.payload._id };
 			return {
 				...state,
 				openFiles: [...state.openFiles, action.payload],

@@ -16,6 +16,9 @@ import { StoreState } from "../../../../reducers";
 import { writeToOpenFile } from "../../../../actions";
 import { EditorProps as IProps } from "../interface";
 
+/**
+ * The text editor that user interacts with
+ */
 const EditText = ({
 	writeToOpenFile,
 	openFileText,

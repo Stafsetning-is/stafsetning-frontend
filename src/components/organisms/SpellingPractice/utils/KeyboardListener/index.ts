@@ -1,12 +1,4 @@
-import {
-	IGNORE_CODES_ARRAY,
-	MAPPED_ICELANDIC_CHARS,
-	SPECIAL_CHARS,
-	ACCENT_MAP,
-} from "./utils";
-import keycode from "keycode";
-
-type SpecialEvent = (e: KeyboardEvent) => void;
+import { IGNORE_CODES_ARRAY, SPECIAL_CHARS, ACCENT_MAP } from "./utils";
 
 /**
  * Class that, on intantiation, creates an event listener
@@ -96,7 +88,8 @@ export default class KeyboardListener {
 	 * @param e keyboard event
 	 */
 	private capitalizeCharIfShould(char: string, e: KeyboardEvent) {
-		if (e.shiftKey || e.getModifierState("CapsLock")) return char.toUpperCase();
+		if (e.shiftKey || e.getModifierState("CapsLock"))
+			return char.toLocaleUpperCase();
 		return char;
 	}
 
@@ -125,46 +118,6 @@ export default class KeyboardListener {
 	}
 
 	/**
-	 * Maps keyboard event to character symbol
-	 * @param e keyboard event to map
-	 */
-	private mapKeyCodeToChar(e: KeyboardEvent) {
-		if (this.isKeyCodeIcelandic(e)) return this.mapToIcelandicKey(e);
-		else return keycode(e);
-	}
-
-	/**
-	 * returns true if the keycode
-	 * is a special icelandic unaccented
-	 * character like ð, þ, æ, ö
-	 * @param e keyboard event
-	 */
-	private isKeyCodeIcelandic(e: KeyboardEvent) {
-		return MAPPED_ICELANDIC_CHARS[this.stringedKeyCode(e)] !== undefined;
-	}
-
-	/**
-	 * Maps keycode to special icelandic character
-	 * like ð, þ, æ, ö
-	 *
-	 * NOTE: returns undefined if the keycode
-	 * is for something else
-	 * @param e keyboard event
-	 */
-	private mapToIcelandicKey(e: KeyboardEvent) {
-		return MAPPED_ICELANDIC_CHARS[this.stringedKeyCode(e)];
-	}
-
-	/**
-	 * Takes in keyboard event and returns
-	 * stringified keycode
-	 * @param e keyboard event
-	 */
-	private stringedKeyCode(e: KeyboardEvent) {
-		return e.keyCode.toString();
-	}
-
-	/**
 	 * Calls the array of special events
 	 * that can be used to call an many
 	 * special calls that need to be processed
@@ -181,8 +134,10 @@ export default class KeyboardListener {
 	 * @param e keyboard event
 	 */
 	private adjustAccentFlag(e: KeyboardEvent) {
-		if (e.keyCode === SPECIAL_CHARS.accent) this.accented = true;
-		else if (IGNORE_CODES_ARRAY.includes(e.keyCode) && this.accented) return;
+		if (e.keyCode === SPECIAL_CHARS.accent || e.key === "Dead")
+			this.accented = true;
+		else if (IGNORE_CODES_ARRAY.includes(e.keyCode) && this.accented)
+			return;
 		else this.accented = false;
 	}
 }

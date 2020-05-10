@@ -6,6 +6,11 @@ import { AuthHider } from "../../hoc";
 import * as fa from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+/**
+ * Single drop down item which is only
+ * and should only be used
+ * in the HeaderItem component
+ */
 export default (props: IProps) => {
 	const { to, label, authLevel, icon } = props;
 	// @ts-ignore due to bad declerations in external module

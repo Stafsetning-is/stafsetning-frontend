@@ -1,10 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { SpellingPractice, LoaderBox, ErrorModal } from "../../..";
+import React, { useState, useEffect, lazy, Suspense } from "react";
+import { LoaderBox, ErrorModal, Loader } from "../../..";
 import { fetchExerciseText } from "./utils";
 import { RouteComponentProps } from "react-router-dom";
 import { IProps } from "./interface";
 import { ProtectPageWrapper } from "../../../../hoc";
 import { Exercise } from "../../../../models";
+import {
+	EXERCISE_FIRST_STEP,
+	EXERCISE_SECOND_STEP,
+	EXERCISE_THIRD_STEP,
+	EXERCISE_FOURTH_STEP,
+	TutorialLocations,
+} from "../../../../services";
+import { TutorialWrapper } from "./../../../../hoc";
+
+const SpellingPractice = React.lazy(() =>
+	import(
+		"../../../organisms/SpellingPractice"
+	).then(({ SpellingPractice }) => ({ default: SpellingPractice }))
+);
+
 /**
  * Component contains the entire page for an practice exercise
  * It also manages the basic logic of fetching the exercise
@@ -37,7 +52,21 @@ export default ({ match }: RouteComponentProps<IProps>) => {
 		<ProtectPageWrapper>
 			<ErrorModal errorMessage={errorMessage}>
 				<LoaderBox loading={loading}>
-					{exercise ? <SpellingPractice {...exercise} /> : null}
+					{exercise ? (
+						<Suspense fallback={<Loader loading={true} />}>
+							<TutorialWrapper
+								items={[
+									EXERCISE_FIRST_STEP,
+									EXERCISE_SECOND_STEP,
+									EXERCISE_THIRD_STEP,
+									EXERCISE_FOURTH_STEP,
+								]}
+								location={TutorialLocations.exercisePage}
+							>
+								<SpellingPractice {...exercise} />
+							</TutorialWrapper>
+						</Suspense>
+					) : null}
 				</LoaderBox>
 			</ErrorModal>
 		</ProtectPageWrapper>

@@ -6,7 +6,13 @@ import { StoreState } from "../../../../reducers";
 import { addSplit, removeSplit } from "../../../../actions";
 import Char from "../Char";
 
+/**
+ * Maps the character to an array of characters
+ *
+ * it adds splits where the user has added them
+ */
 const Component = ({ text, splits, addSplit, removeSplit }: IProps) => {
+	// text to char array with an space at the end
 	const charArray = [...text.split(""), " "];
 
 	return (

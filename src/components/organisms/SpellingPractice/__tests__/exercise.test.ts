@@ -3,7 +3,7 @@ import { Exercise } from "../utils";
 const sentenceParts = [
 	"Carl went out to the shop",
 	"to buy some groceries",
-	"for his mom"
+	"for his mom",
 ];
 
 const shortSentenceParts = ["Carl", "to", "for"];
@@ -163,12 +163,15 @@ describe("Traversing sentence parts and getting preview", () => {
 
 describe("text update event shows typed text and preview appropriately", () => {
 	it("should be able to add textUpdate event listener", (done) => {
-		const e = Exercise.startExercise(shortSentenceParts, "5");
+		const e = Exercise.startExercise(shortSentenceParts, "5", {
+			alwaysShowPreview: false,
+			previewTTL: 5,
+		});
 		let count = 0;
 		e.on("textUpdate", (text, preview) => {
 			if (count === 0) {
 				expect(text).toEqual("");
-				expect(preview).toEqual("Carl");
+				expect(preview).toEqual("Carl ");
 				done();
 			} else if (count === 1) {
 				expect(text).toEqual("C");
@@ -180,7 +183,7 @@ describe("text update event shows typed text and preview appropriately", () => {
 				done();
 			} else if (count === 3) {
 				expect(text).toEqual("Ca");
-				expect(preview).toEqual("rl");
+				expect(preview).toEqual("rl ");
 				done();
 			}
 			count++;

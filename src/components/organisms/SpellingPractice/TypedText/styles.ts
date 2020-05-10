@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const TextSpan = styled.span`
 	font-family: "Roboto Mono", monospace;
+	white-space: pre-wrap;
 `;
 
 export const PreviewSpan = styled.span`

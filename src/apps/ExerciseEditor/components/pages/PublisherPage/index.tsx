@@ -7,6 +7,9 @@ import { StoreState } from "../../../reducers";
 import { IProps, RouterProps } from "./interface";
 import { openFileInPublisher, fetchFiles } from "../../../actions";
 
+/**
+ *  Page that handles the publishing of a file
+ */
 const Component = ({
 	id,
 	documents,
@@ -17,7 +20,6 @@ const Component = ({
 	useEffect(() => {
 		if (documents.length === 0) fetchFiles();
 		const doc = documents.find((doc) => doc._id === id);
-		console.log("doc", doc);
 		if (doc) openFileInPublisher(doc);
 	}, [id, documents, openFileInPublisher, fetchFiles]);
 

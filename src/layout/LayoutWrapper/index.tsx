@@ -10,18 +10,26 @@ import {
 	fetchAdminInviteList,
 } from "../../actions";
 import { StoreState } from "../../reducers";
-import { LoaderBox } from "../../components";
+import { LoaderBox, PickGender } from "../../components";
 import { connect } from "react-redux";
-import { SIGNED_IN_USER_LEVELS, GUEST, ADMIN } from "./utils";
+import { SIGNED_IN_USER_LEVELS, GUEST, ADMIN, LOADING, UNKNOWN } from "./utils";
 
+/**
+ * Wraps a page with layout elements like header and other things
+ *
+ * It also serves as a guard to show loading animation
+ * while app has not decided if the user should be logged in or not
+ *
+ * LayoutWrapper also calls async actions when the user
+ * changes to fetch data from backend for the user
+ */
 const Component = ({
 	children,
-	userType,
 	fetchExercisesForUser,
 	fetchExercisesSample,
 	fetchUserFromToken,
 	fetchAdminInviteList,
-	difficulty,
+	user,
 }: IProps) => {
 	/**
 	 * Fetches info about logged in
@@ -36,32 +44,41 @@ const Component = ({
 	 * when ever the user type changes
 	 */
 	useEffect(() => {
-		if (userType === GUEST) fetchExercisesSample();
-		else if (SIGNED_IN_USER_LEVELS.includes(userType)) fetchExercisesForUser();
-	}, [userType, fetchExercisesSample, fetchExercisesForUser, difficulty]);
+		if (user.type === GUEST) fetchExercisesSample();
+		else if (SIGNED_IN_USER_LEVELS.includes(user.type))
+			fetchExercisesForUser();
+	}, [
+		user._id,
+		fetchExercisesSample,
+		fetchExercisesForUser,
+		user.difficulty,
+		user.type,
+	]);
 
 	/**
 	 * fetches list of pending users
 	 * for admin priveledges
 	 */
 	useEffect(() => {
-		if (userType === ADMIN) fetchAdminInviteList();
-	}, [userType]);
+		if (user.type === ADMIN) fetchAdminInviteList();
+	}, [user.type]);
+
+	const userPickedGender = user.gender && user.gender !== LOADING;
 
 	return (
 		<BackDrop>
 			<Header />
 			<CenterBlock>
-				<LoaderBox loading={userType === "unknown"}>{children}</LoaderBox>
+				<LoaderBox loading={user.type === UNKNOWN}>
+					{userPickedGender ? children : <PickGender />}
+				</LoaderBox>
 			</CenterBlock>
 		</BackDrop>
 	);
 };
 
 const mapStateToProps = (state: StoreState) => ({
-	userType: state.auth.type,
-	userId: state.auth.user._id,
-	difficulty: state.auth.user.difficulty,
+	user: state.auth.user,
 });
 
 export const LayoutWrapper = connect(mapStateToProps, {

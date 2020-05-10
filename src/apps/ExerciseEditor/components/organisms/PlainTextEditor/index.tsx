@@ -17,6 +17,11 @@ import {
 	saveFileToDesktop,
 } from "../../../actions";
 
+/**
+ * A text editor application
+ * that can open exercise files
+ * and edit them
+ */
 const Editor = ({
 	open,
 	minimized,
@@ -29,9 +34,10 @@ const Editor = ({
 	history,
 	saveFileToDesktop,
 }: IProps) => {
-	console.log("open", open);
+	// if the editor is not open return nothing
 	if (!open) return null;
 
+	// handles the saving of the open file
 	const handleFinish = async () => {
 		if (!openFile) return;
 		try {
@@ -68,12 +74,12 @@ const mapStateToProps = (state: StoreState) => {
 	};
 };
 
-const ReduxConnected = connect(mapStateToProps, {
-	setErrorMessage,
-	minimizeEditor,
-	setCloseTab,
-	clearErrorMessage,
-	saveFileToDesktop,
-})(Editor);
-
-export const PlainTextEditor = withRouter(ReduxConnected);
+export const PlainTextEditor = withRouter(
+	connect(mapStateToProps, {
+		setErrorMessage,
+		minimizeEditor,
+		setCloseTab,
+		clearErrorMessage,
+		saveFileToDesktop,
+	})(Editor)
+);

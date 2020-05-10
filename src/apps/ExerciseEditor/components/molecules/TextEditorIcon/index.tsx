@@ -7,6 +7,9 @@ import { IconWrapper } from "../../";
 import { connect } from "react-redux";
 import { openEditor } from "../../../actions";
 
+/**
+ * Icon for the text editor
+ */
 const Component = ({ fileName, openEditor }: IProps) => {
 	return (
 		<IconWrapper

@@ -159,7 +159,7 @@ export class Exercise {
 			else this.handleError(input);
 			if ([",", "."].includes(input)) this.type(" ");
 		} catch (e) {
-			// console.log(e.message);
+			// do nothing
 		}
 		this.addToSessionStorage(input);
 	}
@@ -255,7 +255,8 @@ export class Exercise {
 				if (this[cb]) this.success();
 				break;
 			case "nextCharChange":
-				if (this[cb]) this.nextCharChange(this.getText().charAt(this.typingAt));
+				if (this[cb])
+					this.nextCharChange(this.getText().charAt(this.typingAt));
 		}
 	}
 
@@ -346,7 +347,9 @@ export class Exercise {
 		if (!this.textUpdate || this.silentMode) return;
 		this.textUpdate(
 			this.getText().slice(0, this.typingAt),
-			preview || this.options.alwaysShowPreview ? this.getPreviewText() : ""
+			preview || this.options.alwaysShowPreview
+				? this.getPreviewText()
+				: ""
 		);
 		this.doCallBack("nextCharChange");
 	}

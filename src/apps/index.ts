@@ -1,8 +1,8 @@
-import ExerciseEditor from "./ExerciseEditor";
+import { lazy } from "react";
 
 export default [
 	{
 		route: "exercise-editor",
-		component: ExerciseEditor,
+		component: lazy(() => import("./ExerciseEditor")),
 	},
 ];

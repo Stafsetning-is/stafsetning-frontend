@@ -1,5 +1,6 @@
-import React from "react";
 import { AuthLevels } from "../../services";
+
+import { User } from "../../models";
 
 export interface IProps {
 	children?: any;
@@ -7,7 +8,5 @@ export interface IProps {
 	fetchExercisesSample: () => void;
 	fetchExercisesForUser: () => void;
 	fetchAdminInviteList: () => void;
-	userType: AuthLevels;
-	userId: string;
-	difficulty: number;
+	user: User;
 }

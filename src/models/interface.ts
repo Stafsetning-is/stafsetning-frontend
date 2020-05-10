@@ -40,6 +40,7 @@ export interface Exercise {
 	saved: boolean;
 	counter: number;
 	owner: string;
+	tutorial?: boolean;
 }
 
 export interface Report {
@@ -57,6 +58,11 @@ export interface User {
 	points: number;
 	difficulty: number;
 	preferences: UserPreference;
+	gender?: "loading" | "male" | "female";
+	avatars: {
+		male: string;
+		female: string;
+	};
 }
 
 export interface UserPreference {
@@ -70,6 +76,7 @@ export interface UserPreference {
 export interface SocketUser {
 	username: string;
 	_id: string;
+	avatar: string;
 }
 
 export interface Trophy {

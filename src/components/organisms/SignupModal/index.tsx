@@ -23,7 +23,9 @@ const Component = ({ logInUser }: IProps) => {
 				/>
 				<BasicButton
 					text={"Ég er Kennari"}
-					onClick={() => setRedirectURL("/user/create-admin-account/")}
+					onClick={() =>
+						setRedirectURL("/user/create-admin-account/")
+					}
 					type="secondary"
 				/>
 			</Modal>
@@ -34,9 +36,9 @@ const Component = ({ logInUser }: IProps) => {
 				fields={signupForm}
 				label="Skrá inn"
 				onSuccess={({ token, user }) => {
+					setRedirectURL("/");
 					setAuthCookie(token);
 					logInUser(user);
-					setRedirectURL("/");
 				}}
 				postTo="/api/auth/sign_up"
 			>

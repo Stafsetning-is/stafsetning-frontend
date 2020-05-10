@@ -17,7 +17,7 @@ export default ({ connectedUsers }: IProps) => {
 			<InfoBox>
 				<Inner>
 					{users.map((user, i) => (
-						<UserIcon index={i} />
+						<UserIcon index={i} src={user.avatar} />
 					))}
 					<Text theme={{ count: users.length }}>{`${
 						connectedUsers.length

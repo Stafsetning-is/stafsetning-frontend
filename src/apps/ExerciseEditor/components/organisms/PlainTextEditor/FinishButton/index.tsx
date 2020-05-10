@@ -5,6 +5,10 @@ import { connect } from "react-redux";
 import { StoreState } from "../../../../reducers";
 import { UIButton } from "../../../";
 
+/**
+ * Wrapped UIButton to place it correctly
+ * in the editor
+ */
 const Component = ({ shouldHide, onClick }: IProps) => {
 	if (shouldHide) return null;
 	return (

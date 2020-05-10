@@ -19,6 +19,10 @@ export const UserPicture = styled.img`
 	width: 100%;
 	height: 100%;
 	display: block;
+	cursor: pointer;
+	:hover {
+		transform: rotateY(180deg);
+	}
 `;
 
 export const UserName = styled.p`

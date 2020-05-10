@@ -8,13 +8,18 @@ import {
 	PointsContainer,
 } from "./styles";
 import { Points } from "../../../";
-import PLACEHOLDER_IMG from "./Michelin-5.jpg";
+import { connect } from "react-redux";
+import { openPickGenderView } from "../../../../actions";
 
-export default ({ avatar, name, points }: IProps) => {
+const Component = ({ avatar, name, points, openPickGenderView }: IProps) => {
 	return (
 		<Frame>
 			<UserPictureContainer>
-				<UserPicture src={PLACEHOLDER_IMG} />
+				<UserPicture
+					src={avatar}
+					alt={`Holdgervingur ${name}`}
+					onClick={openPickGenderView}
+				/>
 			</UserPictureContainer>
 			<UserName>{name}</UserName>
 			<PointsContainer>
@@ -23,3 +28,5 @@ export default ({ avatar, name, points }: IProps) => {
 		</Frame>
 	);
 };
+
+export default connect(null, { openPickGenderView })(Component);

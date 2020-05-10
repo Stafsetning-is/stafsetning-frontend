@@ -1,16 +1,71 @@
 {
-  "hosting": {
-    "public": "build",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  }
+	"hosting": {
+		"public": "build",
+		"ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+		"rewrites": [
+			{
+				"source": "**",
+				"destination": "/index.html"
+			}
+		],
+		"headers": [
+			{
+				"source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+				"headers": [
+					{
+						"key": "Access-Control-Allow-Origin",
+						"value": "*"
+					}
+				]
+			},
+			{
+				"source": "**/*.@(js|jpg|jpeg|gif|png)",
+				"headers": [
+					{
+						"key": "Cache-Control",
+						"value": "max-age=43200"
+					}
+				]
+			},
+			{
+				"source": "**/*.@(css)",
+				"headers": [
+					{
+						"key": "Cache-Control",
+						"value": "max-age=170000"
+					}
+				]
+			},
+			{
+				"source": "**/*/@(chunk.js)",
+				"headers": [
+					{
+						"key": "Cache-Control",
+						"value": "max-age=86400"
+					}
+				]
+			},
+			{
+				"source": "/analytics.js",
+				"headers": [
+					{
+						"key": "Cache-Control",
+						"value": "max-age=86400"
+					}
+				]
+			},
+			{
+				"source": "404.html",
+				"headers": [
+					{
+						"key": "Cache-Control",
+						"value": "max-age=300"
+					}
+				]
+			}
+		]
+	},
+	"env": {
+		"ga_tracking": "UA-165448557-1"
+	}
 }

@@ -4,9 +4,11 @@ import { IProps } from "./interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 import { IconWrapper } from "../../";
-import { openEditor } from "../../../actions";
 import { Redirect } from "react-router-dom";
 
+/**
+ * Icon for the stat viewer page
+ */
 export const StatViewerIcon = ({}: IProps) => {
 	const [redirectUrl, setRedirectUrl] = useState<string>();
 
