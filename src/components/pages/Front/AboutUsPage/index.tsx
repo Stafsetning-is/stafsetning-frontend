@@ -23,9 +23,8 @@ export default () => {
                 <DeveloperImage src={KJARTAN}></DeveloperImage>
             </DeveloperImageWrapper>
             <Content>
-                Endilega
+                Endilega{" "}
                 <MailtoLink href="mailto:gabriel.sighvatsson@gmail.com">
-                    {" "}
                     hafðu samband!
                 </MailtoLink>
             </Content>
