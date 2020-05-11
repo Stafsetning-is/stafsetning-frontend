@@ -6,7 +6,7 @@ import CookieConsent from "react-cookie-consent";
 
 /**
  * A CookieBanner component which allows user to
- * accept policies and links to them.
+ * accept the usage of cookies and links to policy page.
  */
 export const CookieBanner = () => {
     return (
