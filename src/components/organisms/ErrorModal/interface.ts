@@ -1,4 +1,4 @@
 export interface IProps {
-	errorMessage?: string;
-	children: any;
+    errorMessage?: string;
+    children: React.ReactNode;
 }

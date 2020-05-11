@@ -1,4 +1,4 @@
 export interface IProps {
-	children: any;
-	label: string;
+    children: React.ReactNode;
+    label: string;
 }

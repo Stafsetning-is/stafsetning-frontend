@@ -4,13 +4,19 @@ import { IProps } from "./interface";
 import { Inner, Outer, Text } from "./styles";
 import UserIcon from "../UserIcon";
 
+/**
+ * Holds the number of connected users in the system.
+ * Makes sure to change to the correct Icelandic conjugation
+ * if there is one user connected.
+ * Uses the UserIcon component to show the picture.
+ */
 export default ({ connectedUsers }: IProps) => {
-	const users = connectedUsers.slice(0, 3);
+    const users = connectedUsers.slice(0, 3);
 
-	const getPluralOrSingular = (count: number) => {
-		if (count === 11 || count % 10 !== 1) return "nemendur";
-		return "nemandi";
-	};
+    const getPluralOrSingular = (count: number) => {
+        if (count === 11 || count % 10 !== 1) return "nemendur";
+        return "nemandi";
+    };
 
 	return (
 		<Outer>
@@ -23,7 +29,7 @@ export default ({ connectedUsers }: IProps) => {
 						connectedUsers.length
 					} ${getPluralOrSingular(
 						connectedUsers.length
-					)} á Stafsetning.is ákkurat núna`}</Text>
+					)} á Stafsetning.is akkúrat núna`}</Text>
 				</Inner>
 			</InfoBox>
 		</Outer>
