@@ -1,5 +1,6 @@
 import LandingPage from "./LandingPage";
 import AboutUs from "./AboutUsPage";
+import CookieInfoPage from "./CookieInfoPage";
 
 export default [
     {
@@ -9,5 +10,9 @@ export default [
     {
         route: "/about-us",
         component: AboutUs
+    },
+    {
+        route: "/cookies",
+        component: CookieInfoPage
     }
 ];

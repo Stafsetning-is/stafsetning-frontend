@@ -4,4 +4,4 @@ export interface IProps {
 	type: ButtonTypes;
 }
 
-export type ButtonTypes = "danger" | "default" | "secondary";
+export type ButtonTypes = "danger" | "default" | "secondary" | "white";
