@@ -19,7 +19,7 @@ const Component = ({ logInUser }: IProps) => {
 		<Modal onBackgroundClick={() => setRedirectURL(clearLoginUrl())}>
 			<FormGenerator<LogInRes>
 				fields={loginForm}
-				label="Skrá inn"
+				label="Innskrá"
 				onSuccess={({ token, user }) => {
 					setAuthCookie(token);
 					logInUser(user);
@@ -28,7 +28,7 @@ const Component = ({ logInUser }: IProps) => {
 				postTo="/api/auth/log_in"
 			>
 				<BasicButton
-					text={"Búa til aðgang"}
+					text={"Nýskráning"}
 					onClick={() => setRedirectURL(getSignupUrl())}
 					type="secondary"
 				/>
