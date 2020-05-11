@@ -5,8 +5,8 @@ import { IconWrapper } from "./styles";
 import CookieConsent from "react-cookie-consent";
 
 /**
- * Displays exercise in a box that
- * can be used in a grid of exercises
+ * A CookieBanner component which allows user to
+ * accept policies and links to them.
  */
 export const CookieBanner = () => {
     return (
