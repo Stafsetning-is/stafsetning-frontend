@@ -54,16 +54,16 @@ const FilterComponent = ({
 				</OpenFilter>
 				<FilterOuter theme={{ open: sidebarVisible }}>
 					<Header>
-						<FilterTitle>Leita</FilterTitle>
+						<FilterTitle>Leitarsía</FilterTitle>
 						<FontAwesomeIcon
 							icon={faWindowClose}
 							onClick={closeFilterSideBar}
 						/>
 					</Header>
-					<Compartment label="Æfingar sem innihalda">
+					<Compartment label="Stafsetningarregla">
 						<GrammarRules />
 					</Compartment>
-					<Compartment label="Fjöldi orða">
+					<Compartment label="Orðafjöldi">
 						<DoubleSlider
 							{...SLIDER_PROPS}
 							value={sliderValue}
@@ -71,7 +71,7 @@ const FilterComponent = ({
 							type="text-input"
 						/>
 					</Compartment>
-					<Compartment label="Flýtileiðir">
+					<Compartment label="Sýna:">
 						{FILTER_BUTTONS.map((button) => (
 							<FilterButton
 								key={button.label}
