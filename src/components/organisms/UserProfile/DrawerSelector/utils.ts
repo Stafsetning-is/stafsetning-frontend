@@ -1,5 +1,7 @@
 import { DrawerRecipe } from "./interface";
-
+/**
+ * The available drawers that can be chosen
+ */
 export const DRAWER_LIST: DrawerRecipe[] = [
 	{
 		label: "Kláraðar æfingar",
@@ -10,7 +12,7 @@ export const DRAWER_LIST: DrawerRecipe[] = [
 		drawerType: "saved",
 	},
 	{
-		label: "Bikarar",
+		label: "Verðlaun",
 		drawerType: "trophies",
 	},
 ];

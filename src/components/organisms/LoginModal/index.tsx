@@ -9,7 +9,8 @@ import { connect } from "react-redux";
 import { logInUser } from "../../../actions";
 
 /**
- * The modal that displays login form
+ * The LoginModal component displays a modal which holds
+ * the login form and posts the information to the API
  */
 
 const Component = ({ logInUser }: IProps) => {
@@ -19,7 +20,7 @@ const Component = ({ logInUser }: IProps) => {
 		<Modal onBackgroundClick={() => setRedirectURL(clearLoginUrl())}>
 			<FormGenerator<LogInRes>
 				fields={loginForm}
-				label="Skrá inn"
+				label="Innskrá"
 				onSuccess={({ token, user }) => {
 					setAuthCookie(token);
 					logInUser(user);
@@ -28,7 +29,7 @@ const Component = ({ logInUser }: IProps) => {
 				postTo="/api/auth/log_in"
 			>
 				<BasicButton
-					text={"Búa til aðgang"}
+					text={"Nýskráning"}
 					onClick={() => setRedirectURL(getSignupUrl())}
 					type="secondary"
 				/>

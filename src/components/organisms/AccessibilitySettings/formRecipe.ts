@@ -1,7 +1,7 @@
 import { LiveInputElementRecipe } from "../../../services";
 
 const fontSize: LiveInputElementRecipe = {
-	label: "Stærð leturs",
+	label: "Leturstærð",
 	placeholder: "Letur stærð",
 	type: "slider",
 	modified: false,
@@ -15,7 +15,7 @@ const fontSize: LiveInputElementRecipe = {
 };
 
 const previewTTL: LiveInputElementRecipe = {
-	label: "Lengd birtingu texta á skjá",
+	label: "Tími sem texti er sýndur á skjá (sek)",
 	placeholder: "Veldu tíma sem hentar þér",
 	type: "slider",
 	modified: false,
@@ -29,25 +29,25 @@ const previewTTL: LiveInputElementRecipe = {
 };
 
 const alwaysShowPreview: LiveInputElementRecipe = {
-	label: " Texti alltaf sýndur á skjá",
-	type: "check-box",
-	placeholder: "",
-	modified: false,
-	value: false,
-	passProps: null,
+    label: " Texti alltaf sýndur á skjá",
+    type: "check-box",
+    placeholder: "",
+    modified: false,
+    value: false,
+    passProps: null
 };
 
 const showOnScreenKeyboard: LiveInputElementRecipe = {
-	label: "Lyklaborð sýnt á skjá",
-	type: "check-box",
-	placeholder: "",
-	modified: false,
-	value: false,
-	passProps: null,
+    label: "Lyklaborð sýnt á skjá",
+    type: "check-box",
+    placeholder: "",
+    modified: false,
+    value: false,
+    passProps: null
 };
 
 const textBackground: LiveInputElementRecipe = {
-	label: "Bakgrunnslitur æfingar",
+	label: "Bakgrunnslitur",
 	type: "color-picker",
 	placeholder: "",
 	modified: false,
@@ -69,9 +69,9 @@ const textBackground: LiveInputElementRecipe = {
 };
 
 export const changeUserPreferenceForm = {
-	fontSize,
-	previewTTL,
-	alwaysShowPreview,
-	showOnScreenKeyboard,
-	textBackground,
+    fontSize,
+    previewTTL,
+    alwaysShowPreview,
+    showOnScreenKeyboard,
+    textBackground
 };
