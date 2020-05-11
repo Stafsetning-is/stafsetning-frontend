@@ -12,8 +12,17 @@ import {
 import { StoreState } from "../../reducers";
 import { LoaderBox, PickGender } from "../../components";
 import { connect } from "react-redux";
-import { SIGNED_IN_USER_LEVELS, GUEST, ADMIN } from "./utils";
+import { SIGNED_IN_USER_LEVELS, GUEST, ADMIN, LOADING, UNKNOWN } from "./utils";
 
+/**
+ * Wraps a page with layout elements like header and other things
+ *
+ * It also serves as a guard to show loading animation
+ * while app has not decided if the user should be logged in or not
+ *
+ * LayoutWrapper also calls async actions when the user
+ * changes to fetch data from backend for the user
+ */
 const Component = ({
 	children,
 	fetchExercisesForUser,
@@ -54,13 +63,13 @@ const Component = ({
 		if (user.type === ADMIN) fetchAdminInviteList();
 	}, [user.type]);
 
-	const userPickedGender = user.gender && user.gender !== "loading";
+	const userPickedGender = user.gender && user.gender !== LOADING;
 
 	return (
 		<BackDrop>
 			<Header />
 			<CenterBlock>
-				<LoaderBox loading={user.type === "unknown"}>
+				<LoaderBox loading={user.type === UNKNOWN}>
 					{userPickedGender ? children : <PickGender />}
 				</LoaderBox>
 			</CenterBlock>

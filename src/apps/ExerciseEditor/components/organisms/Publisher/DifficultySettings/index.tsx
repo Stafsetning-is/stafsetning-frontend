@@ -7,6 +7,10 @@ import { StoreState } from "../../../../reducers";
 import { setStartRange, setEndRange } from "../../../../actions";
 import { IProps } from "./interface";
 
+/**
+ * Displays the two drop downs for selecting the difficulty range
+ * for an exercise
+ */
 const Component = ({
 	startRange,
 	endRange,

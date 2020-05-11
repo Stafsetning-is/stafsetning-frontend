@@ -8,7 +8,6 @@ export const getTextFromNodes = (nodes: Node[]) => {
 export const handleKeyDown = (
 	event: React.KeyboardEvent<HTMLDivElement>
 ): void => {
-	console.log("4", 4);
 	if (event.key === "Enter") event.preventDefault();
 };
 

@@ -25,6 +25,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Close, Collapse, Maximize } from "./styles";
 
+/**
+ * renders the tabs for the text editor
+ */
 const Component = ({
 	documents,
 	openTab,
@@ -52,7 +55,9 @@ const Component = ({
 				/>
 			</Maximize>
 			<Collapse onClick={expanded ? collapseEditor : expandEditor}>
-				<FontAwesomeIcon icon={expanded ? faCompressAlt : faExpandAlt} />
+				<FontAwesomeIcon
+					icon={expanded ? faCompressAlt : faExpandAlt}
+				/>
 			</Collapse>
 			{!noTabsOpen
 				? documents.map(({ fileName, _id, modified }, i) => (

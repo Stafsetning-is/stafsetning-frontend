@@ -7,10 +7,13 @@ import { connect } from "react-redux";
 import { IProps, DifficultyForm } from "./interface";
 import { changeUserDifficulty } from "../../../actions";
 import { StoreState } from "../../../reducers";
-import { PasswordInput } from "../../atoms";
-import { Form } from "../FormGenerator/styles";
-import { Api } from "../../../api";
 
+/**
+ * SettingsPage component holds the settings page
+ * for each user. It holds the difficulty change,
+ * password change and the accessibility settings.
+ * It stores the difficulty changes in a redux store.
+ */
 const Component = ({ changeUserDifficulty, difficulty }: IProps) => {
     return (
         <Outer>
@@ -39,5 +42,5 @@ const Component = ({ changeUserDifficulty, difficulty }: IProps) => {
 const mapStateToProps = (state: StoreState) => state.auth.user;
 
 export const SettingsPage = connect(mapStateToProps, {
-    changeUserDifficulty,
+    changeUserDifficulty
 })(Component);

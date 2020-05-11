@@ -11,6 +11,12 @@ import {
 	selectFile,
 } from "../../../actions";
 
+/**
+ * component for a exercise file icon
+ * The component is wrapped by iconwrapper
+ * which handles the click events of the file
+ * rest is just UI stuff
+ */
 const Component = ({
 	fileName,
 	_id,
