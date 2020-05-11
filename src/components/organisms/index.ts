@@ -14,6 +14,5 @@ export * from "./InfoPage";
 export * from "./TrophyBoxesContainer";
 export * from "./SettingsPage";
 export * from "./AccessibilitySettings";
-export * from "./AboutUs";
 export * from "./PickGender";
 export * from "./Samur";

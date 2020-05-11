@@ -11,7 +11,6 @@ import CookieConsent from "react-cookie-consent";
 export const CookieBanner = () => {
     return (
         <CookieConsent
-            debug={true}
             buttonText="Samþykkja"
             buttonStyle={{
                 height: "45px",
