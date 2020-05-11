@@ -1,5 +1,5 @@
 import React from "react";
-import { MainHeading, Heading, Content, Mailto } from "./styles";
+import { MainHeading, Heading, Content } from "./styles";
 
 export default () => {
     return (

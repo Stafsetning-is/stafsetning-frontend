@@ -20,67 +20,74 @@ import { GUEST } from "./utils";
  * that describes the component being wrapped
  */
 const Component = ({
-	children,
-	items,
-	queueTutorialItems,
-	location,
-	removeDialogsByLocation,
-	user,
+    children,
+    items,
+    queueTutorialItems,
+    location,
+    removeDialogsByLocation,
+    user
 }: IProps) => {
-	useEffect(() => {
-		/**
-		 * The main functionality of the tutorial wrapper
-		 * is in this useEfect hook
-		 */
+    useEffect(() => {
+        /**
+         * The main functionality of the tutorial wrapper
+         * is in this useEfect hook
+         */
 
-		// if the user is an guest then we do nothing in this hook
-		if (user.type === GUEST) return;
+        // if the user is an guest then we do nothing in this hook
+        if (user.type === GUEST) return;
 
-		// check which tutorial items are completed
-		Promise.all(items.map((item) => checkIfCompleted(item, user._id)))
-			.then((seenArray) => {
-				// we queue the tutorial items (action creator from REDUX)
-				queueTutorialItems(
-					/**
-					 * first we map them to add this location
-					 * as the location for that item
-					 * then we chain a filter to the items
-					 * and use the results from the Promise.all
-					 * to filter out the tutorial items that have been completed
-					 * items
-					 */
+        // check which tutorial items are completed
+        Promise.all(items.map((item) => checkIfCompleted(item, user._id)))
+            .then((seenArray) => {
+                // we queue the tutorial items (action creator from REDUX)
+                queueTutorialItems(
+                    /**
+                     * first we map them to add this location
+                     * as the location for that item
+                     * then we chain a filter to the items
+                     * and use the results from the Promise.all
+                     * to filter out the tutorial items that have been completed
+                     * items
+                     */
 
-					items
-						.map((item) => ({
-							...item,
-							location,
-						}))
-						.filter((_item, index) => {
-							return !seenArray[index];
-						})
-				);
-			})
-			.catch(() => {
-				// do nothing if there is an error
-			});
+                    items
+                        .map((item) => ({
+                            ...item,
+                            location
+                        }))
+                        .filter((_item, index) => {
+                            return !seenArray[index];
+                        })
+                );
+            })
+            .catch(() => {
+                // do nothing if there is an error
+            });
 
-		/**
-		 * when the component is unmounted we remove all
-		 * items from the Dialogs Queue that were added
-		 * to the dialog queue from this location
-		 */
-		return () => removeDialogsByLocation(location);
-	}, []);
+        /**
+         * when the component is unmounted we remove all
+         * items from the Dialogs Queue that were added
+         * to the dialog queue from this location
+         */
+        return () => removeDialogsByLocation(location);
+    }, [
+        items,
+        location,
+        queueTutorialItems,
+        removeDialogsByLocation,
+        user._id,
+        user.type
+    ]);
 
-	// simply returns the children
-	return <React.Fragment>{children}</React.Fragment>;
+    // simply returns the children
+    return <React.Fragment>{children}</React.Fragment>;
 };
 
 const mapStateToProps = (state: StoreState) => ({
-	user: state.auth.user,
+    user: state.auth.user
 });
 
 export const TutorialWrapper = connect(mapStateToProps, {
-	queueTutorialItems,
-	removeDialogsByLocation,
+    queueTutorialItems,
+    removeDialogsByLocation
 })(Component);

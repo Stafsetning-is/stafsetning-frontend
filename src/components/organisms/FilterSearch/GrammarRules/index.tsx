@@ -23,13 +23,14 @@ const Component = ({
     const rules = useMemo(() => countRules(exercises), [exercises]);
 
     // maps rules to JSX
-    const ruleJSX = rules.map((rule) => {
+    const ruleJSX = rules.map((rule, i) => {
         const isSelected = selectedRules.includes(rule.id);
         const clickHandler = isSelected
             ? removeRuleFromFilter
             : addRuleToFilter;
         return (
             <FilterToggleBox
+                key={i}
                 {...rule}
                 selected={isSelected}
                 onClick={() => clickHandler(rule.id)}

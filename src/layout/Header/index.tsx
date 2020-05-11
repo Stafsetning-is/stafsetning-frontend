@@ -11,7 +11,6 @@ import { IProps } from "./interface";
 import { StoreState } from "../../reducers";
 import { signOut } from "../../actions";
 import { Points } from "../../components";
-import UserAvatar from "../UserAvatar";
 /**
  * Header component for layout
  */

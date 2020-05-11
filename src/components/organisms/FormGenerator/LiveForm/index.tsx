@@ -67,8 +67,8 @@ export const LiveForm = <T extends {}>({
         <Outer>
             <Title>{label}</Title>
             <Inner>
-                {inputElements.map((element) => (
-                    <InputElementOuter>
+                {inputElements.map((element, i) => (
+                    <InputElementOuter key={i}>
                         <InputerElementInner>
                             <InputFactory
                                 {...element}
