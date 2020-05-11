@@ -24,7 +24,6 @@ export const Content = styled.p`
 `;
 
 export const Mailto = styled.a`
-    margin-left: 5px;
     color: #0000ee;
     text-decoration: underline;
     :visited {
