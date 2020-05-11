@@ -2,7 +2,7 @@ import { TutorialItem, TutorialLocations } from "../interface";
 
 export const EXERCISE_FIRST_STEP: TutorialItem = {
 	text:
-		"Velkominn í fyrstu æfinguna þína. Ef það vakna einhverjar spurningar þá verð ég niðri í horninu með leiðbeiningar!",
+		"Velkomin/nn í fyrstu æfinguna þína! Ég verð hér niðri í horninu með fleiri leiðbeiningar fyrir þig!",
 	type: "exercise-explain-step-1",
 	auth: "user",
 	actions: [
@@ -17,8 +17,7 @@ export const EXERCISE_FIRST_STEP: TutorialItem = {
 };
 
 export const EXERCISE_SECOND_STEP: TutorialItem = {
-	text:
-		"Þegar þú sérð gráa textann þá áttu að skrifa hann inn! Passaðu þig að skrifa hann eins, annars færðu villu 😃",
+	text: "Skrifaðu eftir gráa textanum. Passaðu þig að gera ekki villu!",
 	type: "exercise-explain-step-2",
 	auth: "user",
 	actions: [],
@@ -27,8 +26,7 @@ export const EXERCISE_SECOND_STEP: TutorialItem = {
 };
 
 export const EXERCISE_THIRD_STEP: TutorialItem = {
-	text:
-		"Mundu að þú getur ýtt á „BIRTA“ takkann ef þú manst ekki hvað þú átt að skrifa!",
+	text: "Þú getur ýtt á „Birta“ takkann til að sjá textann aftur!",
 	type: "exercise-explain-step-3",
 	auth: "user",
 	actions: [],
@@ -37,7 +35,7 @@ export const EXERCISE_THIRD_STEP: TutorialItem = {
 };
 
 export const EXERCISE_FOURTH_STEP: TutorialItem = {
-	text: "Vá, þú ert að standa þig vel. Þú átt skilið bikað!",
+	text: "Vá, þú ert að standa þig svo vel! Þú átt skilið verðlaun!",
 	type: "exercise-explain-step-4",
 	auth: "user",
 	actions: [],
