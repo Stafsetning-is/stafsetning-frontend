@@ -6,8 +6,8 @@ import { BUTTON_TEXT, CONTENT_TEXT } from "./utils";
 import CookieConsent from "react-cookie-consent";
 
 /**
- * Displays exercise in a box that
- * can be used in a grid of exercises
+ * A CookieBanner component which allows user to
+ * accept the usage of cookies and links to policy page.
  */
 export const CookieBanner = () => {
     return (
