@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { InputFactory } from "../../..";
 import {
     InputElementOuter,
@@ -8,17 +8,10 @@ import {
     Inner
 } from "./styles";
 import { Api } from "../../../../api";
-import {
-    getLiveInputElementsArray,
-    getUserData,
-    applyDefaultValues
-} from "../utils";
+import { getLiveInputElementsArray, applyDefaultValues } from "../utils";
 import { IProps } from "./interface";
-import { LiveInputObject, InputObject } from "../../../../services";
-/**
- * LiveForm component used to update user input without having to save.
- * Main difference from the FormGenerator component is the modified boolean
- */
+import { LiveInputObject } from "../../../../services";
+
 export const LiveForm = <T extends {}>({
     fields,
     postTo,
@@ -46,6 +39,7 @@ export const LiveForm = <T extends {}>({
         setFormObject({ ...formObjectCopy });
         postDifficulty(formObjectCopy);
     };
+
     /**
      * Adjusts the modified boolean with new values
      * and posts the value to the API.

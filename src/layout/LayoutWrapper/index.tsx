@@ -62,7 +62,7 @@ const Component = ({
      */
     useEffect(() => {
         if (user.type === ADMIN) fetchAdminInviteList();
-    }, [user.type]);
+    }, [user.type, fetchAdminInviteList]);
 
     const userPickedGender = user.gender && user.gender !== "loading";
 

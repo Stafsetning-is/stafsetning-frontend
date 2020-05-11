@@ -11,19 +11,16 @@ import { MIN_BAR_WIDTH } from "./utils";
  * wide to said ratio.
  */
 export default ({ ratio }: IProps) => {
-	// sets the state to length zero
-	const [barLength, setBarLength] = useState(0);
+    const [barLength, setBarLength] = useState(0);
 
-	// sets the length with hook
-	useEffect(() => {
-		setBarLength(ratio);
-	}, []);
+    useEffect(() => {
+        setBarLength(ratio);
+    }, [ratio]);
 
-	// makes sure that the width is not below the min width
-	const displayWidth = ratio < MIN_BAR_WIDTH ? MIN_BAR_WIDTH : barLength;
-	return (
-		<Outer>
-			<Inner theme={{ ratio: displayWidth }} />
-		</Outer>
-	);
+    const displayWidth = ratio === 0 ? 0.01 : barLength;
+    return (
+        <Outer>
+            <Inner theme={{ ratio: displayWidth }} />
+        </Outer>
+    );
 };

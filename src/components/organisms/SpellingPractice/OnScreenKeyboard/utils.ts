@@ -1,6 +1,6 @@
 const SHIFT = "⇧";
 const SHIFT_PUNC_MARKS = ["?", "!"];
-const ACCENTED_CHARS = ["á", "é", "í", "ú", , "ó", "ý"];
+const ACCENTED_CHARS = ["á", "é", "í", "ú", "ó", "ý"];
 const NORMALIZE_FORM = "NFD";
 const EMPTY_STR = "";
 const ACCENT = "´";

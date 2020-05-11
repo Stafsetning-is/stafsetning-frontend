@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { ExerciseBox, LoaderBox } from "../../";
+import React from "react";
+import { ExerciseBox } from "../../";
 import { IProps } from "./interface";
 import { connect } from "react-redux";
 import { starExerciseInSelection } from "../../../actions";

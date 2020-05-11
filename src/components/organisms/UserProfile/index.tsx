@@ -33,7 +33,7 @@ const Component = ({
         getSavedExercises();
         fetchFinishedExercises();
         fetchTrophies();
-    }, []);
+    }, [getSavedExercises, fetchFinishedExercises, fetchTrophies]);
     return (
         <Fragment>
             <UserProfileDetails {...user} />
