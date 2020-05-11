@@ -116,7 +116,7 @@ const Component = ({
 			<StatBox counter={counter} ownerId={owner} />
 			<ExerciseContainer>
 				<AccessibilityContainer>
-					<AccessibilitySettings label="Útlitsstillingar" />
+					<AccessibilitySettings label="Stillingar" />
 				</AccessibilityContainer>
 				<ErrorCounter count={errorCount} />
 				<PreviewButton onClick={() => session?.emitText(true)} />
