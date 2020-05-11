@@ -1,7 +1,7 @@
 import { LiveInputElementRecipe } from "../../../services";
 
 const fontSize: LiveInputElementRecipe = {
-	label: "Stærð leturs",
+	label: "Leturstærð",
 	placeholder: "Letur stærð",
 	type: "slider",
 	modified: false,
@@ -15,7 +15,7 @@ const fontSize: LiveInputElementRecipe = {
 };
 
 const previewTTL: LiveInputElementRecipe = {
-	label: "Lengd birtingu texta á skjá",
+	label: "Tími sem texti er sýndur á skjá (sek)",
 	placeholder: "Veldu tíma sem hentar þér",
 	type: "slider",
 	modified: false,
@@ -47,7 +47,7 @@ const showOnScreenKeyboard: LiveInputElementRecipe = {
 };
 
 const textBackground: LiveInputElementRecipe = {
-	label: "Bakgrunnslitur æfingar",
+	label: "Bakgrunnslitur",
 	type: "color-picker",
 	placeholder: "",
 	modified: false,
