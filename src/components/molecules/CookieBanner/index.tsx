@@ -1,23 +1,48 @@
 import React from "react";
-import { IProps } from "./interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCookieBite } from "@fortawesome/free-solid-svg-icons";
-import { Description, Banner, ButtonWrapper, IconWrapper } from "./styles";
-import { BasicButton } from "../../atoms";
+import { IconWrapper } from "./styles";
+import CookieConsent from "react-cookie-consent";
+
 /**
  * Displays exercise in a box that
  * can be used in a grid of exercises
  */
-export const CookieBanner = ({ text }: IProps) => {
-	return (
-		<Banner>
-			<IconWrapper>
-				<FontAwesomeIcon icon={faCookieBite} />
-			</IconWrapper>
-			<Description>{text}</Description>
-			<ButtonWrapper>
-				<BasicButton text="Samþykkja" type="white" />
-			</ButtonWrapper>
-		</Banner>
-	);
+export const CookieBanner = () => {
+    return (
+        <CookieConsent
+            debug={true}
+            buttonText="Samþykkja"
+            buttonStyle={{
+                height: "45px",
+                backgroundColor: "#e8e8e8",
+                color: "#4e4e4e",
+                border: "#666 2px solid",
+                fontSize: "16px",
+                outline: "none"
+            }}
+            contentStyle={{ flex: "0 0 600px", margin: "0 auto" }}
+            style={{
+                height: "100px",
+                opacity: "0.8",
+                backgroundColor: "#51cd76",
+                alignItems: "center",
+                color: "black"
+            }}
+        >
+            <IconWrapper
+                style={{ position: "fixed", left: "70px", bottom: "20px" }}
+            >
+                <FontAwesomeIcon icon={faCookieBite} />
+            </IconWrapper>
+            Við notum kökur á síðunni til að bæta notendaupplifun þína. Fyrir
+            yfirlit yfir hvað við notum kökur fyrir, smelltu{" "}
+            <a
+                style={{ color: "#0000ee", textDecoration: "underline" }}
+                href="/cookies"
+            >
+                hér.
+            </a>
+        </CookieConsent>
+    );
 };
