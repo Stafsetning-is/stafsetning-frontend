@@ -7,7 +7,7 @@ const lockedTrophy: Trophy = {
 	icon: "faLock",
 	title: "Læst",
 	locked: true,
-	description: "Þú hefur ekki fengið þennan bikar enn.",
+	description: "Þú hefur ekki fengið þessi verðlaun enn.",
 };
 
 export const LOCKED_TROPHIES = new Array(ITEM_IN_ROWS * ROWS).fill(
