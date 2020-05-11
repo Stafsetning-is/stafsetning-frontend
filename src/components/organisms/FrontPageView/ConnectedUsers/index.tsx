@@ -23,7 +23,7 @@ export default ({ connectedUsers }: IProps) => {
 						connectedUsers.length
 					} ${getPluralOrSingular(
 						connectedUsers.length
-					)} á Stafsetning.is ákkurat núna`}</Text>
+					)} á Stafsetning.is akkúrat núna`}</Text>
 				</Inner>
 			</InfoBox>
 		</Outer>
