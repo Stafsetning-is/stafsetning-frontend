@@ -109,24 +109,24 @@ const Component = ({
         "exercise-explain-step-4"
     );
 
-    if (comletedPracticeId)
-        return <Redirect to={`/completed/${comletedPracticeId}`} />;
-    return (
-        <React.Fragment>
-            <StatBox counter={counter} ownerId={owner} />
-            <ExerciseContainer>
-                <AccessibilityContainer>
-                    <AccessibilitySettings label="Útlitsstillingar" />
-                </AccessibilityContainer>
-                <ErrorCounter count={errorCount} />
-                <PreviewButton onClick={() => session?.emitText(true)} />
-                <TextViewWrapper>
-                    <TypedText typed={typed} preview={preview} error={error} />
-                    <OnScreenKeyboard highlight={nextChar} />
-                </TextViewWrapper>
-            </ExerciseContainer>
-        </React.Fragment>
-    );
+	if (comletedPracticeId)
+		return <Redirect to={`/completed/${comletedPracticeId}`} />;
+	return (
+		<React.Fragment>
+			<StatBox counter={counter} ownerId={owner} />
+			<ExerciseContainer>
+				<AccessibilityContainer>
+					<AccessibilitySettings label="Stillingar" />
+				</AccessibilityContainer>
+				<ErrorCounter count={errorCount} />
+				<PreviewButton onClick={() => session?.emitText(true)} />
+				<TextViewWrapper>
+					<TypedText typed={typed} preview={preview} error={error} />
+					<OnScreenKeyboard highlight={nextChar} />
+				</TextViewWrapper>
+			</ExerciseContainer>
+		</React.Fragment>
+	);
 };
 
 const mapStateToProps = (state: StoreState) => ({

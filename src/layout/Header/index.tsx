@@ -26,7 +26,7 @@ const Header = ({ user, signOut, pendingInvitesCount }: IProps) => {
 					<RightSide>
 						<AuthHider setAuthLevel="guest">
 							<HeaderItem
-								text="Búa til aðgang"
+								text="Nýskráning"
 								dropDownItems={[]}
 								to={`${urlWithoutPath()}sign-up`}
 							/>
@@ -34,7 +34,7 @@ const Header = ({ user, signOut, pendingInvitesCount }: IProps) => {
 						<AuthHider setAuthLevel="guest">
 							<HeaderItem
 								to={`${urlWithoutPath()}log-in`}
-								text="Skrá inn"
+								text="Innskráning"
 								dropDownItems={[]}
 							/>
 						</AuthHider>
@@ -58,7 +58,7 @@ const Header = ({ user, signOut, pendingInvitesCount }: IProps) => {
 								text={user.name}
 								dropDownItems={[
 									{
-										label: "Minn prófíll",
+										label: "Mín síða",
 										to: "/user/profile/",
 										authLevel: "user",
 										icon: "faUserCircle",
@@ -93,10 +93,10 @@ const Header = ({ user, signOut, pendingInvitesCount }: IProps) => {
 };
 
 const mapStateToProps = ({
-    auth: { user, pendingAdminInvite }
+	auth: { user, pendingAdminInvite },
 }: StoreState) => ({
-    user,
-    pendingInvitesCount: pendingAdminInvite.length
+	user,
+	pendingInvitesCount: pendingAdminInvite.length,
 });
 
 export default connect(mapStateToProps, { signOut })(Header);

@@ -1,7 +1,7 @@
 import { TutorialItem, TutorialLocations } from "../interface";
 
 export const TRY_FIRST_EXERCISE: TutorialItem = {
-	text: "Ýttu á einhverja æfingu hérna á forsíðunni til að halda áfram.",
+	text: "Veldu æfingu og smelltu á opna til að halda áfram!",
 	type: "try-first-exercise",
 	auth: "user",
 	actions: [],
@@ -10,7 +10,8 @@ export const TRY_FIRST_EXERCISE: TutorialItem = {
 };
 
 export const FIRST_WELCOME: TutorialItem = {
-	text: "Hæ ég heiti Sámur. Ég ætla að sýna þér Stafsetning.is",
+	text:
+		"Hæ ég heiti Sámur. Ég ætla að sýna þér hvernig Stafsetning.is virkar!",
 	type: "click-exercise-box-on-front-page",
 	auth: "user",
 	actions: [

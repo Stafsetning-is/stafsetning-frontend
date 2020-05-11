@@ -51,46 +51,46 @@ const FilterComponent = ({
         [minWordCount, maxWordCount]
     );
 
-    return (
-        <AuthHider setAuthLevel="user">
-            <DifficultyHider min={4} max={11}>
-                <OpenFilter onClick={openFilterSideBar}>
-                    <FontAwesomeIcon icon={faFilter} />
-                </OpenFilter>
-                <FilterOuter theme={{ open: sidebarVisible }}>
-                    <Header>
-                        <FilterTitle>Leita</FilterTitle>
-                        <FontAwesomeIcon
-                            icon={faWindowClose}
-                            onClick={closeFilterSideBar}
-                        />
-                    </Header>
-                    <Compartment label="Æfingar sem innihalda">
-                        <GrammarRules />
-                    </Compartment>
-                    <Compartment label="Fjöldi orða">
-                        <DoubleSlider
-                            {...SLIDER_PROPS}
-                            value={sliderValue}
-                            onChange={sliderMovement}
-                            type="text-input"
-                        />
-                    </Compartment>
-                    <Compartment label="Flýtileiðir">
-                        {FILTER_BUTTONS.map((button) => (
-                            <FilterButton
-                                key={button.label}
-                                text={button.label}
-                                selected={quickFilter === button.quickFilter}
-                                onClick={setQuickFilter}
-                                quickFilter={button.quickFilter}
-                            />
-                        ))}
-                    </Compartment>
-                </FilterOuter>
-            </DifficultyHider>
-        </AuthHider>
-    );
+	return (
+		<AuthHider setAuthLevel="user">
+			<DifficultyHider min={4} max={11}>
+				<OpenFilter onClick={openFilterSideBar}>
+					<FontAwesomeIcon icon={faFilter} />
+				</OpenFilter>
+				<FilterOuter theme={{ open: sidebarVisible }}>
+					<Header>
+						<FilterTitle>Leitarsía</FilterTitle>
+						<FontAwesomeIcon
+							icon={faWindowClose}
+							onClick={closeFilterSideBar}
+						/>
+					</Header>
+					<Compartment label="Stafsetningarregla">
+						<GrammarRules />
+					</Compartment>
+					<Compartment label="Orðafjöldi">
+						<DoubleSlider
+							{...SLIDER_PROPS}
+							value={sliderValue}
+							onChange={sliderMovement}
+							type="text-input"
+						/>
+					</Compartment>
+					<Compartment label="Sýna:">
+						{FILTER_BUTTONS.map((button) => (
+							<FilterButton
+								key={button.label}
+								text={button.label}
+								selected={quickFilter === button.quickFilter}
+								onClick={setQuickFilter}
+								quickFilter={button.quickFilter}
+							/>
+						))}
+					</Compartment>
+				</FilterOuter>
+			</DifficultyHider>
+		</AuthHider>
+	);
 };
 
 const mapStateToPropss = (store: StoreState) => store.filter;

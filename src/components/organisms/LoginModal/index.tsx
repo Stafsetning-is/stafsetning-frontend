@@ -14,27 +14,27 @@ import { logInUser } from "../../../actions";
  */
 
 const Component = ({ logInUser }: IProps) => {
-    const [redirectURL, setRedirectURL] = useState<string>();
-    if (redirectURL) return <Redirect to={redirectURL} />;
-    return (
-        <Modal onBackgroundClick={() => setRedirectURL(clearLoginUrl())}>
-            <FormGenerator<LogInRes>
-                fields={loginForm}
-                label="Skrá inn"
-                onSuccess={({ token, user }) => {
-                    setAuthCookie(token);
-                    logInUser(user);
-                    setRedirectURL("/");
-                }}
-                postTo="/api/auth/log_in"
-            >
-                <BasicButton
-                    text={"Búa til aðgang"}
-                    onClick={() => setRedirectURL(getSignupUrl())}
-                    type="secondary"
-                />
-            </FormGenerator>
-        </Modal>
-    );
+	const [redirectURL, setRedirectURL] = useState<string>();
+	if (redirectURL) return <Redirect to={redirectURL} />;
+	return (
+		<Modal onBackgroundClick={() => setRedirectURL(clearLoginUrl())}>
+			<FormGenerator<LogInRes>
+				fields={loginForm}
+				label="Innskrá"
+				onSuccess={({ token, user }) => {
+					setAuthCookie(token);
+					logInUser(user);
+					setRedirectURL("/");
+				}}
+				postTo="/api/auth/log_in"
+			>
+				<BasicButton
+					text={"Nýskráning"}
+					onClick={() => setRedirectURL(getSignupUrl())}
+					type="secondary"
+				/>
+			</FormGenerator>
+		</Modal>
+	);
 };
 export const LoginModal = connect(null, { logInUser })(Component);
