@@ -23,7 +23,7 @@ export const Content = styled.p`
     font-size: 25px;
 `;
 
-export const Mailto = styled.a`
+export const MailtoLink = styled.a`
     color: #0000ee;
     text-decoration: underline;
     :visited {

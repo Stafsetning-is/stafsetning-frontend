@@ -2,7 +2,7 @@ import React from "react";
 import {
     Heading,
     Content,
-    Mailto,
+    MailtoLink,
     DeveloperImage,
     DeveloperImageWrapper
 } from "./styles";
@@ -24,10 +24,10 @@ export default () => {
             </DeveloperImageWrapper>
             <Content>
                 Endilega
-                <Mailto href="mailto:gabriel.sighvatsson@gmail.com">
+                <MailtoLink href="mailto:gabriel.sighvatsson@gmail.com">
                     {" "}
                     hafðu samband!
-                </Mailto>
+                </MailtoLink>
             </Content>
             {/* TODO
             TOS, contact, report a bug, use of cookies */}
