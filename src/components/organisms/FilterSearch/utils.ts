@@ -11,11 +11,11 @@ export const SLIDER_PROPS = {
 
 export const FILTER_BUTTONS: FilterButton[] = [
 	{
-		label: "Fela þær sem ég er búinn með",
+		label: "ókláraðar æfingar",
 		quickFilter: "hide-completed",
 	},
 	{
-		label: "Sýna vistaðar",
+		label: "vistaðar æfingar",
 		quickFilter: "show-saved",
 	},
 ];
