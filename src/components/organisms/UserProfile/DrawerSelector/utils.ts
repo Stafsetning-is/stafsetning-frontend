@@ -10,7 +10,7 @@ export const DRAWER_LIST: DrawerRecipe[] = [
 		drawerType: "saved",
 	},
 	{
-		label: "Bikarar",
+		label: "Verðlaun",
 		drawerType: "trophies",
 	},
 ];
