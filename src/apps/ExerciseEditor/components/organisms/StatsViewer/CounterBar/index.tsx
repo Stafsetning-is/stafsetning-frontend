@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Outer, Inner } from "./styles";
 import { IProps } from "./interface";
-import { MIN_BAR_WIDTH } from "./utils";
 /**
  * An bar that takes in a ratio of
  * how how many completed said row
