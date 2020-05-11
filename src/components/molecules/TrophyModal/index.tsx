@@ -50,13 +50,13 @@ const Component = ({ trophy, closeTrophyModal }: IProps) => {
 					/>
 				</TopHeading>
 				{trophy.old ? null : (
-					<SubHeading>Þú fékkst nýjan bikar!</SubHeading>
+					<SubHeading>Þú fékkst ný verðlaun!</SubHeading>
 				)}
 				<DescriptionText>{trophy.description}</DescriptionText>
 				{trophy.old ? null : (
 					<BottomText>
-						Bikararnir þínir eru geymdir á þinni síðu. Þú getur
-						unnið inn fleiri bikara með góðum árangri.
+						Verðlaunin þín eru geymd á þinni síðu. Þú getur unnið
+						inn fleiri verðlaun með góðum árangri.
 					</BottomText>
 				)}
 			</FlipCard>
