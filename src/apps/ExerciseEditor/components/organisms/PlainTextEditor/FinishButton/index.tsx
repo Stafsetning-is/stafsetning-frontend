@@ -13,7 +13,7 @@ const Component = ({ shouldHide, onClick }: IProps) => {
 	if (shouldHide) return null;
 	return (
 		<Outer>
-			<UIButton onClick={onClick} label="Ljúka við æfingu" />
+			<UIButton onClick={onClick} label="Vista æfingu" />
 		</Outer>
 	);
 };

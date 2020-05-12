@@ -18,11 +18,11 @@ export const textToNodes = (text: string) => [
 ];
 
 export const NO_FILES_OPEN_TEXT =
-	"Þú getur ýtt á plúsinn hér fyrir ofan eða valið úr skrám undir ,,þínum æfingum.”";
+	"Smelltu á ,,Búa til æfingu” til að smíða nýja æfingu. Veldu skrá undir ,,mín skjöl” til að breyta æfingu.";
 
 export const NO_TAB_OPEN_TEXT = "Veldu flipa til þess að vinna með texta";
 
-export const EDITOR_PLACEHOLDER = "Hér getur þú búið til æfingu";
+export const EDITOR_PLACEHOLDER = "Smíða nýja æfingu...";
 
 export const getTextFromFile = (file: BaseDocument | null) => {
 	if (!file) return textToNodes(EDITOR_PLACEHOLDER);

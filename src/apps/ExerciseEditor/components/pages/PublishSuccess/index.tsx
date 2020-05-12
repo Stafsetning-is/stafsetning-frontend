@@ -17,16 +17,10 @@ const Component = ({ exerciseId }: IProps) => {
 		<InfoPage type="success" title={TITLE} text={TEXT}>
 			<div>
 				<NavLink to={`/exercise/practice/${exerciseId}`}>
-					<UIButton
-						label="Skoða æfingu sem nemandi"
-						onClick={() => {}}
-					/>
+					<UIButton label="Skoða æfingu" onClick={() => {}} />
 				</NavLink>
 				<NavLink to="/app/exercise-editor/">
-					<UIButton
-						label="Halda áfram sem kennari"
-						onClick={() => {}}
-					/>
+					<UIButton label="Halda áfram" onClick={() => {}} />
 				</NavLink>
 			</div>
 		</InfoPage>

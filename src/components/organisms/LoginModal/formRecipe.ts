@@ -1,9 +1,9 @@
 import { InputElementRecipe, InputObject } from "../../../services";
 
 const username: InputElementRecipe = {
-	label: "Notendanafn",
+	label: "Notandanafn",
 	type: "text-input",
-	placeholder: "Notendanafn",
+	placeholder: "Notandanafn",
 	validation: {
 		minLength: 5,
 		trim: true,

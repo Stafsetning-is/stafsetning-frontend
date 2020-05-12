@@ -29,7 +29,7 @@ const validators: ValidationInstructions[] = [
 		validationFunction: (file) => !!file.modified,
 	},
 	{
-		message: "Nefndu skjalið með því að tvíklikka á flipa þess",
+		message: "Nefndu skjalið með því að tvísmella á flipann",
 		validationFunction: (file) => file.fileName !== "",
 	},
 	{
