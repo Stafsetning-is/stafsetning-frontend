@@ -9,6 +9,6 @@ import { Loader } from "../..";
  * @param needs props.children
  */
 export const LoadChildrenWrapper = ({ children }: IProps) => {
-	if (Children.count(children) === 0) return <Loader loading={true} />;
-	else return <React.Fragment>{children}</React.Fragment>;
+    if (Children.count(children) === 0) return <Loader loading={true} />;
+    else return <React.Fragment>{children}</React.Fragment>;
 };
