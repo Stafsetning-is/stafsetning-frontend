@@ -1,6 +1,6 @@
 export interface IProps {
-	children: any;
-	service: "log-in" | "sign-up";
-	isAuth: boolean;
-	to: string;
+    children: React.ReactNode;
+    service: "log-in" | "sign-up";
+    isAuth: boolean;
+    to: string;
 }
