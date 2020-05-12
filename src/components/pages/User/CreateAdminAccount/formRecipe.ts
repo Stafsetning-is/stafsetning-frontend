@@ -1,9 +1,9 @@
 import { InputElementRecipe, InputObject } from "../../../../services";
 
 const mobile: InputElementRecipe = {
-	label: "Farsímanúmer",
+	label: "Símanúmer",
 	type: "text-input",
-	placeholder: "GSM númer",
+	placeholder: "Símanúmer",
 	validation: {
 		pattern: {
 			regex: new RegExp(/^[6-8]\d{2}[-\s]?\d{4}$/, "g"),
@@ -26,9 +26,9 @@ const name: InputElementRecipe = {
 };
 
 const username: InputElementRecipe = {
-	label: "Notendanafn",
+	label: "Notandanafn",
 	type: "text-input",
-	placeholder: "Notendanafn",
+	placeholder: "Notandanafn",
 	validation: {
 		minLength: 6,
 	},

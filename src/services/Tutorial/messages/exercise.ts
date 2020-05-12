@@ -26,7 +26,7 @@ export const EXERCISE_SECOND_STEP: TutorialItem = {
 };
 
 export const EXERCISE_THIRD_STEP: TutorialItem = {
-	text: "Þú getur ýtt á „Birta“ takkann til að sjá textann aftur!",
+	text: "Þú getur smellt á „Birta“ takkann til að sjá textann aftur!",
 	type: "exercise-explain-step-3",
 	auth: "user",
 	actions: [],

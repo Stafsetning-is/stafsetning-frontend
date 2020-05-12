@@ -48,7 +48,7 @@ const SELECTIONS = [
 ];
 
 export const StartOfDifficultyRange: DropDownRecipe = {
-	label: "Yngstu nemendur sem mega taka æfinguna",
+	label: "Neðri mörk námsstigs",
 	type: "drop-down",
 	placeholder: "Veldu námstig",
 	value: "",
@@ -57,7 +57,7 @@ export const StartOfDifficultyRange: DropDownRecipe = {
 };
 
 export const EndOfDifficultyRange: DropDownRecipe = {
-	label: "Elstu nemendur sem mega taka æfinguna",
+	label: "Efri mörk námsstigs",
 	type: "drop-down",
 	placeholder: "Veldu námstig",
 	value: "",
