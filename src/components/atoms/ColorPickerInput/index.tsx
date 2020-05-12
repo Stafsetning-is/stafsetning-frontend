@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FormLabel } from "..";
 import { Grid } from "../../";
 import { IProps } from "./interface";
+import { COLORS_IN_ROW } from "./utils";
 import {
 	Outer,
 	PickedColor,
@@ -32,7 +33,7 @@ export const ColorPickerInput = ({
 		return validationMessage ?? "";
 	};
 
-	const handleSelection = (value: any) => {
+	const handleSelection = (value: string) => {
 		onChange(value);
 		close();
 	};
@@ -47,7 +48,7 @@ export const ColorPickerInput = ({
 				<Text>Veldu lit</Text>
 				{isOpen ? (
 					<Selections>
-						<Grid itemsInRow={4} isEmpty={false}>
+						<Grid itemsInRow={COLORS_IN_ROW} isEmpty={false}>
 							{colors.map((color) => (
 								<ColorBox
 									theme={{ color }}

@@ -8,73 +8,77 @@ import { FormLabel } from "../../";
  * DropDown element for forms
  */
 export const DropDown = ({
-    value,
-    onChange,
-    label,
-    placeholder,
-    validationMessage,
-    selections
+	value,
+	onChange,
+	label,
+	placeholder,
+	validationMessage,
+	selections,
 }: DropDownComponent) => {
-    const [isOpen, setOpen] = useState(false);
-    const [buttonText, setButtonText] = useState("");
+	const [isOpen, setOpen] = useState(false);
+	const [buttonText, setButtonText] = useState("");
 
-    // opens or keeps open
-    const open = () => setOpen(true);
-    // closes or keeps closed
-    const close = () => setOpen(false);
+	// opens or keeps open
+	const open = () => setOpen(true);
+	// closes or keeps closed
+	const close = () => setOpen(false);
 
-    /**
-     * Handles the logic of
-     * selecting a value and returning said value to form
-     * @param value The value selectted
-     */
-    const handleSelection = (value: any, text: string) => {
-        onChange(value);
-        close();
-    };
-    /**
-     * Returns validation message
-     */
-    const getValidationMessage = () => {
-        if (!value) return "";
-        return validationMessage ?? "";
-    };
+	/**
+	 * Handles the logic of
+	 * selecting a value and returning said value to form
+	 * @param value The value selected
+	 *
+	 * any type allowed as the value can be anything
+	 * and does not need type checking
+	 */
+	const handleSelection = (value: any, text: string) => {
+		onChange(value);
+		close();
+	};
+	/**
+	 * Returns validation message
+	 */
+	const getValidationMessage = () => {
+		if (!value) return "";
+		return validationMessage ?? "";
+	};
 
-    /**
-     * Sets the button text to placeholder when component
-     * mounts
-     */
-    useEffect(() => {
-        const selected = selections.find((item) => item.value === value);
-        if (selected) setButtonText(selected.text);
-        else setButtonText(placeholder || "");
-    }, [placeholder, selections, value]);
+	/**
+	 * Sets the button text to placeholder when component
+	 * mounts
+	 */
+	useEffect(() => {
+		const selected = selections.find((item) => item.value === value);
+		if (selected) setButtonText(selected.text);
+		else setButtonText(placeholder || "");
+	}, [placeholder, selections, value]);
 
-    /**
-     * Renders the drop down list
-     */
-    const DropDownList = () => {
-        if (!isOpen) return null;
-        return (
-            <Choices>
-                {selections.map(({ value, text }) => (
-                    <Selection
-                        value={value}
-                        text={text}
-                        onClick={() => handleSelection(value, text)}
-                    />
-                ))}
-            </Choices>
-        );
-    };
+	/**
+	 * Renders the drop down list
+	 */
+	const DropDownList = () => {
+		if (!isOpen) return null;
+		return (
+			<Choices>
+				{selections.map(({ value, text }) => (
+					<Selection
+						value={value}
+						text={text}
+						onClick={() => handleSelection(value, text)}
+						key={value}
+					/>
+				))}
+			</Choices>
+		);
+	};
 
-    return (
-        <div>
-            <FormLabel text={label} errorMessage={getValidationMessage()} />
-            <Outer onMouseLeave={close}>
-                <Button onClick={open}>{buttonText}</Button>
-                <DropDownList />
-            </Outer>
-        </div>
-    );
+	return (
+		<div>
+			<FormLabel text={label} errorMessage={getValidationMessage()} />
+			<Outer onMouseLeave={close}>
+				<Button onClick={open}>{buttonText}</Button>
+				<DropDownList />
+			</Outer>
+		</div>
+	);
 };

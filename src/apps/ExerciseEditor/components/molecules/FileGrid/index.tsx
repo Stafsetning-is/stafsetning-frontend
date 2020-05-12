@@ -20,6 +20,7 @@ const Component = ({ files, children, selected }: IProps) => {
 				{children}
 				{files.map((file) => (
 					<FileIcon
+						key={file._id}
 						fileName={file.fileName}
 						file={file}
 						selected={selectedDict[file._id] ?? false}

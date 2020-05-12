@@ -33,6 +33,7 @@ const Component = ({ text, splits, addSplit, removeSplit }: IProps) => {
 							if (isFirstChar) return;
 							removeSplit(i);
 						}}
+						key={i}
 					/>
 				);
 			})}
