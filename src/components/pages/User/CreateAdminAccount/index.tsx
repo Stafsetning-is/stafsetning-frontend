@@ -16,15 +16,13 @@ const Page = ({ logInUser }: IProps) => {
 	return (
 		<Outer>
 			<InfoBox>
-				Hér getur þú búið til kennara aðgang. Þegar aðgangurinn verður
-				til þá skráist þú sem nemandi. Um leið þá fá aðrir kennarar
-				tilkynningu um að þú hafir beðið um kennara aðgang. Um leið og
-				annar kennari samþykkir þig inn í kerfið þá getur þú búið til
-				æfingar
+				Hér getur þú búið til kennaraaðgang. Aðgangurinn verður að vera
+				samþykktur af öðrum kennara til að þú fáir réttindi. Á meðan
+				getur þú skoðað síðuna sem nemandi.
 			</InfoBox>
 			<FormGenerator<SignupRes>
 				fields={signupForm}
-				label="Skrá inn"
+				label="Innskráning"
 				onSuccess={({ token, user }) => {
 					setRedirectURL("/");
 					setAuthCookie(token);
