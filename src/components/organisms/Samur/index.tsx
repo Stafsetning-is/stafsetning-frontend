@@ -45,7 +45,7 @@ const Component = ({
     useEffect(() => {
         if (!previous) return;
         markAsCompleted(previous, user._id);
-    }, [previous]);
+    }, [previous, user._id]);
 
     if (!ALLOWED_USER_TYPES.includes(user.type)) return null;
     const handleActionClick = (actions: TutorialDialogActions[]) => {

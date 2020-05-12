@@ -46,7 +46,6 @@ export const DropDown = ({
      */
     useEffect(() => {
         const selected = selections.find((item) => item.value === value);
-        console.log("selected", selected);
         if (selected) setButtonText(selected.text);
         else setButtonText(placeholder || "");
     }, [placeholder, selections, value]);

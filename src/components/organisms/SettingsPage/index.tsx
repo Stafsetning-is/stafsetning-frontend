@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { LiveForm, AccessibilitySettings, FormGenerator } from "../../";
 import {} from "../../";
 import { changeDifficultyForm, changePasswordForm } from "./formRecipe";
@@ -30,7 +30,7 @@ const Component = ({ changeUserDifficulty, difficulty }: IProps) => {
             <FormGenerator
                 fields={changePasswordForm}
                 label="Breyta um lykilorð"
-                onSuccess={({}) => {}}
+                onSuccess={() => {}}
                 postTo="/api/v1/users/password"
             />
 
