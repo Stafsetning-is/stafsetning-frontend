@@ -1,12 +1,12 @@
 import React, { useMemo } from "react";
 import { DoubleSlider } from "../../";
 import {
-    setHideCompleted,
-    setMaxWordCount,
-    setMinWordCount,
-    setQuickFilter,
-    closeFilterSideBar,
-    openFilterSideBar
+	setHideCompleted,
+	setMaxWordCount,
+	setMinWordCount,
+	setQuickFilter,
+	closeFilterSideBar,
+	openFilterSideBar,
 } from "../../../actions";
 import { AuthHider, DifficultyHider } from "../../../hoc";
 import { connect } from "react-redux";
@@ -28,28 +28,28 @@ import { faWindowClose, faFilter } from "@fortawesome/free-solid-svg-icons";
  * All the choices a user makes is stored as a state in redux.
  */
 const FilterComponent = ({
-    setMaxWordCount,
-    setMinWordCount,
-    maxWordCount,
-    minWordCount,
-    setQuickFilter,
-    quickFilter,
-    sidebarVisible,
-    closeFilterSideBar,
-    openFilterSideBar
+	setMaxWordCount,
+	setMinWordCount,
+	maxWordCount,
+	minWordCount,
+	setQuickFilter,
+	quickFilter,
+	sidebarVisible,
+	closeFilterSideBar,
+	openFilterSideBar,
 }: IProps) => {
-    const sliderMovement = (value: SliderValues) => {
-        setMaxWordCount(value.max);
-        setMinWordCount(value.min);
-    };
+	const sliderMovement = (value: SliderValues) => {
+		setMaxWordCount(value.max);
+		setMinWordCount(value.min);
+	};
 
-    const sliderValue: SliderValues = useMemo(
-        () => ({
-            min: minWordCount,
-            max: maxWordCount
-        }),
-        [minWordCount, maxWordCount]
-    );
+	const sliderValue: SliderValues = useMemo(
+		() => ({
+			min: minWordCount,
+			max: maxWordCount,
+		}),
+		[minWordCount, maxWordCount]
+	);
 
 	return (
 		<AuthHider setAuthLevel="user">
@@ -76,7 +76,7 @@ const FilterComponent = ({
 							type="text-input"
 						/>
 					</Compartment>
-					<Compartment label="Sýna:">
+					<Compartment label="Sýna">
 						{FILTER_BUTTONS.map((button) => (
 							<FilterButton
 								key={button.label}
@@ -96,10 +96,10 @@ const FilterComponent = ({
 const mapStateToPropss = (store: StoreState) => store.filter;
 
 export const FilterSearch = connect(mapStateToPropss, {
-    setHideCompleted,
-    setMinWordCount,
-    setMaxWordCount,
-    setQuickFilter,
-    closeFilterSideBar,
-    openFilterSideBar
+	setHideCompleted,
+	setMinWordCount,
+	setMaxWordCount,
+	setQuickFilter,
+	closeFilterSideBar,
+	openFilterSideBar,
 })(FilterComponent);
