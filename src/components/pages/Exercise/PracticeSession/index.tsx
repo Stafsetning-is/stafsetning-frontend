@@ -44,7 +44,6 @@ export default ({ match }: RouteComponentProps<IProps>) => {
 				setExercise(exercise);
 			})
 			.catch((e) => {
-				console.log("e", e);
 				setErrorMessage(e.message);
 			});
 	}, [match.params.id]);
