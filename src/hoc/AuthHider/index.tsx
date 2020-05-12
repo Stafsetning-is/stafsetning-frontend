@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { StoreState } from "../../reducers";
 import { IProps } from "./interface";
-
+import { NOT_AUTH_TYPES } from "./utils";
 /**
  * Wrapper that takes in setAuthLevel prop and decides if
  * component should be rendered or "hidden"
@@ -31,7 +31,7 @@ const Component = ({ userType, isAuth, setAuthLevel, children }: IProps) => {
 };
 
 const mapStateToProps = (state: StoreState) => ({
-	isAuth: state.auth.type !== "guest",
+	isAuth: !NOT_AUTH_TYPES.includes(state.auth.type),
 	user: state.auth.user,
 	userType: state.auth.type,
 });

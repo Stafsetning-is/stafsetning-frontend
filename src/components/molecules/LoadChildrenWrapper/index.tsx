@@ -10,5 +10,5 @@ import { Loader } from "../..";
  */
 export const LoadChildrenWrapper = ({ children }: IProps) => {
 	if (Children.count(children) === 0) return <Loader loading={true} />;
-	else return children;
+	else return <React.Fragment>{children}</React.Fragment>;
 };
