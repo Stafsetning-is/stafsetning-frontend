@@ -22,6 +22,7 @@ export default ({ match }: RouteComponentProps<IProps>) => {
 				setPractice(data);
 			})
 			.catch((e) => {
+				console.log("e", e);
 				setLoading(false);
 				setErrorMessage(e.message);
 			});

@@ -7,6 +7,7 @@ import {
 	SetQuickFilterAction,
 	CloseFilterAction,
 	OpenFilterAction,
+	ClearFilterAction,
 } from "./interface";
 import { ActionTypes } from "../types";
 import { QuickFilter } from "../../services";
@@ -124,6 +125,17 @@ export function openFilterSideBar(): OpenFilterAction {
 	// returns the action
 	return {
 		type: ActionTypes.openFilterSideBar,
+		payload: null,
+	};
+}
+
+/**
+ * clears the filter and restores initial state
+ */
+export function clearFilter(): ClearFilterAction {
+	// returns the action
+	return {
+		type: ActionTypes.clearFilter,
 		payload: null,
 	};
 }

@@ -112,6 +112,7 @@ export default class Validator {
 	/**
 	 * Reusable method thet checks if
 	 * value has a character type
+	 * any allowed as the types are different for form elements
 	 */
 	private static fieldHasCharType(type: CharacterTypes, value: any) {
 		const regex = Validator.mapCharacterTypeToRegex(type);
@@ -168,6 +169,8 @@ export default class Validator {
 	 * in value
 	 * @param value Value to do regex lookup in
 	 * @param pattern pattern to match in value
+	 *
+	 * any allowed as the types are different for form elements
 	 */
 	private static includesPattern(value: any, pattern: RegExp) {
 		return !!value.toString().match(pattern);

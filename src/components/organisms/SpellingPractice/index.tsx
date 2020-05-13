@@ -28,7 +28,13 @@ import { useRemoveTutorialItems } from "../../../hooks";
  * So it takes the string[] as input when it's ready.
  * The SpellingPractice should only be used when all data is ready.
  */
-const Component = ({ parts, counter, owner, user }: IProps) => {
+const Component = ({
+	parts,
+	counter,
+	owner,
+	user,
+	_id: exerciseId,
+}: IProps) => {
 	const [errorCount, setErrorCount] = useState(0);
 	const [session, setSession] = useState<Exercise>();
 	const [typed, setTyped] = useState("");
@@ -45,7 +51,7 @@ const Component = ({ parts, counter, owner, user }: IProps) => {
 		 */
 		const session = Exercise.startExercise(
 			parts,
-			user._id,
+			exerciseId,
 			user.preferences
 		)
 			.on("error", () => {
@@ -74,12 +80,10 @@ const Component = ({ parts, counter, owner, user }: IProps) => {
 			.on("nextCharChange", (char: string) => {
 				setNextChar(char);
 			});
-
-		session.emitText(true);
 		setErrorCount(session.getErrorCount());
 		setSession(session);
 		return () => session.stopListening();
-	}, [user._id, user.preferences, parts]);
+	}, [user._id, parts]);
 
 	useEffect(() => {
 		if (!session) return;
@@ -90,6 +94,11 @@ const Component = ({ parts, counter, owner, user }: IProps) => {
 		if (!session) return;
 		session.setPreviewTimeToLive(user.preferences.previewTTL);
 	}, [session, user.preferences.previewTTL]);
+
+	useEffect(() => {
+		if (!session) return;
+		setTimeout(() => session.emitText(true), 250);
+	}, [session]);
 
 	useRemoveTutorialItems(
 		() => typed.length === 10,

@@ -46,6 +46,7 @@ const Component = ({
 	 * whenever the user type changes
 	 */
 	useEffect(() => {
+		console.log("user.type", user.type);
 		if (user.type === GUEST) fetchExercisesSample();
 		else if (SIGNED_IN_USER_LEVELS.includes(user.type))
 			fetchExercisesForUser();

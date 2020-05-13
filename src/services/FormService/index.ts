@@ -25,11 +25,12 @@ interface InputBase {
 	validationMessage?: string;
 	value: any;
 	passProps?: {
+		// allows other data in props
 		[key: string]: any;
 		min?: number;
 		max?: number;
 		step?: number;
-		marks?: any;
+		marks?: boolean;
 		colors?: string[];
 	} | null;
 	hidden?: boolean;

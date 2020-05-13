@@ -121,6 +121,9 @@ export class Exercise {
 	 * that's allowed in instance of class
 	 * @param type predefined type of event
 	 * @param cb callback to execute on event, will overwrite older callbacks
+	 *
+	 * any as params are different between cb's
+	 * and they are type declared elsewhere
 	 */
 	public on(
 		type: SpellingTypeEvents,
@@ -242,6 +245,9 @@ export class Exercise {
 	 * internal method. Does nothign
 	 * if user has not supplied callback
 	 * @param cb
+	 *
+	 * any allowed as params are varying between cb's
+	 * also the param is type declered elsewhere in class
 	 */
 	private doCallBack(cb: SpellingTypeEvents, param?: any) {
 		if (this.silentMode) return;
@@ -326,11 +332,6 @@ export class Exercise {
 		this.handleSpaceBeforePreview();
 		this.emitText(true);
 		this.timeAtPreview = new Date().getTime();
-		if (this.clearTextTimeout) clearTimeout(this.clearTextTimeout);
-		this.clearTextTimeout = setTimeout(
-			this.clearPreview,
-			this.options.previewTTL * 1000
-		);
 	}
 	/**
 	 * Allows the user to type space before the preview and
@@ -365,6 +366,12 @@ export class Exercise {
 				: ""
 		);
 		this.doCallBack("nextCharChange");
+		if (!preview) return;
+		if (this.clearTextTimeout) clearTimeout(this.clearTextTimeout);
+		this.clearTextTimeout = setTimeout(
+			this.clearPreview,
+			this.options.previewTTL * 1000
+		);
 	}
 
 	/**
