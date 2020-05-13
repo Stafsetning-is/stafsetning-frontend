@@ -3,44 +3,55 @@ import { BACKGROUND } from "../../../../static";
 /* ... */
 
 export const Heading = styled.h2`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
-    background-color: #6600ff;
-    opacity: 0.8;
-    margin-bottom: 20px;
-    color: white;
-    font-size: 190px;
-    background-image: url(${BACKGROUND});
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 200px;
+	background-color: #6600ff;
+	opacity: 0.8;
+	margin-bottom: 20px;
+	color: white;
+	font-size: 190px;
+	background-image: url(${BACKGROUND});
 `;
 
 export const Content = styled.p`
-    margin-bottom: 20px;
-    line-height: 35px;
-    color: #525252;
-    justify-content: center;
-    font-size: 25px;
+	margin-bottom: 20px;
+	line-height: 35px;
+	color: #525252;
+	font-size: 20px;
+	font-width: 400;
 `;
 
 export const MailtoLink = styled.a`
-    color: #0000ee;
-    text-decoration: underline;
-    :visited {
-        color: #551a8b;
-    }
+	color: #0000ee;
+	text-decoration: underline;
+	:visited {
+		color: #551a8b;
+	}
 `;
 
 export const DeveloperImage = styled.img`
-    width: 30%;
-    height: 30%;
-    display: block;
-    align-self: center;
-    border-radius: 50%;
-    margin-bottom: 20px;
+	border-radius: 50%;
+	width: 170px;
+	height: 170px;
 `;
 
-export const DeveloperImageWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
+export const Wrapper = styled.div`
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+`;
+
+export const DeveloperWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`;
+
+export const Developer = styled.p`
+	line-height: 35px;
+	color: #525252;
+	font-size: 20px;
 `;
