@@ -13,9 +13,6 @@ import { NavLink } from "react-router-dom";
 export const CookieBanner = () => {
 	return (
 		<CookieConsent {...BANNER_PROPS}>
-			<IconWrapper>
-				<FontAwesomeIcon icon={faCookieBite} />
-			</IconWrapper>
 			<div>
 				<Comment>{CONTENT_TEXT}</Comment>
 				<NavLink to="/cookies">

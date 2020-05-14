@@ -1,8 +1,7 @@
 export const BUTTON_TEXT = "Samþykkja";
-export const CONTENT_TEXT =
-	"Stafsetning.is styðst við kökur til þess að virka.";
+export const CONTENT_TEXT = "Stafsetning.is styðst við vafrakökur";
 
-export const DETAILS_TEXT = "Sjá yfirlit yfir hvað við notum kökur fyrir";
+export const DETAILS_TEXT = "Sjá yfirlit yfir hvað við notum vafrakökur fyrir";
 
 export const BANNER_PROPS = {
 	buttonText: BUTTON_TEXT,
@@ -11,7 +10,7 @@ export const BANNER_PROPS = {
 		borderRadius: "5px",
 		fontSize: "16px",
 		outline: "none",
-		padding: "10px",
+		padding: "10px 25px",
 		backgroundColor: "#6600ff",
 		position: "absolute",
 		right: "50%",
@@ -30,13 +29,12 @@ export const BANNER_PROPS = {
 		top: "20px",
 	},
 	style: {
-		height: "100px",
-		opacity: "0.8",
+		height: "110px",
 		backgroundColor: "#f8f8f8",
 		alignItems: "center",
-		borderRadius: "8px 8px 0 0 ",
+		borderRadius: "15px 15px 0 0 ",
 		color: "black",
 		margin: "0 auto",
-		boxShadow: "0px 0px 20px rgba(0,0,0,0.3)",
+		boxShadow: "0px 0px 15px rgba(0,0,0,0.35)",
 	},
 };

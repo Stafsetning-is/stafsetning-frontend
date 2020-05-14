@@ -20,6 +20,10 @@ const name: InputElementRecipe = {
 	placeholder: "Fullt nafn",
 	validation: {
 		minLength: 6,
+		pattern: {
+			regex: new RegExp(/.*\s..*/, "g"),
+			message: "Verður að vera for- og eftirnafn",
+		},
 	},
 	value: "",
 	passProps: {},

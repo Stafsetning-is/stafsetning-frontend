@@ -20,7 +20,13 @@ export const EXERCISE_SECOND_STEP: TutorialItem = {
 	text: "Skrifaðu eftir gráa textanum. Passaðu þig að gera ekki villu!",
 	type: "exercise-explain-step-2",
 	auth: "user",
-	actions: [],
+	actions: [
+		{
+			text: "Takk",
+			do: ["continue"],
+			type: "info",
+		},
+	],
 	location: TutorialLocations.exercisePage,
 	doOnLoad: [],
 };
@@ -29,7 +35,13 @@ export const EXERCISE_THIRD_STEP: TutorialItem = {
 	text: "Þú getur smellt á „Birta“ takkann til að sjá textann aftur!",
 	type: "exercise-explain-step-3",
 	auth: "user",
-	actions: [],
+	actions: [
+		{
+			text: "Já, sniðugt",
+			do: ["continue"],
+			type: "info",
+		},
+	],
 	location: TutorialLocations.exercisePage,
 	doOnLoad: [],
 };
@@ -38,7 +50,13 @@ export const EXERCISE_FOURTH_STEP: TutorialItem = {
 	text: "Vá, þú ert að standa þig svo vel! Þú átt skilið verðlaun!",
 	type: "exercise-explain-step-4",
 	auth: "user",
-	actions: [],
+	actions: [
+		{
+			text: "Ég er frábær!",
+			do: ["continue"],
+			type: "info",
+		},
+	],
 	location: TutorialLocations.exercisePage,
 	doOnLoad: [],
 };

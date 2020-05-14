@@ -25,23 +25,23 @@ export default () => {
 			<Content>Þróunaraðilar:</Content>
 			<Wrapper>
 				<DeveloperWrapper>
-					<DeveloperImage src={NJALL}></DeveloperImage>
+					<DeveloperImage theme={NJALL}></DeveloperImage>
 					<Developer>Njáll</Developer>
 				</DeveloperWrapper>
 				<DeveloperWrapper>
-					<DeveloperImage src={JULIA}></DeveloperImage>
+					<DeveloperImage theme={JULIA}></DeveloperImage>
 					<Developer>Júlía</Developer>
 				</DeveloperWrapper>
 				<DeveloperWrapper>
-					<DeveloperImage src={GABRIEL}></DeveloperImage>
+					<DeveloperImage theme={GABRIEL}></DeveloperImage>
 					<Developer>Gabríel</Developer>
 				</DeveloperWrapper>
 				<DeveloperWrapper>
-					<DeveloperImage src={NANNA}></DeveloperImage>
+					<DeveloperImage theme={NANNA}></DeveloperImage>
 					<Developer>Natalía</Developer>
 				</DeveloperWrapper>
 				<DeveloperWrapper>
-					<DeveloperImage src={KJARTAN}></DeveloperImage>
+					<DeveloperImage theme={KJARTAN}></DeveloperImage>
 					<Developer>Kjartan</Developer>
 				</DeveloperWrapper>
 			</Wrapper>
