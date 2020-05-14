@@ -19,7 +19,16 @@ export const reportToRuleString = (report: Report) => {
 	const rules = [...Object.keys(report).map((key) => report[key])];
 	if (rules.length === 0) return "Blönduð áhersla.";
 	rules.sort((a, b) => a.count - b.count);
-	return rules.pop()?.name;
+	const highestFrequency = rules[rules.length - 1]?.count;
+	if (!highestFrequency || highestFrequency === 0) return "Blönduð áhersla";
+	const mostFrequent = rules.filter(
+		(rule) => rule.count === highestFrequency
+	);
+
+	return mostFrequent.reduce((prev, curr, index) => {
+		if (index === 0) return curr.name;
+		else return `${prev}, ${curr.name}`;
+	}, "");
 };
 
 /**

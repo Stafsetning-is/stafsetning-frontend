@@ -4,11 +4,27 @@ import { MainHeading, Heading, Content } from "./styles";
 export default () => {
 	return (
 		<React.Fragment>
-			<MainHeading>Skilmálar um notkun á vafrakökum</MainHeading>
+			<MainHeading>Skilmálar</MainHeading>
 			<Content>
-				Skilmálar þessir eiga við um notkun vafrakaka á stafsetning.is.
+				Skilmálar þessir eiga við um persónuvernd, vistun gagna og
+				notkun vafrakaka á stafsetning.is.
 			</Content>
-			<Heading>Um vafrakökur</Heading>
+			<Heading>Persónuvernd</Heading>
+			<Content>
+				Farið er með þær persónuupplýsingar sem Stafsetning.is móttekur
+				sem trúnaðarmál. Gögn sem eru auðkennandi fyrir þig sem
+				einstakling eru einungis vistuð svo hægt sé að bregðast við
+				aðstæðum, svo sem glötuðu lykilorði. Ef slíkt gerist þá er
+				einungis hægt að endurstilla lykilorð með því að sannreyna að þú
+				sért eigandi aðgangsins.
+			</Content>
+			<Heading>Meðhöndlun lykilorða</Heading>
+			<Content>
+				Stafsetning.is getur ekki séð, né deilt með þér lykilorðinu
+				þínu. Vefurinn beitir viðurkenndum aðferðum til þess að halda
+				lykilorðinu þínu öruggu.
+			</Content>
+			<Heading id="cookies">Um vafrakökur</Heading>
 			<Content>
 				Vafrakökur (e. cookies) eru litlar textaskrár sem eru vistaðar á
 				tölvunni þinni eða öðrum snjalltækjum sem þú notar til að

@@ -1,11 +1,18 @@
 import styled from "styled-components";
 
 export const Outer = styled.div`
-	position: fixed;
-	width: 100%;
-	bottom: 0;
-	left: 0;
-	height: 70px;
+	@media (min-width: 1000px) {
+		position: fixed;
+		width: 100%;
+		bottom: 0;
+		left: 0;
+		height: 70px;
+	}
+	@media (max-width: 999px) {
+		* {
+			display: none;
+		}
+	}
 `;
 
 export const Inner = styled.div`
