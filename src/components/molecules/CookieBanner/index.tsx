@@ -1,7 +1,5 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCookieBite } from "@fortawesome/free-solid-svg-icons";
-import { IconWrapper, Link, Comment } from "./styles";
+import { Link, Comment } from "./styles";
 import { BANNER_PROPS, CONTENT_TEXT, DETAILS_TEXT } from "./utils";
 import CookieConsent from "react-cookie-consent";
 import { NavLink } from "react-router-dom";

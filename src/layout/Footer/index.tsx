@@ -10,7 +10,6 @@ export default () => {
 					<a href="https://www.stafsetning.is/">
 						<Item>Stafsetning.is</Item>
 					</a>
-
 					<a href="https://www.ru.is/">
 						<Item>Reykjavik University</Item>
 					</a>

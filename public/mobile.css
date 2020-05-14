@@ -11,3 +11,84 @@ body {
 	background-position: center center;
 	height: 100vh;
 }
+
+#mobile {
+	display: none;
+}
+
+@media only screen and (max-width: 1000px) {
+	#root > * {
+		display: none;
+		background-position: 200px center;
+	}
+
+	#mobile {
+		display: block;
+	}
+
+	#mobile .anim-box-bottom {
+		width: 100%;
+		color: #333;
+		font-size: 16px;
+		bottom: 0px;
+		box-sizing: border-box;
+		position: absolute;
+		bottom: 0;
+		background-color: #f8f8f8;
+		border-radius: 15px 15px 0 0;
+		padding: 25px;
+		height: 90px;
+		box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
+	}
+	.anim-box-bottom {
+		animation: move-in ease 0.5s;
+		-webkit-animation: move-in ease 0.5s;
+		-moz-animation: move-in ease 0.5s;
+		-o-animation: move-in ease 0.5s;
+		-ms-animation: move-in ease 0.5s;
+	}
+	@keyframes move-in {
+		0% {
+			transform: translateY(100%);
+		}
+		100% {
+			transform: translateY(0%);
+		}
+	}
+
+	@-moz-keyframes move-in {
+		0% {
+			transform: translateY(100%);
+		}
+		100% {
+			transform: translateY(0%);
+		}
+	}
+
+	@-webkit-keyframes move-in {
+		0% {
+			transform: translateY(100%);
+		}
+		100% {
+			transform: translateY(0%);
+		}
+	}
+
+	@-o-keyframes move-in {
+		0% {
+			transform: translateY(100%);
+		}
+		100% {
+			transform: translateY(0%);
+		}
+	}
+
+	@-ms-keyframes move-in {
+		0% {
+			transform: translateY(100%);
+		}
+		100% {
+			transform: translateY(0%);
+		}
+	}
+}
