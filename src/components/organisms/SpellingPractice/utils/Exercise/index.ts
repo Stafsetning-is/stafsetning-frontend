@@ -35,7 +35,9 @@ export class Exercise {
 	 * @param exerciseParts the parts of the exercise
 	 */
 	private constructor(exerciseParts: string[], id: string, options: Options) {
-		this.exerciseParts = exerciseParts;
+		this.exerciseParts = exerciseParts.map((part) =>
+			part.replace(/\s+/g, " ")
+		);
 		this.cleanParts();
 		this.typingAt = 0;
 		this.errorFlag = true;

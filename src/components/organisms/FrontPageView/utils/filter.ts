@@ -51,7 +51,7 @@ const handleHideByGrammarRule = (
 		? true
 		: filterSettings.filterGrammarRule.every(
 				(rule) =>
-					exercise.report[rule]?.count >
+					exercise.report[rule]?.count >=
 					MIN_OCCURENCES_OF_GRAMMAR_RULE_IN_EXERCISE
 		  );
 
