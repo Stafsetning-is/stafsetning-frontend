@@ -19,7 +19,10 @@ export const DoubleSlider = ({
 	 * Recieves event from material-uui slider
 	 * and calls the onChange callback
 	 */
-	const handleChange = (event: any, newValue: number | number[]) => {
+	const handleChange = (
+		_event: React.ChangeEvent<{}>,
+		newValue: number | number[]
+	) => {
 		if (typeof newValue === "object") {
 			const newVal: DoubleSliderValue = {
 				max: newValue[1],

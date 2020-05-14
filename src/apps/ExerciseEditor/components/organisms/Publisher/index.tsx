@@ -4,7 +4,7 @@ import SplitterView from "./SplitterView";
 import DifficultySettings from "./DifficultySettings";
 import { IProps } from "./interface";
 import { UIButton } from "../../";
-import { ButtonContainer, ErrorText } from "./styles";
+import { ButtonContainer, ErrorText, Outer } from "./styles";
 import { publish } from "./utils";
 import { connect } from "react-redux";
 import { StoreState } from "../../../reducers";
@@ -42,7 +42,7 @@ const Component = ({
 
 	if (redirectUrl) return <Redirect to={redirectUrl} />;
 	return (
-		<div>
+		<Outer>
 			<InfoBox />
 			<SplitterView text={file.text} />
 			<DifficultySettings />
@@ -50,7 +50,7 @@ const Component = ({
 			<ButtonContainer>
 				<UIButton onClick={handleClick} label="Birta æfingu" />
 			</ButtonContainer>
-		</div>
+		</Outer>
 	);
 };
 

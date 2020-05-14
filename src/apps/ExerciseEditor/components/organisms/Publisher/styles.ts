@@ -17,3 +17,11 @@ export const ErrorText = styled.p`
 	transition: 0.3s;
 	${(props) => (props.theme.hasError ? "opacity: 1;" : "opacity: 0;")}
 `;
+
+export const Outer = styled.div`
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+`;

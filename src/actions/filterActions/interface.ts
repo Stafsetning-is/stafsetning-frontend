@@ -40,3 +40,8 @@ export interface OpenFilterAction {
 	type: ActionTypes.openFilterSideBar;
 	payload: null;
 }
+
+export interface ClearFilterAction {
+	type: ActionTypes.clearFilter;
+	payload: null;
+}

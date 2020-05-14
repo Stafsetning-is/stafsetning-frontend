@@ -4,10 +4,6 @@
 	font-family: "Roboto";
 }
 
-#mobile {
-	display: none;
-}
-
 button {
 	cursor: pointer;
 }
@@ -28,6 +24,7 @@ form {
 	display: flex;
 	flex-direction: column;
 }
+
 a,
 a:active {
 	color: inherit;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const WIDTH = 350;
+const WIDTH = 275;
 
 export const FilterOuter = styled.div`
 	display: flex;

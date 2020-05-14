@@ -2,20 +2,20 @@ import { ActionTypes } from "../types";
 import { User, UserPreference } from "../../models";
 import { Dispatch } from "redux";
 import {
-    LogInUserAction,
-    LogOutUserAction,
-    FetchAdminInvitesAction,
-    ChangePendingAdminInviteToLoadingAction,
-    RequestAdminStatusForUserAction,
-    ChangeUserPointsAction,
-    ChangeUserPreferencesAction,
-    ChangeUserDifficulltyAction,
-    SetGenderAction,
-    // ChangeUserPasswordAction,
+	LogInUserAction,
+	LogOutUserAction,
+	FetchAdminInvitesAction,
+	ChangePendingAdminInviteToLoadingAction,
+	RequestAdminStatusForUserAction,
+	ChangeUserPointsAction,
+	ChangeUserPreferencesAction,
+	ChangeUserDifficulltyAction,
+	SetGenderAction,
 } from "./interface";
 import { Api } from "../../api";
-import { emitLogin } from "../";
+import { emitLogin, clearFilter } from "../";
 import { removeToken } from "../../services";
+import store from "../../store";
 
 /**
  * AUTH ACTIONS
@@ -91,7 +91,7 @@ export function fetchUserFromToken() {
  * @param id users id
  */
 export function changePendingAdminInviteToLoading(
-    id: string
+	id: string
 ): ChangePendingAdminInviteToLoadingAction {
 	// returns the action
 	return {
@@ -158,6 +158,8 @@ export function fetchAdminInviteList() {
 export function signOut(): LogOutUserAction {
 	// removes the token
 	removeToken();
+	// cleans filter settings
+	store.dispatch(clearFilter());
 	// returns the action creator
 	return {
 		type: ActionTypes.logOutUser,
@@ -183,7 +185,7 @@ export function changeUserPoints(points: number): ChangeUserPointsAction {
  * @param preferences UserPreference interface object
  */
 export function changeUserPreferences(
-    preferences: UserPreference
+	preferences: UserPreference
 ): ChangeUserPreferencesAction {
 	// returns the action creator
 	return {
@@ -197,7 +199,7 @@ export function changeUserPreferences(
  * @param value new number between 1-11
  */
 export function changeUserDifficulty(
-    value: number
+	value: number
 ): ChangeUserDifficulltyAction {
 	// returns the action
 	return {

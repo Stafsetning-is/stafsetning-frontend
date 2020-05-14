@@ -9,6 +9,7 @@ export const getPractice = async (id: string) => {
 		);
 		return data;
 	} catch (error) {
+		console.log("error", error);
 		throw Error("Ekki tókst að fletta upp þessari prófraun");
 	}
 };

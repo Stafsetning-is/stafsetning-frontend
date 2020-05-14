@@ -35,13 +35,14 @@ export function fetchExercisesSample() {
 			const { data } = await Api.get<Exercise[]>(
 				"/api/open/exercise_sample"
 			);
-
+			console.log("data", data);
 			// dispatches the action
 			dispatch<GetExerciseSampleAction>({
 				type: ActionTypes.getExerciseSample,
 				payload: data,
 			});
 		} catch (error) {
+			console.log("error", error);
 			// on error we do nothing
 		}
 	};

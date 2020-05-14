@@ -1,4 +1,4 @@
 export interface IProps {
-	shake: boolean;
-	children: any;
+    shake: boolean;
+    children: React.ReactNode;
 }

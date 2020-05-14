@@ -10,7 +10,7 @@ export const SHAKE_DURATION = 500;
  * it's necessary
  */
 export const getLiveInputElementsArray = (fields: LiveInputObject) => {
-    return mapFieldsToArray<LiveInputObject>(fields);
+	return mapFieldsToArray<LiveInputObject>(fields);
 };
 
 /**
@@ -18,15 +18,15 @@ export const getLiveInputElementsArray = (fields: LiveInputObject) => {
  * fields to array of fields
  */
 const mapFieldsToArray = <T>(fields: T) => {
-    const inputElementArray = [];
-    for (const key in fields) {
-        const item = {
-            ...fields[key],
-            key
-        };
-        inputElementArray.push(item);
-    }
-    return inputElementArray;
+	const inputElementArray = [];
+	for (const key in fields) {
+		const item = {
+			...fields[key],
+			key,
+		};
+		inputElementArray.push(item);
+	}
+	return inputElementArray;
 };
 /**
  * Turns the formObject to a mapable array
@@ -35,15 +35,15 @@ const mapFieldsToArray = <T>(fields: T) => {
  * it's necessary
  */
 export const getInputElementsArray = (fields: InputObject) => {
-    const inputElementArray = [];
-    for (const key in fields) {
-        const item = {
-            ...fields[key],
-            key
-        };
-        inputElementArray.push(item);
-    }
-    return inputElementArray;
+	const inputElementArray = [];
+	for (const key in fields) {
+		const item = {
+			...fields[key],
+			key,
+		};
+		inputElementArray.push(item);
+	}
+	return inputElementArray;
 };
 
 /**
@@ -51,13 +51,14 @@ export const getInputElementsArray = (fields: InputObject) => {
  * key value pair with values
  * as the user typed them in
  * @param fields the inputObject
+ * any allowed as the types are different for form elements
  */
 export const getUserData = (fields: InputObject): any => {
-    let retObject: { [key: string]: any } = {};
-    for (const key in fields) {
-        retObject[key] = fields[key].value;
-    }
-    return retObject;
+	let retObject: { [key: string]: any } = {};
+	for (const key in fields) {
+		retObject[key] = fields[key].value;
+	}
+	return retObject;
 };
 
 /**
@@ -66,11 +67,11 @@ export const getUserData = (fields: InputObject): any => {
  * @param fields fields to validate for errors
  */
 export const validateErrors = (fields: InputObject) => {
-    const elementArray = getInputElementsArray(fields);
-    const invalid = elementArray.some(
-        (el) => !(el.value && !el.validationMessage)
-    );
-    if (invalid) throw new Error("");
+	const elementArray = getInputElementsArray(fields);
+	const invalid = elementArray.some(
+		(el) => !(el.value && !el.validationMessage)
+	);
+	if (invalid) throw new Error("");
 };
 
 /**
@@ -81,33 +82,34 @@ export const validateErrors = (fields: InputObject) => {
  * @param url POST url
  */
 export const handlePost = async <T>(
-    fields: InputObject,
-    url: string
+	fields: InputObject,
+	url: string
 ): Promise<T> => {
-    try {
-        const { data } = await Api.post<T>(url, getUserData(fields));
-        return await delay(data);
-    } catch (error) {
-        await delay(null);
-        throw new Error("Villa í samskiptum við vefþjón");
-    }
+	try {
+		const { data } = await Api.post<T>(url, getUserData(fields));
+		return await delay(data);
+	} catch (error) {
+		await delay(null);
+		throw new Error("Villa í samskiptum við vefþjón");
+	}
 };
 /**
  * Returns the form object with default values
  * @param formObject object containing input elements
  * @param defaultValues object of default values with specific keys
+ * any allowed as the types are different for form elements
  */
 export const applyDefaultValues = <T extends InputObject>(
-    formObject: T,
-    defaultValues?: { [key: string]: any }
+	formObject: T,
+	defaultValues?: { [key: string]: any }
 ) => {
-    if (!defaultValues) return formObject;
-    Object.keys(defaultValues).forEach((key) => {
-        const inputElement = formObject[key];
-        if (!inputElement) return;
-        inputElement.value = defaultValues[key];
-    });
-    return formObject;
+	if (!defaultValues) return formObject;
+	Object.keys(defaultValues).forEach((key) => {
+		const inputElement = formObject[key];
+		if (!inputElement) return;
+		inputElement.value = defaultValues[key];
+	});
+	return formObject;
 };
 
 /**
@@ -116,7 +118,7 @@ export const applyDefaultValues = <T extends InputObject>(
  * @param data Data to return after delay
  */
 const delay = <T>(data: T): Promise<T> => {
-    return new Promise((resolve) => {
-        setTimeout(() => resolve(data), 2000);
-    });
+	return new Promise((resolve) => {
+		setTimeout(() => resolve(data), 2000);
+	});
 };

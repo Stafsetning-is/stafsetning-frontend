@@ -74,12 +74,12 @@ const validators: ValidateRequirement[] = [
 	{
 		method: ({ difficultRange }) =>
 			!!difficultRange.min && !!difficultRange.max,
-		message: "Það vantar upplýsingar um erfiðleikastig",
+		message: "Námsstig vantar",
 	},
 	{
-		method: ({ difficultRange }) => difficultRange.min <= difficultRange.max,
-		message:
-			"Lágmarks erfiðleika stig má ekki vera hærra en hámarks erfiðleikastig",
+		method: ({ difficultRange }) =>
+			difficultRange.min <= difficultRange.max,
+		message: "Lágmarks námsstig má ekki vera hærra en hámarks námsstig",
 	},
 ];
 

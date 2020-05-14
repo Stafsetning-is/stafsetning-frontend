@@ -11,19 +11,21 @@ import { Paragraph } from "./styles";
  * front page
  */
 export const ErrorModal = ({ errorMessage, children }: IProps) => {
-    return (
-        <React.Fragment>
-            {children}
-            <Modal>
-                <Paragraph>{errorMessage}</Paragraph>
-                <NavLink to="/">
-                    <BasicButton
-                        text="Fara aftur á forsíðu"
-                        type="default"
-                        onClick={() => {}}
-                    />
-                </NavLink>
-            </Modal>
-        </React.Fragment>
-    );
+	return (
+		<React.Fragment>
+			{children}
+			{errorMessage ? (
+				<Modal>
+					<Paragraph>{errorMessage}</Paragraph>
+					<NavLink to="/">
+						<BasicButton
+							text="Fara aftur á forsíðu"
+							type="default"
+							onClick={() => {}}
+						/>
+					</NavLink>
+				</Modal>
+			) : null}
+		</React.Fragment>
+	);
 };

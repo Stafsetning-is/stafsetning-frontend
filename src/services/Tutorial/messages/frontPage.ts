@@ -4,7 +4,13 @@ export const TRY_FIRST_EXERCISE: TutorialItem = {
 	text: "Veldu æfingu og smelltu á opna til að halda áfram!",
 	type: "try-first-exercise",
 	auth: "user",
-	actions: [],
+	actions: [
+		{
+			text: "Loka glugga",
+			do: ["continue"],
+			type: "info",
+		},
+	],
 	location: TutorialLocations.frontPage,
 	doOnLoad: [],
 };
@@ -16,7 +22,7 @@ export const FIRST_WELCOME: TutorialItem = {
 	auth: "user",
 	actions: [
 		{
-			text: "Okei!",
+			text: "Allt í góðu!",
 			do: ["shrink", "continue"],
 			type: "info",
 		},

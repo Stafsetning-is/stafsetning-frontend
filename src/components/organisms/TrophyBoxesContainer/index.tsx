@@ -12,8 +12,9 @@ const Component = ({ trophies, setTrophy }: IProps) => {
     trophies = [...trophies, ...LOCKED_TROPHIES].slice(0, ITEM_IN_ROWS * ROWS);
     return (
         <LoadingGrid itemsInRow={5}>
-            {trophies.map((item) => (
+            {trophies.map((item, i) => (
                 <Trophy
+                    key={i}
                     {...item}
                     onClick={() => setTrophy({ ...item, old: true })}
                 />

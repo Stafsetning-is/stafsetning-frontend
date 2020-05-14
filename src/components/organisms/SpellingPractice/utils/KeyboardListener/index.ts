@@ -62,7 +62,6 @@ export default class KeyboardListener {
         e.preventDefault();
         let char = "";
         char = e.key;
-        console.log("char", char);
         char = this.accentCharIfShould(char, e);
         char = this.capitalizeCharIfShould(char, e);
         char = this.replaceSpecialCharIfShould(char, e);

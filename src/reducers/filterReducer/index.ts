@@ -58,6 +58,10 @@ export default (
 				...state,
 				sidebarVisible: true,
 			};
+		case ActionTypes.clearFilter:
+			return {
+				...initialState,
+			};
 		default:
 			return state;
 	}

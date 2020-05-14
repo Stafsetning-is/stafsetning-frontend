@@ -2,6 +2,8 @@ import { FilterObject } from "../../../../services";
 import { Exercise } from "../../../../models";
 import { FilterState } from "../../../../reducers/filterReducer";
 
+const MIN_OCCURENCES_OF_GRAMMAR_RULE_IN_EXERCISE = 3;
+
 /**
  * Special function type that takes in
  * exercise and filterState
@@ -10,8 +12,8 @@ import { FilterState } from "../../../../reducers/filterReducer";
  * according to that state;
  */
 type FilterFunction = (
-    exercise: Exercise,
-    filterSettings: FilterState
+	exercise: Exercise,
+	filterSettings: FilterState
 ) => boolean;
 
 /**
@@ -20,53 +22,55 @@ type FilterFunction = (
  * @param filterSettings filter state object
  */
 export function filterExercises(
-    exercises: Exercise[],
-    filterSettings: FilterObject
+	exercises: Exercise[],
+	filterSettings: FilterObject
 ) {
-    return exercises.filter((exercise) =>
-        filterRules().every((rule) => rule(exercise, filterSettings))
-    );
+	return exercises.filter((exercise) =>
+		filterRules().every((rule) => rule(exercise, filterSettings))
+	);
 }
 
 // Handles hiding completed exercises
 const handleHideCompleted = (exercise: Exercise, filterSettings: FilterState) =>
-    !(filterSettings.hideCompleted && exercise.completed);
+	!(filterSettings.hideCompleted && exercise.completed);
 
 // Handles hiding long exercises
 const handleHideLongText = (exercise: Exercise, filterSettings: FilterState) =>
-    exercise.wordCount <= filterSettings.maxWordCount;
+	exercise.wordCount <= filterSettings.maxWordCount;
 
 // Handles hiding short exercises
 const handleHideShortText = (exercise: Exercise, filterSettings: FilterState) =>
-    exercise.wordCount > filterSettings.minWordCount;
+	exercise.wordCount > filterSettings.minWordCount;
 
 // Handles hiding by grammar rule query
 const handleHideByGrammarRule = (
-    exercise: Exercise,
-    filterSettings: FilterState
+	exercise: Exercise,
+	filterSettings: FilterState
 ) =>
-    filterSettings.filterGrammarRule.length === 0
-        ? true
-        : filterSettings.filterGrammarRule.every(
-              (rule) => exercise.report[rule]
-          );
+	filterSettings.filterGrammarRule.length === 0
+		? true
+		: filterSettings.filterGrammarRule.every(
+				(rule) =>
+					exercise.report[rule]?.count >=
+					MIN_OCCURENCES_OF_GRAMMAR_RULE_IN_EXERCISE
+		  );
 
 // Handles quick filter methods like handle completed, show saved
 const handleQuickFilter = (exercise: Exercise, filterSettings: FilterState) => {
-    switch (filterSettings.quickFilter) {
-        case "hide-completed":
-            return !exercise.completed;
-        case "show-saved":
-            return exercise.saved;
-        default:
-            return true;
-    }
+	switch (filterSettings.quickFilter) {
+		case "hide-completed":
+			return !exercise.completed;
+		case "show-saved":
+			return exercise.saved;
+		default:
+			return true;
+	}
 };
 
 const filterRules = (): FilterFunction[] => [
-    handleHideCompleted,
-    handleHideLongText,
-    handleHideShortText,
-    handleHideByGrammarRule,
-    handleQuickFilter
+	handleHideCompleted,
+	handleHideLongText,
+	handleHideShortText,
+	handleHideByGrammarRule,
+	handleQuickFilter,
 ];

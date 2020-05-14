@@ -18,20 +18,20 @@ export default ({ connectedUsers }: IProps) => {
         return "nemandi";
     };
 
-	return (
-		<Outer>
-			<InfoBox>
-				<Inner>
-					{users.map((user, i) => (
-						<UserIcon index={i} src={user.avatar} />
-					))}
-					<Text theme={{ count: users.length }}>{`${
-						connectedUsers.length
-					} ${getPluralOrSingular(
-						connectedUsers.length
-					)} á Stafsetning.is akkúrat núna`}</Text>
-				</Inner>
-			</InfoBox>
-		</Outer>
-	);
+    return (
+        <Outer>
+            <InfoBox>
+                <Inner>
+                    {users.map((user, i) => (
+                        <UserIcon key={i} index={i} src={user.avatar} />
+                    ))}
+                    <Text theme={{ count: users.length }}>{`${
+                        connectedUsers.length
+                    } ${getPluralOrSingular(
+                        connectedUsers.length
+                    )} á Stafsetning.is akkúrat núna`}</Text>
+                </Inner>
+            </InfoBox>
+        </Outer>
+    );
 };

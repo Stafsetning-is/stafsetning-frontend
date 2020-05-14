@@ -1,9 +1,9 @@
 import { InputElementRecipe, InputObject } from "../../../../services";
 
 const mobile: InputElementRecipe = {
-	label: "Farsímanúmer",
+	label: "Símanúmer",
 	type: "text-input",
-	placeholder: "GSM númer",
+	placeholder: "Símanúmer",
 	validation: {
 		pattern: {
 			regex: new RegExp(/^[6-8]\d{2}[-\s]?\d{4}$/, "g"),
@@ -20,15 +20,19 @@ const name: InputElementRecipe = {
 	placeholder: "Fullt nafn",
 	validation: {
 		minLength: 6,
+		pattern: {
+			regex: new RegExp(/.*\s..*/, "g"),
+			message: "Verður að vera for- og eftirnafn",
+		},
 	},
 	value: "",
 	passProps: {},
 };
 
 const username: InputElementRecipe = {
-	label: "Notendanafn",
+	label: "Notandanafn",
 	type: "text-input",
-	placeholder: "Notendanafn",
+	placeholder: "Notandanafn",
 	validation: {
 		minLength: 6,
 	},
