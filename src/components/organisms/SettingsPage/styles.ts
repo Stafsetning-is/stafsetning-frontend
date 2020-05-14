@@ -10,8 +10,6 @@ export const Outer = styled.div`
 export const PasswordTitle = styled.div`
 	font-size: 20px;
 	color: #666;
-	// margin-bottom: 10px;
-	// border-bottom: 1px dashed #999;
 `;
 
 export const SuccessContainer = styled.div`

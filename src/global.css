@@ -4,10 +4,6 @@
 	font-family: "Roboto";
 }
 
-#mobile {
-	display: none;
-}
-
 button {
 	cursor: pointer;
 }
