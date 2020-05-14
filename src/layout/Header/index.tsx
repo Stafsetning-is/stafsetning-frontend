@@ -30,7 +30,7 @@ const Header = ({ user, signOut, pendingInvitesCount }: IProps) => {
 					</NavLink>
 					<RightSide>
 						<HeaderItem
-							to={`${urlWithoutPath()}about-us`}
+							to={`/about-us`}
 							text={"Um okkur"}
 							dropDownItems={[]}
 						/>

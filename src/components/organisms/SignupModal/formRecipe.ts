@@ -6,7 +6,7 @@ const mobile: InputElementRecipe = {
 	placeholder: "Símanúmer",
 	validation: {
 		pattern: {
-			regex: new RegExp(/[6-8]\d{2}[-\s]?\d{4}$/, "g"),
+			regex: new RegExp(/^[6-8]\d{2}[-\s]?\d{4}$/g),
 			message: "Símanúmer ekki rétt",
 		},
 	},
@@ -20,6 +20,11 @@ const name: InputElementRecipe = {
 	placeholder: "Fullt nafn",
 	validation: {
 		minLength: 6,
+		forbiddenCharacterTypes: ["numbers", "symbols"],
+		pattern: {
+			regex: new RegExp(/.*\s..*/, "g"),
+			message: "Verður að vera for- og eftirnafn",
+		},
 	},
 	value: "",
 	passProps: {},
