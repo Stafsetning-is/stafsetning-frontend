@@ -18,7 +18,7 @@
 		"@types/react-toggle": "^4.0.2",
 		"@types/socket.io-client": "^1.4.32",
 		"@types/styled-components": "^5.1.0",
-		"axios": "^0.19.2",
+		"axios": "^0.21.1",
 		"csshake": "^1.5.3",
 		"firebase-functions": "^3.6.1",
 		"jest": "^26.0.1",
