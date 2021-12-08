@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import {
 	Inner,
 	Outer,
@@ -36,11 +36,6 @@ const Component = ({
 	growTutorial,
 	queue,
 }: IProps) => {
-	useEffect(() => {
-		if (!current) return;
-		handleActionClick(current.doOnLoad);
-	}, [current]);
-
 	const previous = usePrevious(current);
 
 	useEffect(() => {
@@ -48,27 +43,34 @@ const Component = ({
 		markAsCompleted(previous, user._id);
 	}, [previous, user._id]);
 
-	const handleActionClick = (actions: TutorialDialogActions[]) => {
+	const handleActionClick = useCallback(
+		(actions: TutorialDialogActions[]) => {
+			if (!current) return;
+			actions.forEach((item) => {
+				switch (item) {
+					case "close":
+						break;
+					case "continue":
+						continueTutorialDialog();
+						break;
+					case "shrink":
+						shrinkTutorial();
+						break;
+					case "grow":
+						growTutorial();
+						break;
+					case "stop":
+						break;
+				}
+			});
+		},
+		[continueTutorialDialog, shrinkTutorial, growTutorial, current]
+	);
+
+	useEffect(() => {
 		if (!current) return;
-		actions.forEach((item) => {
-			switch (item) {
-				case "close":
-					break;
-				case "continue":
-					continueTutorialDialog();
-					break;
-				case "shrink":
-					shrinkTutorial();
-					break;
-				case "grow":
-					growTutorial();
-					break;
-				case "stop":
-					//
-					break;
-			}
-		});
-	};
+		handleActionClick(current.doOnLoad);
+	}, [current, handleActionClick]);
 
 	const nothingToShow = !current && queue.length === 0;
 	const userIsNotAuth = !ALLOWED_USER_TYPES.includes(user.type);

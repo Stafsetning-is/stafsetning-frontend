@@ -15,3 +15,12 @@ export const Comment = styled.p`
 export const Link = styled.p`
 	color: #6600ff;
 `;
+
+export const Outer = styled.div`
+	@media (max-width: 999px) {
+		display: none;
+		> * {
+			display: none;
+		}
+	}
+`;

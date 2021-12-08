@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { IProps } from "./interface";
 import Header from "../Header";
+import { Outer, MobileText } from "./styles";
 import BackDrop from "../Backdrop";
 import CenterBlock from "../CenterBlock";
 import Footer from "../Footer";
@@ -69,7 +70,7 @@ const Component = ({
 	const userPickedGender = user.gender && user.gender !== "loading";
 
 	return (
-		<div style={{ position: "relative" }}>
+		<Outer>
 			<BackDrop>
 				<Header />
 				<CenterBlock>
@@ -80,7 +81,10 @@ const Component = ({
 				<CookieBanner />
 			</BackDrop>
 			<Footer />
-		</div>
+			<MobileText>
+				Heimsóttu okkur í far- eða borðtölvu. Hlökkum til að sjá þig!
+			</MobileText>
+		</Outer>
 	);
 };
 

@@ -49,7 +49,8 @@ const Component = ({
 		 * for the four events that
 		 * might occur on user input
 		 */
-		const session = Exercise.startExercise(
+		if (session) return;
+		let practice = Exercise.startExercise(
 			parts,
 			exerciseId,
 			user.preferences
@@ -80,10 +81,10 @@ const Component = ({
 			.on("nextCharChange", (char: string) => {
 				setNextChar(char);
 			});
-		setErrorCount(session.getErrorCount());
-		setSession(session);
-		return () => session.stopListening();
-	}, [user._id, parts]);
+		setErrorCount(practice.getErrorCount());
+		setSession(practice);
+		return () => practice.stopListening();
+	}, [user._id, parts, exerciseId]);
 
 	useEffect(() => {
 		if (!session) return;
@@ -97,6 +98,7 @@ const Component = ({
 
 	useEffect(() => {
 		if (!session) return;
+		console.log("session", session);
 		setTimeout(() => session.emitText(true), 250);
 	}, [session]);
 

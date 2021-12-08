@@ -128,7 +128,7 @@ export default class Validator {
 		return {
 			letters: new RegExp(/[a-zA-Z]/, "g"),
 			numbers: new RegExp(/[0-9]/, "g"),
-			symbols: new RegExp(/[^\w\s]/, "g"),
+			symbols: new RegExp(/[-!$%^&*()_+|~=`{}[\]:";'<>?,./]/, "g"),
 			"white-space": new RegExp(/\s/, "g"),
 			"lower-case": new RegExp(/[a-z]/, "g"),
 			"upper-case": new RegExp(/[A-Z]/, "g"),
